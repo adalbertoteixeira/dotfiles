@@ -1,0 +1,12 @@
+# Example aliases
+# alias zshconfig="mate ~/.zshrc"
+# alias ohmyzsh="mate ~/.oh-my-zsh"
+alias dockly="docker run --rm -it -v /var/run/docker.sock:/var/run/docker.sock lirantal/dockly"
+alias webhint="docker run -it -v ~/.config/webhint/.hintrc:/app/.hintrc webhint"
+alias ddgr="docker run --rm -it ddgr"
+alias rtichoke="docker run --rm -it rtichoke"
+alias go-dev="docker run -i  --rm --name go-dev -v ~/dev/go:/go go-dev"
+alias docker-rstudio="docker run --rm -d -p 8787:8787 -v /Volumes/DEV_SSD/r-studio:/src rocker/rstudio"
+alias docker-r="docker run --rm -it -v /Volumes/DEV_SSD/r:/src rocker/r-base"
+alias tmux="TERM=screen-256color tmux"
+

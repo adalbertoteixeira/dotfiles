@@ -1,0 +1,20 @@
+export LANG=en_GB.UTF-8
+export LC_ALL=pt_PT.UTF-8
+export LC_CTYPE=pt_PT.UTF-8
+export LC_COLLATE=pt_PT.UTF-8
+export LC_TIME=pt_PT.UTF-8
+export LC_MESSAGES=pt_PT.UTF-8
+export LC_MONETARY=pt_PT.UTF-8
+
+export NVM_AUTO_USE=true
+export NVM_DIR="$HOME/.nvm"
+
+# Setting rg as the default source for fzf
+export FZF_DEFAULT_COMMAND="rg --files"
+# To apply the command to CTRL-T as well
+export FZF_CTRL_T_COMMAND="$FZF_DEFAULT_COMMAND"
+
+# Path to your oh-my-zsh installation.
+export ZSH=/Users/adalbertoteixeira/.oh-my-zsh
+
+export PATH="$HOME/.cargo/bin:$PATH"
