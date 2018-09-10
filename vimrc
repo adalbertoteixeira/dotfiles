@@ -451,6 +451,9 @@ let g:ale_fixers = {
 \}
 nmap <silent> <C-k> <Plug>(ale_previous)
 nmap <silent> <C-j> <Plug>(ale_next)
+
+nmap <Leader>hp <Plug>GitGutterPrevHunk
+nmap <Leader>hn <Plug>GitGutterNextHunk
 if emoji#available()
   let g:gitgutter_sign_added = emoji#for('star')
   let g:gitgutter_sign_modified = emoji#for('dizzy')
