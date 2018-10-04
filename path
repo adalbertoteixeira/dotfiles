@@ -1,6 +1,6 @@
 export PATH="$HOME/.cargo/bin:$PATH"
 export PATH=$HOME/bin:/usr/local/bin:$PATH
-export PATH=$PATH:$/Users/adalbertoteixeira/dev/go/bin
+export PATH=$PATH:$HOME/dev/go/bin
 export GOPATH=$HOME/dev/go
 export PATH=$PATH:$(go env GOPATH)/bin
 export PATH=$PATH:/usr/local/opt/go/libexec/bin

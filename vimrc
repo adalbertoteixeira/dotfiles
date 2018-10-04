@@ -17,6 +17,8 @@ set autoread
 let mapleader = ","
 let g:mapleader = ","
 
+set noshowcmd
+set regexpengine=1
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " => VIM user interface
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
@@ -96,6 +98,9 @@ filetype off                  " required
 set notimeout
 set ttimeout
 set ttimeoutlen=10
+
+set nohlsearch
+
 """"""""
 " Vundle
 """"""""
@@ -161,7 +166,7 @@ Plugin 'scrooloose/nerdcommenter'
 Plugin 'cespare/vim-toml'
 Plugin 'tpope/vim-obsession'
 "Plugin 'LaTeX-Box-Team/LaTeX-Box'
-" Plugin 'digitaltoad/vim-pug'
+Plugin 'digitaltoad/vim-pug'
 Plugin 'SirVer/ultisnips'
 Plugin 'honza/vim-snippets'
 " Plugin 'heavenshell/vim-jsdoc'
@@ -218,39 +223,39 @@ set encoding=utf8
 " Use Unix as the standard file type
 set ffs=unix,dos,mac
 
-if has('autocmd')
-   " change colorscheme depending on current buffer
-   " if desired, you may set a user-default colorscheme before this point,
-   " otherwise we'll use the Vim default.
-   " Variables used:
-       " g:colors_name : current colorscheme at any moment
-       " b:colors_name (if any): colorscheme to be used for the current buffer
-       " s:colors_name : default colorscheme, to be used where b:colors_name hasn't been set
-   if has('user_commands')
-       " User commands defined:
-           " ColorScheme <name>
-               " set the colorscheme for the current buffer
-           " ColorDefault <name>
-               " change the default colorscheme
-       command -nargs=1 -bar ColorScheme
-          \ colorscheme <args>
-          \ | let b:colors_name = g:colors_name
-       command -nargs=1 -bar ColorDefault
-          \ let s:colors_name = <q-args>
-          \ | if !exists('b:colors_name')
-              \ | colors <args>
-          \ | endif
-   endif
-   if !exists('g:colors_name')
-       let g:colors_name = 'default'
-   endif
-   let s:colors_name = g:colors_name
-   au BufEnter *
-       \ let s:new_colors = (exists('b:colors_name')?(b:colors_name):(s:colors_name))
-       \ | if s:new_colors != g:colors_name
-           \ | exe 'colors' s:new_colors
-       \ | endif
-endif
+" if has('autocmd')
+"    " change colorscheme depending on current buffer
+"    " if desired, you may set a user-default colorscheme before this point,
+"    " otherwise we'll use the Vim default.
+"    " Variables used:
+"        " g:colors_name : current colorscheme at any moment
+"        " b:colors_name (if any): colorscheme to be used for the current buffer
+"        " s:colors_name : default colorscheme, to be used where b:colors_name hasn't been set
+"    if has('user_commands')
+"        " User commands defined:
+"            " ColorScheme <name>
+"                " set the colorscheme for the current buffer
+"            " ColorDefault <name>
+"                " change the default colorscheme
+"        command -nargs=1 -bar ColorScheme
+"           \ colorscheme <args>
+"           \ | let b:colors_name = g:colors_name
+"        command -nargs=1 -bar ColorDefault
+"           \ let s:colors_name = <q-args>
+"           \ | if !exists('b:colors_name')
+"               \ | colors <args>
+"           \ | endif
+"    endif
+"    if !exists('g:colors_name')
+"        let g:colors_name = 'default'
+"    endif
+"    let s:colors_name = g:colors_name
+"    au BufEnter *
+"        \ let s:new_colors = (exists('b:colors_name')?(b:colors_name):(s:colors_name))
+"        \ | if s:new_colors != g:colors_name
+"            \ | exe 'colors' s:new_colors
+"        \ | endif
+" endif
 
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " => Files, backups and undo
@@ -469,9 +474,11 @@ else
   let g:ale_sign_error = '>>'
   let g:ale_sign_warning = '--'
 endif
-
+inoremap <c-x><c-k> <c-x><c-k>
+let g:ycm_key_list_select_completion=['<c-n>']
+let g:ycm_key_list_previous_completion=['<c-p']
 " Snippets
-let g:UltiSnipsExpandTrigger="<c-space>"
+let g:UltiSnipsExpandTrigger="<tab>"
 " let g:UltiSnipsJumpForwardTrigger="<c-j>"
 " let g:UltiSnipsJumpBackwardTrigger="<c-k>"
 let g:UltiSnipsEditSplit="vertical"

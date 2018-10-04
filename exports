@@ -15,6 +15,7 @@ export FZF_DEFAULT_COMMAND="rg --files"
 export FZF_CTRL_T_COMMAND="$FZF_DEFAULT_COMMAND"
 
 # Path to your oh-my-zsh installation.
-export ZSH=/Users/adalbertoteixeira/.oh-my-zsh
+export ZSH=$HOME/.oh-my-zsh
 
 export PATH="$HOME/.cargo/bin:$PATH"
+REACT_EDITOR=vim

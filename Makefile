@@ -1,10 +1,14 @@
-.PHONY: install
-	install:
-		ln -sf $(pwd)/vimrc $HOME/.vimrc
-		ln -sf $(pwd)/path $HOME/.path
-		ln -sf $(pwd)/tmux.conf $HOME/.tmux.conf
-		ln -sf $(pwd)/zprofile $HOME/.zprofile
-		# ln -sf $(pwd)/profile $HOME/.profile
-		ln -sf $(pwd)/zshrc $HOME/.zshrc
-		ln -sf $(pwd)/extra $HOME/.extra
-		ln -sf $(pwd)/exports $HOME/.exports
+.PHONY: all
+	all: dotfiles
+
+install:
+		ln -sf $(PWD)/vimrc $(HOME)/.vimrc
+		ln -sf $(PWD)/path $(HOME)/.path
+		ln -sf $(PWD)/tmux.conf $(HOME)/.tmux.conf
+		ln -sf $(PWD)/zprofile $(HOME)/.zprofile
+		ln -sf $(PWD)/zshrc $(HOME)/.zshrc
+		ln -sf $(PWD)/extra $(HOME)/.extra
+		ln -sf $(PWD)/exports $(HOME)/.exports
+		ln -sf $(PWD)/aliases $(HOME)/.aliases
+		ln -sf $(PWD)/adalbertoteixeira.zsh-theme $(HOME)/.oh-my-zsh/themes/adalbertoteixeira.zsh-theme
+		# ln -sf profile $(HOME)/.profile

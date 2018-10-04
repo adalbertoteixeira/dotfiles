@@ -100,5 +100,14 @@ eval "$(rbenv init -)"
 
 #[ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
 # heroku autocomplete setup
-HEROKU_AC_ZSH_SETUP_PATH=/Users/adalbertoteixeira/Library/Caches/heroku/autocomplete/zsh_setup && test -f $HEROKU_AC_ZSH_SETUP_PATH && source $HEROKU_AC_ZSH_SETUP_PATH;
+HEROKU_AC_ZSH_SETUP_PATH=$HOME/Library/Caches/heroku/autocomplete/zsh_setup && test -f $HEROKU_AC_ZSH_SETUP_PATH && source $HEROKU_AC_ZSH_SETUP_PATH;
 
+# bindkey -e
+# bindkey '^[[1;9C' forward-word
+# bindkey '^[[1;9D' backward-word
+
+# Kitty
+autoload -Uz compinit
+compinit
+# Completion for kitty
+kitty + complete setup zsh | source /dev/stdin
