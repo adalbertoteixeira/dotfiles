@@ -110,6 +110,6 @@ HEROKU_AC_ZSH_SETUP_PATH=$HOME/Library/Caches/heroku/autocomplete/zsh_setup && t
 autoload -Uz compinit
 compinit
 # Completion for kitty
-if ! type kitty > /dev/null; then
+if [[ -z "$kitty" ]] && [[ -e "$kitty" ]]; then
   kitty + complete setup zsh | source /dev/stdin
 fi
