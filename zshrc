@@ -94,7 +94,7 @@ source $ZSH/oh-my-zsh.sh
 #source /usr/local/share/zsh-autosuggestions/zsh-autosuggestions.zsh
 # source $HOME/.zsh/zsh-autosuggestions
 # source /usr/local/share/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh
-eval "$(perl -I$HOME/perl5/lib/perl5 -Mlocal::lib=$HOME/perl5)"
+# eval "$(perl -I$HOME/perl5/lib/perl5 -Mlocal::lib=$HOME/perl5)"
 eval "$(rbenv init -)"
 
 
