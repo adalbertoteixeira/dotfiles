@@ -482,7 +482,7 @@ let g:UltiSnipsExpandTrigger="<tab>"
 " let g:UltiSnipsJumpForwardTrigger="<c-j>"
 " let g:UltiSnipsJumpBackwardTrigger="<c-k>"
 let g:UltiSnipsEditSplit="vertical"
-let g:UltiSnipsSnippetDirectories=["~/.vim/plugins/vim-snippets/snippets","~/.vim/plugins/vim-snippets/UltiSnips"]
+let g:UltiSnipsSnippetDirectories=["UltiSnips", "~/.vim/plugins/vim-snippets/snippets"]
 " JSON
 " command PrettyJSON %!python -m json.tool
 " Filetype json
