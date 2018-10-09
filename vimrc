@@ -100,6 +100,8 @@ set ttimeout
 set ttimeoutlen=10
 
 set nohlsearch
+set splitright
+set splitbelow
 
 """"""""
 " Vundle
@@ -482,7 +484,7 @@ let g:UltiSnipsExpandTrigger="<tab>"
 " let g:UltiSnipsJumpForwardTrigger="<c-j>"
 " let g:UltiSnipsJumpBackwardTrigger="<c-k>"
 let g:UltiSnipsEditSplit="vertical"
-let g:UltiSnipsSnippetDirectories=["UltiSnips", "~/.vim/plugins/vim-snippets/snippets"]
+let g:UltiSnipsSnippetDirectories=["~/.vim/plugins/vim-snippets/snippets","~/.vim/plugins/vim-snippets/UltiSnips"]
 " JSON
 " command PrettyJSON %!python -m json.tool
 " Filetype json
