@@ -95,21 +95,21 @@ source $ZSH/oh-my-zsh.sh
 # source $HOME/.zsh/zsh-autosuggestions
 # source /usr/local/share/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh
 # eval "$(perl -I$HOME/perl5/lib/perl5 -Mlocal::lib=$HOME/perl5)"
-eval "$(rbenv init -)"
+if command -v rbenv > /dev/null 2>&1; then eval "$(rbenv init -)"; fi
 
 
 #[ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
 # heroku autocomplete setup
-HEROKU_AC_ZSH_SETUP_PATH=$HOME/Library/Caches/heroku/autocomplete/zsh_setup && test -f $HEROKU_AC_ZSH_SETUP_PATH && source $HEROKU_AC_ZSH_SETUP_PATH;
+# HEROKU_AC_ZSH_SETUP_PATH=$HOME/Library/Caches/heroku/autocomplete/zsh_setup && test -f $HEROKU_AC_ZSH_SETUP_PATH && source $HEROKU_AC_ZSH_SETUP_PATH;
 
 # bindkey -e
 # bindkey '^[[1;9C' forward-word
 # bindkey '^[[1;9D' backward-word
 
 # Kitty
-autoload -Uz compinit
-compinit
-# Completion for kitty
 if [[ -z "$kitty" ]] && [[ -e "$kitty" ]]; then
+	autoload -Uz compinit
+	compinit
+	# Completion for kitty
   kitty + complete setup zsh | source /dev/stdin
 fi

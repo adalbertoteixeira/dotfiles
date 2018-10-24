@@ -1,4 +1,4 @@
-for file in ~/.{exports,zshrc,aliases,functions,path,dockerfunc,extra}; do
+for file in ~/.{exports,aliases,functions,path,dockerfunc,extra}; do
 	if [[ -r "$file" ]] && [[ -f "$file" ]]; then
 		# shellcheck source=/dev/null
 		source "$file"
