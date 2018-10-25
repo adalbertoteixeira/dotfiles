@@ -14,6 +14,9 @@ vimubuntu:
 	sudo make install
 	make clean
 	make distclean
+	cd $(HOME)
+	git clone https://github.com/VundleVim/Vundle.vim.git ~/.vim/bundle/Vundle.vim
+	vim +PluginInstall +qall
 
 .PHONY: zshubuntu
 zshubuntu:
