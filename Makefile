@@ -36,7 +36,6 @@ vimubuntu:
 		--enable-multibyte \
 		--enable-rubyinterp=yes \
 		--enable-pythoninterp=yes \
-		--with-python-config-dir=/usr/lib/python2.7/config \
 		--enable-python3interp=yes \
 		--with-python3-config-dir=/usr/lib/python3.5/config \
 		--enable-perlinterp=yes \
@@ -53,6 +52,7 @@ vimubuntu:
 	sudo update-alternatives --set editor /usr/local/bin/vim
 	sudo update-alternatives --install /usr/bin/vi vi /usr/local/bin/vim 1
 	sudo update-alternatives --set vi /usr/local/bin/vim
+	git clone --depth 1 https://github.com/junegunn/fzf.git ~/.fzf && ~/.fzf/install --all --key-bindings --completion --64 --no-fish &&	source ~/.zshrc
 	git clone https://github.com/VundleVim/Vundle.vim.git ~/.vim/bundle/Vundle.vim
 	vim +PluginInstall +qall
 	cd $(HOME)/.vim/bundle/youcompleteme
@@ -83,3 +83,7 @@ dotfiles:
 	ln -sf $(PWD)/vim-snippets $(HOME)/.vim/plugins/vim-snippets/snippets
 	mkdir -p $(HOME)/.oh-my-zsh/themes/
 	ln -sf $(PWD)/adalbertoteixeira.zsh-theme $(HOME)/.oh-my-zsh/themes/adalbertoteixeira.zsh-theme
+
+.PHONY: update
+update:
+	cd ~/.fzf && git pull && ./install --all --key-bindings --completion --64 --no-fish &&  source ~/.zshrc
