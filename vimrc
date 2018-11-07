@@ -173,6 +173,7 @@ Plugin 'SirVer/ultisnips'
 Plugin 'honza/vim-snippets'
 " Plugin 'heavenshell/vim-jsdoc'
 Plugin 'rust-lang/rust.vim'
+Plugin 'leafgarland/typescript-vim'
 " All of your Plugins must be added before the following line
 call vundle#end()            " required
 "
@@ -480,6 +481,10 @@ endif
 inoremap <c-x><c-k> <c-x><c-k>
 let g:ycm_key_list_select_completion=['<c-n>']
 let g:ycm_key_list_previous_completion=['<c-p']
+if !exists("g:ycm_semantic_triggers")
+  let g:ycm_semantic_triggers = {}
+endif
+let g:ycm_semantic_triggers['typescript'] = ['.']
 " Snippets
 let g:UltiSnipsExpandTrigger="<tab>"
 " let g:UltiSnipsJumpForwardTrigger="<c-j>"
