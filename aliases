@@ -12,3 +12,4 @@ alias docker-rtichoke="ssh -t $REMOTE_DOCKER 'docker run --rm -it --user docker 
 alias docker-rstudio="ssh -t $REMOTE_DOCKER 'docker run --rm -p 8787:8787 -e PASSWORD=$DOCKER_R_STUDIO -e USER=rstudio -v /mnt/r-studio/workspace:/home/rstudio/workspace -w /home/rstudio/workspace -v /mnt/r-studio/lib:/usr/local/lib/R/site-library -v /mnt/r-studio:/src --name rstudio rocker/rstudio'"
 alias ddgr="ssh -t $REMOTE_DOCKER 'docker run --rm -it ddgr'"
 alias docker-jq="ssh -t $REMOTE_DOCKER 'docker run --rm -i jq'"
+alias spaces="s3cmd -c ~/.config/.ams3cfg"

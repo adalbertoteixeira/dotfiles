@@ -1,3 +1,11 @@
+for file in ~/.{exports,aliases,functions,path,dockerfunc,extra}; do
+	if [[ -r "$file" ]] && [[ -f "$file" ]]; then
+		# shellcheck source=/dev/null
+		source "$file"
+	fi
+done
+unset file
+
 # If you come from bash you might have to change your $PATH.
 # source ~/.bash_profile
 [ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh"  # This loads nvm
