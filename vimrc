@@ -456,7 +456,7 @@ let g:go_highlight_variable_assignments = 1
 let g:ale_lint_on_text_changed = 'normal'
 let g:ale_lint_on_insert_leave = 1
 let g:ale_sign_column_always = 1
-let g:ale_lint_delay = 500
+let g:ale_lint_delay = 250
 let g:ale_set_balloons = 0
 let g:ale_fixers = {
 \   'javascript': ['prettier'],
@@ -490,7 +490,7 @@ let g:UltiSnipsExpandTrigger="<tab>"
 " let g:UltiSnipsJumpForwardTrigger="<c-j>"
 " let g:UltiSnipsJumpBackwardTrigger="<c-k>"
 let g:UltiSnipsEditSplit="vertical"
-let g:UltiSnipsSnippetDirectories=["~/.vim/plugins/vim-snippets/snippets","~/.vim/plugins/vim-snippets/UltiSnips"]
+let g:UltiSnipsSnippetDirectories=["UltiSnips", "plugins/vim-snippets/snippets","plugins/vim-snippets/UltiSnips"]
 " JSON
 " command PrettyJSON %!python -m json.tool
 " Filetype json
