@@ -13,3 +13,5 @@ alias docker-rstudio="ssh -t $REMOTE_DOCKER 'docker run --rm -p 8787:8787 -e PAS
 alias ddgr="ssh -t $REMOTE_DOCKER 'docker run --rm -it ddgr'"
 alias docker-jq="ssh -t $REMOTE_DOCKER 'docker run --rm -i jq'"
 alias spaces="s3cmd -c ~/.config/.ams3cfg"
+alias pgadmin='docker run --rm -p 4080:80 -e "PGADMIN_DEFAULT_EMAIL=$PGADMIN_DEFAULT_EMAIL" -e "PGADMIN_DEFAULT_PASSWORD=$PGADMIN_DEFAULT_PASSWORD" --name=pgadmin -d dpage/pgadmin4'
+alias ben-proxy="docker run --rm --cap-add=NET_ADMIN --device /dev/net/tun ben_proxy"
