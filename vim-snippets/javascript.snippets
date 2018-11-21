@@ -1,5 +1,8 @@
 snippet reactcomponent
 import React, { Component } from 'react';
+import {
+
+} from 'propTypes';
 
 class ${1:ClassName} extends Component {
   render() {
@@ -9,11 +12,19 @@ class ${1:ClassName} extends Component {
   }
 }
 
+$1.propTypes = {
+
+};
+
+$1.defaultProps = {
+
+};
+
 export default $1
 endsnippet
 
 
-snippet reactpurefunctionnn
+snippet reactpurefunction
 import React from 'react';
 
 const ${1:ClassName} = props => (
