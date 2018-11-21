@@ -1,5 +1,20 @@
 .PHONY: all
-all: nvm go dotfiles
+all: nvm go dotfiles vimubuntu zshubuntu ohmyzshubuntu
+
+.PHONY: dotfiles
+dotfiles:
+	ln -sf $(PWD)/vimrc $(HOME)/.vimrc
+	ln -sf $(PWD)/path $(HOME)/.path
+	ln -sf $(PWD)/tmux.conf $(HOME)/.tmux.conf
+	ln -sf $(PWD)/zprofile $(HOME)/.zprofile
+	ln -sf $(PWD)/zshrc $(HOME)/.zshrc
+	ln -sf $(PWD)/extra $(HOME)/.extra
+	ln -sf $(PWD)/exports $(HOME)/.exports
+	ln -sf $(PWD)/aliases $(HOME)/.aliases
+	mkdir -p $(HOME)/.vim/plugins/vim-snippets
+	ln -sf $(PWD)/vim-snippets $(HOME)/.vim/plugins/vim-snippets/snippets
+	mkdir -p $(HOME)/.oh-my-zsh/themes/
+	ln -sf $(PWD)/adalbertoteixeira.zsh-theme $(HOME)/.oh-my-zsh/themes/adalbertoteixeira.zsh-theme
 
 .PHONY: go
 go:
@@ -21,9 +36,9 @@ nvm:
 .PHONY: vimubuntu
 vimubuntu:
 	sudo apt update
-	sudo apt upgrade
+	sudo apt upgrade -y
 	sudo apt remove vim vim-runtime gvim
-	sudo apt install libncurses5-dev libgnome2-dev libgnomeui-dev \
+	sudo apt install -y libncurses5-dev libgnome2-dev libgnomeui-dev \
 		libgtk2.0-dev libatk1.0-dev libbonoboui2-dev \
 		libcairo2-dev libx11-dev libxpm-dev libxt-dev python-dev \
 		python3-dev ruby-dev lua5.1 liblua5.1-dev libperl-dev git \
@@ -67,20 +82,8 @@ zshubuntu:
 
 .PHONY: ohmyzshubuntu
 ohmyzshubuntu:
-	sh -c "$(curl -fsSL https://raw.githubusercontent.com/robbyrussell/oh-my-zsh/master/tools/install.sh)"
-
-.PHONY: dotfiles
-dotfiles:
-	ln -sf $(PWD)/vimrc $(HOME)/.vimrc
-	ln -sf $(PWD)/path $(HOME)/.path
-	ln -sf $(PWD)/tmux.conf $(HOME)/.tmux.conf
-	ln -sf $(PWD)/zprofile $(HOME)/.zprofile
-	ln -sf $(PWD)/zshrc $(HOME)/.zshrc
-	ln -sf $(PWD)/extra $(HOME)/.extra
-	ln -sf $(PWD)/exports $(HOME)/.exports
-	ln -sf $(PWD)/aliases $(HOME)/.aliases
-	mkdir -p $(HOME)/.vim/plugins/vim-snippets
-	ln -sf $(PWD)/vim-snippets $(HOME)/.vim/plugins/vim-snippets/snippets
+	rm -rf $(HOME)/.oh-my-zsh
+	sh -c $(curl -fsSL https://raw.githubusercontent.com/robbyrussell/oh-my-zsh/master/tools/install.sh)
 	mkdir -p $(HOME)/.oh-my-zsh/themes/
 	ln -sf $(PWD)/adalbertoteixeira.zsh-theme $(HOME)/.oh-my-zsh/themes/adalbertoteixeira.zsh-theme
 
