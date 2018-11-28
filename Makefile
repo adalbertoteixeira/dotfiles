@@ -1,5 +1,5 @@
 .PHONY: all
-all: nvm go dotfiles vimubuntu zshubuntu ohmyzshubuntu
+all: nvm yarn go dotfiles vimubuntu zshubuntu ohmyzshubuntu
 
 .PHONY: dotfiles
 dotfiles:
@@ -11,10 +11,16 @@ dotfiles:
 	ln -sf $(PWD)/extra $(HOME)/.extra
 	ln -sf $(PWD)/exports $(HOME)/.exports
 	ln -sf $(PWD)/aliases $(HOME)/.aliases
-	mkdir -p $(HOME)/.vim/plugins/vim-snippets
-	ln -sf $(PWD)/vim-snippets $(HOME)/.vim/plugins/vim-snippets/snippets
+	mkdir -p $(HOME)/.vim/plugins
+	ln -sf $(PWD)/vim-snippets $(HOME)/.vim/plugins/vim-snippets
 	mkdir -p $(HOME)/.oh-my-zsh/themes/
 	ln -sf $(PWD)/adalbertoteixeira.zsh-theme $(HOME)/.oh-my-zsh/themes/adalbertoteixeira.zsh-theme
+
+.PHONY: yarn
+yarn: 
+	curl -sS https://dl.yarnpkg.com/debian/pubkey.gpg | sudo apt-key add -
+	echo "deb https://dl.yarnpkg.com/debian/ stable main" | sudo tee /etc/apt/sources.list.d/yarn.list
+	sudo apt-get update && sudo apt-get install yarn
 
 .PHONY: go
 go:
