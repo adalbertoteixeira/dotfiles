@@ -486,11 +486,12 @@ inoremap <c-x><c-k> <c-x><c-k>
 let g:ycm_key_list_select_completion=['<c-n>']
 let g:ycm_key_list_previous_completion=['<c-p']
 " Snippets
+" set rtp+=~/.vim/plugins/vim-snippets
 let g:UltiSnipsExpandTrigger="<tab>"
 " let g:UltiSnipsJumpForwardTrigger="<c-j>"
 " let g:UltiSnipsJumpBackwardTrigger="<c-k>"
 let g:UltiSnipsEditSplit="vertical"
-let g:UltiSnipsSnippetDirectories=["UltiSnips", "plugins/vim-snippets/snippets","plugins/vim-snippets/UltiSnips"]
+let g:UltiSnipsSnippetDirectories=[$HOME."/.vim/plugins/vim-snippets", $HOME."/.vim/UltiSnips"]
 " JSON
 " command PrettyJSON %!python -m json.tool
 " Filetype json
