@@ -77,3 +77,30 @@ $1.defaultProps = {
 
 export default $1
 endsnippet
+
+
+snippet reactpurefunctionconnected
+import React, { Component } from 'react';
+import { connect } from 'react-redux';
+import {
+
+} from 'propTypes';
+
+const ${1:ClassName} = props => (
+	<div />
+);
+
+$1.propTypes = {
+
+};
+
+$1.defaultProps = {
+
+};
+
+const mapStateToProps = state => ({});
+const mapDispatchToProps = dispatch => ({})
+
+export default connect(mapStateToProps, mapDispatchToProps)($1)
+endsnippet
+
