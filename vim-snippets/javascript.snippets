@@ -28,12 +28,52 @@ export default $1
 endsnippet
 
 
+snippet reactcomponentconnected
+import React, { Component } from 'react';
+import { connect } from 'react-redux';
+import {
+
+} from 'propTypes';
+
+class ${1:ClassName} extends Component {
+  render() {
+    return (
+      <div />
+    );
+  }
+}
+
+$1.propTypes = {
+
+};
+
+$1.defaultProps = {
+
+};
+
+const mapStateToProps = state => ({});
+const mapDispatchToProps = dispatch => ({})
+
+export default connected(mapStateToProps, mapDispatchToProps)($1)
+endsnippet
+
 snippet reactpurefunction
 import React from 'react';
+import {
+
+} from 'propTypes';
 
 const ${1:ClassName} = props => (
 	<div />
 );
+
+$1.propTypes = {
+
+};
+
+$1.defaultProps = {
+
+};
 
 export default $1
 endsnippet
