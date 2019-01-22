@@ -65,7 +65,7 @@ import {
 
 const ${1:ClassName} = ({
 
-		}) => (
+}) => (
 	<div />
 );
 
@@ -131,7 +131,7 @@ describe('$1', () => {
 });
 endsnippet
 
-snippet jestspecmockstore
+snippet jestbenspecmockstore
 import React from 'react';
 import { mount } from 'enzyme';
 import { Provider } from 'react-redux';
@@ -141,6 +141,32 @@ import ${1:Component} from './$2/$1/$1';
 describe('$1', () => {
   it('$3', () => {
     const store = mockedStore({});
+    store.dispatch = jest.fn();
+
+		const wrapper = mount(
+      <Provider store={store}>
+        <$1 />
+      </Provider>,
+    );
+    const instance = wrapper.instance();
+    expect(instance).toBeInstanceOf($1);
+  });
+});
+endsnippet
+
+snippet jestspecmockstore
+import React from 'react';
+import { mount } from 'enzyme';
+import { Provider } from 'react-redux';
+import configureStore from 'redux-mock-store';
+import ${1:Component} from './$2/$1/$1';
+
+const middlewares = [];
+const mockedStore = configureStore(middlewares);
+
+describe('$1', () => {
+  it('$3', () => {
+		 const store = mockedStore({})
     store.dispatch = jest.fn();
 
 		const wrapper = mount(
