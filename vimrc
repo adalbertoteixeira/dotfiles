@@ -159,6 +159,7 @@ Plugin 'chr4/nginx.vim'
 Plugin 'chr4/sslsecure.vim'
 Plugin 'jamshedvesuna/vim-markdown-preview'
 Plugin 'lervag/vimtex'
+Plugin 'KeitaNakamura/tex-conceal.vim'
 Plugin 'elzr/vim-json'
 Plugin 'othree/html5.vim'
 Plugin 'fatih/vim-go'
@@ -429,6 +430,17 @@ let vim_markdown_preview_browser='Firefox'
 let vim_markdown_preview_github=1
 
 """"""""""""""
+" vim tex
+""""""""""""""
+let g:tex_conceal=''
+" g:tex_conceal=''
+" a = accents/ligatures
+" d = delimiters
+" m = math symbols
+" g = Greek
+" s = superscripts/subscripts
+
+""""""""""""""
 " vim json 
 """"""""""""""
 let g:vim_json_syntax_conceal = 0
@@ -458,10 +470,12 @@ let g:ale_lint_on_insert_leave = 1
 let g:ale_sign_column_always = 1
 let g:ale_lint_delay = 250
 let g:ale_set_balloons = 0
+let g:ale_linters = {'javascript': ['eslint']}
 let g:ale_fixers = {
-\   'javascript': ['prettier'],
+\   'javascript': ['eslint'],
 \   'ruby': ['rubocop']
 \}
+let g:ale_fix_on_save = 1
 nmap <silent> <C-k> <Plug>(ale_previous)
 nmap <silent> <C-j> <Plug>(ale_next)
 
