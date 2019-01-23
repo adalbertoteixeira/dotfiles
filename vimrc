@@ -471,7 +471,7 @@ let g:ale_sign_column_always = 1
 let g:ale_lint_delay = 250
 let g:ale_set_balloons = 0
 let g:ale_linters = {'javascript': ['eslint']}
-let g:ale_fixers = {
+let b:ale_fixers = {
 \   'javascript': ['eslint'],
 \   'ruby': ['rubocop']
 \}
