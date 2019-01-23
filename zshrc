@@ -8,8 +8,8 @@ unset file
 
 # If you come from bash you might have to change your $PATH.
 # source ~/.bash_profile
-# [ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh"  # This loads nvm
-# [ -s "$NVM_DIR/bash_completion" ] && \. "$NVM_DIR/bash_completion"  # This loads nvm bash_completion
+[ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh"  # This loads nvm
+[ -s "$NVM_DIR/bash_completion" ] && \. "$NVM_DIR/bash_completion"  # This loads nvm bash_completion
 
 # Pass
 
@@ -63,7 +63,7 @@ ZSH_THEME="adalbertoteixeira"
 # Example format: plugins=(rails git textmate ruby lighthouse)
 # Add wisely, as too many plugins slow down shell startup.
 plugins=(git, git-extras, ruby, rails, rake, brew, npm, osx, yarn, zsh-autosuggestions, vagrant, jira, ssh-agent, zsh-syntax-highlighting)
-plugins+=(zsh-nvm)
+# plugins+=(zsh-nvm)
 zstyle :omz:plugins:ssh-agent identities github bitbucket
 source $ZSH/oh-my-zsh.sh
 
