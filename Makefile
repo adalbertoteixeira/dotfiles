@@ -15,6 +15,8 @@ dotfiles:
 	ln -sf $(PWD)/vim-snippets $(HOME)/.vim/plugins/vim-snippets
 	mkdir -p $(HOME)/.oh-my-zsh/themes/
 	ln -sf $(PWD)/adalbertoteixeira.zsh-theme $(HOME)/.oh-my-zsh/themes/adalbertoteixeira.zsh-theme
+	mkdir -p $(HOME)/.config/kitty
+	ln -sf $(PWD)/kitty.conf $(HOME)/.config/kitty/kitty.conf
 
 .PHONY: yarn
 yarn: 
