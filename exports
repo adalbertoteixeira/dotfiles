@@ -9,6 +9,7 @@ export LC_MONETARY=pt_PT.UTF-8
 export NVM_AUTO_USE=true
 export NVM_DIR="$HOME/.nvm"
 
+export PATH=$HOME/dev/testing/drivers:$PATH
 # Setting rg as the default source for fzf
 export FZF_DEFAULT_COMMAND="rg --files"
 # To apply the command to CTRL-T as well
