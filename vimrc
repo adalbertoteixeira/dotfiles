@@ -74,6 +74,8 @@ nnoremap / /\v
 " nnoremap :g// :g//
 "set clipboard="
 set clipboard=unnamed
+
+" Keys
 "vnoremap <D-c> "+y
 vnoremap <leader>c "+y
 nnoremap <leader>t :NERDTreeToggle<CR>
