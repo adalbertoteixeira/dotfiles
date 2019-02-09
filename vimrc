@@ -1,13 +1,82 @@
+set nocompatible              " be iMproved, required
+filetype off                  " required 
+""""""""
+" Vundle
+""""""""
+" set the runtime path to include Vundle and initialize
+set rtp+=/usr/local/bin/fzf
+set rtp+=~/.vim/bundle/Vundle.vim
+call vundle#begin()
+" alternatively, pass a path where Vundle should install plugins
+"call vundle#begin('~/some/path/here')
+
+" let Vundle manage Vundle, required
+Plugin 'VundleVim/Vundle.vim'
+Plugin 'Yggdroot/indentLine'
+Plugin 'crusoexia/vim-monokai'
+Plugin 'reewr/vim-monokai-phoenix'
+Plugin 'itchyny/lightline.vim'
+Plugin 'tpope/vim-fugitive'
+Plugin 'junegunn/gv.vim'
+Plugin 'junegunn/fzf'
+Plugin 'junegunn/fzf.vim'
+Plugin 'scrooloose/nerdtree'
+Plugin 'Xuyuanp/nerdtree-git-plugin'
+Plugin 'w0rp/ale'
+Plugin 'tpope/vim-surround'
+Plugin 'valloric/youcompleteme'
+Plugin 'airblade/vim-gitgutter'
+Plugin 'burntsushi/ripgrep'
+Plugin 'jremmen/vim-ripgrep'
+Plugin 'pangloss/vim-javascript'
+Plugin 'mxw/vim-jsx'
+Plugin 'godlygeek/tabular'
+Plugin 'plasticboy/vim-markdown'
+Plugin 'jiangmiao/auto-pairs'
+Plugin 'stephpy/vim-yaml'
+Plugin 'cakebaker/scss-syntax.vim'
+Plugin 'chr4/nginx.vim'
+Plugin 'chr4/sslsecure.vim'
+Plugin 'jamshedvesuna/vim-markdown-preview'
+Plugin 'lervag/vimtex'
+Plugin 'KeitaNakamura/tex-conceal.vim'
+Plugin 'elzr/vim-json'
+Plugin 'othree/html5.vim'
+Plugin 'fatih/vim-go'
+Plugin 'junegunn/vim-emoji'
+Plugin 'tpope/vim-dadbod'
+Plugin 'scrooloose/nerdcommenter'
+Plugin 'cespare/vim-toml'
+Plugin 'tpope/vim-obsession'
+"Plugin 'LaTeX-Box-Team/LaTeX-Box'
+Plugin 'digitaltoad/vim-pug'
+Plugin 'SirVer/ultisnips'
+Plugin 'honza/vim-snippets'
+" Plugin 'heavenshell/vim-jsdoc'
+Plugin 'rust-lang/rust.vim'
+" Plugin 'leafgarland/typescript-vim'
+" if !exists("g:ycm_semantic_triggers")
+"   let g:ycm_semantic_triggers = {}
+" endif
+" let g:ycm_semantic_triggers['typescript'] = ['.']
+" All of your Plugins must be added before the following line
+call vundle#end()            " required
+filetype plugin indent on
+"
+" Brief help
+" :PluginList       - lists configured plugins
+" :PluginInstall    - installs plugins; append `!` to update or just :PluginUpdate
+" :PluginSearch foo - searches for foo; append `!` to refresh local cache
+" :PluginClean      - confirms removal of unused plugins; append `!` to auto-approve removal
+"
+" see :h vundle for more details or wiki for FAQ
+" Put your non-Plugin stuff after this line
+
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " => General
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " Sets how many lines of history VIM has to remember
 set history=500
-
-" Enable filetype plugins
-
-filetype plugin on
-filetype indent on
 
 " Set to auto read when a file is changed from the outside
 set autoread
@@ -92,9 +161,6 @@ set noerrorbells
 set novisualbell
 set t_vb=
 set tm=500
-
-set nocompatible              " be iMproved, required
-filetype off                  " required
 " Time out on key codes but not mappings.
 " Basically this makes terminal Vim work sanely.
 set notimeout
@@ -105,76 +171,6 @@ set nohlsearch
 set splitright
 set splitbelow
 
-""""""""
-" Vundle
-""""""""
-" set the runtime path to include Vundle and initialize
-set rtp+=/usr/local/bin/fzf
-set rtp+=~/.vim/bundle/Vundle.vim
-call vundle#begin()
-" alternatively, pass a path where Vundle should install plugins
-"call vundle#begin('~/some/path/here')
-
-" let Vundle manage Vundle, required
-Plugin 'VundleVim/Vundle.vim'
-Plugin 'Yggdroot/indentLine'
-Plugin 'crusoexia/vim-monokai'
-Plugin 'reewr/vim-monokai-phoenix'
-Plugin 'itchyny/lightline.vim'
-Plugin 'tpope/vim-fugitive'
-Plugin 'junegunn/gv.vim'
-Plugin 'junegunn/fzf'
-Plugin 'junegunn/fzf.vim'
-Plugin 'scrooloose/nerdtree'
-Plugin 'Xuyuanp/nerdtree-git-plugin'
-Plugin 'w0rp/ale'
-Plugin 'tpope/vim-surround'
-Plugin 'valloric/youcompleteme'
-Plugin 'airblade/vim-gitgutter'
-Plugin 'burntsushi/ripgrep'
-Plugin 'jremmen/vim-ripgrep'
-Plugin 'pangloss/vim-javascript'
-Plugin 'mxw/vim-jsx'
-Plugin 'godlygeek/tabular'
-Plugin 'plasticboy/vim-markdown'
-Plugin 'jiangmiao/auto-pairs'
-Plugin 'stephpy/vim-yaml'
-Plugin 'cakebaker/scss-syntax.vim'
-Plugin 'chr4/nginx.vim'
-Plugin 'chr4/sslsecure.vim'
-Plugin 'jamshedvesuna/vim-markdown-preview'
-Plugin 'lervag/vimtex'
-Plugin 'KeitaNakamura/tex-conceal.vim'
-Plugin 'elzr/vim-json'
-Plugin 'othree/html5.vim'
-Plugin 'fatih/vim-go'
-Plugin 'junegunn/vim-emoji'
-Plugin 'tpope/vim-dadbod'
-Plugin 'scrooloose/nerdcommenter'
-Plugin 'cespare/vim-toml'
-Plugin 'tpope/vim-obsession'
-"Plugin 'LaTeX-Box-Team/LaTeX-Box'
-Plugin 'digitaltoad/vim-pug'
-Plugin 'SirVer/ultisnips'
-Plugin 'honza/vim-snippets'
-" Plugin 'heavenshell/vim-jsdoc'
-Plugin 'rust-lang/rust.vim'
-" Plugin 'leafgarland/typescript-vim'
-" if !exists("g:ycm_semantic_triggers")
-"   let g:ycm_semantic_triggers = {}
-" endif
-" let g:ycm_semantic_triggers['typescript'] = ['.']
-" All of your Plugins must be added before the following line
-call vundle#end()            " required
-"
-" Brief help
-" :PluginList       - lists configured plugins
-" :PluginInstall    - installs plugins; append `!` to update or just :PluginUpdate
-" :PluginSearch foo - searches for foo; append `!` to refresh local cache
-" :PluginClean      - confirms removal of unused plugins; append `!` to auto-approve removal
-"
-" see :h vundle for more details or wiki for FAQ
-" Put your non-Plugin stuff after this line
 
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " Syntax
