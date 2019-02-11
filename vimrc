@@ -1,5 +1,5 @@
 set nocompatible              " be iMproved, required
-filetype off                  " required 
+filetype off                  " required
 """"""""
 " Vundle
 """"""""
@@ -422,7 +422,12 @@ let g:tex_conceal=''
 " s = superscripts/subscripts
 
 """"""""""""""
-" vim json 
+" rust
+""""""""""""""
+let g:rustfmt_autosave = 1
+
+""""""""""""""
+" vim json
 """"""""""""""
 let g:vim_json_syntax_conceal = 0
 
