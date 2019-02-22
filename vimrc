@@ -196,7 +196,7 @@ set conceallevel=0
 
 " Make Vim to handle long lines nicely.
 set wrap
-set textwidth=79
+set textwidth=0 " 79
 set formatoptions=qrn1
 
 "colorscheme monokai-phoenix
@@ -456,7 +456,7 @@ let g:ale_lint_on_insert_leave = 1
 let g:ale_sign_column_always = 1
 let g:ale_lint_delay = 250
 let g:ale_set_balloons = 0
-let g:ale_linters = {'javascript': ['eslint']}
+let g:ale_linters = {'javascript': ['eslint', 'flow']}
 let g:ale_fixers = {
 \ '*': ['remove_trailing_lines', 'trim_whitespace'],
 \   'javascript': ['eslint'],
