@@ -13,7 +13,8 @@ call vundle#begin()
 " let Vundle manage Vundle, required
 Plugin 'VundleVim/Vundle.vim'
 Plugin 'Yggdroot/indentLine'
-Plugin 'crusoexia/vim-monokai'
+" Plugin 'crusoexia/vim-monokai'
+Plugin 'sicklii/vim-monokai'
 Plugin 'reewr/vim-monokai-phoenix'
 Plugin 'itchyny/lightline.vim'
 Plugin 'tpope/vim-fugitive'
@@ -54,7 +55,7 @@ Plugin 'SirVer/ultisnips'
 Plugin 'honza/vim-snippets'
 " Plugin 'heavenshell/vim-jsdoc'
 Plugin 'rust-lang/rust.vim'
-Plugin 'leafgarland/typescript-vim'
+Plugin 'jparise/vim-graphql'
 " if !exists("g:ycm_semantic_triggers")
 "   let g:ycm_semantic_triggers = {}
 " endif
@@ -430,6 +431,11 @@ let g:rustfmt_autosave = 1
 " vim json
 """"""""""""""
 let g:vim_json_syntax_conceal = 0
+
+""""""""""""""
+" vim javascript
+""""""""""""""
+let g:javascript_plugin_flow = 1
 
 " vim-go
 let g:go_highlight_array_whitespace_error = 1
