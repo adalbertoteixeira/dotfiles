@@ -62,8 +62,8 @@ ZSH_THEME="adalbertoteixeira"
 # Custom plugins may be added to ~/.oh-my-zsh/custom/plugins/
 # Example format: plugins=(rails git textmate ruby lighthouse)
 # Add wisely, as too many plugins slow down shell startup.
-plugins=(git git-extras ruby rails rake npm osx yarn vagrant jira ssh-agent zsh-syntax-highlighting)
-# brew zsh-autosuggestions   zsh-nvm
+plugins=(git git-extras ruby rake npm osx yarn vagrant jira ssh-agent zsh-syntax-highlighting)
+# brew zsh-autosuggestions  rails  zsh-nvm
 # zstyle :omz:plugins:ssh-agent identities github bitbucket
 
 source $ZSH/oh-my-zsh.sh
