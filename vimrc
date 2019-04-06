@@ -464,10 +464,9 @@ let g:ale_lint_delay = 250
 let g:ale_set_balloons = 0
 let g:ale_linters = {'javascript': ['eslint', 'flow'], 'rust': ['cargo', 'rustc']}
 let g:ale_fixers = {
-\ '*': ['remove_trailing_lines', 'trim_whitespace'],
-\   'javascript': ['eslint'],
-\   'rust': ['rustfmt'],
-\   'ruby': ['rubocop'],
+\   'javascript': ['remove_trailing_lines', 'trim_whitespace', 'eslint'],
+\   'rust': ['remove_trailing_lines', 'trim_whitespace', 'rustfmt'],
+\   'ruby': ['remove_trailing_lines', 'trim_whitespace', 'rubocop'],
 \}
 let g:ale_fix_on_save = 1
 nmap <silent> <C-k> <Plug>(ale_previous)
