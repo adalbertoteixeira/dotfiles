@@ -2,6 +2,10 @@ snippet jsconsolelog
 console.log('${2:DEBUG}', ${1:value});$0
 endsnippet
 
+snippet jsconsolelognamed
+console.log('$1', ${1:value});$0
+endsnippet
+
 snippet reactcomponent
 import React, { Component } from 'react';
 import {
@@ -81,6 +85,28 @@ export default $1
 endsnippet
 
 
+snippet reactflowpurefunction
+// @flow
+
+import React from 'react';
+
+const ${1:ClassName} = ({
+
+}) => (
+	<div />
+);
+
+$1.propTypes = {
+
+};
+
+$1.defaultProps = {
+
+};
+
+export default $1
+endsnippet
+
 snippet reactpurefunctionconnected
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
@@ -94,9 +120,27 @@ const ${1:ClassName} = ({
 	<div />
 );
 
-$1.propTypes = {
+$1.defaultProps = {
 
 };
+
+const mapStateToProps = state => ({});
+const mapDispatchToProps = dispatch => ({})
+
+export default connect(mapStateToProps, mapDispatchToProps)($1)
+endsnippet
+
+snippet reactflowpurefunctionconnected
+// @flow
+
+import React from 'react';
+import { connect } from 'react-redux';
+
+const ${1:ClassName} = ({
+
+}) => (
+	<div />
+);
 
 $1.defaultProps = {
 
@@ -123,7 +167,7 @@ describe('$1', () => {
   });
 });
 endsnippet
-	
+
 snippet jestdescribe
 describe('$1', () => {
 	it('$3', () => {
@@ -156,13 +200,11 @@ endsnippet
 
 snippet jestspecmockstore
 import React from 'react';
-import Enzyme, { mount } from 'enzyme';
-import Adapter from 'enzyme-adapter-react-16';
+import { mount } from 'enzyme';
 import { Provider } from 'react-redux';
 import configureStore from 'redux-mock-store';
 import ${1:Component} from './$2/$1/$1';
 
-Enzyme.configure({ adapter: new Adapter() });
 
 const middlewares = [];
 const mockedStore = configureStore(middlewares);
