@@ -13,8 +13,8 @@ call vundle#begin()
 " let Vundle manage Vundle, required
 Plugin 'VundleVim/Vundle.vim'
 Plugin 'Yggdroot/indentLine'
-" Plugin 'crusoexia/vim-monokai'
-Plugin 'sicklii/vim-monokai'
+Plugin 'crusoexia/vim-monokai'
+" Plugin 'sicklii/vim-monokai'
 Plugin 'reewr/vim-monokai-phoenix'
 Plugin 'itchyny/lightline.vim'
 Plugin 'tpope/vim-fugitive'
@@ -40,7 +40,7 @@ Plugin 'chr4/nginx.vim'
 Plugin 'chr4/sslsecure.vim'
 Plugin 'jamshedvesuna/vim-markdown-preview'
 Plugin 'lervag/vimtex'
-Plugin 'KeitaNakamura/tex-conceal.vim'
+" Plugin 'KeitaNakamura/tex-conceal.vim'
 Plugin 'elzr/vim-json'
 Plugin 'othree/html5.vim'
 Plugin 'fatih/vim-go'
@@ -145,6 +145,7 @@ nnoremap / /\v
 "set clipboard="
 set clipboard=unnamed
 
+set foldcolumn=1
 " Keys
 "vnoremap <D-c> "+y
 vnoremap <leader>c "+y
@@ -200,13 +201,13 @@ set wrap
 set textwidth=0 " 79
 set formatoptions=qrn1
 
-"colorscheme monokai-phoenix
-"colorscheme dracula
-"colorscheme base16-default-dark
 let g:colors_name='monokai'
 let s:colors_name='monokai'
 let g:colors_name='monokai'
-colorscheme monokai
+silent! colorscheme monokai
+set t_Co=256
+let g:monokai_term_italic = 1
+let g:monokai_gui_italic = 1
 
 " Set utf8 as standard encoding and en_US as the standard language
 set encoding=utf8
@@ -214,39 +215,39 @@ set encoding=utf8
 " Use Unix as the standard file type
 set ffs=unix,dos,mac
 
-" if has('autocmd')
-"    " change colorscheme depending on current buffer
-"    " if desired, you may set a user-default colorscheme before this point,
-"    " otherwise we'll use the Vim default.
-"    " Variables used:
-"        " g:colors_name : current colorscheme at any moment
-"        " b:colors_name (if any): colorscheme to be used for the current buffer
-"        " s:colors_name : default colorscheme, to be used where b:colors_name hasn't been set
-"    if has('user_commands')
-"        " User commands defined:
-"            " ColorScheme <name>
-"                " set the colorscheme for the current buffer
-"            " ColorDefault <name>
-"                " change the default colorscheme
-"        command -nargs=1 -bar ColorScheme
-"           \ colorscheme <args>
-"           \ | let b:colors_name = g:colors_name
-"        command -nargs=1 -bar ColorDefault
-"           \ let s:colors_name = <q-args>
-"           \ | if !exists('b:colors_name')
-"               \ | colors <args>
-"           \ | endif
-"    endif
-"    if !exists('g:colors_name')
-"        let g:colors_name = 'default'
-"    endif
-"    let s:colors_name = g:colors_name
-"    au BufEnter *
-"        \ let s:new_colors = (exists('b:colors_name')?(b:colors_name):(s:colors_name))
-"        \ | if s:new_colors != g:colors_name
-"            \ | exe 'colors' s:new_colors
-"        \ | endif
-" endif
+if has('autocmd')
+   " change colorscheme depending on current buffer
+   " if desired, you may set a user-default colorscheme before this point,
+   " otherwise we'll use the Vim default.
+   " Variables used:
+       " g:colors_name : current colorscheme at any moment
+       " b:colors_name (if any): colorscheme to be used for the current buffer
+       " s:colors_name : default colorscheme, to be used where b:colors_name hasn't been set
+   if has('user_commands')
+       " User commands defined:
+           " ColorScheme <name>
+               " set the colorscheme for the current buffer
+           " ColorDefault <name>
+               " change the default colorscheme
+       command -nargs=1 -bar ColorScheme
+          \ colorscheme <args>
+          \ | let b:colors_name = g:colors_name
+       command -nargs=1 -bar ColorDefault
+          \ let s:colors_name = <q-args>
+          \ | if !exists('b:colors_name')
+              \ | colors <args>
+          \ | endif
+   endif
+   if !exists('g:colors_name')
+       let g:colors_name = 'default'
+   endif
+   let s:colors_name = g:colors_name
+   au BufEnter *
+       \ let s:new_colors = (exists('b:colors_name')?(b:colors_name):(s:colors_name))
+       \ | if s:new_colors != g:colors_name
+           \ | exe 'colors' s:new_colors
+       \ | endif
+endif
 
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " => Files, backups and undo
@@ -414,7 +415,7 @@ let vim_markdown_preview_github=1
 """"""""""""""
 " vim tex
 """"""""""""""
-let g:tex_conceal=''
+" let g:tex_conceal=''
 " g:tex_conceal=''
 " a = accents/ligatures
 " d = delimiters
@@ -460,9 +461,9 @@ let g:go_highlight_variable_assignments = 1
 let g:ale_lint_on_text_changed = 'normal'
 let g:ale_lint_on_insert_leave = 1
 let g:ale_sign_column_always = 1
-let g:ale_lint_delay = 250
-let g:ale_set_balloons = 0
-let g:ale_linters = {'javascript': ['eslint', 'flow'], 'rust': ['cargo', 'rustc']}
+let g:ale_lint_delay = 100
+let g:ale_set_balloons = 1
+let g:ale_linters = {'javascript': ['eslint', 'flow-language-server'], 'rust': ['cargo', 'rustc']}
 let g:ale_fixers = {
 \   'javascript': ['remove_trailing_lines', 'trim_whitespace', 'eslint'],
 \   'rust': ['remove_trailing_lines', 'trim_whitespace', 'rustfmt'],
@@ -474,7 +475,7 @@ nmap <silent> <C-j> <Plug>(ale_next)
 
 nmap <Leader>hp <Plug>GitGutterPrevHunk
 nmap <Leader>hn <Plug>GitGutterNextHunk
-if emoji#available()
+silent! if emoji#available()
   let g:gitgutter_sign_added = emoji#for('star')
   let g:gitgutter_sign_modified = emoji#for('dizzy')
   let g:gitgutter_sign_removed = emoji#for('broken_heart')
@@ -503,4 +504,3 @@ let g:UltiSnipsSnippetDirectories=[$HOME."/.vim/plugins/vim-snippets", $HOME."/.
 " command PrettyJSON %!python -m json.tool
 " Filetype json
 
-let g:jsdoc_enable_es6 = 1

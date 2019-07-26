@@ -4,7 +4,7 @@
 alias dockly="docker run --rm -it -v /var/run/docker.sock:/var/run/docker.sock lirantal/dockly"
 alias webhint="docker run -it -v ~/.config/webhint/.hintrc:/app/.hintrc webhint"
 alias go-dev="docker run -i  --rm --name go-dev -v ~/dev/go:/go go-dev"
-alias tmux="TERM=screen-256color tmux"
+alias tmux-colour="TERM=screen-256color tmux"
 alias ranger="$HOME/dev/docker/ranger/ranger.py"
 # dev cloud
 alias docker-r="ssh -t $REMOTE_DOCKER 'docker run --rm -it --user docker -v /mnt/r/workspace:/home/docker/workspace -w /home/docker/workspace -v /mnt/r/lib:/usr/local/lib/R/site-library rocker/r-base'"
@@ -13,6 +13,6 @@ alias docker-rstudio="ssh -t $REMOTE_DOCKER 'docker run --rm -p 8787:8787 -e PAS
 alias ddgr="ssh -t $REMOTE_DOCKER 'docker run --rm -it ddgr'"
 alias docker-jq="ssh -t $REMOTE_DOCKER 'docker run --rm -i jq'"
 alias spaces="s3cmd -c ~/.config/.ams3cfg"
-alias pgadmin='docker run --rm -p 4080:80 -e "PGADMIN_DEFAULT_EMAIL=$PGADMIN_DEFAULT_EMAIL" -e "PGADMIN_DEFAULT_PASSWORD=$PGADMIN_DEFAULT_PASSWORD" -v "/Volumes/T5/pgadmin:/var/lib/pgadmin" --name=pgadmin -d dpage/pgadmin4'
+# alias pgadmin='docker run --rm -p 4080:80 -e "PGADMIN_DEFAULT_EMAIL=$PGADMIN_DEFAULT_EMAIL" -e "PGADMIN_DEFAULT_PASSWORD=$PGADMIN_DEFAULT_PASSWORD" -v "/Volumes/T5/pgadmin:/var/lib/pgadmin" --name=pgadmin -d dpage/pgadmin4'
 alias ben-proxy="docker run --rm --cap-add=NET_ADMIN --device /dev/net/tun ben_proxy"
-alias xsv="docker run -i --rm xsv"
+# alias xsv="docker run -i --rm xsv"

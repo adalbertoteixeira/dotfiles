@@ -13,13 +13,15 @@ dotfiles:
 	ln -sf $(PWD)/aliases $(HOME)/.aliases
 	mkdir -p $(HOME)/.vim/plugins
 	ln -sf $(PWD)/vim-snippets $(HOME)/.vim/plugins/vim-snippets
+	mkdir -p $(HOME)/.vim/after/ftplugin
+	ln -sf $(PWD)/vim-ftplugins $(HOME)/.vim/after/ftplugin
 	mkdir -p $(HOME)/.oh-my-zsh/themes/
 	ln -sf $(PWD)/adalbertoteixeira.zsh-theme $(HOME)/.oh-my-zsh/themes/adalbertoteixeira.zsh-theme
 	mkdir -p $(HOME)/.config/kitty
 	ln -sf $(PWD)/kitty.conf $(HOME)/.config/kitty/kitty.conf
 
 .PHONY: yarn
-yarn: 
+yarn:
 	curl -sS https://dl.yarnpkg.com/debian/pubkey.gpg | sudo apt-key add -
 	echo "deb https://dl.yarnpkg.com/debian/ stable main" | sudo tee /etc/apt/sources.list.d/yarn.list
 	sudo apt-get update && sudo apt-get install yarn
@@ -29,7 +31,7 @@ go:
 	cd $(HOME)
 	export VERSION=1.11.1
 	export OS=linux
-	export ARCH=amd64 
+	export ARCH=amd64
 	curl https://dl.google.com/go/go$VERSION.$OS-$ARCH.tar.gz -o go$VERSION.$OS-$ARCH.tar.gz
 	tar -C /usr/local -xzf go$VERSION.$OS-$ARCH.tar.gz
 
@@ -78,8 +80,13 @@ vimubuntu:
 	git clone --depth 1 https://github.com/junegunn/fzf.git ~/.fzf && ~/.fzf/install --all --key-bindings --completion --64 --no-fish &&	source ~/.zshrc
 	git clone https://github.com/VundleVim/Vundle.vim.git ~/.vim/bundle/Vundle.vim
 	vim +PluginInstall +qall
+ycm
+
+.PHONY: ycm
+ycm:
 	cd $(HOME)/.vim/bundle/youcompleteme
-	python3 ./install.py --clang-completer --rust-completer --js-completer --go-completer
+	python3 ./install.py --clang-completer --rust-completer --js-completer --go-completer --ts-completer
+
 
 .PHONY: zshubuntu
 zshubuntu:

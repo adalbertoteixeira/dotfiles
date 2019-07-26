@@ -73,11 +73,11 @@ prompt_status() {
 PROMPT='%{$fg_bold[white]%}%* \
 %{$fg_bold[cyan]%}%n@%m %{$reset_color%}%{$fg[whit]%}in%{$reset_color%} %{$fg_bold[cyan]%}%{%~%} \
 $(prompt_nvm) \
-%{$fg_bold[red]%}$(prompt_ruby)%{$reset_color%} \
-%{$fg_bold[blue]%}$(prompt_go)%{$reset_color%} \
 $(git_prompt_info)
 ${prompt_status}\
 %{$fg_bold[green]%}$%{$reset_color%} '
+# %{$fg_bold[red]%}$(prompt_ruby)%{$reset_color%} \
+# %{$fg_bold[blue]%}$(prompt_go)%{$reset_color%} \
 
 
 ZSH_THEME_GIT_PROMPT_PREFIX="%{$fg_bold[blue]%}"

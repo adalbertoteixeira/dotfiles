@@ -1,10 +1,10 @@
-for file in ~/.{extra,exports,aliases,functions,path,dockerfunc}; do
-	if [[ -r "$file" ]] && [[ -f "$file" ]]; then
-		# shellcheck source=/dev/null
-		source "$file"
-	fi
-done
-unset file
+# for file in ~/.{extra,exports,aliases,functions,path,dockerfunc}; do
+#   if [[ -r "$file" ]] && [[ -f "$file" ]]; then
+#     # shellcheck source=/dev/null
+#     source "$file"
+#   fi
+# done
+# unset file
 
 # If you come from bash you might have to change your $PATH.
 # source ~/.bash_profile
@@ -62,8 +62,8 @@ ZSH_THEME="adalbertoteixeira"
 # Custom plugins may be added to ~/.oh-my-zsh/custom/plugins/
 # Example format: plugins=(rails git textmate ruby lighthouse)
 # Add wisely, as too many plugins slow down shell startup.
-plugins=(git git-extras ruby rake npm osx yarn vagrant jira ssh-agent zsh-syntax-highlighting)
-# brew zsh-autosuggestions  rails  zsh-nvm
+plugins=(git git-extras ruby rake npm osx yarn ssh-agent zsh-syntax-highlighting zsh-nvm)
+# brew zsh-autosuggestions rails jira vagrant 
 # zstyle :omz:plugins:ssh-agent identities github bitbucket
 
 source $ZSH/oh-my-zsh.sh
@@ -104,7 +104,7 @@ source $ZSH/oh-my-zsh.sh
 # source $HOME/.zsh/zsh-autosuggestions
 # source /usr/local/share/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh
 # eval "$(perl -I$HOME/perl5/lib/perl5 -Mlocal::lib=$HOME/perl5)"
-if command -v rbenv > /dev/null 2>&1; then eval "$(rbenv init -)"; fi
+# if command -v rbenv > /dev/null 2>&1; then eval "$(rbenv init -)"; fi
 
 
 #[ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
@@ -116,9 +116,9 @@ if command -v rbenv > /dev/null 2>&1; then eval "$(rbenv init -)"; fi
 # bindkey '^[[1;9D' backward-word
 
 # Kitty
-if [[ -z "$kitty" ]] && [[ -e "$kitty" ]]; then
-	autoload -Uz compinit
-	compinit
-	# Completion for kitty
-  kitty + complete setup zsh | source /dev/stdin
-fi
+# if [[ -z "$kitty" ]] && [[ -e "$kitty" ]]; then
+#   autoload -Uz compinit
+#   compinit
+#   # Completion for kitty
+#   kitty + complete setup zsh | source /dev/stdin
+# fi
