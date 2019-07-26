@@ -463,7 +463,7 @@ let g:ale_lint_on_insert_leave = 1
 let g:ale_sign_column_always = 1
 let g:ale_lint_delay = 100
 let g:ale_set_balloons = 1
-let g:ale_linters = {'javascript': ['eslint', 'flow-language-server'], 'rust': ['cargo', 'rustc']}
+let g:ale_linters = {'javascript': ['flow-language-server', 'eslint'], 'rust': ['cargo', 'rustc']}
 let g:ale_fixers = {
 \   'javascript': ['remove_trailing_lines', 'trim_whitespace', 'eslint'],
 \   'rust': ['remove_trailing_lines', 'trim_whitespace', 'rustfmt'],
