@@ -56,6 +56,7 @@ Plugin 'honza/vim-snippets'
 " Plugin 'heavenshell/vim-jsdoc'
 Plugin 'rust-lang/rust.vim'
 Plugin 'jparise/vim-graphql'
+Plugin 'leafgarland/typescript-vim'
 " if !exists("g:ycm_semantic_triggers")
 "   let g:ycm_semantic_triggers = {}
 " endif
