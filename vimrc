@@ -58,6 +58,8 @@ Plugin 'honza/vim-snippets'
 Plugin 'rust-lang/rust.vim'
 Plugin 'jparise/vim-graphql'
 Plugin 'editorconfig/editorconfig-vim'
+Plugin 'leafgarland/typescript-vim'
+Plugin 'ianks/vim-tsx'
 " Plugin 'leafgarland/typescript-vim'
 " Plugin 'peitalin/vim-jsx-typescript'
 " if !exists("g:ycm_semantic_triggers")
