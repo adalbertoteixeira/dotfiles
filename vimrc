@@ -1,5 +1,6 @@
 set nocompatible              " be iMproved, required
 filetype off                  " required
+let g:ale_completion_enabled = 0
 """"""""
 " Vundle
 """"""""
@@ -43,7 +44,7 @@ Plugin 'lervag/vimtex'
 " Plugin 'KeitaNakamura/tex-conceal.vim'
 Plugin 'elzr/vim-json'
 Plugin 'othree/html5.vim'
-Plugin 'fatih/vim-go'
+" Plugin 'fatih/vim-go'
 Plugin 'junegunn/vim-emoji'
 Plugin 'tpope/vim-dadbod'
 Plugin 'scrooloose/nerdcommenter'
@@ -56,8 +57,9 @@ Plugin 'honza/vim-snippets'
 " Plugin 'heavenshell/vim-jsdoc'
 Plugin 'rust-lang/rust.vim'
 Plugin 'jparise/vim-graphql'
-Plugin 'leafgarland/typescript-vim'
-Plugin 'peitalin/vim-jsx-typescript'
+Plugin 'editorconfig/editorconfig-vim'
+" Plugin 'leafgarland/typescript-vim'
+" Plugin 'peitalin/vim-jsx-typescript'
 " if !exists("g:ycm_semantic_triggers")
 "   let g:ycm_semantic_triggers = {}
 " endif
@@ -441,36 +443,39 @@ let g:vim_json_syntax_conceal = 0
 let g:javascript_plugin_flow = 1
 
 " vim-go
-let g:go_highlight_array_whitespace_error = 1
-let g:go_highlight_chan_whitespace_error = 1
-let g:go_highlight_extra_types = 1
-let g:go_highlight_space_tab_error = 1
-let g:go_highlight_trailing_whitespace_error = 1
-let g:go_highlight_operators = 1
-let g:go_highlight_functions = 1
-let g:go_highlight_function_arguments = 1
-let g:go_highlight_function_calls = 1
-let g:go_highlight_types = 1
-let g:go_highlight_fields = 1
-let g:go_highlight_build_constraints = 1
-let g:go_highlight_generate_tags = 1
-let g:go_highlight_string_spellcheck = 1
-let g:go_highlight_format_strings = 1
-let g:go_highlight_variable_declarations = 1
-let g:go_highlight_variable_assignments = 1
+" let g:go_highlight_array_whitespace_error = 1
+" let g:go_highlight_chan_whitespace_error = 1
+" let g:go_highlight_extra_types = 1
+" let g:go_highlight_space_tab_error = 1
+" let g:go_highlight_trailing_whitespace_error = 1
+" let g:go_highlight_operators = 1
+" let g:go_highlight_functions = 1
+" let g:go_highlight_function_arguments = 1
+" let g:go_highlight_function_calls = 1
+" let g:go_highlight_types = 1
+" let g:go_highlight_fields = 1
+" let g:go_highlight_build_constraints = 1
+" let g:go_highlight_generate_tags = 1
+" let g:go_highlight_string_spellcheck = 1
+" let g:go_highlight_format_strings = 1
+" let g:go_highlight_variable_declarations = 1
+" let g:go_highlight_variable_assignments = 1
 
 " ALE
 let g:ale_lint_on_text_changed = 'normal'
 let g:ale_lint_on_insert_leave = 1
 let g:ale_sign_column_always = 1
 let g:ale_lint_delay = 100
-let g:ale_set_balloons = 1
-let g:ale_linters = {'javascript': ['flow-language-server', 'eslint'], 'rust': ['cargo', 'rustc']}
+" let g:ale_set_balloons = 1
+let g:ale_linters = {
+\ 'rust': ['cargo', 'rustc']
+\ }
 let g:ale_fixers = {
-\   'javascript': ['remove_trailing_lines', 'trim_whitespace', 'eslint'],
 \   'rust': ['remove_trailing_lines', 'trim_whitespace', 'rustfmt'],
 \   'ruby': ['remove_trailing_lines', 'trim_whitespace', 'rubocop'],
-\}
+\   'scss': ['prettier'],
+\   'html': ['prettier']
+\ }
 let g:ale_fix_on_save = 1
 nmap <silent> <C-k> <Plug>(ale_previous)
 nmap <silent> <C-j> <Plug>(ale_next)
@@ -506,3 +511,5 @@ let g:UltiSnipsSnippetDirectories=[$HOME."/.vim/plugins/vim-snippets", $HOME."/.
 " command PrettyJSON %!python -m json.tool
 " Filetype json
 
+" EditorConfig
+let g:EditorConfig_exclude_patterns = ['fugitive://.\*', 'scp://.\*']
