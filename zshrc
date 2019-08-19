@@ -62,8 +62,8 @@ ZSH_THEME="adalbertoteixeira"
 # Custom plugins may be added to ~/.oh-my-zsh/custom/plugins/
 # Example format: plugins=(rails git textmate ruby lighthouse)
 # Add wisely, as too many plugins slow down shell startup.
-plugins=(git git-extras ruby rake npm osx yarn ssh-agent zsh-syntax-highlighting zsh-nvm)
-# brew zsh-autosuggestions rails jira vagrant 
+plugins=(git git-extras npm yarn ssh-agent zsh-syntax-highlighting zsh-nvm)
+# brew zsh-autosuggestions rails jira vagrant ruby rake osx 
 # zstyle :omz:plugins:ssh-agent identities github bitbucket
 
 source $ZSH/oh-my-zsh.sh
@@ -108,8 +108,6 @@ source $ZSH/oh-my-zsh.sh
 
 
 #[ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
-# heroku autocomplete setup
-# HEROKU_AC_ZSH_SETUP_PATH=$HOME/Library/Caches/heroku/autocomplete/zsh_setup && test -f $HEROKU_AC_ZSH_SETUP_PATH && source $HEROKU_AC_ZSH_SETUP_PATH;
 
 # bindkey -e
 # bindkey '^[[1;9C' forward-word
