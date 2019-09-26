@@ -12,9 +12,9 @@ dotfiles:
 	ln -sf $(PWD)/exports $(HOME)/.exports
 	ln -sf $(PWD)/aliases $(HOME)/.aliases
 	mkdir -p $(HOME)/.vim/plugins
-	ln -sf $(PWD)/vim-snippets $(HOME)/.vim/plugins/vim-snippets
+	ln -sf $(PWD)/vim-snippets/ $(HOME)/.vim/plugins/vim-snippets
 	mkdir -p $(HOME)/.vim/after/ftplugin
-	ln -sf $(PWD)/vim-ftplugins $(HOME)/.vim/after/ftplugin
+	ln -sf $(PWD)/vim-ftplugins/ $(HOME)/.vim/after/ftplugin
 	mkdir -p $(HOME)/.oh-my-zsh/themes/
 	ln -sf $(PWD)/adalbertoteixeira.zsh-theme $(HOME)/.oh-my-zsh/themes/adalbertoteixeira.zsh-theme
 	mkdir -p $(HOME)/.config/kitty
@@ -80,25 +80,24 @@ vimubuntu:
 	git clone --depth 1 https://github.com/junegunn/fzf.git ~/.fzf && ~/.fzf/install --all --key-bindings --completion --64 --no-fish &&	source ~/.zshrc
 	git clone https://github.com/VundleVim/Vundle.vim.git ~/.vim/bundle/Vundle.vim
 	vim +PluginInstall +qall
-ycm
 
 .PHONY: ycm
 ycm:
 	cd $(HOME)/.vim/bundle/youcompleteme
-	python3 ./install.py --clang-completer --rust-completer --js-completer --go-completer --ts-completer
+	python3 ./install.py --clang-completer --rust-completer --ts-completer
 
 
 .PHONY: zshubuntu
 zshubuntu:
-	sudo apt update
-	sudo apt install zsh
+	sudo apt-get update
+	sudo apt-get install zsh
 	zsh --version
 	chsh -s $(which zsh)
 
 .PHONY: ohmyzshubuntu
 ohmyzshubuntu:
 	rm -rf $(HOME)/.oh-my-zsh
-	sh -c $(curl -fsSL https://raw.githubusercontent.com/robbyrussell/oh-my-zsh/master/tools/install.sh)
+	sh -c "$(curl -fsSL https://raw.githubusercontent.com/robbyrussell/oh-my-zsh/master/tools/install.sh)"
 	mkdir -p $(HOME)/.oh-my-zsh/themes/
 	ln -sf $(PWD)/adalbertoteixeira.zsh-theme $(HOME)/.oh-my-zsh/themes/adalbertoteixeira.zsh-theme
 
