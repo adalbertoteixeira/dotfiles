@@ -505,6 +505,7 @@ nmap <Leader>hn <Plug>(GitGutterNextHunk)
 inoremap <c-x><c-k> <c-x><c-k>
 nnoremap <leader>yc :YcmCompleter<CR>
 nnoremap <leader>ycgt :YcmCompleter GoTo<CR>
+nnoremap <leader>ycgr :YcmCompleter GoToReferences<CR>
 
 if !exists("g:ycm_semantic_triggers")
   let g:ycm_semantic_triggers = {}
