@@ -1,6 +1,8 @@
 set nocompatible              " be iMproved, required
 filetype off                  " required
 let g:ale_completion_enabled = 0
+let g:ale_set_balloons = 1
+
 """"""""
 " Vundle
 """"""""
@@ -17,8 +19,10 @@ Plugin 'Yggdroot/indentLine'
 Plugin 'crusoexia/vim-monokai'
 " Plugin 'sicklii/vim-monokai'
 Plugin 'reewr/vim-monokai-phoenix'
-Plugin 'itchyny/lightline.vim'
+" Plugin 'itchyny/lightline.vim'
 Plugin 'tpope/vim-fugitive'
+Plugin 'vim-airline/vim-airline'
+Plugin 'vim-airline/vim-airline-themes'
 Plugin 'junegunn/gv.vim'
 Plugin 'junegunn/fzf'
 Plugin 'junegunn/fzf.vim'
@@ -54,18 +58,12 @@ Plugin 'tpope/vim-obsession'
 Plugin 'digitaltoad/vim-pug'
 Plugin 'SirVer/ultisnips'
 Plugin 'honza/vim-snippets'
-" Plugin 'heavenshell/vim-jsdoc'
+Plugin 'heavenshell/vim-jsdoc'
 Plugin 'rust-lang/rust.vim'
 Plugin 'jparise/vim-graphql'
 Plugin 'editorconfig/editorconfig-vim'
 Plugin 'leafgarland/typescript-vim'
-Plugin 'ianks/vim-tsx'
-" Plugin 'leafgarland/typescript-vim'
 " Plugin 'peitalin/vim-jsx-typescript'
-" if !exists("g:ycm_semantic_triggers")
-"   let g:ycm_semantic_triggers = {}
-" endif
-" let g:ycm_semantic_triggers['typescript'] = ['.']
 " All of your Plugins must be added before the following line
 call vundle#end()            " required
 filetype plugin indent on
@@ -185,7 +183,7 @@ set splitbelow
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " speed up syntax highlighting
 set nocursorcolumn
-set nocursorline
+" set nocursorline
 
 " Enable syntax highlighting
 syntax enable
@@ -375,25 +373,26 @@ let g:NERDTreeIndicatorMapCustom = {
     \ "Unknown"   : "?"
     \ }
 
-"""""""""""
-" Lightline
-"""""""""""
+" """""""""""
+" " Lightline
+" """""""""""
 
-let g:lightline = {
-  \ 'colorscheme': 'powerline',
-  \ 'active': {
-  \   'left': [ [ 'mode', 'paste' ],
-  \             [ 'readonly', 'filename', 'buffernumber', 'modified', 'gitbranch', '%{ObsessionStatus()}'] ]
-  \ },
-  \ 'component' : {
-  \   'pathtofile': '%f',
-  \   'buffernumber': '%n'
-  \ },
-  \ 'component_function': {
-  \   'gitbranch': 'fugitive#head',
-  \   'gitstatus': '%{fugitive#statusline()}'
-      \ },
-\ }
+" let g:lightline = {
+"   \ 'colorscheme': 'powerline',
+"   \ 'active': {
+"   \   'left': [ [ 'mode', 'paste' ],
+"   \             [ 'readonly', 'filename', 'buffernumber', 'modified', 'gitbranch' ] ]
+"   \ },
+"   \ 'component' : {
+"   \   'pathtofile': '%f',
+"   \   'buffernumber': '%n'
+"   \ },
+"   \ 'component_function': {
+"   \   'gitbranch': 'fugitive#head',
+"   \   'gitstatus': '%{fugitive#statusline()}',
+"   \   'obsessionstatus': '%{ObsessionStatus()}'
+"   \ },
+" \ }
 
 " Multi-cursor default mapping
 " let g:multi_cursor_next_key='<C-n>'
@@ -464,11 +463,13 @@ let g:javascript_plugin_flow = 1
 " let g:go_highlight_variable_assignments = 1
 
 " ALE
-let g:ale_lint_on_text_changed = 'normal'
+let g:ale_lint_on_text_changed = 'never'
 let g:ale_lint_on_insert_leave = 1
 let g:ale_sign_column_always = 1
-let g:ale_lint_delay = 100
-" let g:ale_set_balloons = 1
+let g:ale_lint_delay = 1000
+" let g:ale_set_loclist = 0
+" let g:ale_set_quickfix = 1
+" let g:ale_open_list = 0
 let g:ale_linters = {
 \ 'rust': ['cargo', 'rustc']
 \ }
@@ -481,25 +482,35 @@ let g:ale_fixers = {
 let g:ale_fix_on_save = 1
 nmap <silent> <C-k> <Plug>(ale_previous)
 nmap <silent> <C-j> <Plug>(ale_next)
+" let g:ale_set_loclist = 0
+let g:ale_set_quickfix = 1
 
-nmap <Leader>hp <Plug>GitGutterPrevHunk
-nmap <Leader>hn <Plug>GitGutterNextHunk
-silent! if emoji#available()
-  let g:gitgutter_sign_added = emoji#for('star')
-  let g:gitgutter_sign_modified = emoji#for('dizzy')
-  let g:gitgutter_sign_removed = emoji#for('broken_heart')
-  let g:gitgutter_sign_modified_removed = emoji#for('collision')
-  let g:gitgutter_override_sign_column_highlight = 0
+nmap <Leader>hp <Plug>(GitGutterPrevHunk)
+nmap <Leader>hn <Plug>(GitGutterNextHunk)
+" silent! if emoji#available()
+  " let g:gitgutter_sign_added = emoji#for('star')
+  " let g:gitgutter_sign_modified = emoji#for('dizzy')
+  " let g:gitgutter_sign_removed = emoji#for('broken_heart')
+  " let g:gitgutter_sign_modified_removed = emoji#for('collision')
+  " let g:gitgutter_override_sign_column_highlight = 0
 
-  highlight clear ALEErrorSign
-  highlight clear ALEWarningSign
-  let g:ale_sign_error = emoji#for('rage')
-  let g:ale_sign_warning = emoji#for('angry')
-else
+  " highlight clear ALEErrorSign
+  " highlight clear ALEWarningSign
+  " let g:ale_sign_error = emoji#for('rage')
+  " let g:ale_sign_warning = emoji#for('angry')
+" else
   let g:ale_sign_error = '>>'
   let g:ale_sign_warning = '--'
-endif
+" endif
 inoremap <c-x><c-k> <c-x><c-k>
+nnoremap <leader>yc :YcmCompleter<CR>
+nnoremap <leader>ycgt :YcmCompleter GoTo<CR>
+
+if !exists("g:ycm_semantic_triggers")
+  let g:ycm_semantic_triggers = {}
+endif
+let g:ycm_semantic_triggers['typescript'] = ['.']
+
 let g:ycm_key_list_select_completion=['<c-n>']
 let g:ycm_key_list_previous_completion=['<c-p']
 " Snippets
@@ -515,3 +526,6 @@ let g:UltiSnipsSnippetDirectories=[$HOME."/.vim/plugins/vim-snippets", $HOME."/.
 
 " EditorConfig
 let g:EditorConfig_exclude_patterns = ['fugitive://.\*', 'scp://.\*']
+
+" JsDoc
+let g:jsdoc_enable_es6 = 1

@@ -83,8 +83,9 @@ vimubuntu:
 
 .PHONY: ycm
 ycm:
-	cd $(HOME)/.vim/bundle/youcompleteme
-	python3 ./install.py --clang-completer --rust-completer --ts-completer
+	# cd $(HOME)/.vim/bundle/youcompleteme
+	# python3 ./install.py --clang-completer --rust-completer --ts-completer
+	python3 $(HOME)/.vim/bundle/youcompleteme/install.py --clang-completer --rust-completer --ts-completer
 
 
 .PHONY: zshubuntu
