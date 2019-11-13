@@ -157,6 +157,7 @@ nnoremap <leader>t :NERDTreeToggle<CR>
 nnoremap <leader>f :NERDTreeFind<CR>
 nnoremap <leader>z :FZF<CR>
 nnoremap <leader>l j0i<CR>
+nnoremap <leader>a :ALELint<CR>
 
 set showmatch
 " How many tenths of a second to blink when matching brackets
@@ -183,7 +184,7 @@ set splitbelow
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " speed up syntax highlighting
 set nocursorcolumn
-" set nocursorline
+set cursorline
 
 " Enable syntax highlighting
 syntax enable
@@ -257,6 +258,7 @@ endif
 " => Files, backups and undo
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " Turn backup off, since most stuff is in SVN, git et.c anyway...
+" :set backupcopy=yes
 set nobackup
 set nowb
 set noswapfile
@@ -463,10 +465,10 @@ let g:javascript_plugin_flow = 1
 " let g:go_highlight_variable_assignments = 1
 
 " ALE
-let g:ale_lint_on_text_changed = 'never'
+let g:ale_lint_on_text_changed = 'insert'
 let g:ale_lint_on_insert_leave = 1
 let g:ale_sign_column_always = 1
-let g:ale_lint_delay = 1000
+" let g:ale_lint_delay ou 200
 " let g:ale_set_loclist = 0
 " let g:ale_set_quickfix = 1
 " let g:ale_open_list = 0
@@ -503,9 +505,9 @@ nmap <Leader>hn <Plug>(GitGutterNextHunk)
   let g:ale_sign_warning = '--'
 " endif
 inoremap <c-x><c-k> <c-x><c-k>
-nnoremap <leader>yc :YcmCompleter<CR>
-nnoremap <leader>ycgt :YcmCompleter GoTo<CR>
-nnoremap <leader>ycgr :YcmCompleter GoToReferences<CR>
+nnoremap <leader>y :YcmCompleter<CR>
+nnoremap <leader>yg :YcmCompleter GoTo<CR>
+nnoremap <leader>yr :YcmCompleter GoToReferences<CR>
 
 if !exists("g:ycm_semantic_triggers")
   let g:ycm_semantic_triggers = {}

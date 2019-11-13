@@ -16,3 +16,5 @@ export PATH="$PATH:$HOME/dev/testing/drivers"
 export PATH="/usr/local/opt/python/libexec/bin:$PATH"
 export PATH="/usr/local/sbin:$PATH" # Needed for homebrew
 export PATH="/usr/local/opt/python/libexec/bin:$PATH"
+export PATH="$HOME/.rbenv/shims:$PATH"
+export RBENV_SHELL=zsh
