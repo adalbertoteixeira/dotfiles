@@ -1,8 +1,5 @@
 set nocompatible              " be iMproved, required
 filetype off                  " required
-let g:ale_completion_enabled = 0
-let g:ale_set_balloons = 0
-
 """"""""
 " Vundle
 """"""""
@@ -17,54 +14,52 @@ call vundle#begin()
 Plugin 'VundleVim/Vundle.vim'
 Plugin 'Yggdroot/indentLine'
 Plugin 'crusoexia/vim-monokai'
+" Plugin 'sicklii/vim-monokai'
+Plugin 'reewr/vim-monokai-phoenix'
+Plugin 'itchyny/lightline.vim'
 Plugin 'tpope/vim-fugitive'
-Plugin 'vim-airline/vim-airline'
-Plugin 'vim-airline/vim-airline-themes'
 Plugin 'junegunn/gv.vim'
 Plugin 'junegunn/fzf'
 Plugin 'junegunn/fzf.vim'
 Plugin 'scrooloose/nerdtree'
 Plugin 'Xuyuanp/nerdtree-git-plugin'
 Plugin 'w0rp/ale'
-Plugin 'valloric/youcompleteme'
 Plugin 'tpope/vim-surround'
+Plugin 'valloric/youcompleteme'
 Plugin 'airblade/vim-gitgutter'
 Plugin 'burntsushi/ripgrep'
 Plugin 'jremmen/vim-ripgrep'
 Plugin 'pangloss/vim-javascript'
 Plugin 'mxw/vim-jsx'
+Plugin 'godlygeek/tabular'
+Plugin 'plasticboy/vim-markdown'
 Plugin 'jiangmiao/auto-pairs'
 Plugin 'stephpy/vim-yaml'
 Plugin 'cakebaker/scss-syntax.vim'
 Plugin 'chr4/nginx.vim'
 Plugin 'chr4/sslsecure.vim'
+Plugin 'jamshedvesuna/vim-markdown-preview'
 Plugin 'lervag/vimtex'
+" Plugin 'KeitaNakamura/tex-conceal.vim'
 Plugin 'elzr/vim-json'
 Plugin 'othree/html5.vim'
+Plugin 'fatih/vim-go'
+Plugin 'junegunn/vim-emoji'
+Plugin 'tpope/vim-dadbod'
 Plugin 'scrooloose/nerdcommenter'
 Plugin 'cespare/vim-toml'
 Plugin 'tpope/vim-obsession'
+"Plugin 'LaTeX-Box-Team/LaTeX-Box'
 Plugin 'digitaltoad/vim-pug'
 Plugin 'SirVer/ultisnips'
 Plugin 'honza/vim-snippets'
-Plugin 'heavenshell/vim-jsdoc'
+" Plugin 'heavenshell/vim-jsdoc'
 Plugin 'rust-lang/rust.vim'
 Plugin 'jparise/vim-graphql'
-Plugin 'editorconfig/editorconfig-vim'
-Plugin 'leafgarland/typescript-vim'
-Plugin 'itchyny/lightline.vim'
-
-" Plugin 'reewr/vim-monokai-phoenix'
-" Plugin 'godlygeek/tabular'
-" Plugin 'plasticboy/vim-markdown'
-" Plugin 'jamshedvesuna/vim-markdown-preview'
-" Plugin 'tpope/vim-dadbod'
-" Plugin 'junegunn/vim-emoji'
-" Plugin 'sicklii/vim-monokai'
-" Plugin 'KeitaNakamura/tex-conceal.vim'
-" Plugin 'fatih/vim-go'
-" Plugin 'LaTeX-Box-Team/LaTeX-Box'
-" Plugin 'peitalin/vim-jsx-typescript'
+" if !exists("g:ycm_semantic_triggers")
+"   let g:ycm_semantic_triggers = {}
+" endif
+" let g:ycm_semantic_triggers['typescript'] = ['.']
 " All of your Plugins must be added before the following line
 call vundle#end()            " required
 filetype plugin indent on
@@ -150,7 +145,6 @@ nnoremap / /\v
 "set clipboard="
 set clipboard=unnamed
 
-set foldcolumn=1
 " Keys
 "vnoremap <D-c> "+y
 vnoremap <leader>c "+y
@@ -158,7 +152,6 @@ nnoremap <leader>t :NERDTreeToggle<CR>
 nnoremap <leader>f :NERDTreeFind<CR>
 nnoremap <leader>z :FZF<CR>
 nnoremap <leader>l j0i<CR>
-nnoremap <leader>a :ALELint<CR>
 
 set showmatch
 " How many tenths of a second to blink when matching brackets
@@ -185,7 +178,7 @@ set splitbelow
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " speed up syntax highlighting
 set nocursorcolumn
-set cursorline
+set nocursorline
 
 " Enable syntax highlighting
 syntax enable
@@ -204,9 +197,12 @@ set conceallevel=0
 
 " Make Vim to handle long lines nicely.
 set wrap
-set textwidth=100 " 79
+set textwidth=0 " 79
 set formatoptions=qrn1
 
+"colorscheme monokai-phoenix
+"colorscheme dracula
+"colorscheme base16-default-dark
 let g:colors_name='monokai'
 let s:colors_name='monokai'
 let g:colors_name='monokai'
@@ -221,45 +217,44 @@ set encoding=utf8
 " Use Unix as the standard file type
 set ffs=unix,dos,mac
 
-if has('autocmd')
-   " change colorscheme depending on current buffer
-   " if desired, you may set a user-default colorscheme before this point,
-   " otherwise we'll use the Vim default.
-   " Variables used:
-       " g:colors_name : current colorscheme at any moment
-       " b:colors_name (if any): colorscheme to be used for the current buffer
-       " s:colors_name : default colorscheme, to be used where b:colors_name hasn't been set
-   if has('user_commands')
-       " User commands defined:
-           " ColorScheme <name>
-               " set the colorscheme for the current buffer
-           " ColorDefault <name>
-               " change the default colorscheme
-       command -nargs=1 -bar ColorScheme
-          \ colorscheme <args>
-          \ | let b:colors_name = g:colors_name
-       command -nargs=1 -bar ColorDefault
-          \ let s:colors_name = <q-args>
-          \ | if !exists('b:colors_name')
-              \ | colors <args>
-          \ | endif
-   endif
-   if !exists('g:colors_name')
-       let g:colors_name = 'default'
-   endif
-   let s:colors_name = g:colors_name
-   au BufEnter *
-       \ let s:new_colors = (exists('b:colors_name')?(b:colors_name):(s:colors_name))
-       \ | if s:new_colors != g:colors_name
-           \ | exe 'colors' s:new_colors
-       \ | endif
-endif
+" if has('autocmd')
+"    " change colorscheme depending on current buffer
+"    " if desired, you may set a user-default colorscheme before this point,
+"    " otherwise we'll use the Vim default.
+"    " Variables used:
+"        " g:colors_name : current colorscheme at any moment
+"        " b:colors_name (if any): colorscheme to be used for the current buffer
+"        " s:colors_name : default colorscheme, to be used where b:colors_name hasn't been set
+"    if has('user_commands')
+"        " User commands defined:
+"            " ColorScheme <name>
+"                " set the colorscheme for the current buffer
+"            " ColorDefault <name>
+"                " change the default colorscheme
+"        command -nargs=1 -bar ColorScheme
+"           \ colorscheme <args>
+"           \ | let b:colors_name = g:colors_name
+"        command -nargs=1 -bar ColorDefault
+"           \ let s:colors_name = <q-args>
+"           \ | if !exists('b:colors_name')
+"               \ | colors <args>
+"           \ | endif
+"    endif
+"    if !exists('g:colors_name')
+"        let g:colors_name = 'default'
+"    endif
+"    let s:colors_name = g:colors_name
+"    au BufEnter *
+"        \ let s:new_colors = (exists('b:colors_name')?(b:colors_name):(s:colors_name))
+"        \ | if s:new_colors != g:colors_name
+"            \ | exe 'colors' s:new_colors
+"        \ | endif
+" endif
 
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " => Files, backups and undo
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " Turn backup off, since most stuff is in SVN, git et.c anyway...
-" :set backupcopy=yes
 set nobackup
 set nowb
 set noswapfile
@@ -376,26 +371,25 @@ let g:NERDTreeIndicatorMapCustom = {
     \ "Unknown"   : "?"
     \ }
 
-" """""""""""
-" " Lightline
-" """""""""""
+"""""""""""
+" Lightline
+"""""""""""
 
-" let g:lightline = {
-"   \ 'colorscheme': 'powerline',
-"   \ 'active': {
-"   \   'left': [ [ 'mode', 'paste' ],
-"   \             [ 'readonly', 'filename', 'buffernumber', 'modified', 'gitbranch' ] ]
-"   \ },
-"   \ 'component' : {
-"   \   'pathtofile': '%f',
-"   \   'buffernumber': '%n'
-"   \ },
-"   \ 'component_function': {
-"   \   'gitbranch': 'fugitive#head',
-"   \   'gitstatus': '%{fugitive#statusline()}',
-"   \   'obsessionstatus': '%{ObsessionStatus()}'
-"   \ },
-" \ }
+let g:lightline = {
+  \ 'colorscheme': 'powerline',
+  \ 'active': {
+  \   'left': [ [ 'mode', 'paste' ],
+  \             [ 'readonly', 'filename', 'buffernumber', 'modified', 'gitbranch', '%{ObsessionStatus()}'] ]
+  \ },
+  \ 'component' : {
+  \   'pathtofile': '%f',
+  \   'buffernumber': '%n'
+  \ },
+  \ 'component_function': {
+  \   'gitbranch': 'fugitive#head',
+  \   'gitstatus': '%{fugitive#statusline()}'
+      \ },
+\ }
 
 " Multi-cursor default mapping
 " let g:multi_cursor_next_key='<C-n>'
@@ -447,68 +441,58 @@ let g:vim_json_syntax_conceal = 0
 let g:javascript_plugin_flow = 1
 
 " vim-go
-" let g:go_highlight_array_whitespace_error = 1
-" let g:go_highlight_chan_whitespace_error = 1
-" let g:go_highlight_extra_types = 1
-" let g:go_highlight_space_tab_error = 1
-" let g:go_highlight_trailing_whitespace_error = 1
-" let g:go_highlight_operators = 1
-" let g:go_highlight_functions = 1
-" let g:go_highlight_function_arguments = 1
-" let g:go_highlight_function_calls = 1
-" let g:go_highlight_types = 1
-" let g:go_highlight_fields = 1
-" let g:go_highlight_build_constraints = 1
-" let g:go_highlight_generate_tags = 1
-" let g:go_highlight_string_spellcheck = 1
-" let g:go_highlight_format_strings = 1
-" let g:go_highlight_variable_declarations = 1
-" let g:go_highlight_variable_assignments = 1
+let g:go_highlight_array_whitespace_error = 1
+let g:go_highlight_chan_whitespace_error = 1
+let g:go_highlight_extra_types = 1
+let g:go_highlight_space_tab_error = 1
+let g:go_highlight_trailing_whitespace_error = 1
+let g:go_highlight_operators = 1
+let g:go_highlight_functions = 1
+let g:go_highlight_function_arguments = 1
+let g:go_highlight_function_calls = 1
+let g:go_highlight_types = 1
+let g:go_highlight_fields = 1
+let g:go_highlight_build_constraints = 1
+let g:go_highlight_generate_tags = 1
+let g:go_highlight_string_spellcheck = 1
+let g:go_highlight_format_strings = 1
+let g:go_highlight_variable_declarations = 1
+let g:go_highlight_variable_assignments = 1
 
 " ALE
-let g:ale_lint_on_text_changed = 'insert'
+let g:ale_lint_on_text_changed = 'normal'
 let g:ale_lint_on_insert_leave = 1
 let g:ale_sign_column_always = 1
-let g:ale_linters_explicit = 1
-" let g:ale_lint_delay ou 200
-" let g:ale_set_loclist = 0
-let g:ale_set_quickfix = 1
-" let g:ale_open_list = 0
+let g:ale_lint_delay = 100
+let g:ale_set_balloons = 0
+let g:ale_linters = {'javascript': ['eslint', 'flow'], 'rust': ['cargo', 'rustc']}
 let g:ale_fixers = {
-\   'scss': ['prettier'],
-\   'html': ['prettier']
-\ }
+\   'javascript': ['remove_trailing_lines', 'trim_whitespace', 'eslint'],
+\   'rust': ['remove_trailing_lines', 'trim_whitespace', 'rustfmt'],
+\   'ruby': ['remove_trailing_lines', 'trim_whitespace', 'rubocop'],
+\}
 let g:ale_fix_on_save = 1
 nmap <silent> <C-k> <Plug>(ale_previous)
 nmap <silent> <C-j> <Plug>(ale_next)
 
-nmap <Leader>hp <Plug>(GitGutterPrevHunk)
-nmap <Leader>hn <Plug>(GitGutterNextHunk)
+nmap <Leader>hp <Plug>GitGutterPrevHunk
+nmap <Leader>hn <Plug>GitGutterNextHunk
 " silent! if emoji#available()
-  " let g:gitgutter_sign_added = emoji#for('star')
-  " let g:gitgutter_sign_modified = emoji#for('dizzy')
-  " let g:gitgutter_sign_removed = emoji#for('broken_heart')
-  " let g:gitgutter_sign_modified_removed = emoji#for('collision')
-  " let g:gitgutter_override_sign_column_highlight = 0
+"   let g:gitgutter_sign_added = emoji#for('star')
+"   let g:gitgutter_sign_modified = emoji#for('dizzy')
+"   let g:gitgutter_sign_removed = emoji#for('broken_heart')
+"   let g:gitgutter_sign_modified_removed = emoji#for('collision')
+"   let g:gitgutter_override_sign_column_highlight = 0
 
-  " highlight clear ALEErrorSign
-  " highlight clear ALEWarningSign
-  " let g:ale_sign_error = emoji#for('rage')
-  " let g:ale_sign_warning = emoji#for('angry')
+"   highlight clear ALEErrorSign
+"   highlight clear ALEWarningSign
+"   let g:ale_sign_error = emoji#for('rage')
+"   let g:ale_sign_warning = emoji#for('angry')
 " else
   let g:ale_sign_error = '>>'
   let g:ale_sign_warning = '--'
 " endif
 inoremap <c-x><c-k> <c-x><c-k>
-nnoremap <leader>y :YcmCompleter<CR>
-nnoremap <leader>yg :YcmCompleter GoTo<CR>
-nnoremap <leader>yr :YcmCompleter GoToReferences<CR>
-
-if !exists("g:ycm_semantic_triggers")
-  let g:ycm_semantic_triggers = {}
-endif
-let g:ycm_semantic_triggers['typescript'] = ['.']
-
 let g:ycm_key_list_select_completion=['<c-n>']
 let g:ycm_key_list_previous_completion=['<c-p']
 " Snippets
@@ -522,8 +506,3 @@ let g:UltiSnipsSnippetDirectories=[$HOME."/.vim/plugins/vim-snippets", $HOME."/.
 " command PrettyJSON %!python -m json.tool
 " Filetype json
 
-" EditorConfig
-let g:EditorConfig_exclude_patterns = ['fugitive://.\*', 'scp://.\*']
-
-" JsDoc
-let g:jsdoc_enable_es6 = 1
