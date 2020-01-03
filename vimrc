@@ -53,10 +53,10 @@ Plugin 'jparise/vim-graphql'
 Plugin 'editorconfig/editorconfig-vim'
 Plugin 'leafgarland/typescript-vim'
 Plugin 'itchyny/lightline.vim'
+Plugin 'plasticboy/vim-markdown'
 
 " Plugin 'reewr/vim-monokai-phoenix'
 " Plugin 'godlygeek/tabular'
-" Plugin 'plasticboy/vim-markdown'
 " Plugin 'jamshedvesuna/vim-markdown-preview'
 " Plugin 'tpope/vim-dadbod'
 " Plugin 'junegunn/vim-emoji'
@@ -527,3 +527,10 @@ let g:EditorConfig_exclude_patterns = ['fugitive://.\*', 'scp://.\*']
 
 " JsDoc
 let g:jsdoc_enable_es6 = 1
+
+
+"""""""""
+" Custom
+"""""""""
+nmap cf :let @" = expand("%")<cr>"
+nmap cp :let @" = expand("%:p")<cr>"
