@@ -37,7 +37,7 @@ Plugin 'jiangmiao/auto-pairs'
 Plugin 'stephpy/vim-yaml'
 Plugin 'cakebaker/scss-syntax.vim'
 Plugin 'chr4/nginx.vim'
-Plugin 'chr4/sslsecure.vim'
+" Plugin 'chr4/sslsecure.vim'
 Plugin 'lervag/vimtex'
 Plugin 'elzr/vim-json'
 Plugin 'othree/html5.vim'
@@ -466,13 +466,13 @@ let g:javascript_plugin_flow = 1
 " let g:go_highlight_variable_assignments = 1
 
 " ALE
-let g:ale_lint_on_text_changed = 'insert'
+" let g:ale_lint_on_text_changed = 'insert'
 let g:ale_lint_on_insert_leave = 1
 let g:ale_sign_column_always = 1
 let g:ale_linters_explicit = 1
-" let g:ale_lint_delay ou 200
-" let g:ale_set_loclist = 0
-let g:ale_set_quickfix = 1
+let g:ale_lint_delay = 2000
+let g:ale_set_loclist = 1
+" let g:ale_set_quickfix = 1
 " let g:ale_open_list = 0
 let g:ale_fixers = {
 \   'scss': ['prettier'],

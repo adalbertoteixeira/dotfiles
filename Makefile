@@ -54,6 +54,7 @@ vimubuntu:
 		python3-dev ruby-dev lua5.1 liblua5.1-dev libperl-dev git \
 		cmake
 	cd $(HOME)
+	rm -rf $(HOME)/vim
 	git clone https://github.com/vim/vim.git ~/vim
 	cd $(HOME)/vim
 	git pull
