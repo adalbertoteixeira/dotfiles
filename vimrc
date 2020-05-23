@@ -2,6 +2,9 @@ set nocompatible              " be iMproved, required
 filetype off                  " required
 let g:ale_completion_enabled = 0
 let g:ale_set_balloons = 0
+let g:ale_fix_on_save = 1
+let g:ale_lint_on_text_changed = 0
+let g:ale_lint_on_insert_leave = 0
 
 """"""""
 " Vundle
@@ -156,7 +159,7 @@ set foldcolumn=1
 vnoremap <leader>c "+y
 nnoremap <leader>t :NERDTreeToggle<CR>
 nnoremap <leader>f :NERDTreeFind<CR>
-nnoremap <leader>z :FZF<CR>
+nnoremap <leader>Z :FZF<CR>
 nnoremap <leader>l j0i<CR>
 nnoremap <leader>a :ALELint<CR>
 
@@ -466,11 +469,9 @@ let g:javascript_plugin_flow = 1
 " let g:go_highlight_variable_assignments = 1
 
 " ALE
-" let g:ale_lint_on_text_changed = 'insert'
-let g:ale_lint_on_insert_leave = 1
 let g:ale_sign_column_always = 1
 let g:ale_linters_explicit = 1
-let g:ale_lint_delay = 2000
+let g:ale_lint_delay = 0
 let g:ale_set_loclist = 1
 " let g:ale_set_quickfix = 1
 " let g:ale_open_list = 0
@@ -478,7 +479,6 @@ let g:ale_fixers = {
 \   'scss': ['prettier'],
 \   'html': ['prettier']
 \ }
-let g:ale_fix_on_save = 1
 nmap <silent> <C-k> <Plug>(ale_previous)
 nmap <silent> <C-j> <Plug>(ale_next)
 
