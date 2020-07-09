@@ -1,10 +1,15 @@
 set nocompatible              " be iMproved, required
 filetype off                  " required
 let g:ale_completion_enabled = 0
-let g:ale_set_balloons = 0
+let g:ale_set_balloons = 1
 let g:ale_fix_on_save = 1
 let g:ale_lint_on_text_changed = 0
 let g:ale_lint_on_insert_leave = 0
+let g:ale_set_loclist = 0
+let g:ale_set_quickfix = 1
+let g:ale_set_highlights = 1
+let g:ale_set_signs = 1
+let g:ale_open_list = 1
 
 """"""""
 " Vundle
@@ -19,7 +24,13 @@ call vundle#begin()
 " let Vundle manage Vundle, required
 Plugin 'VundleVim/Vundle.vim'
 Plugin 'Yggdroot/indentLine'
-Plugin 'crusoexia/vim-monokai'
+Plugin 'sickill/vim-monokai'
+" Plugin 'crusoexia/vim-monokai'
+Plugin 'tomasr/molokai'
+Plugin 'dracula/vim', { 'name': 'dracula'  }
+Plugin 'altercation/vim-colors-solarized'
+Plugin 'morhetz/gruvbox'
+Plugin 'chriskempson/base16-vim'
 Plugin 'tpope/vim-fugitive'
 Plugin 'vim-airline/vim-airline'
 Plugin 'vim-airline/vim-airline-themes'
@@ -32,8 +43,7 @@ Plugin 'w0rp/ale'
 Plugin 'valloric/youcompleteme'
 Plugin 'tpope/vim-surround'
 Plugin 'airblade/vim-gitgutter'
-Plugin 'burntsushi/ripgrep'
-Plugin 'jremmen/vim-ripgrep'
+Plugin 'burntsushi/ripgrep',
 Plugin 'pangloss/vim-javascript'
 Plugin 'mxw/vim-jsx'
 Plugin 'jiangmiao/auto-pairs'
@@ -41,13 +51,13 @@ Plugin 'stephpy/vim-yaml'
 Plugin 'cakebaker/scss-syntax.vim'
 Plugin 'chr4/nginx.vim'
 " Plugin 'chr4/sslsecure.vim'
-Plugin 'lervag/vimtex'
+" Plugin 'lervag/vimtex'
 Plugin 'elzr/vim-json'
 Plugin 'othree/html5.vim'
 Plugin 'scrooloose/nerdcommenter'
-Plugin 'cespare/vim-toml'
+" Plugin 'cespare/vim-toml'
 Plugin 'tpope/vim-obsession'
-Plugin 'digitaltoad/vim-pug'
+" Plugin 'digitaltoad/vim-pug'
 Plugin 'SirVer/ultisnips'
 Plugin 'honza/vim-snippets'
 Plugin 'heavenshell/vim-jsdoc'
@@ -63,7 +73,6 @@ Plugin 'plasticboy/vim-markdown'
 " Plugin 'jamshedvesuna/vim-markdown-preview'
 " Plugin 'tpope/vim-dadbod'
 " Plugin 'junegunn/vim-emoji'
-" Plugin 'sicklii/vim-monokai'
 " Plugin 'KeitaNakamura/tex-conceal.vim'
 " Plugin 'fatih/vim-go'
 " Plugin 'LaTeX-Box-Team/LaTeX-Box'
@@ -210,13 +219,16 @@ set wrap
 set textwidth=100 " 79
 set formatoptions=qrn1
 
-let g:colors_name='monokai'
-let s:colors_name='monokai'
-let g:colors_name='monokai'
-silent! colorscheme monokai
-set t_Co=256
-let g:monokai_term_italic = 1
-let g:monokai_gui_italic = 1
+let g:gruvbox_italic=1
+set background=dark 
+silent! colorscheme gruvbox
+
+" let g:colors_name='monokai'
+" let s:colors_name='monokai'
+" let g:colors_name='monokai'
+" set t_Co=256
+" let g:monokai_term_italic = 1
+" let g:monokai_gui_italic = 1
 
 " Set utf8 as standard encoding and en_US as the standard language
 set encoding=utf8
@@ -224,45 +236,45 @@ set encoding=utf8
 " Use Unix as the standard file type
 set ffs=unix,dos,mac
 
-if has('autocmd')
-   " change colorscheme depending on current buffer
-   " if desired, you may set a user-default colorscheme before this point,
-   " otherwise we'll use the Vim default.
-   " Variables used:
-       " g:colors_name : current colorscheme at any moment
-       " b:colors_name (if any): colorscheme to be used for the current buffer
-       " s:colors_name : default colorscheme, to be used where b:colors_name hasn't been set
-   if has('user_commands')
-       " User commands defined:
-           " ColorScheme <name>
-               " set the colorscheme for the current buffer
-           " ColorDefault <name>
-               " change the default colorscheme
-       command -nargs=1 -bar ColorScheme
-          \ colorscheme <args>
-          \ | let b:colors_name = g:colors_name
-       command -nargs=1 -bar ColorDefault
-          \ let s:colors_name = <q-args>
-          \ | if !exists('b:colors_name')
-              \ | colors <args>
-          \ | endif
-   endif
-   if !exists('g:colors_name')
-       let g:colors_name = 'default'
-   endif
-   let s:colors_name = g:colors_name
-   au BufEnter *
-       \ let s:new_colors = (exists('b:colors_name')?(b:colors_name):(s:colors_name))
-       \ | if s:new_colors != g:colors_name
-           \ | exe 'colors' s:new_colors
-       \ | endif
-endif
+" if has('autocmd')
+"    " change colorscheme depending on current buffer
+"    " if desired, you may set a user-default colorscheme before this point,
+"    " otherwise we'll use the Vim default.
+"    " Variables used:
+"        " g:colors_name : current colorscheme at any moment
+"        " b:colors_name (if any): colorscheme to be used for the current buffer
+"        " s:colors_name : default colorscheme, to be used where b:colors_name hasn't been set
+"    if has('user_commands')
+"        " User commands defined:
+"            " ColorScheme <name>
+"                " set the colorscheme for the current buffer
+"            " ColorDefault <name>
+"                " change the default colorscheme
+"        command -nargs=1 -bar ColorScheme
+"           \ colorscheme <args>
+"           \ | let b:colors_name = g:colors_name
+"        command -nargs=1 -bar ColorDefault
+"           \ let s:colors_name = <q-args>
+"           \ | if !exists('b:colors_name')
+"               \ | colors <args>
+"           \ | endif
+"    endif
+"    if !exists('g:colors_name')
+"        let g:colors_name = 'default'
+"    endif
+"    let s:colors_name = g:colors_name
+"    au BufEnter *
+"        \ let s:new_colors = (exists('b:colors_name')?(b:colors_name):(s:colors_name))
+"        \ | if s:new_colors != g:colors_name
+"            \ | exe 'colors' s:new_colors
+"        \ | endif
+" endif
 
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " => Files, backups and undo
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " Turn backup off, since most stuff is in SVN, git et.c anyway...
-" :set backupcopy=yes
+set backupcopy=yes
 set nobackup
 set nowb
 set noswapfile
@@ -305,7 +317,9 @@ let g:fzf_action = {
 
 " Default fzf layout
 " - down / up / left / right
-let g:fzf_layout = { 'left': '~40%' }
+" let g:fzf_layout = { 'top': '~40%' }
+let g:fzf_layout = { 'window': { 'width': 0.95, 'height': 0.95  }  }
+let g:fzf_preview_window = 'right:40%'
 
 " In Neovim, you can set up fzf window using a Vim command
 " let g:fzf_layout = { 'window': 'enew' }
@@ -471,10 +485,7 @@ let g:javascript_plugin_flow = 1
 " ALE
 let g:ale_sign_column_always = 1
 let g:ale_linters_explicit = 1
-let g:ale_lint_delay = 0
-let g:ale_set_loclist = 1
-" let g:ale_set_quickfix = 1
-" let g:ale_open_list = 0
+let g:ale_lint_delay = 500
 let g:ale_fixers = {
 \   'scss': ['prettier'],
 \   'html': ['prettier']
