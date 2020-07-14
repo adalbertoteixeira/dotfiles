@@ -430,12 +430,12 @@ set nofoldenable
 let g:markdown_fenced_languages = ['html', 'python', 'javascript=js']
 
 " highlight frontmatter
-let g:vim_markdown_frontmatter = 1
-let g:vim_markdown_toml_frontmatter = 1
-let g:vim_markdown_json_frontmatter = 1
+" let g:vim_markdown_frontmatter = 1
+" let g:vim_markdown_toml_frontmatter = 1
+" let g:vim_markdown_json_frontmatter = 1
 " markdown preview
-let vim_markdown_preview_browser='Firefox'
-let vim_markdown_preview_github=1
+" let vim_markdown_preview_browser='Firefox'
+" let vim_markdown_preview_github=1
 
 """"""""""""""
 " vim tex
@@ -495,21 +495,8 @@ nmap <silent> <C-j> <Plug>(ale_next)
 
 nmap <Leader>hp <Plug>(GitGutterPrevHunk)
 nmap <Leader>hn <Plug>(GitGutterNextHunk)
-" silent! if emoji#available()
-  " let g:gitgutter_sign_added = emoji#for('star')
-  " let g:gitgutter_sign_modified = emoji#for('dizzy')
-  " let g:gitgutter_sign_removed = emoji#for('broken_heart')
-  " let g:gitgutter_sign_modified_removed = emoji#for('collision')
-  " let g:gitgutter_override_sign_column_highlight = 0
-
-  " highlight clear ALEErrorSign
-  " highlight clear ALEWarningSign
-  " let g:ale_sign_error = emoji#for('rage')
-  " let g:ale_sign_warning = emoji#for('angry')
-" else
-  let g:ale_sign_error = '>>'
-  let g:ale_sign_warning = '--'
-" endif
+let g:ale_sign_error = '>>'
+let g:ale_sign_warning = '--'
 inoremap <c-x><c-k> <c-x><c-k>
 nnoremap <leader>y :YcmCompleter<CR>
 nnoremap <leader>yg :YcmCompleter GoTo<CR>

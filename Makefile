@@ -54,31 +54,34 @@ vimubuntu:
 		python3-dev ruby-dev lua5.1 liblua5.1-dev libperl-dev git \
 		cmake
 	cd $(HOME)
-	rm -rf $(HOME)/vim
+	sudo rm -rf $(HOME)/vim
 	git clone https://github.com/vim/vim.git ~/vim
 	cd $(HOME)/vim
 	git pull
-	./configure --with-features=huge \
-		--enable-multibyte \
-		--enable-rubyinterp=yes \
-		--enable-pythoninterp=yes \
-		--enable-python3interp=yes \
-		--with-python3-config-dir=/usr/lib/python3.5/config \
-		--enable-perlinterp=yes \
-		--enable-luainterp=yes \
-		--enable-gui=gtk2 \
-		--enable-cscope \
-		--prefix=/usr/local
-	make VIMRUNTIMEDIR=/usr/local/share/vim/vim81
+	cd $(HOME)/vim &&  \
+		./configure --with-features=huge \
+			--enable-multibyte \
+			--enable-rubyinterp=yes \
+			--enable-python3interp=yes \
+			--enable-perlinterp=yes \
+			--with-python3-command=python3.6 \
+			--with-python3-config-dir=$(python3-config --configdir) \
+			--enable-luainterp=yes \
+			--enable-gui=gtk2 \
+			--enable-cscope \
+			--prefix=/usr/local
+	cd $(HOME)/vim && make VIMRUNTIMEDIR=/usr/local/share/vim/vim81
 	cd $(HOME)/vim
-	sudo make install
-	make clean
-	make distclean
+	cd $(HOME)/vim && sudo make install
+	cd $(HOME)/vim && make clean
+	cd $(HOME)/vim && make distclean
 	sudo update-alternatives --install /usr/bin/editor editor /usr/local/bin/vim 1
 	sudo update-alternatives --set editor /usr/local/bin/vim
 	sudo update-alternatives --install /usr/bin/vi vi /usr/local/bin/vim 1
 	sudo update-alternatives --set vi /usr/local/bin/vim
-	git clone --depth 1 https://github.com/junegunn/fzf.git ~/.fzf && ~/.fzf/install --all --key-bindings --completion --64 --no-fish &&	source ~/.zshrc
+	rm -rf ~/.fzf
+	git clone --depth 1 https://github.com/junegunn/fzf.git ~/.fzf && ~/.fzf/install --all --key-bindings --completion --64 --no-fish
+	rm -rf ~/.vim/bundle/Vundle.vim
 	git clone https://github.com/VundleVim/Vundle.vim.git ~/.vim/bundle/Vundle.vim
 	vim +PluginInstall +qall
 
@@ -86,7 +89,7 @@ vimubuntu:
 ycm:
 	# cd $(HOME)/.vim/bundle/youcompleteme
 	# python3 ./install.py --clang-completer --rust-completer --ts-completer
-	python3 $(HOME)/.vim/bundle/youcompleteme/install.py --clang-completer --rust-completer --ts-completer
+	cd $(HOME)/.vim/bundle/youcompleteme && python3 $(HOME)/.vim/bundle/youcompleteme/install.py --clang-completer --rust-completer --ts-completer
 
 
 .PHONY: zshubuntu
