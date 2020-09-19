@@ -61,10 +61,12 @@ snippet reactpurefunction
 import React from 'react';
 import PropTypes from 'prop-types';
 
-const ${1:ClassName} = () => (
-	<div>
-	</div>
-);
+export default function ${1:functionName}() { 
+	return (
+		<div>
+		</div>
+	)
+};
 
 $1.propTypes = {
 
@@ -73,8 +75,6 @@ $1.propTypes = {
 $1.defaultProps = {
 
 };
-
-export default $1;
 endsnippet
 
 

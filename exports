@@ -21,3 +21,5 @@ export PATH="$HOME/.cargo/bin:$PATH"
 export REACT_EDITOR=vim
 export NVM_AUTO_USE=true
 export NVM_LAZY_LOAD=true
+
+export BYOBU_PREFIX=/usr/local

@@ -1,0 +1,3 @@
+#! /bin/bash
+
+if [ -d "/Volumes/T5" ]; then echo "/Volumes/T5/.yarn-cache"; else echo "~/.yarn-cache/"; fi

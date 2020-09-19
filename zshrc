@@ -17,16 +17,16 @@ SPACESHIP_PROMPT_ORDER=(
   # elixir        # Elixir section
   # xcode         # Xcode section
   # swift         # Swift section
-  golang        # Go section
+  # golang        # Go section
   # php           # PHP section
   rust          # Rust section
   # haskell       # Haskell Stack section
   # julia         # Julia section
   docker        # Docker section
-  aws           # Amazon Web Services section
-  venv          # virtualenv section
-  conda         # conda virtualenv section
-  pyenv         # Pyenv section
+  # aws           # Amazon Web Services section
+  # venv          # virtualenv section
+  # conda         # conda virtualenv section
+  # pyenv         # Pyenv section
   # dotnet        # .NET section
   # ember         # Ember.js section
   # kubectl       # Kubectl context section

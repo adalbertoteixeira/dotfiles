@@ -3,13 +3,16 @@ filetype off                  " required
 let g:ale_completion_enabled = 0
 let g:ale_set_balloons = 1
 let g:ale_fix_on_save = 1
-let g:ale_lint_on_text_changed = 0
-let g:ale_lint_on_insert_leave = 0
-let g:ale_set_loclist = 0
-let g:ale_set_quickfix = 1
+let g:ale_lint_on_text_changed = 1
+let g:ale_lint_on_insert_leave = 1
+let g:ale_set_loclist = 1
+" let g:ale_set_quickfix = 1
 let g:ale_set_highlights = 1
 let g:ale_set_signs = 1
 let g:ale_open_list = 1
+let g:ale_keep_list_window_open = 0
+
+" let g:ale_list_vertical = 1
 
 """"""""
 " Vundle
@@ -23,14 +26,15 @@ call vundle#begin()
 
 " let Vundle manage Vundle, required
 Plugin 'VundleVim/Vundle.vim'
-Plugin 'Yggdroot/indentLine'
-Plugin 'sickill/vim-monokai'
+" Plugin 'sickill/vim-monokai'
 " Plugin 'crusoexia/vim-monokai'
-Plugin 'tomasr/molokai'
-Plugin 'dracula/vim', { 'name': 'dracula'  }
-Plugin 'altercation/vim-colors-solarized'
-Plugin 'morhetz/gruvbox'
+" Plugin 'tomasr/molokai'
+" Plugin 'dracula/vim', { 'name': 'dracula'  }
+" Plugin 'altercation/vim-colors-solarized'
+" Plugin 'chriskempson/base16-vim'
+Plugin 'Yggdroot/indentLine'
 Plugin 'chriskempson/base16-vim'
+Plugin 'morhetz/gruvbox'
 Plugin 'tpope/vim-fugitive'
 Plugin 'vim-airline/vim-airline'
 Plugin 'vim-airline/vim-airline-themes'
@@ -38,7 +42,7 @@ Plugin 'junegunn/gv.vim'
 Plugin 'junegunn/fzf'
 Plugin 'junegunn/fzf.vim'
 Plugin 'scrooloose/nerdtree'
-Plugin 'Xuyuanp/nerdtree-git-plugin'
+" Plugin 'Xuyuanp/nerdtree-git-plugin'
 Plugin 'w0rp/ale'
 Plugin 'valloric/youcompleteme'
 Plugin 'tpope/vim-surround'
@@ -221,7 +225,9 @@ set formatoptions=qrn1
 
 let g:gruvbox_italic=1
 set background=dark 
-silent! colorscheme gruvbox
+" set termguicolors
+" let base16colorspace=256 
+silent! colorscheme  gruvbox
 
 " let g:colors_name='monokai'
 " let s:colors_name='monokai'
@@ -308,6 +314,7 @@ set noshowmode
 
 " Set spelling on markdown files
 " :setlocal spell spelllang=pt_pt
+hi SpellBad cterm=underline ctermfg=red
 
 " This is the default extra key bindings
 let g:fzf_action = {
@@ -425,7 +432,8 @@ let g:NERDTreeIndicatorMapCustom = {
 """"""""""""""
 let g:vim_markdown_folding_disabled = 1
 " Disable conceal
-let g:vim_markdown_conceal = 0
+let g:vim_markdown_conceal = 0 " 2 for Vim's defaults
+let g:vim_markdown_conceal_code_blocks = 0
 set nofoldenable
 let g:markdown_fenced_languages = ['html', 'python', 'javascript=js']
 
