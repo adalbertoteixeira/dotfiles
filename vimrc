@@ -49,7 +49,8 @@ Plugin 'tpope/vim-surround'
 Plugin 'airblade/vim-gitgutter'
 Plugin 'burntsushi/ripgrep',
 Plugin 'pangloss/vim-javascript'
-Plugin 'mxw/vim-jsx'
+" Plugin 'mxw/vim-jsx'
+Plugin 'maxmellon/vim-jsx-pretty'
 Plugin 'jiangmiao/auto-pairs'
 Plugin 'stephpy/vim-yaml'
 Plugin 'cakebaker/scss-syntax.vim'
@@ -312,7 +313,8 @@ set number
 set mouse=a
 set noshowmode
 
-" Set spelling on markdown files
+" Set spelling
+set spell
 " :setlocal spell spelllang=pt_pt
 hi SpellBad cterm=underline ctermfg=red
 
@@ -434,7 +436,7 @@ let g:vim_markdown_folding_disabled = 1
 " Disable conceal
 let g:vim_markdown_conceal = 0 " 2 for Vim's defaults
 let g:vim_markdown_conceal_code_blocks = 0
-set nofoldenable
+" set nofoldenable
 let g:markdown_fenced_languages = ['html', 'python', 'javascript=js']
 
 " highlight frontmatter
