@@ -110,7 +110,7 @@ let mapleader = ","
 let g:mapleader = ","
 
 set noshowcmd
-set regexpengine=1
+set regexpengine=0
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " => VIM user interface
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
