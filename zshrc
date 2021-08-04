@@ -81,9 +81,9 @@ SPACESHIP_PROMPT_ORDER=(
 # Custom plugins may be added to ~/.oh-my-zsh/custom/plugins/
 # Example format: plugins=(rails git textmate ruby lighthouse)
 # Add wisely, as too many plugins slow down shell startup.
-plugins=(git git-extras npm yarn zsh-syntax-highlighting zsh-nvm)
-# brew zsh-autosuggestions rails jira vagrant ruby rake osx ssh-agent 
-# zstyle :omz:plugins:ssh-agent identities github bitbucket
+plugins=(git git-extras npm yarn zsh-syntax-highlighting zsh-nvm ssh-agent )
+# brew zsh-autosuggestions rails jira vagrant ruby rake osx
+zstyle :omz:plugins:ssh-agent identities bitbucket_ben
 
 source $ZSH/oh-my-zsh.sh
 

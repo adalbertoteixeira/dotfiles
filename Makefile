@@ -1,6 +1,14 @@
 .PHONY: all
 all: nvm yarn go dotfiles vimubuntu zshubuntu ohmyzshubuntu
 
+.PHONY: ohmyzsh
+ohmyzsh:
+	rm -rf $(HOME)/.oh-my-zsh
+	mkdir -p $(HOME)/.oh-my-zsh/themes/
+	git clone https://github.com/zsh-users/zsh-syntax-highlighting.git $(HOME)/.oh-my-zsh/custom/plugins/zsh-syntax-highlighting
+	git clone https://github.com/lukechilds/zsh-nvm ~/.oh-my-zsh/custom/plugins/zsh-nvm
+	git clone https://github.com/denysdovhan/spaceship-prompt.git "$ZSH_CUSTOM/themes/spaceship-prompt" --depth=1
+
 .PHONY: dotfiles
 dotfiles:
 	ln -sf $(PWD)/vimrc $(HOME)/.vimrc
@@ -16,7 +24,7 @@ dotfiles:
 	mkdir -p $(HOME)/.vim/after/ftplugin
 	ln -sf $(PWD)/vim-ftplugins/ $(HOME)/.vim/after/ftplugin
 	mkdir -p $(HOME)/.oh-my-zsh/themes/
-	ln -sf $(PWD)/adalbertoteixeira.zsh-theme $(HOME)/.oh-my-zsh/themes/adalbertoteixeira.zsh-theme
+	ln -s $(ZSH_CUSTOM)/themes/spaceship-prompt/spaceship.zsh-theme $(ZSH_CUSTOM)/themes/spaceship.zsh-theme
 	mkdir -p $(HOME)/.config/kitty
 	ln -sf $(PWD)/kitty.conf $(HOME)/.config/kitty/kitty.conf
 

@@ -43,13 +43,14 @@ Plugin 'junegunn/fzf'
 Plugin 'junegunn/fzf.vim'
 Plugin 'scrooloose/nerdtree'
 " Plugin 'Xuyuanp/nerdtree-git-plugin'
-Plugin 'w0rp/ale'
+Plugin 'dense-analysis/ale'
 Plugin 'valloric/youcompleteme'
 Plugin 'tpope/vim-surround'
 Plugin 'airblade/vim-gitgutter'
 Plugin 'burntsushi/ripgrep',
 Plugin 'pangloss/vim-javascript'
 " Plugin 'mxw/vim-jsx'
+Plugin 'jxnblk/vim-mdx-js'
 Plugin 'maxmellon/vim-jsx-pretty'
 Plugin 'jiangmiao/auto-pairs'
 Plugin 'stephpy/vim-yaml'
@@ -65,12 +66,14 @@ Plugin 'tpope/vim-obsession'
 " Plugin 'digitaltoad/vim-pug'
 Plugin 'SirVer/ultisnips'
 Plugin 'honza/vim-snippets'
-Plugin 'heavenshell/vim-jsdoc'
+" Plugin 'heavenshell/vim-jsdoc'
 Plugin 'rust-lang/rust.vim'
 Plugin 'jparise/vim-graphql'
 Plugin 'editorconfig/editorconfig-vim'
 Plugin 'leafgarland/typescript-vim'
-Plugin 'itchyny/lightline.vim'
+Plugin 'xolox/vim-notes'
+Plugin 'xolox/vim-misc'
+" Plugin 'itchyny/lightline.vim'
 Plugin 'plasticboy/vim-markdown'
 
 " Plugin 'reewr/vim-monokai-phoenix'
@@ -207,7 +210,7 @@ set cursorline
 " Enable syntax highlighting
 syntax enable
 set synmaxcol=250
-set colorcolumn=80
+set colorcolumn=80,100,120
 
 
 " @TODO ???
@@ -370,6 +373,8 @@ set laststatus=2
 " => nerdcommenter
 """"""""""""""""""""""""""""""
 let NERDSpaceDelims = 1
+" let g:NERDAltDelims_javascript = 1
+" let g:NERDCustomDelimiters = { 'c': { 'left': '/**','right': '*/' } }
 
 """"""""""""""""""""""""""""""
 " => NERDTree
@@ -405,7 +410,9 @@ let g:NERDTreeIndicatorMapCustom = {
 " """""""""""
 " " Lightline
 " """""""""""
-
+let g:airline_theme='simple'
+let g:airline#extensions#obsession#enabled = 1
+let g:airline#extensions#obsession#indicator_text = '$Obsession$'
 " let g:lightline = {
 "   \ 'colorscheme': 'powerline',
 "   \ 'active': {
@@ -542,3 +549,10 @@ let g:jsdoc_enable_es6 = 1
 """""""""
 nmap cf :let @" = expand("%")<cr>"
 nmap cp :let @" = expand("%:p")<cr>"
+
+" vim-notes
+:let g:notes_directories = ['~/Documents/Notes']
+:let g:notes_conceal_code = 0
+:let g:notes_conceal_italic = 0
+:let g:notes_conceal_bold = 0
+:let g:notes_conceal_url = 0
