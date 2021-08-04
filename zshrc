@@ -3,7 +3,7 @@
 # [ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh"  # This loads nvm
 # [ -s "$NVM_DIR/bash_completion" ] && \. "$NVM_DIR/bash_completion"  # This loads nvm bash_completion
 
-ZSH_THEME="spaceship"
+# ZSH_THEME="spaceship"
 SPACESHIP_PROMPT_ORDER=(
   time          # Time stamps section
   user          # Username section
@@ -83,7 +83,7 @@ SPACESHIP_PROMPT_ORDER=(
 # Add wisely, as too many plugins slow down shell startup.
 plugins=(git git-extras npm yarn zsh-syntax-highlighting zsh-nvm ssh-agent )
 # brew zsh-autosuggestions rails jira vagrant ruby rake osx
-zstyle :omz:plugins:ssh-agent identities bitbucket_ben
+# zstyle :omz:plugins:ssh-agent identities 
 
 source $ZSH/oh-my-zsh.sh
 
@@ -139,3 +139,6 @@ if command -v rbenv > /dev/null 2>&1; then eval "$(rbenv init -)"; fi
 #   # Completion for kitty
 #   kitty + complete setup zsh | source /dev/stdin
 # fi
+#
+#
+eval "$(starship init zsh)"
