@@ -1,14 +1,6 @@
 .PHONY: all
 all: nvm yarn go dotfiles vimubuntu zshubuntu ohmyzshubuntu
 
-.PHONY: ohmyzsh
-ohmyzsh:
-	rm -rf $(HOME)/.oh-my-zsh
-	mkdir -p $(HOME)/.oh-my-zsh/themes/
-	git clone https://github.com/zsh-users/zsh-syntax-highlighting.git $(HOME)/.oh-my-zsh/custom/plugins/zsh-syntax-highlighting
-	git clone https://github.com/lukechilds/zsh-nvm ~/.oh-my-zsh/custom/plugins/zsh-nvm
-	git clone https://github.com/denysdovhan/spaceship-prompt.git "$ZSH_CUSTOM/themes/spaceship-prompt" --depth=1
-
 .PHONY: dotfiles
 dotfiles:
 	ln -sf $(PWD)/vimrc $(HOME)/.vimrc
@@ -24,9 +16,57 @@ dotfiles:
 	mkdir -p $(HOME)/.vim/after/ftplugin
 	ln -sf $(PWD)/vim-ftplugins/ $(HOME)/.vim/after/ftplugin
 	mkdir -p $(HOME)/.oh-my-zsh/themes/
-	ln -s $(ZSH_CUSTOM)/themes/spaceship-prompt/spaceship.zsh-theme $(ZSH_CUSTOM)/themes/spaceship.zsh-theme
-	mkdir -p $(HOME)/.config/kitty
-	ln -sf $(PWD)/kitty.conf $(HOME)/.config/kitty/kitty.conf
+	ln -sf $(PWD)/starship.toml $(HOME)/.config/
+
+.PHONY: bap_cloud_instance
+bap_cloud_instance:
+	sh -c "$(curl -fsSL https://starship.rs/install.sh)" -- -b ~/
+	rm -rf $(HOME)/.oh-my-zsh
+	sh -c "$(curl -fsSL https://raw.githubusercontent.com/robbyrussell/oh-my-zsh/master/tools/install.sh)"
+	git clone https://github.com/zsh-users/zsh-syntax-highlighting.git $(HOME)/.oh-my-zsh/custom/plugins/zsh-syntax-highlighting
+	git clone https://github.com/lukechilds/zsh-nvm ~/.oh-my-zsh/custom/plugins/zsh-nvm
+	git clone https://github.com/nvm-sh/nvm.git .nvm
+	rm -rf ~/.fzf
+	git clone --depth 1 https://github.com/junegunn/fzf.git ~/.fzf && ~/.fzf/install --all --key-bindings --completion --64 --no-fish
+	rm -rf ~/.vim/bundle/Vundle.vim
+	git clone https://github.com/VundleVim/Vundle.vim.git ~/.vim/bundle/Vundle.vim
+	vim +PluginInstall +qall
+	cd $(HOME)/.vim/bundle/youcompleteme && python3 $(HOME)/.vim/bundle/youcompleteme/install.py --clang-completer --rust-completer --ts-completer
+	git clone https://github.com/nvm-sh/nvm.git .nvm
+	rm -rf ~/.fzf
+	git clone --depth 1 https://github.com/junegunn/fzf.git ~/.fzf && ~/.fzf/install --all --key-bindings --completion --64 --no-fish
+
+# Add to ~/.bash_profile
+# export SHELL=`which zsh`
+# [ -z "$ZSH_VERSION" ] && exec "$SHELL" -l
+
+
+
+# Add to ~/.bashrc
+#
+
+# alias tmux="TERM=screen-256color-bce tmux"
+# export EDITOR='vim'
+
+# [ -f ~/.fzf.bash ] && source ~/.fzf.bash
+# # Setting rg as the default source for fzf
+# export FZF_DEFAULT_COMMAND="rg --files"
+# # To apply the command to CTRL-T as well
+# export FZF_CTRL_T_COMMAND="$FZF_DEFAULT_COMMAND"
+
+# export NVM_DIR="$HOME/.nvm"
+# [ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh"  # This loads nvm
+# [ -s "$NVM_DIR/bash_completion" ] && \. "$NVM_DIR/bash_completion"  # This loads nvm bash_completion
+
+# eval "$(~/starship init bash)"
+
+.PHONY: ohmyzsh
+ohmyzsh:
+	rm -rf $(HOME)/.oh-my-zsh
+	mkdir -p $(HOME)/.oh-my-zsh/themes/
+	sh -c "$(curl -fsSL https://raw.githubusercontent.com/robbyrussell/oh-my-zsh/master/tools/install.sh)"
+	git clone https://github.com/zsh-users/zsh-syntax-highlighting.git $(HOME)/.oh-my-zsh/custom/plugins/zsh-syntax-highlighting
+	git clone https://github.com/lukechilds/zsh-nvm ~/.oh-my-zsh/custom/plugins/zsh-nvm
 
 .PHONY: yarn
 yarn:
@@ -107,12 +147,6 @@ zshubuntu:
 	zsh --version
 	chsh -s $(which zsh)
 
-.PHONY: ohmyzshubuntu
-ohmyzshubuntu:
-	rm -rf $(HOME)/.oh-my-zsh
-	sh -c "$(curl -fsSL https://raw.githubusercontent.com/robbyrussell/oh-my-zsh/master/tools/install.sh)"
-	mkdir -p $(HOME)/.oh-my-zsh/themes/
-	ln -sf $(PWD)/adalbertoteixeira.zsh-theme $(HOME)/.oh-my-zsh/themes/adalbertoteixeira.zsh-theme
 
 .PHONY: update
 update:
