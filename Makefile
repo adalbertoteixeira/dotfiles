@@ -12,9 +12,9 @@ dotfiles:
 	ln -sf $(PWD)/exports $(HOME)/.exports
 	ln -sf $(PWD)/aliases $(HOME)/.aliases
 	mkdir -p $(HOME)/.vim/plugins
-	ln -sf $(PWD)/vim-snippets/ $(HOME)/.vim/plugins/vim-snippets
+	for i in  $(PWD)/vim-snippets/*; do ln -sf $i $(HOME)/.vim/plugins/; done;
 	mkdir -p $(HOME)/.vim/after/ftplugin
-	ln -sf $(PWD)/vim-ftplugins/ $(HOME)/.vim/after/ftplugin
+	for i in  $(PWD)/ftplugin/*; do ln -sf $i $(HOME)/.vim/after/ftplugin/; done;
 	mkdir -p $(HOME)/.oh-my-zsh/themes/
 	ln -sf $(PWD)/starship.toml $(HOME)/.config/
 
