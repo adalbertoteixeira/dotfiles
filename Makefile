@@ -190,13 +190,10 @@ zshubuntu:
 	zsh --version
 	chsh -s $(which zsh)
 
-<<<<<<< HEAD
 .PHONY: ohmyzshubuntu
 ohmyzshubuntu:
 	rm -rf $(HOME)/.oh-my-zsh
 	sh -c "$(curl -fsSL https://raw.githubusercontent.com/robbyrussell/oh-my-zsh/master/tools/install.sh)"
-=======
->>>>>>> 37a65a415bc30b649952601b70a067e0970c98fe
 
 .PHONY: update
 update:
