@@ -1,6 +1,41 @@
 .PHONY: all
 all: nvm yarn go dotfiles vimubuntu zshubuntu ohmyzshubuntu
 
+.PHONY: ubuntu
+ubuntu:
+	apt install diff-so-fancy bat zplug
+	make git
+	make niceaddons
+
+.PHONY: macOS
+macOS:
+	brew install diff-so-fancy bat zplug
+	make git
+	make niceaddons
+
+.PHONY: git
+git: 
+	git config --global core.pager "diff-so-fancy | less --tabs=4 -RFX"
+	git config --global interactive.diffFilter "diff-so-fancy --patch"		
+	git config --global color.ui true
+	git config --global color.diff-highlight.oldNormal    "red bold"
+	git config --global color.diff-highlight.oldHighlight "red bold 52"
+	git config --global color.diff-highlight.newNormal    "green bold"
+	git config --global color.diff-highlight.newHighlight "green bold 22"
+	git config --global color.diff.meta       "11"
+	git config --global color.diff.frag       "magenta bold"
+	git config --global color.diff.func       "146 bold"
+	git config --global color.diff.commit     "yellow bold"
+	git config --global color.diff.old        "red bold"
+	git config --global color.diff.new        "green bold"
+	git config --global color.diff.whitespace "red reverse"
+
+.PHONY: niceaddons
+niceaddons:
+	curl -sL --proto-redir -all,https https://raw.githubusercontent.com/zplug/installer/master/installer.zsh | zsh
+	zplug install
+	curl -sL --proto-redir -all,https https://raw.githubusercontent.com/zplug/installer/master/installer.zsh | zsh
+
 .PHONY: ohmyzsh
 ohmyzsh:
 	rm -rf $(HOME)/.oh-my-zsh
@@ -111,8 +146,6 @@ zshubuntu:
 ohmyzshubuntu:
 	rm -rf $(HOME)/.oh-my-zsh
 	sh -c "$(curl -fsSL https://raw.githubusercontent.com/robbyrussell/oh-my-zsh/master/tools/install.sh)"
-	mkdir -p $(HOME)/.oh-my-zsh/themes/
-	ln -sf $(PWD)/adalbertoteixeira.zsh-theme $(HOME)/.oh-my-zsh/themes/adalbertoteixeira.zsh-theme
 
 .PHONY: update
 update:

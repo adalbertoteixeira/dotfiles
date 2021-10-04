@@ -83,7 +83,7 @@ SPACESHIP_PROMPT_ORDER=(
 # Add wisely, as too many plugins slow down shell startup.
 plugins=(git git-extras npm yarn zsh-syntax-highlighting zsh-nvm ssh-agent )
 # brew zsh-autosuggestions rails jira vagrant ruby rake osx
-# zstyle :omz:plugins:ssh-agent identities 
+zstyle :omz:plugins:ssh-agent identities bitbucket_ben
 
 source $ZSH/oh-my-zsh.sh
 
@@ -141,4 +141,15 @@ if command -v rbenv > /dev/null 2>&1; then eval "$(rbenv init -)"; fi
 # fi
 #
 #
+eval "$(starship init zsh)"
+
+# added by travis gem
+[ ! -s ~/.travis/travis.sh ] || source ~/.travis/travis.sh
+
+
+export ZPLUG_HOME=/usr/local/opt/zplug
+source $ZPLUG_HOME/init.zsh
+zplug "wfxr/forgit"
+zplug load
+
 eval "$(starship init zsh)"
