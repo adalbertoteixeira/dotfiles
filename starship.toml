@@ -1,0 +1,66 @@
+# Inserts a blank line between shell prompts
+add_newline = true
+
+[directory]
+truncation_length = 8
+
+[battery]
+full_symbol = "🔋 "
+charging_symbol = "⚡️ "
+discharging_symbol = "💀 "
+
+[cmd_duration]
+min_time = 500
+format = "underwent [$duration](bold yellow)"
+
+[git_branch]
+symbol = "🌱 "
+truncation_symbol = ""
+
+[git_commit]
+
+[git_state]
+format = '[\($state( $progress_current of $progress_total)\)]($style) '
+cherry_pick = "[🍒 PICKING](bold red)"
+
+
+[git_metrics]
+added_style = "bold blue"
+format = '[+$added]($added_style)/[-$deleted]($deleted_style) '
+
+[git_status]
+
+[hostname]
+format =  "on [$hostname](bold red) "
+trim_at = ".companyname.com"
+disabled = false
+
+[jobs]
+symbol = "+ "
+threshold = 4
+
+
+[memory_usage]
+# disabled = false
+
+# [package]
+format = "via [🎁 $version](208 bold) "
+
+
+[docker_context]
+# format = "via [🐋 $context](blue bold)"
+
+[rlang]
+# format = "with [📐 $version](blue bold) "
+
+
+[ruby]
+symbol = "🔺 "
+
+
+[rust]
+format = "via [⚙️ $version](red bold)"
+
+[shell]
+[status]
+[username]

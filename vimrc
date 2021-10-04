@@ -330,8 +330,8 @@ let g:fzf_action = {
 " Default fzf layout
 " - down / up / left / right
 " let g:fzf_layout = { 'top': '~40%' }
-let g:fzf_layout = { 'window': { 'width': 0.95, 'height': 0.95  }  }
-let g:fzf_preview_window = 'right:40%'
+" let g:fzf_layout = { 'window': { 'width': 0.95, 'height': 0.95  }  }
+" let g:fzf_preview_window = 'right:40%'
 
 " In Neovim, you can set up fzf window using a Vim command
 " let g:fzf_layout = { 'window': 'enew' }
