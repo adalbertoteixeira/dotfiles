@@ -83,7 +83,7 @@
 # Add wisely, as too many plugins slow down shell startup.
 plugins=(git git-extras npm yarn zsh-syntax-highlighting zsh-nvm ssh-agent )
 # brew zsh-autosuggestions rails jira vagrant ruby rake osx
-zstyle :omz:plugins:ssh-agent identities bitbucket_ben
+zstyle :omz:plugins:ssh-agent identities
 
 source $ZSH/oh-my-zsh.sh
 

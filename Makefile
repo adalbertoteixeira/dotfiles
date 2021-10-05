@@ -3,13 +3,13 @@ all: nvm yarn go dotfiles vimubuntu zshubuntu ohmyzshubuntu
 
 .PHONY: ubuntu
 ubuntu:
-	apt install diff-so-fancy bat zplug
+	apt install diff-so-fancy bat
 	make git
 	make niceaddons
 
 .PHONY: macOS
 macOS:
-	brew install diff-so-fancy bat zplug
+	brew install diff-so-fancy bat
 	make git
 	make niceaddons
 
@@ -32,9 +32,10 @@ git:
 
 .PHONY: niceaddons
 niceaddons:
+	sh -c "$(curl -fsSL https://starship.rs/install.sh)" -- -b ~/
 	curl -sL --proto-redir -all,https https://raw.githubusercontent.com/zplug/installer/master/installer.zsh | zsh
+	source ~/.zshrc
 	zplug install
-	curl -sL --proto-redir -all,https https://raw.githubusercontent.com/zplug/installer/master/installer.zsh | zsh
 
 .PHONY: ohmyzsh
 ohmyzsh:
