@@ -3,7 +3,7 @@ all: nvm yarn go dotfiles vimubuntu zshubuntu ohmyzshubuntu
 
 .PHONY: ubuntu
 ubuntu:
-	apt install diff-so-fancy bat
+	sudo apt install diff-so-fancy bat
 	make git
 	make niceaddons
 
@@ -32,7 +32,7 @@ git:
 
 .PHONY: niceaddons
 niceaddons:
-	sh -c "$(curl -fsSL https://starship.rs/install.sh)" -- -b ~/
+	sh -c "$(curl -fsSL https://starship.rs/install.sh)" 
 	curl -sL --proto-redir -all,https https://raw.githubusercontent.com/zplug/installer/master/installer.zsh | zsh
 	source ~/.zshrc
 	zplug install
