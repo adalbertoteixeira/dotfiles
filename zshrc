@@ -3,42 +3,6 @@
 # [ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh"  # This loads nvm
 # [ -s "$NVM_DIR/bash_completion" ] && \. "$NVM_DIR/bash_completion"  # This loads nvm bash_completion
 
-# ZSH_THEME="spaceship"
-# SPACESHIP_PROMPT_ORDER=(
-#   time          # Time stamps section
-#   user          # Username section
-#   dir           # Current directory section
-#   host          # Hostname section
-#   git           # Git section (git_branch + git_status)
-#   # hg            # Mercurial section (hg_branch  + hg_status)
-#   package       # Package version
-#   node          # Node.js section
-#   ruby          # Ruby section
-#   # elixir        # Elixir section
-#   # xcode         # Xcode section
-#   # swift         # Swift section
-#   # golang        # Go section
-#   # php           # PHP section
-#   rust          # Rust section
-#   # haskell       # Haskell Stack section
-#   # julia         # Julia section
-#   docker        # Docker section
-#   # aws           # Amazon Web Services section
-#   # venv          # virtualenv section
-#   # conda         # conda virtualenv section
-#   # pyenv         # Pyenv section
-#   # dotnet        # .NET section
-#   # ember         # Ember.js section
-#   # kubectl       # Kubectl context section
-#   # terraform     # Terraform workspace section
-#   exec_time     # Execution time
-#   line_sep      # Line break
-#   battery       # Battery level and status
-#   vi_mode       # Vi-mode indicator
-#   jobs          # Background jobs indicator
-#   exit_code     # Exit code section
-#   char          # Prompt character
-# )
 # Uncomment the following line to use case-sensitive completion.
 # CASE_SENSITIVE="true"
 
@@ -81,8 +45,8 @@
 # Custom plugins may be added to ~/.oh-my-zsh/custom/plugins/
 # Example format: plugins=(rails git textmate ruby lighthouse)
 # Add wisely, as too many plugins slow down shell startup.
-plugins=(git git-extras npm yarn zsh-syntax-highlighting zsh-nvm ssh-agent )
-# brew zsh-autosuggestions rails jira vagrant ruby rake osx
+plugins=(git git-extras npm yarn zsh-syntax-highlighting ssh-agent rust)
+# brew zsh-autosuggestions rails jira vagrant ruby rake osx zsh-nvm 
 zstyle :omz:plugins:ssh-agent identities bitbucket_ben
 
 source $ZSH/oh-my-zsh.sh
@@ -152,3 +116,15 @@ zplug "wfxr/forgit"
 zplug load
 
 eval "$(starship init zsh)"
+
+# For BEN review control
+export BEN_DRS_CERT_PATH='/Volumes/T5/ben/ben-ctl/ben_developer'
+export PATH=$PATH:/Volumes/T5/ben/ben-ctl
+# End BEN review control
+
+
+# export PATH="$HOME/.yarn/bin:$HOME/.config/yarn/global/node_modules/.bin:$PATH"
+# export VOLTA_HOME="$HOME/.volta"
+# export PATH="$VOLTA_HOME/bin:$PATH"
+
+eval "$(fnm env --use-on-cd)"

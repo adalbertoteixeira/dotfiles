@@ -436,16 +436,6 @@ let g:airline#extensions#obsession#indicator_text = '$Obsession$'
 " let g:multi_cursor_skip_key='<C-x>'
 " let g:multi_cursor_quit_key='<Esc>'
 
-""""""""""""""
-" vim markdown
-""""""""""""""
-let g:vim_markdown_folding_disabled = 1
-" Disable conceal
-let g:vim_markdown_conceal = 0 " 2 for Vim's defaults
-let g:vim_markdown_conceal_code_blocks = 0
-" set nofoldenable
-let g:markdown_fenced_languages = ['html', 'python', 'javascript=js']
-
 " highlight frontmatter
 " let g:vim_markdown_frontmatter = 1
 " let g:vim_markdown_toml_frontmatter = 1
