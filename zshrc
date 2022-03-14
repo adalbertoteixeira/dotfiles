@@ -110,7 +110,7 @@ if command -v rbenv > /dev/null 2>&1; then eval "$(rbenv init -)"; fi
 [ ! -s ~/.travis/travis.sh ] || source ~/.travis/travis.sh
 
 
-export ZPLUG_HOME=/usr/local/opt/zplug
+export ZPLUG_HOME=~/.zplug
 source $ZPLUG_HOME/init.zsh
 zplug "wfxr/forgit"
 zplug load
