@@ -32,6 +32,7 @@ git:
 
 .PHONY: niceaddons
 niceaddons:
+	cd ~
 	sh -c "$(curl -fsSL https://starship.rs/install.sh)" 
 	curl -sL --proto-redir -all,https https://raw.githubusercontent.com/zplug/installer/master/installer.zsh | zsh
 	source ~/.zshrc
