@@ -126,5 +126,13 @@ export PATH=$PATH:/Volumes/T5/ben/ben-ctl
 # export PATH="$HOME/.yarn/bin:$HOME/.config/yarn/global/node_modules/.bin:$PATH"
 # export VOLTA_HOME="$HOME/.volta"
 # export PATH="$VOLTA_HOME/bin:$PATH"
-
 eval "$(fnm env --use-on-cd)"
+
+# bun completions
+# [ -s "/Users/adalbertoteixeira/.bun/_bun" ] && source "/Users/adalbertoteixeira/.bun/_bun"
+
+# bun
+# export BUN_INSTALL="/Users/adalbertoteixeira/.bun"
+# export PATH="$BUN_INSTALL/bin:$PATH"
+eval "$(/opt/homebrew/bin/brew shellenv)"
+# export PATH="/opt/homebrew/opt/node@14/bin:$PATH"
