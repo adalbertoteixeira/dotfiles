@@ -4,6 +4,12 @@ window:
   decorations: full
   startup_mode: Windowed
   dynamic_title: true
+  # Make `Option` key behave as `Alt` (macOS only):
+  #   - OnlyLeft
+  #   - OnlyRight
+  #   - Both
+  #   - None (default)
+  #option_as_alt: None
 font:
   normal:
     family: Inconsolata Nerd Font # FiraCode Nerd Font Mono # Victor Mono Fira Code # Inconsolata # Victor Mono # monofur for Powerline 
@@ -21,7 +27,6 @@ bell:
   unfocused_hollow: true
 live_config_reload: true
 shell:
-alt_send_esc: false
 
 key_bindings:
   #- { key: Paste,                                       action: Paste          }

@@ -13,68 +13,81 @@ let g:ale_open_list = 1
 let g:ale_keep_list_window_open = 0
 
 " let g:ale_list_vertical = 1
+"
+"
+"vim-plug
+"
+
+let data_dir = has('nvim') ? stdpath('data') . '/site' : '~/.vim'
+if empty(glob(data_dir . '/autoload/plug.vim'))
+  silent execute '!curl -fLo '.data_dir.'/autoload/plug.vim --create-dirs  https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim'
+  autocmd VimEnter * PlugInstall --sync | source $MYVIMRC
+endif
 
 """"""""
 " Vundle
 """"""""
 " set the runtime path to include Vundle and initialize
-set rtp+=/usr/local/bin/fzf
-set rtp+=~/.vim/bundle/Vundle.vim
-call vundle#begin()
+set rtp+=/opt/homebrew/opt/fzf
+" set rtp+=~/.vim/bundle/Vundle.vim
+" call vundle#begin()
+call plug#begin() 
 " alternatively, pass a path where Vundle should install plugins
 "call vundle#begin('~/some/path/here')
 
 " let Vundle manage Vundle, required
-Plugin 'VundleVim/Vundle.vim'
+" Plugin 'VundleVim/Vundle.vim'
 " Plugin 'sickill/vim-monokai'
 " Plugin 'crusoexia/vim-monokai'
 " Plugin 'tomasr/molokai'
 " Plugin 'dracula/vim', { 'name': 'dracula'  }
 " Plugin 'altercation/vim-colors-solarized'
+Plug 'Yggdroot/indentLine'
 " Plugin 'chriskempson/base16-vim'
-Plugin 'Yggdroot/indentLine'
-Plugin 'chriskempson/base16-vim'
-Plugin 'morhetz/gruvbox'
-Plugin 'tpope/vim-fugitive'
-Plugin 'vim-airline/vim-airline'
-Plugin 'vim-airline/vim-airline-themes'
-Plugin 'junegunn/gv.vim'
-Plugin 'junegunn/fzf'
-Plugin 'junegunn/fzf.vim'
-Plugin 'scrooloose/nerdtree'
+Plug 'morhetz/gruvbox'
+Plug 'tpope/vim-fugitive'
+Plug 'vim-airline/vim-airline'
+Plug 'vim-airline/vim-airline-themes'
+Plug 'junegunn/gv.vim'
+Plug 'junegunn/fzf'
+Plug 'junegunn/fzf.vim'
+Plug 'scrooloose/nerdtree'
 " Plugin 'Xuyuanp/nerdtree-git-plugin'
-Plugin 'dense-analysis/ale'
-Plugin 'valloric/youcompleteme'
-Plugin 'tpope/vim-surround'
-Plugin 'airblade/vim-gitgutter'
-Plugin 'burntsushi/ripgrep',
-Plugin 'pangloss/vim-javascript'
+Plug 'dense-analysis/ale'
+Plug 'valloric/youcompleteme', { 'do': './install.py  --clang-completer --rust-completer --ts-completer' }
+Plug 'tpope/vim-surround'
+Plug 'airblade/vim-gitgutter'
+Plug 'burntsushi/ripgrep',
+Plug 'pangloss/vim-javascript'
 " Plugin 'mxw/vim-jsx'
-Plugin 'jxnblk/vim-mdx-js'
-Plugin 'maxmellon/vim-jsx-pretty'
-Plugin 'jiangmiao/auto-pairs'
-Plugin 'stephpy/vim-yaml'
-Plugin 'cakebaker/scss-syntax.vim'
-Plugin 'chr4/nginx.vim'
+Plug 'jxnblk/vim-mdx-js'
+Plug 'maxmellon/vim-jsx-pretty'
+Plug 'jiangmiao/auto-pairs'
+Plug 'stephpy/vim-yaml'
+Plug 'cakebaker/scss-syntax.vim'
+Plug 'chr4/nginx.vim'
 " Plugin 'chr4/sslsecure.vim'
 " Plugin 'lervag/vimtex'
-Plugin 'elzr/vim-json'
-Plugin 'othree/html5.vim'
-Plugin 'scrooloose/nerdcommenter'
+Plug 'elzr/vim-json'
+Plug 'scrooloose/nerdcommenter'
 " Plugin 'cespare/vim-toml'
-Plugin 'tpope/vim-obsession'
+Plug 'tpope/vim-obsession'
 " Plugin 'digitaltoad/vim-pug'
-Plugin 'SirVer/ultisnips'
-Plugin 'honza/vim-snippets'
 " Plugin 'heavenshell/vim-jsdoc'
-Plugin 'rust-lang/rust.vim'
-Plugin 'jparise/vim-graphql'
-Plugin 'editorconfig/editorconfig-vim'
-Plugin 'leafgarland/typescript-vim'
-Plugin 'xolox/vim-notes'
-Plugin 'xolox/vim-misc'
+Plug 'rust-lang/rust.vim'
+Plug 'jparise/vim-graphql'
+Plug 'editorconfig/editorconfig-vim'
+Plug 'leafgarland/typescript-vim'
+Plug 'xolox/vim-notes'
+Plug 'xolox/vim-misc'
 " Plugin 'itchyny/lightline.vim'
-Plugin 'preservim/vim-markdown'
+Plug 'preservim/vim-markdown'
+Plug 'neoclide/coc.nvim', {'branch': 'release'}
+
+"
+" Plugin 'othree/html5.vim'
+" Plugin 'SirVer/ultisnips'
+" Plugin 'honza/vim-snippets'
 
 " Plugin 'reewr/vim-monokai-phoenix'
 " Plugin 'godlygeek/tabular'
@@ -86,7 +99,8 @@ Plugin 'preservim/vim-markdown'
 " Plugin 'LaTeX-Box-Team/LaTeX-Box'
 " Plugin 'peitalin/vim-jsx-typescript'
 " All of your Plugins must be added before the following line
-call vundle#end()            " required
+" call vundle#end()            " required
+call plug#end()
 filetype plugin indent on
 "
 " Brief help
@@ -344,9 +358,9 @@ let g:fzf_action = {
 
 " Default fzf layout
 " - down / up / left / right
-" let g:fzf_layout = { 'top': '~40%' }
+let g:fzf_layout = { 'down': '~40%' }
 " let g:fzf_layout = { 'window': { 'width': 0.95, 'height': 0.95  }  }
-" let g:fzf_preview_window = 'right:40%'
+let g:fzf_preview_window = 'right:40%'
 
 " In Neovim, you can set up fzf window using a Vim command
 " let g:fzf_layout = { 'window': 'enew' }
@@ -562,6 +576,7 @@ nmap cp :let @" = expand("%:p")<cr>"
 :let g:notes_conceal_bold = 0
 :let g:notes_conceal_url = 0
 
-
+:let g:python3_host_prog='/opt/homebrew/bin/python3.11'
+:let g:python_host_prog='/opt/homebrew/bin/python3.11'
 " :let g:python3_host_prog=/opt/homebrew/bin/python3
 " :let g:python_host_prog=/opt/homebrew/bin/python3

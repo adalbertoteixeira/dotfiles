@@ -136,3 +136,7 @@ eval "$(fnm env --use-on-cd)"
 # export PATH="$BUN_INSTALL/bin:$PATH"
 eval "$(/opt/homebrew/bin/brew shellenv)"
 # export PATH="/opt/homebrew/opt/node@14/bin:$PATH"
+
+# fnm
+export PATH="/Users/adalbertoteixeira/Library/Application Support/fnm:$PATH"
+eval "`fnm env`"
