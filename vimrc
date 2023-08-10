@@ -78,12 +78,12 @@ Plug 'rust-lang/rust.vim'
 Plug 'jparise/vim-graphql'
 Plug 'editorconfig/editorconfig-vim'
 Plug 'leafgarland/typescript-vim'
-Plug 'xolox/vim-notes'
-Plug 'xolox/vim-misc'
+" Plug 'xolox/vim-notes'
+" Plug 'xolox/vim-misc'
 " Plugin 'itchyny/lightline.vim'
 Plug 'preservim/vim-markdown'
 Plug 'neoclide/coc.nvim', {'branch': 'release'}
-Plug 'github/copilot.vim'
+" Plug 'github/copilot.vim'
 
 "
 " Plugin 'othree/html5.vim'
@@ -580,13 +580,13 @@ let g:jsdoc_enable_es6 = 1
 " copilot.vim remaps your <tab>, it checks pumvisible but not coc#pum#visible, so it not work well with the custom popup menu. You can disable the overwrite and define the <tab> to meet your need, like:
 " use <C-e> to cancel the popup menu(if it's not remapped).
 
-let g:copilot_no_tab_map = v:true
-inoremap <silent><expr> <TAB>
-      \ coc#pum#visible() ? coc#pum#next(1):
-      \ exists('b:_copilot.suggestions') ? copilot#Accept("\<CR>") :
-      \ CheckBackSpace() ? "\<Tab>" :
-      \ coc#refresh()
-let g:copilot_filetypes = { '*': v:false }
+" let g:copilot_no_tab_map = v:true
+" inoremap <silent><expr> <TAB>
+"       \ coc#pum#visible() ? coc#pum#next(1):
+"       \ exists('b:_copilot.suggestions') ? copilot#Accept("\<CR>") :
+"       \ CheckBackSpace() ? "\<Tab>" :
+"       \ coc#refresh()
+" let g:copilot_filetypes = { '*': v:false }
 
 "'python': v:true 
   

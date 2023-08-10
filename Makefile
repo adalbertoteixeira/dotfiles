@@ -37,6 +37,11 @@ niceaddons:
 	curl -sL --proto-redir -all,https https://raw.githubusercontent.com/zplug/installer/master/installer.zsh | zsh
 	source ~/.zshrc
 	zplug install
+	brew install kalker
+	brew install tokei
+	brew install exa
+
+# CocInstall coc-tsserver
 
 .PHONY: ohmyzsh
 ohmyzsh:
