@@ -83,6 +83,8 @@ Plug 'leafgarland/typescript-vim'
 " Plugin 'itchyny/lightline.vim'
 Plug 'preservim/vim-markdown'
 Plug 'neoclide/coc.nvim', {'branch': 'release'}
+Plug 'tpope/vim-dadbod'
+Plug 'kristijanhusak/vim-dadbod-ui'
 " Plug 'github/copilot.vim'
 
 "
@@ -93,7 +95,6 @@ Plug 'neoclide/coc.nvim', {'branch': 'release'}
 " Plugin 'reewr/vim-monokai-phoenix'
 " Plugin 'godlygeek/tabular'
 " Plugin 'jamshedvesuna/vim-markdown-preview'
-" Plugin 'tpope/vim-dadbod'
 " Plugin 'junegunn/vim-emoji'
 " Plugin 'KeitaNakamura/tex-conceal.vim'
 " Plugin 'fatih/vim-go'
@@ -743,6 +744,8 @@ endfunction
 " nnoremap <silent><nowait> <space>k  :<C-u>CocPrev<CR>
 " " Resume latest coc list
 " nnoremap <silent><nowait> <space>p  :<C-u>CocListResume<CR>
+
+nmap <leader>qf  <Plug>(coc-fix-current)
 
 """""""""
 " Custom

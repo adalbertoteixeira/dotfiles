@@ -40,6 +40,8 @@ niceaddons:
 	brew install kalker
 	brew install tokei
 	brew install exa
+	brew install skim
+	brew install zellij
 
 # CocInstall coc-tsserver
 
