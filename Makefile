@@ -4,7 +4,7 @@ all: yarn go dotfiles vimubuntu zshubuntu ohmyzshubuntu
 .PHONY: ubuntu
 ubuntu:
 	mkdir -p $(HOME)/.config/
-	sudo apt-get install -y neovim bat make zsh git unzip
+	sudo apt-get install -y neovim bat make zsh git unzip autoconf patch build-essential rustc libssl-dev libyaml-dev libreadline6-dev zlib1g-dev libgmp-dev libncurses5-dev libffi-dev libgdbm6 libgdbm-dev libdb-dev uuid-dev
 	sudo locale-gen pt_PT.UTF-8 && sudo locale-gen en_GB.UTF-8
 	sudo apt-get install zsh
 	zsh --version
@@ -21,6 +21,9 @@ ubuntu:
 	curl -sL --proto-redir -all,https https://raw.githubusercontent.com/zplug/installer/master/installer.zsh | zsh
 	source $(HOME)/.zshrc
 	curl -fsSL https://fnm.vercel.app/install | bash
+	git clone https://github.com/rbenv/rbenv.git ~/.rbenv
+	git clone https://github.com/rbenv/ruby-build.git "$(rbenv root)"/plugins/ruby-build
+	sudo snap install zellij --classic
 
 .PHONY: macOS
 macOS:

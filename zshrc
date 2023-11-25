@@ -70,7 +70,6 @@ fi
 # For a full list of active aliases, run `alias`.
 #
 
-if command -v rbenv > /dev/null 2>&1; then eval "$(rbenv init -)"; fi
 
 
 export ZPLUG_HOME=~/.zplug
@@ -80,7 +79,6 @@ zplug load
 
 eval "$(starship init zsh)"
 
-eval "$(fnm env --use-on-cd)"
 # eval "$(/opt/homebrew/bin/brew shellenv)"
 
 # fnm
@@ -90,3 +88,8 @@ eval "`fnm env`"
 # fnm
 export PATH="/root/.local/share/fnm:$PATH"
 eval "`fnm env`"
+
+eval "$(fnm env --use-on-cd)"
+
+if command -v rbenv > /dev/null 2>&1; then eval "$(rbenv init -)"; fi
+eval "$(~/.rbenv/bin/rbenv init - zsh)"
