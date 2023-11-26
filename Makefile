@@ -4,8 +4,9 @@ all: yarn go dotfiles vimubuntu zshubuntu ohmyzshubuntu
 .PHONY: ubuntu
 ubuntu:
 	mkdir -p $(HOME)/.config/
-	sudo apt-get install -y neovim bat make zsh git unzip autoconf patch build-essential rustc libssl-dev libyaml-dev libreadline6-dev zlib1g-dev libgmp-dev libncurses5-dev libffi-dev libgdbm6 libgdbm-dev libdb-dev uuid-dev
+	sudo apt-get install -y neovim bat make zsh git unzip autoconf patch build-essential libssl-dev libyaml-dev libreadline6-dev zlib1g-dev libgmp-dev libncurses5-dev libffi-dev libgdbm6 libgdbm-dev libdb-dev uuid-dev
 	sudo locale-gen pt_PT.UTF-8 && sudo locale-gen en_GB.UTF-8
+	curl --proto '=https' --tlsv1.2 -sSf https://sh.rustup.rs | sh
 	sudo apt-get install zsh
 	zsh --version
 # 	chsh -s $(which zsh)
@@ -22,6 +23,7 @@ ubuntu:
 	source $(HOME)/.zshrc
 	curl -fsSL https://fnm.vercel.app/install | bash
 	git clone https://github.com/rbenv/rbenv.git ~/.rbenv
+	echo 'export PATH="/root/.local/share/fnm:$PATH"' >> $(HOME)/dotfiles/extra
 	git clone https://github.com/rbenv/ruby-build.git "$(rbenv root)"/plugins/ruby-build
 	sudo snap install zellij --classic
 

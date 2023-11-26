@@ -83,7 +83,6 @@ eval "$(starship init zsh)"
 
 # fnm
 export PATH="/Users/adalbertoteixeira/Library/Application Support/fnm:$PATH"
-eval "`fnm env`"
 
 # fnm
 export PATH="/root/.local/share/fnm:$PATH"
