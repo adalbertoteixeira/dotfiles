@@ -47,35 +47,22 @@
 # Add wisely, as too many plugins slow down shell startup.
 plugins=(git git-extras npm yarn zsh-syntax-highlighting ssh-agent rust)
 # brew zsh-autosuggestions rails jira vagrant ruby rake osx zsh-nvm 
-zstyle :omz:plugins:ssh-agent identities bitbucket_ben
+zstyle :omz:plugins:ssh-agent identities
 
 source $ZSH/oh-my-zsh.sh
 
 # User configuration
-
-# export MANPATH="/usr/local/man:$MANPATH"
 
 # You may need to manually set your language environment
 # export LANG=en_US.UTF-8
 
 # Preferred editor for local and remote sessions
 if [[ -n $SSH_CONNECTION ]]; then
-  export EDITOR='vim'
+  export EDITOR='nvim'
 else
-  export EDITOR=$(which vim)
+  export EDITOR=$(which nvim)
 fi
 
-# Compilation flags
-# export ARCHFLAGS="-arch x86_64"
-
-# ssh
-#if [ -z "$SSH_AUTH_SOCK"  ] ; then
-#  eval `ssh-agent`
-#  ssh-add ~/.ssh/bitbucket
-#fi
-# eval `ssh-agent -s`
-# ssh-add -A
-# export SSH_KEY_PATH="~/.ssh/rsa_id"
 
 # Set personal aliases, overriding those provided by oh-my-zsh libs,
 # plugins, and themes. Aliases can be placed here, though oh-my-zsh
@@ -83,31 +70,6 @@ fi
 # For a full list of active aliases, run `alias`.
 #
 
-#source /usr/local/share/zsh-autosuggestions/zsh-autosuggestions.zsh
-# source $HOME/.zsh/zsh-autosuggestions
-# source /usr/local/share/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh
-# eval "$(perl -I$HOME/perl5/lib/perl5 -Mlocal::lib=$HOME/perl5)"
-if command -v rbenv > /dev/null 2>&1; then eval "$(rbenv init -)"; fi
-
-
-#[ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
-
-# bindkey -e
-# bindkey '^[[1;9C' forward-word
-# bindkey '^[[1;9D' backward-word
-
-# Kitty
-# if [[ -z "$kitty" ]] && [[ -e "$kitty" ]]; then
-#   autoload -Uz compinit
-#   compinit
-#   # Completion for kitty
-#   kitty + complete setup zsh | source /dev/stdin
-# fi
-#
-#
-
-# added by travis gem
-[ ! -s ~/.travis/travis.sh ] || source ~/.travis/travis.sh
 
 
 export ZPLUG_HOME=~/.zplug
@@ -117,26 +79,17 @@ zplug load
 
 eval "$(starship init zsh)"
 
-# For BEN review control
-export BEN_DRS_CERT_PATH='/Volumes/T5/ben/ben-ctl/ben_developer'
-export PATH=$PATH:/Volumes/T5/ben/ben-ctl
-# End BEN review control
-
-
-# export PATH="$HOME/.yarn/bin:$HOME/.config/yarn/global/node_modules/.bin:$PATH"
-# export VOLTA_HOME="$HOME/.volta"
-# export PATH="$VOLTA_HOME/bin:$PATH"
-eval "$(fnm env --use-on-cd)"
-
-# bun completions
-# [ -s "/Users/adalbertoteixeira/.bun/_bun" ] && source "/Users/adalbertoteixeira/.bun/_bun"
-
-# bun
-# export BUN_INSTALL="/Users/adalbertoteixeira/.bun"
-# export PATH="$BUN_INSTALL/bin:$PATH"
-eval "$(/opt/homebrew/bin/brew shellenv)"
-# export PATH="/opt/homebrew/opt/node@14/bin:$PATH"
+# eval "$(/opt/homebrew/bin/brew shellenv)"
 
 # fnm
 export PATH="/Users/adalbertoteixeira/Library/Application Support/fnm:$PATH"
 eval "`fnm env`"
+
+# fnm
+export PATH="/root/.local/share/fnm:$PATH"
+eval "`fnm env`"
+
+eval "$(fnm env --use-on-cd)"
+
+if command -v rbenv > /dev/null 2>&1; then eval "$(rbenv init -)"; fi
+eval "$(~/.rbenv/bin/rbenv init - zsh)"
