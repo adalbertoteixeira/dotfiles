@@ -82,7 +82,7 @@ eval "$(starship init zsh)"
 # eval "$(/opt/homebrew/bin/brew shellenv)"
 
 # fnm
-export PATH="/Users/adalbertoteixeira/Library/Application Support/fnm:$PATH"
+# Export fnm path in the extra file so differnet OSs and environments are properly configured.
 eval "`fnm env`"
 
 # fnm
