@@ -50,7 +50,7 @@ Plug 'vim-airline/vim-airline'
 Plug 'vim-airline/vim-airline-themes'
 Plug 'junegunn/gv.vim'
 Plug 'junegunn/fzf'
-Plug 'junegunn/fzf.vim'
+" Plug 'junegunn/fzf.vim'
 Plug 'scrooloose/nerdtree'
 " Plugin 'Xuyuanp/nerdtree-git-plugin'
 Plug 'dense-analysis/ale'
@@ -58,7 +58,7 @@ Plug 'dense-analysis/ale'
 Plug 'tpope/vim-surround'
 Plug 'airblade/vim-gitgutter'
 Plug 'burntsushi/ripgrep',
-Plug 'pangloss/vim-javascript'
+" Plug 'pangloss/vim-javascript'
 " Plugin 'mxw/vim-jsx'
 Plug 'jxnblk/vim-mdx-js'
 Plug 'maxmellon/vim-jsx-pretty'
@@ -74,7 +74,7 @@ Plug 'scrooloose/nerdcommenter'
 Plug 'tpope/vim-obsession'
 " Plugin 'digitaltoad/vim-pug'
 " Plugin 'heavenshell/vim-jsdoc'
-Plug 'rust-lang/rust.vim'
+" Plug 'rust-lang/rust.vim'
 Plug 'jparise/vim-graphql'
 Plug 'editorconfig/editorconfig-vim'
 Plug 'leafgarland/typescript-vim'
@@ -113,6 +113,12 @@ filetype plugin indent on
 "
 " see :h vundle for more details or wiki for FAQ
 " Put your non-Plugin stuff after this line
+
+
+let g:coc_global_extensions = [
+  \ 'coc-json',
+  \  'coc-tsserver', 'coc-rust-analyzer', 'coc-css', 'coc-docker', 'coc-eslint', 'coc-html', 'coc-fzf-preview', 'coc-yaml'
+  \ ]
 
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " => General
@@ -192,9 +198,30 @@ set foldcolumn=1
 vnoremap <leader>c "+y
 nnoremap <leader>t :NERDTreeToggle<CR>
 nnoremap <leader>f :NERDTreeFind<CR>
-nnoremap <leader>Z :FZF<CR>
+" nnoremap <leader>Z :FZF<CR>
 nnoremap <leader>l j0i<CR>
 nnoremap <leader>a :ALELint<CR>
+
+" fzfz-preview
+nmap <Leader>z [fzf-p]
+xmap <Leader>z [fzf-p]
+
+nnoremap <silent> [fzf-p]z     :<C-u>CocCommand fzf-preview.ProjectFiles<CR>
+nnoremap <silent> [fzf-p]p     :<C-u>CocCommand fzf-preview.FromResources project_mru git<CR>
+nnoremap <silent> [fzf-p]gs    :<C-u>CocCommand fzf-preview.GitStatus<CR>
+nnoremap <silent> [fzf-p]ga    :<C-u>CocCommand fzf-preview.GitActions<CR>
+nnoremap <silent> [fzf-p]b     :<C-u>CocCommand fzf-preview.Buffers<CR>
+nnoremap <silent> [fzf-p]B     :<C-u>CocCommand fzf-preview.AllBuffers<CR>
+nnoremap <silent> [fzf-p]o     :<C-u>CocCommand fzf-preview.FromResources buffer project_mru<CR>
+nnoremap <silent> [fzf-p]<C-o> :<C-u>CocCommand fzf-preview.Jumps<CR>
+nnoremap <silent> [fzf-p]g;    :<C-u>CocCommand fzf-preview.Changes<CR>
+nnoremap <silent> [fzf-p]/     :<C-u>CocCommand fzf-preview.Lines --add-fzf-arg=--no-sort --add-fzf-arg=--query="'"<CR>
+nnoremap <silent> [fzf-p]*     :<C-u>CocCommand fzf-preview.Lines --add-fzf-arg=--no-sort --add-fzf-arg=--query="'<C-r>=expand('<cword>')<CR>"<CR>
+nnoremap          [fzf-p]gr    :<C-u>CocCommand fzf-preview.ProjectGrep<Space>
+xnoremap          [fzf-p]gr    "sy:CocCommand   fzf-preview.ProjectGrep<Space>-F<Space>"<C-r>=substitute(substitute(@s, '\n', '', 'g'), '/', '\\/', 'g')<CR>"
+nnoremap <silent> [fzf-p]t     :<C-u>CocCommand fzf-preview.BufferTags<CR>
+nnoremap <silent> [fzf-p]q     :<C-u>CocCommand fzf-preview.QuickFix<CR>
+nnoremap <silent> [fzf-p]l     :<C-u>CocCommand fzf-preview.LocationList<CR>
 
 set showmatch
 " How many tenths of a second to blink when matching brackets
@@ -353,16 +380,16 @@ set spell
 hi SpellBad cterm=underline ctermfg=red
 
 " This is the default extra key bindings
-let g:fzf_action = {
-  \ 'ctrl-t': 'tab split',
-  \ 'ctrl-x': 'split',
-  \ 'ctrl-v': 'vsplit' }
+" let g:fzf_action = {
+"   \ 'ctrl-t': 'tab split',
+"   \ 'ctrl-x': 'split',
+"   \ 'ctrl-v': 'vsplit' }
 
 " Default fzf layout
 " - down / up / left / right
-let g:fzf_layout = { 'down': '~40%' }
+" let g:fzf_layout = { 'down': '~40%' }
 " let g:fzf_layout = { 'window': { 'width': 0.95, 'height': 0.95  }  }
-let g:fzf_preview_window = 'right:40%'
+" let g:fzf_preview_window = 'right:40%'
 
 " In Neovim, you can set up fzf window using a Vim command
 " let g:fzf_layout = { 'window': 'enew' }
@@ -370,26 +397,26 @@ let g:fzf_preview_window = 'right:40%'
 " let g:fzf_layout = { 'window': '10split enew' }
 
 " Customize fzf colors to match your color scheme
-let g:fzf_colors =
-\ { 'fg':      ['fg', 'Normal'],
-  \ 'bg':      ['bg', 'Normal'],
-  \ 'hl':      ['fg', 'Comment'],
-  \ 'fg+':     ['fg', 'CursorLine', 'CursorColumn', 'Normal'],
-  \ 'bg+':     ['bg', 'CursorLine', 'CursorColumn'],
-  \ 'hl+':     ['fg', 'Statement'],
-  \ 'info':    ['fg', 'PreProc'],
-  \ 'border':  ['fg', 'Ignore'],
-  \ 'prompt':  ['fg', 'Conditional'],
-  \ 'pointer': ['fg', 'Exception'],
-  \ 'marker':  ['fg', 'Keyword'],
-  \ 'spinner': ['fg', 'Label'],
-  \ 'header':  ['fg', 'Comment'] }
+" let g:fzf_colors =
+" \ { 'fg':      ['fg', 'Normal'],
+"   \ 'bg':      ['bg', 'Normal'],
+"   \ 'hl':      ['fg', 'Comment'],
+"   \ 'fg+':     ['fg', 'CursorLine', 'CursorColumn', 'Normal'],
+"   \ 'bg+':     ['bg', 'CursorLine', 'CursorColumn'],
+"   \ 'hl+':     ['fg', 'Statement'],
+"   \ 'info':    ['fg', 'PreProc'],
+"   \ 'border':  ['fg', 'Ignore'],
+"   \ 'prompt':  ['fg', 'Conditional'],
+"   \ 'pointer': ['fg', 'Exception'],
+"   \ 'marker':  ['fg', 'Keyword'],
+"   \ 'spinner': ['fg', 'Label'],
+"   \ 'header':  ['fg', 'Comment'] }
 
 " Enable per-command history.
 " CTRL-N and CTRL-P will be automatically bound to next-history and
 " previous-history instead of down and up. If you don't like the change,
 " explicitly bind the keys to down and up in your $FZF_DEFAULT_OPTS.
-let g:fzf_history_dir = '~/.local/share/fzf-history'
+" let g:fzf_history_dir = '~/.local/share/fzf-history'
 
 
 """"""""""""""""""""""""""""""
@@ -502,7 +529,7 @@ let g:indentLine_concealcursor=""
 """"""""""""""
 " vim javascript
 """"""""""""""
-let g:javascript_plugin_flow = 1
+" let g:javascript_plugin_flow = 1
 
 " vim-go
 " let g:go_highlight_array_whitespace_error = 1
