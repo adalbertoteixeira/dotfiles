@@ -117,7 +117,10 @@ filetype plugin indent on
 
 let g:coc_global_extensions = [
   \ 'coc-json',
-  \  'coc-tsserver', 'coc-rust-analyzer', 'coc-css', 'coc-docker', 'coc-eslint', 'coc-html', 'coc-fzf-preview', 'coc-yaml'
+  \ 'coc-tsserver', 'coc-rust-analyzer', 'coc-css', 'coc-docker', 'coc-eslint', 'coc-html', 'coc-fzf-preview', 'coc-yaml',
+  \ 'coc-sh',
+  \ 'coc-sql',
+  \ 'coc-svg'
   \ ]
 
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
