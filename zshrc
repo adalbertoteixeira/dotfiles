@@ -93,9 +93,8 @@ eval "$(starship init zsh)"
 # eval "$(/opt/homebrew/bin/brew shellenv)"
 
 # fnm
-# Export fnm path in the extra file so differnet OSs and environments are properly configured.
-eval "`fnm env`"
 
+eval "`fnm env`"
 eval "$(fnm env --use-on-cd)"
 
 if command -v rbenv > /dev/null 2>&1; then eval "$(rbenv init - zsh)"; fi
