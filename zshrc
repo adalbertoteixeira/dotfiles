@@ -47,7 +47,7 @@
 # Add wisely, as too many plugins slow down shell startup.
 plugins=(git git-extras npm yarn zsh-syntax-highlighting ssh-agent rust)
 # brew zsh-autosuggestions rails jira vagrant ruby rake osx zsh-nvm 
-zstyle :omz:plugins:ssh-agent identities
+zstyle :omz:plugins:ssh-agent identities bitbucket_ben
 
 source $ZSH/oh-my-zsh.sh
 
@@ -63,6 +63,17 @@ else
   export EDITOR=$(which nvim)
 fi
 
+# Compilation flags
+# export ARCHFLAGS="-arch x86_64"
+
+# ssh
+#if [ -z "$SSH_AUTH_SOCK"  ] ; then
+#  eval `ssh-agent`
+#  ssh-add ~/.ssh/bitbucket
+#fi
+# eval `ssh-agent -s`
+# ssh-add -A
+# export SSH_KEY_PATH="~/.ssh/rsa_id"
 
 # Set personal aliases, overriding those provided by oh-my-zsh libs,
 # plugins, and themes. Aliases can be placed here, though oh-my-zsh
@@ -82,13 +93,10 @@ eval "$(starship init zsh)"
 # eval "$(/opt/homebrew/bin/brew shellenv)"
 
 # fnm
-export PATH="/Users/adalbertoteixeira/Library/Application Support/fnm:$PATH"
-
-# fnm
-export PATH="/root/.local/share/fnm:$PATH"
+# Export fnm path in the extra file so differnet OSs and environments are properly configured.
 eval "`fnm env`"
 
 eval "$(fnm env --use-on-cd)"
 
-if command -v rbenv > /dev/null 2>&1; then eval "$(rbenv init -)"; fi
-eval "$(~/.rbenv/bin/rbenv init - zsh)"
+if command -v rbenv > /dev/null 2>&1; then eval "$(rbenv init - zsh)"; fi
+# eval "$(~/.rbenv/bin/rbenv init - zsh)"
