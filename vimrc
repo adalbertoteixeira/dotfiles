@@ -120,7 +120,8 @@ let g:coc_global_extensions = [
   \ 'coc-tsserver', 'coc-rust-analyzer', 'coc-css', 'coc-docker', 'coc-eslint', 'coc-html', 'coc-fzf-preview', 'coc-yaml',
   \ 'coc-sh',
   \ 'coc-sql',
-  \ 'coc-svg'
+  \ 'coc-svg',
+  \ 'coc-json'
   \ ]
 
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
@@ -597,6 +598,7 @@ inoremap <c-x><c-k> <c-x><c-k>
 " command PrettyJSON %!python -m json.tool
 " Filetype json
 
+" autocmd FileType scss setl iskeyword+=@-@
 " EditorConfig
 let g:EditorConfig_exclude_patterns = ['fugitive://.\*', 'scp://.\*']
 
