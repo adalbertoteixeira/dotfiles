@@ -4,7 +4,7 @@ all: yarn go dotfiles vimubuntu zshubuntu ohmyzshubuntu
 .PHONY: ubuntu
 ubuntu:
 	mkdir -p $(HOME)/.config/
-	sudo apt-get install -y neovim bat make zsh git unzip autoconf patch build-essential libssl-dev libyaml-dev libreadline6-dev zlib1g-dev libgmp-dev libncurses5-dev libffi-dev libgdbm6 libgdbm-dev libdb-dev uuid-dev
+	sudo apt-get install -y neovim bat make zsh git unzip autoconf patch build-essential libssl-dev libyaml-dev libreadline6-dev zlib1g-dev libgmp-dev libncurses5-dev libffi-dev libgdbm6 libgdbm-dev libdb-dev uuid-dev ripgrep
 	sudo locale-gen pt_PT.UTF-8 && sudo locale-gen en_GB.UTF-8
 	curl --proto '=https' --tlsv1.2 -sSf https://sh.rustup.rs | sh
 	rustup component add rust-analyzer
@@ -86,6 +86,8 @@ dotfiles:
 	ln -sf $(PWD)/aliases $(HOME)/.aliases
 	mkdir -p $(HOME)/.vim/plugins
 	for i in  $(PWD)/vim-snippets/*; do ln -sf $i $(HOME)/.vim/plugins/; done;
+	mkdir -p $(HOME)/.nvim/plugins
+	for i in  $(PWD)/vim-snippets/*; do ln -sf $i $(HOME)/.nvim/plugins/; done;
 #	mkdir -p $(HOME)/.vim/after/ftplugin
 #	for i in  $(PWD)/ftplugin/*; do ln -sf $i $(HOME)/.vim/after/ftplugin/; done;
 	mkdir -p $(HOME)/.oh-my-zsh/themes/
