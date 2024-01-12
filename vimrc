@@ -86,7 +86,8 @@ Plug 'neoclide/coc.nvim', {'branch': 'release'}
 Plug 'tpope/vim-dadbod'
 Plug 'kristijanhusak/vim-dadbod-ui'
 " Plug 'github/copilot.vim'
-
+Plug 'catppuccin/nvim', { 'as': 'catppuccin' }
+Plug 'EdenEast/nightfox.nvim' 
 "
 " Plugin 'othree/html5.vim'
 " Plugin 'SirVer/ultisnips'
@@ -276,31 +277,26 @@ set formatoptions=qrn1
 
 let g:gruvbox_italic=1
 set background=dark 
-" set termguicolors
-" let base16colorspace=256 
+" colorscheme catppuccin
+" colorscheme nordfox
+" colorscheme catppuccin-mocha
+" colorscheme nightfox
 silent! colorscheme  gruvbox
 "Use 24-bit (true-color) mode in Vim/Neovim when outside tmux.
 "If you're using tmux version 2.2 or later, you can remove the outermost $TMUX check and use tmux's 24-bit color support
 "(see < http://sunaku.github.io/tmux-24bit-color.html#usage > for more information.)
-if (empty($TMUX))
-  if (has("nvim"))
-    "For Neovim 0.1.3 and 0.1.4 < https://github.com/neovim/neovim/pull/2198 >
-    let $NVIM_TUI_ENABLE_TRUE_COLOR=1
-  endif
-  "For Neovim > 0.1.5 and Vim > patch 7.4.1799 < https://github.com/vim/vim/commit/61be73bb0f965a895bfb064ea3e55476ac175162 >
-  "Based on Vim patch 7.4.1770 (`guicolors` option) < https://github.com/vim/vim/commit/8a633e3427b47286869aa4b96f2bfc1fe65b25cd >
-  " < https://github.com/neovim/neovim/wiki/Following-HEAD#20160511 >
-  if (has("termguicolors"))
-    set termguicolors
-  endif
-endif
-
-" let g:colors_name='monokai'
-" let s:colors_name='monokai'
-" let g:colors_name='monokai'
-" set t_Co=256
-" let g:monokai_term_italic = 1
-" let g:monokai_gui_italic = 1
+" if (empty($TMUX) && getenv('TERM_PROGRAM') != 'Apple_Terminal')
+"   if (has("nvim"))
+"     "For Neovim 0.1.3 and 0.1.4 < https://github.com/neovim/neovim/pull/2198 >
+"     let $NVIM_TUI_ENABLE_TRUE_COLOR=1
+"   endif
+"   "For Neovim > 0.1.5 and Vim > patch 7.4.1799 < https://github.com/vim/vim/commit/61be73bb0f965a895bfb064ea3e55476ac175162 >
+"   "Based on Vim patch 7.4.1770 (`guicolors` option) < https://github.com/vim/vim/commit/8a633e3427b47286869aa4b96f2bfc1fe65b25cd >
+"   " < https://github.com/neovim/neovim/wiki/Following-HEAD#20160511 >
+"   if (has("termguicolors"))
+"     set termguicolors
+"   endif
+" endif
 
 " Set utf8 as standard encoding and en_US as the standard language
 set encoding=utf8
@@ -308,39 +304,6 @@ set encoding=utf8
 " Use Unix as the standard file type
 set ffs=unix,dos,mac
 
-" if has('autocmd')
-"    " change colorscheme depending on current buffer
-"    " if desired, you may set a user-default colorscheme before this point,
-"    " otherwise we'll use the Vim default.
-"    " Variables used:
-"        " g:colors_name : current colorscheme at any moment
-"        " b:colors_name (if any): colorscheme to be used for the current buffer
-"        " s:colors_name : default colorscheme, to be used where b:colors_name hasn't been set
-"    if has('user_commands')
-"        " User commands defined:
-"            " ColorScheme <name>
-"                " set the colorscheme for the current buffer
-"            " ColorDefault <name>
-"                " change the default colorscheme
-"        command -nargs=1 -bar ColorScheme
-"           \ colorscheme <args>
-"           \ | let b:colors_name = g:colors_name
-"        command -nargs=1 -bar ColorDefault
-"           \ let s:colors_name = <q-args>
-"           \ | if !exists('b:colors_name')
-"               \ | colors <args>
-"           \ | endif
-"    endif
-"    if !exists('g:colors_name')
-"        let g:colors_name = 'default'
-"    endif
-"    let s:colors_name = g:colors_name
-"    au BufEnter *
-"        \ let s:new_colors = (exists('b:colors_name')?(b:colors_name):(s:colors_name))
-"        \ | if s:new_colors != g:colors_name
-"            \ | exe 'colors' s:new_colors
-"        \ | endif
-" endif
 
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " => Files, backups and undo
@@ -520,7 +483,7 @@ let g:airline#extensions#obsession#indicator_text = '$Obsession$'
 """"""""""""""
 " rust
 """"""""""""""
-let g:rustfmt_autosave = 1
+" let g:rustfmt_autosave = 1
 
 """"""""""""""
 " vim json

@@ -24,12 +24,24 @@ ubuntu:
 	git clone https://github.com/rbenv/rbenv.git ~/.rbenv
 	git clone https://github.com/rbenv/ruby-build.git "$(rbenv root)"/plugins/ruby-build
 	sudo snap install zellij --classic
+	zplug 'wfxr/forgit'
 
 .PHONY: macOS
 macOS:
 	brew install diff-so-fancy bat
 	make git
 	make niceaddons
+	cd ~
+	sh -c "$(curl -fsSL https://starship.rs/install.sh)" 
+	curl -sL --proto-redir -all,https https://raw.githubusercontent.com/zplug/installer/master/installer.zsh | zsh
+	source ~/.zshrc
+	zplug install
+	brew install kalker
+	brew install forgit
+	brew install tokei
+	brew install exa
+	brew install skim
+	brew install zellij
 
 .PHONY: git
 git: 
@@ -47,21 +59,6 @@ git:
 	git config --global color.diff.old        "red bold"
 	git config --global color.diff.new        "green bold"
 	git config --global color.diff.whitespace "red reverse"
-
-.PHONY: niceaddons
-niceaddons:
-	cd ~
-	sh -c "$(curl -fsSL https://starship.rs/install.sh)" 
-	curl -sL --proto-redir -all,https https://raw.githubusercontent.com/zplug/installer/master/installer.zsh | zsh
-	source ~/.zshrc
-	zplug install
-	brew install kalker
-	brew install tokei
-	brew install exa
-	brew install skim
-	brew install zellij
-
-# CocInstall coc-tsserver
 
 .PHONY: ohmyzsh
 ohmyzsh:
@@ -85,8 +82,12 @@ dotfiles:
 	for i in  $(PWD)/vim-snippets/*; do ln -sf $i $(HOME)/.vim/plugins/; done;
 #	mkdir -p $(HOME)/.vim/after/ftplugin
 #	for i in  $(PWD)/ftplugin/*; do ln -sf $i $(HOME)/.vim/after/ftplugin/; done;
+	mkdir -p ~/.config/nvim/ftplugin
+	for i in  $(PWD)/ftplugin/*; do ln -sf $i $(HOME)/.config/nvim/ftplugin/; done;
 	mkdir -p $(HOME)/.oh-my-zsh/themes/
 	ln -sf $(PWD)/starship.toml $(HOME)/.config/
+	mkdir -p $(HOME)/zellij/
+	ln -sf $(PWD)/zellij/config.kdl $(HOME)/.config/zellij/config.kdl
 
 .PHONY: bap_cloud_instance
 bap_cloud_instance:

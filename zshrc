@@ -104,3 +104,4 @@ eval "$(fnm env --use-on-cd)"
 
 if command -v rbenv > /dev/null 2>&1; then eval "$(rbenv init - zsh)"; fi
 # eval "$(~/.rbenv/bin/rbenv init - zsh)"
+fpath+=${ZDOTDIR:-~}/.zsh_functions
