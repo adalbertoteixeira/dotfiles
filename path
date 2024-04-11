@@ -1,20 +1,7 @@
-# export PATH="/usr/local/opt/python/libexec/bin:$PATH"
 export PATH="$HOME/.cargo/bin:$PATH"
 export PATH=$HOME/bin:/usr/local/bin:$PATH
-
 export PATH=$HOME/dev/testing/drivers:$PATH
-export PATH=$PATH:/usr/local/go/bin
-if [[ -d "$HOME/dev/go" ]]; then
-	export PATH=$PATH:$HOME/dev/go/bin
-	export GOPATH=$HOME/dev/go
-	export PATH=$PATH:$(go env GOPATH)/bin
-	export PATH=$PATH:/usr/local/opt/go/libexec/bin
-fi
-
 export PATH="$HOME/.rbenv/bin:$PATH"
-export PATH="$PATH:$HOME/dev/ruby/scripts"
-export PATH="$PATH:$HOME/dev/testing/drivers"
-# export PATH="/usr/local/sbin:$PATH" # Needed for homebrew
 export PATH="/opt/homebrew/bin:$PATH"
 export PATH="$HOME/.rbenv/shims:$PATH"
 export RBENV_SHELL=zsh

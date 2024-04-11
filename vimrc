@@ -63,7 +63,7 @@ Plug 'burntsushi/ripgrep',
 Plug 'jxnblk/vim-mdx-js'
 Plug 'maxmellon/vim-jsx-pretty'
 Plug 'jiangmiao/auto-pairs'
-Plug 'stephpy/vim-yaml'
+" Plug 'stephpy/vim-yaml'
 Plug 'cakebaker/scss-syntax.vim'
 Plug 'chr4/nginx.vim'
 " Plugin 'chr4/sslsecure.vim'
@@ -88,6 +88,7 @@ Plug 'kristijanhusak/vim-dadbod-ui'
 " Plug 'github/copilot.vim'
 Plug 'catppuccin/nvim', { 'as': 'catppuccin' }
 Plug 'EdenEast/nightfox.nvim' 
+Plug 'iamcco/markdown-preview.nvim', { 'do': 'cd app && npx --yes yarn install' }
 "
 " Plugin 'othree/html5.vim'
 " Plugin 'SirVer/ultisnips'
@@ -124,7 +125,8 @@ let g:coc_global_extensions = [
   \ 'coc-sh',
   \ 'coc-sql',
   \ 'coc-svg',
-  \ 'coc-json'
+  \ 'coc-json',
+  \ 'coc-stylelint',
   \ ]
 
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""

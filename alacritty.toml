@@ -129,3 +129,4 @@ mods = "Alt"
 decorations = "full"
 dynamic_title = true
 startup_mode = "Windowed"
+option_as_alt = "OnlyRight"
