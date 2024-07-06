@@ -42,16 +42,20 @@ call plug#begin()
 " Plugin 'tomasr/molokai'
 " Plugin 'dracula/vim', { 'name': 'dracula'  }
 " Plugin 'altercation/vim-colors-solarized'
-Plug 'Yggdroot/indentLine'
+" Plug 'Yggdroot/indentLine'
 " Plugin 'chriskempson/base16-vim'
 Plug 'morhetz/gruvbox'
 Plug 'tpope/vim-fugitive'
 Plug 'vim-airline/vim-airline'
 Plug 'vim-airline/vim-airline-themes'
 Plug 'junegunn/gv.vim'
-Plug 'junegunn/fzf'
+Plug 'junegunn/fzf', { 'do': { -> fzf#install() } }
+Plug 'junegunn/fzf.vim'
 " Plug 'junegunn/fzf.vim'
 Plug 'scrooloose/nerdtree'
+Plug 'https://github.com/ryanoasis/vim-devicons'
+Plug 'https://github.com/adelarsq/vim-devicons-emoji'
+" Plug 'ms-jpq/chadtree', {'branch': 'chad', 'do': 'python3 -m chadtree deps'}
 " Plugin 'Xuyuanp/nerdtree-git-plugin'
 Plug 'dense-analysis/ale'
 " Plug 'valloric/youcompleteme', { 'do': './install.py  --clang-completer --rust-completer --ts-completer' }
@@ -89,6 +93,13 @@ Plug 'kristijanhusak/vim-dadbod-ui'
 Plug 'catppuccin/nvim', { 'as': 'catppuccin' }
 Plug 'EdenEast/nightfox.nvim' 
 Plug 'iamcco/markdown-preview.nvim', { 'do': 'cd app && npx --yes yarn install' }
+Plug 'rafamadriz/friendly-snippets'
+" Plug 'nvim-treesitter/nvim-treesitter', {'do': ':TSUpdate'}
+Plug 'folke/trouble.nvim'
+Plug 'folke/todo-comments.nvim'
+Plug 'rcarriga/nvim-notify'
+Plug 'lukas-reineke/indent-blankline.nvim'
+Plug 'folke/noice.nvim'
 "
 " Plugin 'othree/html5.vim'
 " Plugin 'SirVer/ultisnips'
@@ -123,10 +134,12 @@ let g:coc_global_extensions = [
   \ 'coc-rust-analyzer',
   \ 'coc-css', 'coc-docker', 'coc-eslint', 'coc-html', 'coc-fzf-preview', 'coc-yaml',
   \ 'coc-sh',
+  \ 'coc-snippets',
   \ 'coc-sql',
   \ 'coc-svg',
   \ 'coc-json',
   \ 'coc-stylelint',
+  \ 'coc-pyright'
   \ ]
 
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
@@ -203,12 +216,6 @@ set clipboard=unnamed
 
 set foldcolumn=1
 " Keys
-"vnoremap <D-c> "+y
-vnoremap <leader>c "+y
-nnoremap <leader>t :NERDTreeToggle<CR>
-nnoremap <leader>f :NERDTreeFind<CR>
-" nnoremap <leader>Z :FZF<CR>
-nnoremap <leader>l j0i<CR>
 nnoremap <leader>a :ALELint<CR>
 
 " fzfz-preview
@@ -302,8 +309,10 @@ silent! colorscheme  gruvbox
 "   endif
 " endif
 
+" No need to set explicitly under Neovim: always uses UTF-8 as the default encoding.
 " Set utf8 as standard encoding and en_US as the standard language
-set encoding=utf8
+" set encoding=utf8
+" set guifont=VictorMono_Nerd_Font:h26
 
 " Use Unix as the standard file type
 set ffs=unix,dos,mac
@@ -408,6 +417,8 @@ let NERDSpaceDelims = 1
 """"""""""""""""""""""""""""""
 " => NERDTree
 """"""""""""""""""""""""""""""
+nnoremap <leader>t :NERDTreeToggle<CR>
+nnoremap <leader>f :NERDTreeFind<CR>
 let NERDTreeShowHidden=1
 " How can I open a NERDTree automatically when vim starts up?
 " autocmd vimenter * NERDTree
@@ -422,6 +433,10 @@ let NERDTreeShowHidden=1
 
 " How can I close vim if the only window left open is a NERDTree?
 " autocmd bufenter * if (winnr("$") == 1 && exists("b:NERDTree") && b:NERDTree.isTabTree()) | q | endif
+
+" Close the tab if NERDTree is the only window remaining in it.
+autocmd BufEnter * if winnr('$') == 1 && exists('b:NERDTree') && b:NERDTree.isTabTree() | quit | endif
+let g:NERDTreeWinSize = 55
 
 let g:NERDTreeIndicatorMapCustom = {
     \ "Modified"  : "✹",
@@ -520,6 +535,8 @@ let g:indentLine_concealcursor=""
 " let g:go_highlight_format_strings = 1
 " let g:go_highlight_variable_declarations = 1
 " let g:go_highlight_variable_assignments = 1
+
+autocmd BufNewFile,BufRead *.mts :set filetype=typescript
 
 " ALE
 " How can I use ALE with other LSP clients?

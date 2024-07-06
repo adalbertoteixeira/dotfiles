@@ -6,4 +6,3 @@ for file in ~/.{exports,aliases,path,extra}; do
   fi
 done
 unset file
-

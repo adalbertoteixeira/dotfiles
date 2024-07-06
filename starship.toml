@@ -61,6 +61,17 @@ symbol = "🔺 "
 [rust]
 format = "via [⚙️ $version](red bold)"
 
+[terraform]
+[sudo]
+[status]
+[shell]
+[os]
+[nodejs]
+[jobs]
+[python]
+[r]
+[deno]
+[aws]
 [shell]
 [status]
 [username]

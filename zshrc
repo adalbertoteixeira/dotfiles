@@ -100,3 +100,9 @@ eval "$(fnm env --use-on-cd)"
 if command -v rbenv > /dev/null 2>&1; then eval "$(rbenv init - zsh)"; fi
 # eval "$(~/.rbenv/bin/rbenv init - zsh)"
 fpath+=${ZDOTDIR:-~}/.zsh_functions
+if command -v pyenv 1>/dev/null 2>&1; then
+  eval "$(pyenv init -)"
+fi
+
+# Created by `pipx` on 2024-06-30 15:20:39
+export PATH="$PATH:/Users/adalbertoteixeira/.local/bin"
