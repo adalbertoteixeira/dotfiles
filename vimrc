@@ -139,7 +139,8 @@ let g:coc_global_extensions = [
   \ 'coc-svg',
   \ 'coc-json',
   \ 'coc-stylelint',
-  \ 'coc-pyright'
+  \ 'coc-pyright',
+  \ 'coc-biome'
   \ ]
 
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
