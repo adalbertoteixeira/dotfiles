@@ -89,9 +89,7 @@ dotfiles:
 	mkdir -p $(HOME)/zellij/
 	ln -sf $(PWD)/zellij/config.kdl $(HOME)/.config/zellij/config.kdl
 	mkdir -p $(HOME)/.vim/plugins
-	for i in  $(PWD)/vim-snippets/*; do ln -sf $i $(HOME)/.vim/plugins/; done;
 	mkdir -p $(HOME)/.nvim/plugins
-	for i in  $(PWD)/vim-snippets/*; do ln -sf $i $(HOME)/.nvim/plugins/; done;
 #	mkdir -p $(HOME)/.vim/after/ftplugin
 #	for i in  $(PWD)/ftplugin/*; do ln -sf $i $(HOME)/.vim/after/ftplugin/; done;
 	mkdir -p ~/.config/nvim/ftplugin
@@ -112,9 +110,7 @@ dotfiles-ubuntu:
 	mkdir -p $(HOME)/.config/zellij/
 	ln -sf $(PWD)/zellij/config.kdl $(HOME)/.config/zellij/config.kdl
 	mkdir -p $(HOME)/.vim/plugins
-	for i in  $(PWD)/vim-snippets/*; do ln -sf $i $(HOME)/.vim/plugins/; done;
 	mkdir -p $(HOME)/.nvim/plugins
-	for i in  $(PWD)/vim-snippets/*; do ln -sf $i $(HOME)/.nvim/plugins/; done;
 #	mkdir -p $(HOME)/.vim/after/ftplugin
 #	for i in  $(PWD)/ftplugin/*; do ln -sf $i $(HOME)/.vim/after/ftplugin/; done;
 	mkdir -p ~/.config/nvim/ftplugin
