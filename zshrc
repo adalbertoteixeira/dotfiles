@@ -49,7 +49,7 @@ plugins=(git git-extras npm yarn zsh-syntax-highlighting ssh-agent rust)
 # brew zsh-autosuggestions rails jira vagrant ruby rake osx zsh-nvm 
 zstyle :omz:plugins:ssh-agent identities bitbucket_ben
 
-source $ZSH/oh-my-zsh.sh
+# source $ZSH/.oh-my-zsh.sh
 
 # User configuration
 
@@ -88,14 +88,11 @@ source $ZPLUG_HOME/init.zsh
 zplug "wfxr/forgit"
 zplug load
 
+SNAP_PATH="/snap/bin"
+if [ -d "$SNAP_PATH" ]; then
+  export PATH=$PATH:/snap/bin
+fi
 eval "$(starship init zsh)"
-
-# eval "$(/opt/homebrew/bin/brew shellenv)"
-
-# fnm
-
-eval "`fnm env`"
-eval "$(fnm env --use-on-cd)"
 
 if command -v rbenv > /dev/null 2>&1; then eval "$(rbenv init - zsh)"; fi
 # eval "$(~/.rbenv/bin/rbenv init - zsh)"
@@ -104,5 +101,14 @@ if command -v pyenv 1>/dev/null 2>&1; then
   eval "$(pyenv init -)"
 fi
 
-# Created by `pipx` on 2024-06-30 15:20:39
-export PATH="$PATH:/Users/adalbertoteixeira/.local/bin"
+
+
+# fnm
+FNM_PATH="/home/adalbertoteixeira/.local/share/fnm"
+if [ -d "$FNM_PATH" ]; then
+  export PATH="/home/adalbertoteixeira/.local/share/fnm:$PATH"
+  eval "`fnm env`"
+  eval "$(fnm env --use-on-cd)"
+fi
+
+
