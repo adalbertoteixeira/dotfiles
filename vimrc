@@ -1,16 +1,5 @@
 set nocompatible              " be iMproved, required
 filetype off                  " required
-let g:ale_completion_enabled = 0
-let g:ale_set_balloons = 1
-let g:ale_fix_on_save = 1
-let g:ale_lint_on_text_changed = 1
-let g:ale_lint_on_insert_leave = 1
-let g:ale_set_loclist = 0
-let g:ale_set_quickfix = 1
-let g:ale_set_highlights = 1
-let g:ale_set_signs = 1
-let g:ale_open_list = 1
-let g:ale_keep_list_window_open = 0
 
 " let g:ale_list_vertical = 1
 "
@@ -127,12 +116,16 @@ filetype plugin indent on
 " see :h vundle for more details or wiki for FAQ
 " Put your non-Plugin stuff after this line
 
-
+g:ale_enabled: 0
 let g:coc_global_extensions = [
   \ 'coc-json',
   \ 'coc-tsserver',
   \ 'coc-rust-analyzer',
-  \ 'coc-css', 'coc-docker', 'coc-eslint', 'coc-html', 'coc-fzf-preview', 'coc-yaml',
+  \ 'coc-css', 
+  \ 'coc-docker', 
+  \ 'coc-html',
+  \ 'coc-fzf-preview',
+  \ 'coc-yaml',
   \ 'coc-sh',
   \ 'coc-snippets',
   \ 'coc-sql',
@@ -140,8 +133,9 @@ let g:coc_global_extensions = [
   \ 'coc-json',
   \ 'coc-stylelint',
   \ 'coc-pyright',
-  \ 'coc-biome'
   \ ]
+  " \ 'coc-biome'
+  " \ 'coc-eslint', 
 
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " => General
@@ -545,7 +539,17 @@ autocmd BufNewFile,BufRead *.mts :set filetype=typescript
 " If you are running ALE in combination with another LSP client, you may wish to disable ALE's LSP functionality entirely. You can add a setting to your vimrc/init.vim to do so.
 " You can also use b:ale_disable_lsp in your ftplugin files to enable or disable LSP features in ALE for different filetypes.
 let g:ale_disable_lsp = 1
-
+let g:ale_completion_enabled = 0
+let g:ale_set_balloons = 1
+let g:ale_fix_on_save = 1
+let g:ale_lint_on_text_changed = 1
+let g:ale_lint_on_insert_leave = 1
+let g:ale_set_loclist = 0
+let g:ale_set_quickfix = 1
+let g:ale_set_highlights = 1
+let g:ale_set_signs = 1
+let g:ale_open_list = 1
+let g:ale_keep_list_window_open = 0
 let g:ale_sign_column_always = 1
 let g:ale_linters_explicit = 1
 let g:ale_lint_delay = 500
