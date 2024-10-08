@@ -49,7 +49,7 @@ plugins=(git git-extras npm yarn zsh-syntax-highlighting ssh-agent rust)
 # brew zsh-autosuggestions rails jira vagrant ruby rake osx zsh-nvm 
 zstyle :omz:plugins:ssh-agent identities bitbucket_ben
 
-# source $ZSH/.oh-my-zsh.sh
+source $ZSH/oh-my-zsh.sh
 
 # User configuration
 
