@@ -82,7 +82,7 @@ Plug 'kristijanhusak/vim-dadbod-ui'
 Plug 'catppuccin/nvim', { 'as': 'catppuccin' }
 Plug 'EdenEast/nightfox.nvim' 
 Plug 'iamcco/markdown-preview.nvim', { 'do': 'cd app && npx --yes yarn install' }
-Plug 'rafamadriz/friendly-snippets'
+" Plug 'rafamadriz/friendly-snippets'
 " Plug 'nvim-treesitter/nvim-treesitter', {'do': ':TSUpdate'}
 Plug 'folke/trouble.nvim'
 Plug 'folke/todo-comments.nvim'
@@ -91,7 +91,6 @@ Plug 'lukas-reineke/indent-blankline.nvim'
 Plug 'folke/noice.nvim'
 "
 " Plugin 'othree/html5.vim'
-" Plugin 'SirVer/ultisnips'
 " Plugin 'honza/vim-snippets'
 
 " Plugin 'reewr/vim-monokai-phoenix'
@@ -576,13 +575,6 @@ inoremap <c-x><c-k> <c-x><c-k>
 
 " let g:ycm_key_list_select_completion=['<c-n>']
 " let g:ycm_key_list_previous_completion=['<c-p']
-" Snippets
-" set rtp+=~/.vim/plugins/vim-snippets
-" let g:UltiSnipsExpandTrigger="<tab>"
-" let g:UltiSnipsJumpForwardTrigger="<c-j>"
-" let g:UltiSnipsJumpBackwardTrigger="<c-k>"
-" let g:UltiSnipsEditSplit="vertical"
-" let g:UltiSnipsSnippetDirectories=[$HOME."/.vim/plugins/vim-snippets", $HOME."/.vim/UltiSnips"]
 " JSON
 " command PrettyJSON %!python -m json.tool
 " Filetype json
