@@ -1,16 +1,5 @@
 set nocompatible              " be iMproved, required
 filetype off                  " required
-let g:ale_completion_enabled = 0
-let g:ale_set_balloons = 1
-let g:ale_fix_on_save = 1
-let g:ale_lint_on_text_changed = 1
-let g:ale_lint_on_insert_leave = 1
-let g:ale_set_loclist = 0
-let g:ale_set_quickfix = 1
-let g:ale_set_highlights = 1
-let g:ale_set_signs = 1
-let g:ale_open_list = 1
-let g:ale_keep_list_window_open = 0
 
 " let g:ale_list_vertical = 1
 "
@@ -24,19 +13,52 @@ if empty(glob(data_dir . '/autoload/plug.vim'))
   autocmd VimEnter * PlugInstall --sync | source $MYVIMRC
 endif
 
-""""""""
-" Vundle
-""""""""
-" set the runtime path to include Vundle and initialize
 set rtp+=/opt/homebrew/opt/fzf
-" set rtp+=~/.vim/bundle/Vundle.vim
-" call vundle#begin()
-call plug#begin() 
-" alternatively, pass a path where Vundle should install plugins
-"call vundle#begin('~/some/path/here')
 
-" let Vundle manage Vundle, required
-" Plugin 'VundleVim/Vundle.vim'
+call plug#begin() 
+Plug 'tpope/vim-fugitive'
+Plug 'vim-airline/vim-airline'
+Plug 'vim-airline/vim-airline-themes'
+Plug 'junegunn/gv.vim'
+Plug 'junegunn/fzf', { 'do': { -> fzf#install() } }
+Plug 'junegunn/fzf.vim'
+Plug 'scrooloose/nerdtree'
+Plug 'dense-analysis/ale'
+Plug 'tpope/vim-surround'
+Plug 'airblade/vim-gitgutter'
+Plug 'burntsushi/ripgrep',
+Plug 'tpope/vim-obsession'
+Plug 'neoclide/coc.nvim', {'branch': 'release'}
+Plug 'tpope/vim-dadbod'
+Plug 'kristijanhusak/vim-dadbod-ui'
+Plug 'nvim-treesitter/nvim-treesitter', {'do': ':TSUpdate'}
+
+Plug 'morhetz/gruvbox'
+Plug 'https://github.com/ryanoasis/vim-devicons'
+Plug 'https://github.com/adelarsq/vim-devicons-emoji'
+Plug 'jxnblk/vim-mdx-js'
+Plug 'maxmellon/vim-jsx-pretty'
+Plug 'jiangmiao/auto-pairs'
+Plug 'cakebaker/scss-syntax.vim'
+Plug 'chr4/nginx.vim'
+" Plug 'elzr/vim-json'
+Plug 'scrooloose/nerdcommenter'
+Plug 'jparise/vim-graphql'
+Plug 'editorconfig/editorconfig-vim'
+" Plug 'preservim/vim-markdown'
+Plug 'iamcco/markdown-preview.nvim', { 'do': 'cd app && npx --yes yarn install' }
+" Plug 'rcarriga/nvim-notify'
+Plug 'lukas-reineke/indent-blankline.nvim'
+" Plug 'preservim/vim-indent-guides'
+
+" Plug 'folke/noice.nvim'
+" Plug 'folke/trouble.nvim'
+" Plug 'folke/todo-comments.nvim'
+" Plug 'catppuccin/nvim', { 'as': 'catppuccin' }
+
+
+" Plug 'EdenEast/nightfox.nvim' 
+" Plug 'leafgarland/typescript-vim'
 " Plugin 'sickill/vim-monokai'
 " Plugin 'crusoexia/vim-monokai'
 " Plugin 'tomasr/molokai'
@@ -44,69 +66,24 @@ call plug#begin()
 " Plugin 'altercation/vim-colors-solarized'
 " Plug 'Yggdroot/indentLine'
 " Plugin 'chriskempson/base16-vim'
-Plug 'morhetz/gruvbox'
-Plug 'tpope/vim-fugitive'
-Plug 'vim-airline/vim-airline'
-Plug 'vim-airline/vim-airline-themes'
-Plug 'junegunn/gv.vim'
-Plug 'junegunn/fzf', { 'do': { -> fzf#install() } }
-Plug 'junegunn/fzf.vim'
 " Plug 'junegunn/fzf.vim'
-Plug 'scrooloose/nerdtree'
-Plug 'https://github.com/ryanoasis/vim-devicons'
-Plug 'https://github.com/adelarsq/vim-devicons-emoji'
 " Plug 'ms-jpq/chadtree', {'branch': 'chad', 'do': 'python3 -m chadtree deps'}
 " Plugin 'Xuyuanp/nerdtree-git-plugin'
-Plug 'dense-analysis/ale'
 " Plug 'valloric/youcompleteme', { 'do': './install.py  --clang-completer --rust-completer --ts-completer' }
-Plug 'tpope/vim-surround'
-Plug 'airblade/vim-gitgutter'
-Plug 'burntsushi/ripgrep',
-Plug 'pangloss/vim-javascript'
+" Plug 'pangloss/vim-javascript'
 " Plugin 'mxw/vim-jsx'
-Plug 'jxnblk/vim-mdx-js'
-Plug 'maxmellon/vim-jsx-pretty'
-Plug 'jiangmiao/auto-pairs'
 " Plug 'stephpy/vim-yaml'
-Plug 'cakebaker/scss-syntax.vim'
-Plug 'chr4/nginx.vim'
 " Plugin 'chr4/sslsecure.vim'
 " Plugin 'lervag/vimtex'
-Plug 'elzr/vim-json'
-Plug 'scrooloose/nerdcommenter'
 " Plugin 'cespare/vim-toml'
-Plug 'tpope/vim-obsession'
 " Plugin 'digitaltoad/vim-pug'
 " Plugin 'heavenshell/vim-jsdoc'
 " Plug 'rust-lang/rust.vim'
-Plug 'jparise/vim-graphql'
-Plug 'editorconfig/editorconfig-vim'
-Plug 'leafgarland/typescript-vim'
 " Plug 'xolox/vim-notes'
 " Plug 'xolox/vim-misc'
 " Plugin 'itchyny/lightline.vim'
-Plug 'preservim/vim-markdown'
-Plug 'neoclide/coc.nvim', {'branch': 'release'}
-Plug 'tpope/vim-dadbod'
-Plug 'kristijanhusak/vim-dadbod-ui'
 " Plug 'github/copilot.vim'
-Plug 'catppuccin/nvim', { 'as': 'catppuccin' }
-Plug 'EdenEast/nightfox.nvim' 
-Plug 'iamcco/markdown-preview.nvim', { 'do': 'cd app && npx --yes yarn install' }
-" Plug 'rafamadriz/friendly-snippets'
-" Plug 'nvim-treesitter/nvim-treesitter', {'do': ':TSUpdate'}
-" Plug 'folke/trouble.nvim'
-" Plug 'folke/todo-comments.nvim'
-" Plug 'rcarriga/nvim-notify'
-" Plug 'lukas-reineke/indent-blankline.nvim'
-" Plug 'folke/noice.nvim'
 Plug 'leafOfTree/vim-svelte-plugin'
-" Plug 'mattn/emmet-vim'
-" Plug 'nvim-treesitter/nvim-treesitter', {'do': ':TSUpdate'}
-" Plug 'othree/html5.vim'
-" Plug 'evanleck/vim-svelte', {'branch': 'main'}
-
-" Plugin 'SirVer/ultisnips'
 " Plugin 'honza/vim-snippets'
 
 " Plugin 'reewr/vim-monokai-phoenix'
@@ -117,9 +94,8 @@ Plug 'leafOfTree/vim-svelte-plugin'
 " Plugin 'fatih/vim-go'
 " Plugin 'LaTeX-Box-Team/LaTeX-Box'
 " Plugin 'peitalin/vim-jsx-typescript'
-" All of your Plugins must be added before the following line
-" call vundle#end()            " required
 call plug#end()
+
 filetype plugin indent on
 "
 " Brief help
@@ -128,28 +104,36 @@ filetype plugin indent on
 " :PluginSearch foo - searches for foo; append `!` to refresh local cache
 " :PluginClean      - confirms removal of unused plugins; append `!` to auto-approve removal
 "
-" see :h vundle for more details or wiki for FAQ
-" Put your non-Plugin stuff after this line
-
 
 let g:coc_global_extensions = [
   \ 'coc-json',
   \ 'coc-svelte',
   \ 'coc-tsserver',
   \ 'coc-rust-analyzer',
-  \ 'coc-css', 'coc-docker', 'coc-eslint', 'coc-html', 'coc-fzf-preview', 'coc-yaml',
+  \ 'coc-css', 
+  \ 'coc-docker', 
+  \ 'coc-html',
+  \ 'coc-fzf-preview',
+  \ 'coc-yaml',
   \ 'coc-sh',
   \ 'coc-snippets',
   \ 'coc-sql',
   \ 'coc-svg',
   \ 'coc-stylelint',
   \ 'coc-pyright',
+<<<<<<< HEAD
   \ 'coc-biome',
   \ 'coc-svelte'
   \ ]
 let g:vim_svelte_plugin_load_full_syntax = 1
 let g:vim_svelte_plugin_use_typescript = 1
 let g:vim_svelte_plugin_use_sass = 1
+=======
+  \ ]
+  " \ 'coc-biome'
+  " \ 'coc-eslint', 
+
+>>>>>>> 5b49170c8d1f75d356c385050f9635c1472514c5
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " => General
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
@@ -338,6 +322,7 @@ set noswapfile
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " => Text, tab and indent related
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+let g:indent_guides_enable_on_vim_startup = 1
 " Use spaces instead of tabs
 set expandtab
 
@@ -465,84 +450,16 @@ let g:NERDTreeIndicatorMapCustom = {
 let g:airline_theme='simple'
 let g:airline#extensions#obsession#enabled = 1
 let g:airline#extensions#obsession#indicator_text = '$Obsession$'
-" let g:lightline = {
-"   \ 'colorscheme': 'powerline',
-"   \ 'active': {
-"   \   'left': [ [ 'mode', 'paste' ],
-"   \             [ 'readonly', 'filename', 'buffernumber', 'modified', 'gitbranch' ] ]
-"   \ },
-"   \ 'component' : {
-"   \   'pathtofile': '%f',
-"   \   'buffernumber': '%n'
-"   \ },
-"   \ 'component_function': {
-"   \   'gitbranch': 'fugitive#head',
-"   \   'gitstatus': '%{fugitive#statusline()}',
-"   \   'obsessionstatus': '%{ObsessionStatus()}'
-"   \ },
-" \ }
 
-" Multi-cursor default mapping
-" let g:multi_cursor_next_key='<C-n>'
-" let g:multi_cursor_prev_key='<C-p>'
-" let g:multi_cursor_skip_key='<C-x>'
-" let g:multi_cursor_quit_key='<Esc>'
-
-" highlight frontmatter
-" let g:vim_markdown_frontmatter = 1
-" let g:vim_markdown_toml_frontmatter = 1
-" let g:vim_markdown_json_frontmatter = 1
-" markdown preview
-" let vim_markdown_preview_browser='Firefox'
-" let vim_markdown_preview_github=1
-
-""""""""""""""
-" vim tex
-""""""""""""""
-" let g:tex_conceal=''
-" g:tex_conceal=''
-" a = accents/ligatures
-" d = delimiters
-" m = math symbols
-" g = Greek
-" s = superscripts/subscripts
-
-""""""""""""""
-" rust
-""""""""""""""
-" let g:rustfmt_autosave = 1
 
 """"""""""""""
 " vim json
 """"""""""""""
-let g:vim_json_syntax_conceal = 0
-let g:vim_json_conceal=0
-let g:markdown_syntax_conceal=0
-let g:indentLine_concealcursor=""
+" let g:vim_json_syntax_conceal = 0
+" let g:vim_json_conceal=0
+" let g:markdown_syntax_conceal=0
+" let g:indentLine_concealcursor=""
 
-""""""""""""""
-" vim javascript
-""""""""""""""
-" let g:javascript_plugin_flow = 1
-
-" vim-go
-" let g:go_highlight_array_whitespace_error = 1
-" let g:go_highlight_chan_whitespace_error = 1
-" let g:go_highlight_extra_types = 1
-" let g:go_highlight_space_tab_error = 1
-" let g:go_highlight_trailing_whitespace_error = 1
-" let g:go_highlight_operators = 1
-" let g:go_highlight_functions = 1
-" let g:go_highlight_function_arguments = 1
-" let g:go_highlight_function_calls = 1
-" let g:go_highlight_types = 1
-" let g:go_highlight_fields = 1
-" let g:go_highlight_build_constraints = 1
-" let g:go_highlight_generate_tags = 1
-" let g:go_highlight_string_spellcheck = 1
-" let g:go_highlight_format_strings = 1
-" let g:go_highlight_variable_declarations = 1
-" let g:go_highlight_variable_assignments = 1
 
 autocmd BufNewFile,BufRead *.mts :set filetype=typescript
 
@@ -551,49 +468,39 @@ autocmd BufNewFile,BufRead *.mts :set filetype=typescript
 " ALE offers an API for letting any other plugin integrate with ALE. If you are interested in writing an integration, see :help ale-lint-other-sources.
 " If you are running ALE in combination with another LSP client, you may wish to disable ALE's LSP functionality entirely. You can add a setting to your vimrc/init.vim to do so.
 " You can also use b:ale_disable_lsp in your ftplugin files to enable or disable LSP features in ALE for different filetypes.
+" let g:ale_enabled = 0
 let g:ale_disable_lsp = 1
-
+let g:ale_completion_enabled = 0
+let g:ale_set_balloons = 1
+let g:ale_fix_on_save = 1
+let g:ale_lint_on_text_changed = 1
+let g:ale_lint_on_insert_leave = 1
+let g:ale_set_loclist = 0
+let g:ale_set_quickfix = 1
+let g:ale_set_highlights = 1
+let g:ale_set_signs = 1
+let g:ale_open_list = 1
+let g:ale_keep_list_window_open = 0
 let g:ale_sign_column_always = 1
 let g:ale_linters_explicit = 1
 let g:ale_lint_delay = 500
-" nmap <silent> <C-k> <Plug>(ale_previous_wrap)
-" nmap <silent> <C-j> <Plug>(ale_next_wrap)
-" nmap <Leader>ak <Plug>(ale_previous_wrap)
-" nmap <Leader>aj <Plug>(ale_next_wrap)
 
-nmap <Leader>aj :ALENext<cr>
-nmap <Leader>ak :ALEPrevious<cr>
-" nmap <silent> <leader>aj :ALENext<cr>
-" nmap <silent> <leader>ak :ALEPrevious<cr>
+" nmap <Leader>aj :ALENext<cr>
+" nmap <Leader>ak :ALEPrevious<cr>
+nmap <silent> <leader>aj :ALENext<cr>
+nmap <silent> <leader>ak :ALEPrevious<cr>
+" nmap <silent> <C-k> <Plug>(ale_previous)
+" nmap <silent> <C-j> <Plug>(ale_next)
 
 nmap <Leader>hp <Plug>(GitGutterPrevHunk)
 nmap <Leader>hn <Plug>(GitGutterNextHunk)
 let g:ale_sign_error = '>>'
 let g:ale_sign_warning = '--'
 inoremap <c-x><c-k> <c-x><c-k>
-" nnoremap <leader>y :YcmCompleter<CR>
-" nnoremap <leader>yg :YcmCompleter GoTo<CR>
-" nnoremap <leader>yr :YcmCompleter GoToReferences<CR>
-
-" if !exists("g:ycm_semantic_triggers")
-"   let g:ycm_semantic_triggers = {}
-" endif
-" let g:ycm_semantic_triggers['typescript'] = ['.']
-
-" let g:ycm_key_list_select_completion=['<c-n>']
-" let g:ycm_key_list_previous_completion=['<c-p']
-" Snippets
-" set rtp+=~/.vim/plugins/vim-snippets
-" let g:UltiSnipsExpandTrigger="<tab>"
-" let g:UltiSnipsJumpForwardTrigger="<c-j>"
-" let g:UltiSnipsJumpBackwardTrigger="<c-k>"
-" let g:UltiSnipsEditSplit="vertical"
-" let g:UltiSnipsSnippetDirectories=[$HOME."/.vim/plugins/vim-snippets", $HOME."/.vim/UltiSnips"]
 " JSON
 " command PrettyJSON %!python -m json.tool
 " Filetype json
 
-" autocmd FileType scss setl iskeyword+=@-@
 " EditorConfig
 let g:EditorConfig_exclude_patterns = ['fugitive://.\*', 'scp://.\*']
 
@@ -780,15 +687,8 @@ nmap <leader>qf  <Plug>(coc-fix-current)
 nmap cf :let @" = expand("%")<cr>"
 nmap cp :let @" = expand("%:p")<cr>"
 
-" vim-notes
-:let g:notes_directories = ['~/Documents/Notes']
-:let g:notes_conceal_code = 0
-:let g:notes_conceal_italic = 0
-:let g:notes_conceal_bold = 0
-:let g:notes_conceal_url = 0
-
-:let g:python3_host_prog='/opt/homebrew/bin/python3.11'
-:let g:python_host_prog='/opt/homebrew/bin/python3.11'
+" :let g:python3_host_prog='/opt/homebrew/bin/python3.11'
+" :let g:python_host_prog='/opt/homebrew/bin/python3.11'
 " :let g:python3_host_prog=/opt/homebrew/bin/python3
 " :let g:python_host_prog=/opt/homebrew/bin/python3
 "

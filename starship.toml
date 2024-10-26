@@ -68,7 +68,6 @@ format = "via [⚙️ $version](red bold)"
 [os]
 [nodejs]
 [python]
-[r]
 [deno]
 [aws]
 [username]
