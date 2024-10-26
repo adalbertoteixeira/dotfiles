@@ -62,7 +62,7 @@ Plug 'dense-analysis/ale'
 Plug 'tpope/vim-surround'
 Plug 'airblade/vim-gitgutter'
 Plug 'burntsushi/ripgrep',
-" Plug 'pangloss/vim-javascript'
+Plug 'pangloss/vim-javascript'
 " Plugin 'mxw/vim-jsx'
 Plug 'jxnblk/vim-mdx-js'
 Plug 'maxmellon/vim-jsx-pretty'
@@ -93,15 +93,19 @@ Plug 'kristijanhusak/vim-dadbod-ui'
 Plug 'catppuccin/nvim', { 'as': 'catppuccin' }
 Plug 'EdenEast/nightfox.nvim' 
 Plug 'iamcco/markdown-preview.nvim', { 'do': 'cd app && npx --yes yarn install' }
-Plug 'rafamadriz/friendly-snippets'
+" Plug 'rafamadriz/friendly-snippets'
 " Plug 'nvim-treesitter/nvim-treesitter', {'do': ':TSUpdate'}
-Plug 'folke/trouble.nvim'
-Plug 'folke/todo-comments.nvim'
-Plug 'rcarriga/nvim-notify'
-Plug 'lukas-reineke/indent-blankline.nvim'
-Plug 'folke/noice.nvim'
-"
-" Plugin 'othree/html5.vim'
+" Plug 'folke/trouble.nvim'
+" Plug 'folke/todo-comments.nvim'
+" Plug 'rcarriga/nvim-notify'
+" Plug 'lukas-reineke/indent-blankline.nvim'
+" Plug 'folke/noice.nvim'
+Plug 'leafOfTree/vim-svelte-plugin'
+" Plug 'mattn/emmet-vim'
+" Plug 'nvim-treesitter/nvim-treesitter', {'do': ':TSUpdate'}
+" Plug 'othree/html5.vim'
+" Plug 'evanleck/vim-svelte', {'branch': 'main'}
+
 " Plugin 'SirVer/ultisnips'
 " Plugin 'honza/vim-snippets'
 
@@ -130,6 +134,7 @@ filetype plugin indent on
 
 let g:coc_global_extensions = [
   \ 'coc-json',
+  \ 'coc-svelte',
   \ 'coc-tsserver',
   \ 'coc-rust-analyzer',
   \ 'coc-css', 'coc-docker', 'coc-eslint', 'coc-html', 'coc-fzf-preview', 'coc-yaml',
@@ -137,12 +142,14 @@ let g:coc_global_extensions = [
   \ 'coc-snippets',
   \ 'coc-sql',
   \ 'coc-svg',
-  \ 'coc-json',
   \ 'coc-stylelint',
   \ 'coc-pyright',
-  \ 'coc-biome'
+  \ 'coc-biome',
+  \ 'coc-svelte'
   \ ]
-
+let g:vim_svelte_plugin_load_full_syntax = 1
+let g:vim_svelte_plugin_use_typescript = 1
+let g:vim_svelte_plugin_use_sass = 1
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " => General
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
@@ -549,12 +556,15 @@ let g:ale_disable_lsp = 1
 let g:ale_sign_column_always = 1
 let g:ale_linters_explicit = 1
 let g:ale_lint_delay = 500
-" let g:ale_fixers = {
-" \   'scss': ['prettier'],
-" \   'html': ['prettier']
-" \ }
-nmap <silent> <C-k> <Plug>(ale_previous)
-nmap <silent> <C-j> <Plug>(ale_next)
+" nmap <silent> <C-k> <Plug>(ale_previous_wrap)
+" nmap <silent> <C-j> <Plug>(ale_next_wrap)
+" nmap <Leader>ak <Plug>(ale_previous_wrap)
+" nmap <Leader>aj <Plug>(ale_next_wrap)
+
+nmap <Leader>aj :ALENext<cr>
+nmap <Leader>ak :ALEPrevious<cr>
+" nmap <silent> <leader>aj :ALENext<cr>
+" nmap <silent> <leader>ak :ALEPrevious<cr>
 
 nmap <Leader>hp <Plug>(GitGutterPrevHunk)
 nmap <Leader>hn <Plug>(GitGutterNextHunk)
@@ -781,3 +791,6 @@ nmap cp :let @" = expand("%:p")<cr>"
 :let g:python_host_prog='/opt/homebrew/bin/python3.11'
 " :let g:python3_host_prog=/opt/homebrew/bin/python3
 " :let g:python_host_prog=/opt/homebrew/bin/python3
+"
+"
+

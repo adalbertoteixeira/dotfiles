@@ -43,7 +43,7 @@ threshold = 4
 [memory_usage]
 # disabled = false
 
-# [package]
+[package]
 format = "via [🎁 $version](208 bold) "
 
 
@@ -67,11 +67,8 @@ format = "via [⚙️ $version](red bold)"
 [shell]
 [os]
 [nodejs]
-[jobs]
 [python]
 [r]
 [deno]
 [aws]
-[shell]
-[status]
 [username]

@@ -4,7 +4,7 @@ all: yarn go dotfiles vimubuntu zshubuntu ohmyzshubuntu
 .PHONY: ubuntu
 ubuntu:
 	mkdir -p $(HOME)/.config/
-	sudo apt-get install -y neovim bat make zsh git unzip autoconf patch build-essential libssl-dev libyaml-dev libreadline6-dev zlib1g-dev libgmp-dev libncurses5-dev libffi-dev libgdbm6 libgdbm-dev libdb-dev uuid-dev ripgrep
+	sudo apt-get install -y neovim bat make zsh git unzip autoconf patch build-essential libssl-dev libyaml-dev libreadline6-dev zlib1g-dev libgmp-dev libncurses5-dev libffi-dev libgdbm6 libgdbm-dev libdb-dev uuid-dev ripgrep fzf
 	sudo locale-gen pt_PT.UTF-8 && sudo locale-gen en_GB.UTF-8
 	curl --proto '=https' --tlsv1.2 -sSf https://sh.rustup.rs | sh
 	rustup component add rust-analyzer
@@ -28,10 +28,13 @@ ubuntu:
 	git clone https://github.com/rbenv/ruby-build.git "$(rbenv root)"/plugins/ruby-build
 	sudo snap install zellij --classic
 	zplug 'wfxr/forgit'
+	# fix bat alias
+	mkdir -p ~/.local/bin
+	ln -s /usr/bin/batcat ~/.local/bin/bat
 
 .PHONY: macOS
 macOS:
-	brew install diff-so-fancy bat
+	brew install diff-so-fancy bat fzf
 	make git
 	make niceaddons
 	cd ~
@@ -93,11 +96,6 @@ dotfiles:
 	ln -sf $(PWD)/starship.toml $(HOME)/.config/
 	mkdir -p $(HOME)/zellij/
 	ln -sf $(PWD)/zellij/config.kdl $(HOME)/.config/zellij/config.kdl
-
-.PHONY: bap_cloud_instance
-bap_cloud_instance:
-	rm -rf ~/.fzf
-	git clone --depth 1 https://github.com/junegunn/fzf.git ~/.fzf && ~/.fzf/install --all --key-bindings --completion --64 --no-fish
 
 
 .PHONY: ohmyzsh
