@@ -103,12 +103,21 @@ fi
 
 
 
-# fnm
-FNM_PATH="/home/adalbertoteixeira/.local/share/fnm"
+# fnm linux
+# FNM_PATH="/home/adalbertoteixeira/.local/share/fnm"
+# if [ -d "$FNM_PATH" ]; then
+#   export PATH="/home/adalbertoteixeira/.local/share/fnm:$PATH"
+#   eval "`fnm env`"
+#   eval "$(fnm env --use-on-cd)"
+# fi
+
+# # fnm macOs
+FNM_PATH="/Users/adalbertoteixeira/Library/Application Support/fnm"
 if [ -d "$FNM_PATH" ]; then
-  export PATH="/home/adalbertoteixeira/.local/share/fnm:$PATH"
+  export PATH="/Users/adalbertoteixeira/Library/Application Support/fnm:$PATH"
   eval "`fnm env`"
   eval "$(fnm env --use-on-cd)"
 fi
-
-
+export PYENV_ROOT="$HOME/.pyenv"
+[[ -d $PYENV_ROOT/bin ]] && export PATH="$PYENV_ROOT/bin:$PATH"
+eval "$(pyenv init -)"

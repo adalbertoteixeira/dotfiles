@@ -35,20 +35,13 @@ rust:
 	rustup component add rust-analyzer
 .PHONY: macOS
 macOS:
-	brew install diff-so-fancy bat
 	make git
-	make niceaddons
 	cd ~
 	sh -c "$(curl -fsSL https://starship.rs/install.sh)" 
 	curl -sL --proto-redir -all,https https://raw.githubusercontent.com/zplug/installer/master/installer.zsh | zsh
 	source ~/.zshrc
 	zplug install
-	brew install kalker
-	brew install forgit
-	brew install tokei
-	brew install exa
-	brew install skim
-	brew install zellij
+	brew install diff-so-fancy bat kalker sk zellij
 
 .PHONY: git
 git: 
@@ -90,10 +83,10 @@ dotfiles:
 	ln -sf $(PWD)/zellij/config.kdl $(HOME)/.config/zellij/config.kdl
 	mkdir -p $(HOME)/.vim/plugins
 	mkdir -p $(HOME)/.nvim/plugins
-#	mkdir -p $(HOME)/.vim/after/ftplugin
-#	for i in  $(PWD)/ftplugin/*; do ln -sf $i $(HOME)/.vim/after/ftplugin/; done;
-	mkdir -p ~/.config/nvim/ftplugin
-	for i in  $(PWD)/ftplugin/*; do ln -sf $i $(HOME)/.config/nvim/ftplugin/; done;
+	# mkdir -p ~/.config/nvim/ftplugin
+	for i in  $(PWD)/ftplugin/*; do ln -sf $i $(HOME)/.vim/ftplugin/; done;
+	mkdir -p $(HOME)/.vim/lua
+	for i in  $(PWD)/lua/*; do ln -sf $i $(HOME)/.vim/lua/; done;
 
 .PHONY: dotfiles-ubuntu
 dotfiles-ubuntu:
@@ -115,6 +108,8 @@ dotfiles-ubuntu:
 #	for i in  $(PWD)/ftplugin/*; do ln -sf $i $(HOME)/.vim/after/ftplugin/; done;
 	mkdir -p ~/.config/nvim/ftplugin
 	for i in  $(PWD)/ftplugin/*; do ln -sf $i $(HOME)/.config/nvim/ftplugin/; done;
+	mkdir -p $(HOME)/.nvim/lua
+	for i in  $(PWD)/lua/*; do ln -sf $i $(HOME)/.config/nvim/lua/; done;
 
 .PHONY: ohmyzsh
 ohmyzsh:
