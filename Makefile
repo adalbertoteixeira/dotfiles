@@ -33,15 +33,24 @@ ubuntu:
 rust:
 	curl --proto '=https' --tlsv1.2 -sSf https://sh.rustup.rs | sh
 	rustup component add rust-analyzer
+
 .PHONY: macOS
 macOS:
 	make git
 	cd ~
-	sh -c "$(curl -fsSL https://starship.rs/install.sh)" 
-	curl -sL --proto-redir -all,https https://raw.githubusercontent.com/zplug/installer/master/installer.zsh | zsh
+	/bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/HEAD/install.sh)"
+	brew install --cask alacritty
+	brew install diff-so-fancy bat kalker sk zellij neovim zsh fnm starship
 	source ~/.zshrc
+	sh -c "$(curl -fsSL https://raw.githubusercontent.com/ohmyzsh/ohmyzsh/master/tools/install.sh)"
+	curl -sL --proto-redir -all,https https://raw.githubusercontent.com/zplug/installer/master/installer.zsh | zsh
+	git clone https://github.com/zsh-users/zsh-syntax-highlighting.git (HOME)/.oh-my-zsh/custom/plugins/zsh-syntax-highlighting
+	git clone https://github.com/denysdovhan/spaceship-prompt.git "$ZSH_CUSTOM/themes/spaceship-prompt" --depth=1
 	zplug install
-	brew install diff-so-fancy bat kalker sk zellij
+	curl --proto '=https' --tlsv1.2 -sSf https://sh.rustup.rs | sh
+	rustup component add rust-analyzer
+	make dotfiles
+	
 
 .PHONY: git
 git: 
@@ -60,12 +69,6 @@ git:
 	git config --global color.diff.new        "green bold"
 	git config --global color.diff.whitespace "red reverse"
 
-.PHONY: ohmyzsh
-ohmyzsh:
-	rm -rf $(HOME)/.oh-my-zsh
-	mkdir -p $(HOME)/.oh-my-zsh/themes/
-	git clone https://github.com/zsh-users/zsh-syntax-highlighting.git $(HOME)/.oh-my-zsh/custom/plugins/zsh-syntax-highlighting
-	git clone https://github.com/denysdovhan/spaceship-prompt.git "$ZSH_CUSTOM/themes/spaceship-prompt" --depth=1
 
 .PHONY: dotfiles
 dotfiles:
@@ -78,13 +81,20 @@ dotfiles:
 	ln -sf $(PWD)/exports $(HOME)/.exports
 	ln -sf $(PWD)/aliases $(HOME)/.aliases
 	mkdir -p $(HOME)/.oh-my-zsh/themes/
+	mkdir -p ~/.config/zellij
 	ln -sf $(PWD)/starship.toml $(HOME)/.config/
 	mkdir -p $(HOME)/zellij/
 	ln -sf $(PWD)/zellij/config.kdl $(HOME)/.config/zellij/config.kdl
+	mkdir -p $(HOME)/.vim/
 	mkdir -p $(HOME)/.vim/plugins
 	mkdir -p $(HOME)/.nvim/plugins
-	# mkdir -p ~/.config/nvim/ftplugin
-	for i in  $(PWD)/ftplugin/*; do ln -sf $i $(HOME)/.vim/ftplugin/; done;
+	# for i in  $(PWD)/ftplugin/*; do ln -sf $i $(HOME)/.vim/ftplugin/; done;
+
+
+	# for i in  $(PWD)/ftplugin/*; do ln -sf $i $(HOME)/.vim/ftplugin/; done;
+	# mkdir -p $(HOME)/.vim/lua
+	#for i in  $(PWD)/lua/*; do ln -sf $i $(HOME)/.vim/lua/; done;
+
 
 .PHONY: dotfiles-ubuntu
 dotfiles-ubuntu:

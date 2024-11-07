@@ -125,13 +125,13 @@ let g:coc_global_extensions = [
   \ 'coc-fzf-preview',
   \ 'coc-yaml',
   \ 'coc-sh',
-  \ 'coc-snippets',
   \ 'coc-sql',
   \ 'coc-svg',
   \ 'coc-json',
   \ 'coc-stylelint',
   \ 'coc-pyright',
   \ ]
+  " \ 'coc-snippets',
   " \ 'coc-biome'
   " \ 'coc-eslint', 
 

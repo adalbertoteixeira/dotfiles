@@ -45,11 +45,11 @@
 # Custom plugins may be added to ~/.oh-my-zsh/custom/plugins/
 # Example format: plugins=(rails git textmate ruby lighthouse)
 # Add wisely, as too many plugins slow down shell startup.
-plugins=(git git-extras npm yarn zsh-syntax-highlighting ssh-agent rust)
+# plugins=(git git-extras npm yarn zsh-syntax-highlighting ssh-agent rust)
 # brew zsh-autosuggestions rails jira vagrant ruby rake osx zsh-nvm 
-zstyle :omz:plugins:ssh-agent identities bitbucket_ben
+# zstyle :omz:plugins:ssh-agent identities bitbucket_ben
 
-source $ZSH/oh-my-zsh.sh
+# source $ZSH/oh-my-zsh.sh
 
 # User configuration
 
@@ -98,6 +98,8 @@ if command -v rbenv > /dev/null 2>&1; then eval "$(rbenv init - zsh)"; fi
 # eval "$(~/.rbenv/bin/rbenv init - zsh)"
 fpath+=${ZDOTDIR:-~}/.zsh_functions
 if command -v pyenv 1>/dev/null 2>&1; then
+  export PYENV_ROOT="$HOME/.pyenv"
+  [[ -d $PYENV_ROOT/bin ]] && export PATH="$PYENV_ROOT/bin:$PATH"
   eval "$(pyenv init -)"
 fi
 
@@ -112,12 +114,9 @@ fi
 # fi
 
 # # fnm macOs
-FNM_PATH="/Users/adalbertoteixeira/Library/Application Support/fnm"
+FNM_PATH=$(which fnm)
 if [ -d "$FNM_PATH" ]; then
-  export PATH="/Users/adalbertoteixeira/Library/Application Support/fnm:$PATH"
+  export PATH=$FNM_PATH:$PATH
   eval "`fnm env`"
-  eval "$(fnm env --use-on-cd)"
+  eval "$(fnm env --use-on-cd --shell zsh)"
 fi
-export PYENV_ROOT="$HOME/.pyenv"
-[[ -d $PYENV_ROOT/bin ]] && export PATH="$PYENV_ROOT/bin:$PATH"
-eval "$(pyenv init -)"
