@@ -85,8 +85,6 @@ dotfiles:
 	mkdir -p $(HOME)/.nvim/plugins
 	# mkdir -p ~/.config/nvim/ftplugin
 	for i in  $(PWD)/ftplugin/*; do ln -sf $i $(HOME)/.vim/ftplugin/; done;
-	mkdir -p $(HOME)/.vim/lua
-	for i in  $(PWD)/lua/*; do ln -sf $i $(HOME)/.vim/lua/; done;
 
 .PHONY: dotfiles-ubuntu
 dotfiles-ubuntu:
