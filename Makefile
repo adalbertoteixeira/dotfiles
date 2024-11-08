@@ -40,7 +40,7 @@ macOS:
 	cd ~
 	/bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/HEAD/install.sh)"
 	brew install --cask alacritty
-	brew install diff-so-fancy bat kalker sk zellij neovim zsh fnm starship
+	brew install diff-so-fancy bat kalker sk zellij neovim zsh fnm starship zsh-syntax-highlighting
 	source ~/.zshrc
 	sh -c "$(curl -fsSL https://raw.githubusercontent.com/ohmyzsh/ohmyzsh/master/tools/install.sh)"
 	curl -sL --proto-redir -all,https https://raw.githubusercontent.com/zplug/installer/master/installer.zsh | zsh
