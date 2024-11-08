@@ -1,18 +1,30 @@
+export ZSH="$HOME/.oh-my-zsh"
 # AUTOCOMPLETION
 
-# initialize autocompletion
-autoload -U compinit && compinit
-
-# history setup
-setopt SHARE_HISTORY
-HISTFILE=$HOME/.zhistory
-SAVEHIST=1000
-HISTSIZE=999
-setopt HIST_EXPIRE_DUPS_FIRST
+# # initialize autocompletion
+# autoload -U compinit && compinit
+#
+# # history setup
+# setopt SHARE_HISTORY
+# HISTFILE=$HOME/.zhistory
+# SAVEHIST=1000
+# HISTSIZE=999
+# setopt HIST_EXPIRE_DUPS_FIRST
 
 # autocompletion using arrow keys (based on history)
-bindkey '\e[A' history-search-backward
-bindkey '\e[B' history-search-forward
+# bindkey '\e[A' history-search-backward
+# bindkey '\e[B' history-search-forward
+
+# bindkey '^H' backward-kill-word
+# bindkey '5~' kill-word
+# WORDCHARS='~!#$%^&*(){}[]<>?.+;-'
+# bindkey $'\E[1;5D' vi-backward-blank-word
+# bindkey $'\E[1;5C' vi-forward-blank-word
+
+# How to delete from current position to the beginning of the line
+# Use Ctrl+U
+# unix-line-discard (C-u) Kill backward from point to the beginning of the line. The killed text is saved on the kill-ring.
+# In case you use zsh, you should add this line: bindkey \^U backward-kill-line to your .zshrc. See this. 
 
 # GENERAL
 
@@ -67,7 +79,7 @@ bindkey '\e[B' history-search-forward
 # brew zsh-autosuggestions rails jira vagrant ruby rake osx zsh-nvm 
 # zstyle :omz:plugins:ssh-agent identities bitbucket_ben
 
-# source $ZSH/oh-my-zsh.sh
+source $ZSH/oh-my-zsh.sh
 
 # User configuration
 
@@ -132,7 +144,7 @@ fi
 # fi
 
 # # fnm macOs
-FNM_PATH=$(which fnm)
+export FNM_PATH=$(which fnm)
 if [ -d "$FNM_PATH" ]; then
   export PATH=$FNM_PATH:$PATH
   eval "`fnm env`"
