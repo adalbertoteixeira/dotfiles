@@ -44,7 +44,6 @@ macOS:
 	source ~/.zshrc
 	sh -c "$(curl -fsSL https://raw.githubusercontent.com/ohmyzsh/ohmyzsh/master/tools/install.sh)"
 	curl -sL --proto-redir -all,https https://raw.githubusercontent.com/zplug/installer/master/installer.zsh | zsh
-	git clone https://github.com/zsh-users/zsh-syntax-highlighting.git (HOME)/.oh-my-zsh/custom/plugins/zsh-syntax-highlighting
 	git clone https://github.com/denysdovhan/spaceship-prompt.git "$ZSH_CUSTOM/themes/spaceship-prompt" --depth=1
 	zplug install
 	curl --proto '=https' --tlsv1.2 -sSf https://sh.rustup.rs | sh
