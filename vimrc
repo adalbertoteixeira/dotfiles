@@ -33,26 +33,34 @@ Plug 'tpope/vim-dadbod'
 Plug 'kristijanhusak/vim-dadbod-ui'
 Plug 'nvim-treesitter/nvim-treesitter', {'do': ':TSUpdate'}
 
+" Color schemes
+Plug 'navarasu/onedark.nvim'
 Plug 'morhetz/gruvbox'
-Plug 'https://github.com/ryanoasis/vim-devicons'
+
 Plug 'https://github.com/adelarsq/vim-devicons-emoji'
 Plug 'jxnblk/vim-mdx-js'
 Plug 'maxmellon/vim-jsx-pretty'
 Plug 'jiangmiao/auto-pairs'
 Plug 'cakebaker/scss-syntax.vim'
 Plug 'chr4/nginx.vim'
+Plug 'mechatroner/rainbow_csv'
 " Plug 'elzr/vim-json'
-Plug 'scrooloose/nerdcommenter'
+" Plug 'scrooloose/nerdcommenter'
+Plug 'numToStr/Comment.nvim'
 Plug 'jparise/vim-graphql'
 Plug 'editorconfig/editorconfig-vim'
 " Plug 'preservim/vim-markdown'
-Plug 'iamcco/markdown-preview.nvim', { 'do': 'cd app && npx --yes yarn install' }
+" Plug 'iamcco/markdown-preview.nvim', { 'do': 'cd app && npx --yes yarn install' }
 " Plug 'rcarriga/nvim-notify'
 Plug 'lukas-reineke/indent-blankline.nvim'
 " Plug 'preservim/vim-indent-guides'
 
 " Plug 'folke/noice.nvim'
-" Plug 'folke/trouble.nvim'
+Plug 'folke/trouble.nvim'
+
+
+" Always load the vim-devicons as the very last one.
+Plug 'https://github.com/ryanoasis/vim-devicons'
 " Plug 'folke/todo-comments.nvim'
 " Plug 'catppuccin/nvim', { 'as': 'catppuccin' }
 
@@ -116,7 +124,6 @@ let g:coc_global_extensions = [
   \ 'coc-fzf-preview',
   \ 'coc-yaml',
   \ 'coc-sh',
-  \ 'coc-snippets',
   \ 'coc-sql',
   \ 'coc-svg',
   \ 'coc-stylelint',
@@ -130,6 +137,7 @@ let g:vim_svelte_plugin_use_typescript = 1
 let g:vim_svelte_plugin_use_sass = 1
 =======
   \ ]
+  " \ 'coc-snippets',
   " \ 'coc-biome'
   " \ 'coc-eslint', 
 
@@ -280,11 +288,8 @@ set formatoptions=qrn1
 
 let g:gruvbox_italic=1
 set background=dark 
-" colorscheme catppuccin
-" colorscheme nordfox
-" colorscheme catppuccin-mocha
-" colorscheme nightfox
 silent! colorscheme  gruvbox
+" colorscheme onedark
 "Use 24-bit (true-color) mode in Vim/Neovim when outside tmux.
 "If you're using tmux version 2.2 or later, you can remove the outermost $TMUX check and use tmux's 24-bit color support
 "(see < http://sunaku.github.io/tmux-24bit-color.html#usage > for more information.)
@@ -322,6 +327,33 @@ set noswapfile
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " => Text, tab and indent related
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+lua <<EOF
+local highlight = {
+    "RainbowRed",
+    "RainbowYellow",
+    "RainbowBlue",
+    "RainbowOrange",
+    "RainbowGreen",
+    "RainbowViolet",
+    "RainbowCyan",
+}
+
+local hooks = require "ibl.hooks"
+-- create the highlight groups in the highlight setup hook, so they are reset
+-- every time the colorscheme changes
+hooks.register(hooks.type.HIGHLIGHT_SETUP, function()
+    vim.api.nvim_set_hl(0, "RainbowRed", { fg = "#E06C75" })
+    vim.api.nvim_set_hl(0, "RainbowYellow", { fg = "#E5C07B" })
+    vim.api.nvim_set_hl(0, "RainbowBlue", { fg = "#61AFEF" })
+    vim.api.nvim_set_hl(0, "RainbowOrange", { fg = "#D19A66" })
+    vim.api.nvim_set_hl(0, "RainbowGreen", { fg = "#98C379" })
+    vim.api.nvim_set_hl(0, "RainbowViolet", { fg = "#C678DD" })
+    vim.api.nvim_set_hl(0, "RainbowCyan", { fg = "#56B6C2" })
+end)
+
+require("ibl").setup { indent = { highlight = highlight } }
+EOF
+
 let g:indent_guides_enable_on_vim_startup = 1
 " Use spaces instead of tabs
 set expandtab
@@ -401,11 +433,11 @@ set laststatus=2
 "set statusline+=%#warningmsg#
 "set statusline+=%*
 """"""""""""""""""""""""""""""
-" => nerdcommenter
+" => nerdcommenter / Commnet.vim
 """"""""""""""""""""""""""""""
-let NERDSpaceDelims = 1
-" let g:NERDAltDelims_javascript = 1
-" let g:NERDCustomDelimiters = { 'c': { 'left': '/**','right': '*/' } }
+" let NERDSpaceDelims = 1
+lua require('Comment').setup()
+lua require('Trouble').setup()
 
 """"""""""""""""""""""""""""""
 " => NERDTree
@@ -476,7 +508,7 @@ let g:ale_fix_on_save = 1
 let g:ale_lint_on_text_changed = 1
 let g:ale_lint_on_insert_leave = 1
 let g:ale_set_loclist = 0
-let g:ale_set_quickfix = 1
+let g:ale_set_quickfix = 0
 let g:ale_set_highlights = 1
 let g:ale_set_signs = 1
 let g:ale_open_list = 1

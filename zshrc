@@ -1,7 +1,37 @@
-# If you come from bash you might have to change your $PATH.
-# source ~/.bash_profile
-# [ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh"  # This loads nvm
-# [ -s "$NVM_DIR/bash_completion" ] && \. "$NVM_DIR/bash_completion"  # This loads nvm bash_completion
+export ZSH="$HOME/.oh-my-zsh"
+# AUTOCOMPLETION
+
+# # initialize autocompletion
+# autoload -U compinit && compinit
+#
+# # history setup
+# setopt SHARE_HISTORY
+# HISTFILE=$HOME/.zhistory
+# SAVEHIST=1000
+# HISTSIZE=999
+# setopt HIST_EXPIRE_DUPS_FIRST
+
+# autocompletion using arrow keys (based on history)
+# bindkey '\e[A' history-search-backward
+# bindkey '\e[B' history-search-forward
+
+# bindkey '^H' backward-kill-word
+# bindkey '5~' kill-word
+# WORDCHARS='~!#$%^&*(){}[]<>?.+;-'
+# bindkey $'\E[1;5D' vi-backward-blank-word
+# bindkey $'\E[1;5C' vi-forward-blank-word
+
+# How to delete from current position to the beginning of the line
+# Use Ctrl+U
+# unix-line-discard (C-u) Kill backward from point to the beginning of the line. The killed text is saved on the kill-ring.
+# In case you use zsh, you should add this line: bindkey \^U backward-kill-line to your .zshrc. See this. 
+
+# GENERAL
+
+# (bonus: Disable sound errors in Zsh)
+
+# never beep
+# setopt NO_BEEP
 
 # Uncomment the following line to use case-sensitive completion.
 # CASE_SENSITIVE="true"
@@ -45,9 +75,9 @@
 # Custom plugins may be added to ~/.oh-my-zsh/custom/plugins/
 # Example format: plugins=(rails git textmate ruby lighthouse)
 # Add wisely, as too many plugins slow down shell startup.
-plugins=(git git-extras npm yarn zsh-syntax-highlighting ssh-agent rust)
+# plugins=(git git-extras npm yarn zsh-syntax-highlighting ssh-agent rust)
 # brew zsh-autosuggestions rails jira vagrant ruby rake osx zsh-nvm 
-zstyle :omz:plugins:ssh-agent identities bitbucket_ben
+# zstyle :omz:plugins:ssh-agent identities bitbucket_ben
 
 source $ZSH/oh-my-zsh.sh
 
@@ -98,6 +128,8 @@ if command -v rbenv > /dev/null 2>&1; then eval "$(rbenv init - zsh)"; fi
 # eval "$(~/.rbenv/bin/rbenv init - zsh)"
 fpath+=${ZDOTDIR:-~}/.zsh_functions
 if command -v pyenv 1>/dev/null 2>&1; then
+  export PYENV_ROOT="$HOME/.pyenv"
+  [[ -d $PYENV_ROOT/bin ]] && export PATH="$PYENV_ROOT/bin:$PATH"
   eval "$(pyenv init -)"
 fi
 
@@ -112,12 +144,10 @@ fi
 # fi
 
 # # fnm macOs
-FNM_PATH="/Users/adalbertoteixeira/Library/Application Support/fnm"
+export FNM_PATH=$(which fnm)
 if [ -d "$FNM_PATH" ]; then
-  export PATH="/Users/adalbertoteixeira/Library/Application Support/fnm:$PATH"
+  export PATH=$FNM_PATH:$PATH
   eval "`fnm env`"
-  eval "$(fnm env --use-on-cd)"
+  eval "$(fnm env --use-on-cd --shell zsh)"
 fi
-export PYENV_ROOT="$HOME/.pyenv"
-[[ -d $PYENV_ROOT/bin ]] && export PATH="$PYENV_ROOT/bin:$PATH"
-eval "$(pyenv init -)"
+source /opt/homebrew/share/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh
