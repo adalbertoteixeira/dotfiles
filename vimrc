@@ -16,11 +16,12 @@ endif
 set rtp+=/opt/homebrew/opt/fzf
 
 call plug#begin() 
+
 Plug 'tpope/vim-fugitive'
+
 Plug 'vim-airline/vim-airline'
 Plug 'vim-airline/vim-airline-themes'
 Plug 'junegunn/gv.vim'
-Plug 'junegunn/fzf', { 'do': { -> fzf#install() } }
 Plug 'junegunn/fzf.vim'
 Plug 'scrooloose/nerdtree'
 Plug 'dense-analysis/ale'
@@ -28,10 +29,8 @@ Plug 'tpope/vim-surround'
 Plug 'airblade/vim-gitgutter'
 Plug 'burntsushi/ripgrep',
 Plug 'tpope/vim-obsession'
-Plug 'neoclide/coc.nvim', {'branch': 'release'}
 Plug 'tpope/vim-dadbod'
 Plug 'kristijanhusak/vim-dadbod-ui'
-Plug 'nvim-treesitter/nvim-treesitter', {'do': ':TSUpdate'}
 
 " Color schemes
 Plug 'navarasu/onedark.nvim'
@@ -60,60 +59,31 @@ Plug 'folke/trouble.nvim'
 
 
 " Always load the vim-devicons as the very last one.
-Plug 'https://github.com/ryanoasis/vim-devicons'
-" Plug 'folke/todo-comments.nvim'
+" Plug 'https://github.com/ryanoasis/vim-devicons'
+Plug 'folke/todo-comments.nvim'
+Plug 'nvim-tree/nvim-web-devicons' "or Plug 'echasnovski/mini.icons'
+
+" Avante
+" Deps
+Plug 'stevearc/dressing.nvim'
+Plug 'nvim-lua/plenary.nvim'
+Plug 'MunifTanjim/nui.nvim'
+
+" Optional deps
+" Plug 'HakonHarnes/img-clip.nvim'
+" Plug 'zbirenbaum/copilot.lua'
+
+" Yay, pass source=true if you want to build from source
+Plug 'yetone/avante.nvim', { 'branch': 'main', 'do': 'make' }
 " Plug 'catppuccin/nvim', { 'as': 'catppuccin' }
 
+Plug 'junegunn/fzf', { 'do': { -> fzf#install() } }
+Plug 'neoclide/coc.nvim', {'branch': 'release'}
+Plug 'nvim-treesitter/nvim-treesitter', {'do': ':TSUpdate'}
 
-" Plug 'EdenEast/nightfox.nvim' 
-" Plug 'leafgarland/typescript-vim'
-" Plugin 'sickill/vim-monokai'
-" Plugin 'crusoexia/vim-monokai'
-" Plugin 'tomasr/molokai'
-" Plugin 'dracula/vim', { 'name': 'dracula'  }
-" Plugin 'altercation/vim-colors-solarized'
-" Plug 'Yggdroot/indentLine'
-" Plugin 'chriskempson/base16-vim'
-" Plug 'junegunn/fzf.vim'
-" Plug 'ms-jpq/chadtree', {'branch': 'chad', 'do': 'python3 -m chadtree deps'}
-" Plugin 'Xuyuanp/nerdtree-git-plugin'
-" Plug 'valloric/youcompleteme', { 'do': './install.py  --clang-completer --rust-completer --ts-completer' }
-" Plug 'pangloss/vim-javascript'
-" Plugin 'mxw/vim-jsx'
-" Plug 'stephpy/vim-yaml'
-" Plugin 'chr4/sslsecure.vim'
-" Plugin 'lervag/vimtex'
-" Plugin 'cespare/vim-toml'
-" Plugin 'digitaltoad/vim-pug'
-" Plugin 'heavenshell/vim-jsdoc'
-" Plug 'rust-lang/rust.vim'
-" Plug 'xolox/vim-notes'
-" Plug 'xolox/vim-misc'
-" Plugin 'itchyny/lightline.vim'
-" Plug 'github/copilot.vim'
-" Plug 'rafamadriz/friendly-snippets'
-"
-" Plugin 'othree/html5.vim'
-" Plugin 'honza/vim-snippets'
-
-" Plugin 'reewr/vim-monokai-phoenix'
-" Plugin 'godlygeek/tabular'
-" Plugin 'jamshedvesuna/vim-markdown-preview'
-" Plugin 'junegunn/vim-emoji'
-" Plugin 'KeitaNakamura/tex-conceal.vim'
-" Plugin 'fatih/vim-go'
-" Plugin 'LaTeX-Box-Team/LaTeX-Box'
-" Plugin 'peitalin/vim-jsx-typescript'
 call plug#end()
 
 filetype plugin indent on
-"
-" Brief help
-" :PluginList       - lists configured plugins
-" :PluginInstall    - installs plugins; append `!` to update or just :PluginUpdate
-" :PluginSearch foo - searches for foo; append `!` to refresh local cache
-" :PluginClean      - confirms removal of unused plugins; append `!` to auto-approve removal
-"
 
 let g:coc_global_extensions = [
   \ 'coc-json',
@@ -134,6 +104,44 @@ let g:coc_global_extensions = [
   " \ 'coc-snippets',
   " \ 'coc-biome'
   " \ 'coc-eslint', 
+
+
+""""""""""""""""""""""""""""""
+" => NERDTree
+""""""""""""""""""""""""""""""
+nnoremap <leader>t :NERDTreeToggle<CR>
+nnoremap <leader>f :NERDTreeFind<CR>
+let NERDTreeShowHidden=1
+" How can I open a NERDTree automatically when vim starts up?
+" autocmd vimenter * NERDTree
+
+" How can I open a NERDTree automatically when vim starts up if no files were specified?
+" autocmd StdinReadPre * let s:std_in=1
+" autocmd VimEnter * if argc() == 0 && !exists("s:std_in") | NERDTree | endif
+
+" How can I open NERDTree automatically when vim starts up on opening a directory?
+" autocmd StdinReadPre * let s:std_in=1
+" autocmd VimEnter * if argc() == 1 && isdirectory(argv()[0]) && !exists("s:std_in") | exe 'NERDTree' argv()[0
+
+" How can I close vim if the only window left open is a NERDTree?
+" autocmd bufenter * if (winnr("$") == 1 && exists("b:NERDTree") && b:NERDTree.isTabTree()) | q | endif
+
+" Close the tab if NERDTree is the only window remaining in it.
+autocmd BufEnter * if winnr('$') == 1 && exists('b:NERDTree') && b:NERDTree.isTabTree() | quit | endif
+let g:NERDTreeWinSize = 55
+
+let g:NERDTreeIndicatorMapCustom = {
+    \ "Modified"  : "✹",
+    \ "Staged"    : "✚",
+    \ "Untracked" : "✭",
+    \ "Renamed"   : "➜",
+    \ "Unmerged"  : "═",
+    \ "Deleted"   : "✖",
+    \ "Dirty"     : "✗",
+    \ "Clean"     : "✔︎",
+    \ 'Ignored'   : '☒',
+    \ "Unknown"   : "?"
+    \ }
 
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " => General
@@ -160,14 +168,7 @@ set so=5
 " Avoid garbled characters in Chinese language windows OS
 let $LANG='en'
 set langmenu=en
-"source $VIMRUNTIME/delmenu.vim
-"source $VIMRUNTIME/menu.vim
 
-" Turn on the WiLd menu
-"set wildmenu
-
-" Ignore compiled files
-"set wildignore=*.o,*~,*.pyc
 set wildignore+=*/.git/*,*/.hg/*,*/.svn/*,*/.DS_Store
 
 " Height of the command bar
@@ -282,23 +283,6 @@ set formatoptions=qrn1
 let g:gruvbox_italic=1
 set background=dark 
 silent! colorscheme  gruvbox
-" colorscheme onedark
-"Use 24-bit (true-color) mode in Vim/Neovim when outside tmux.
-"If you're using tmux version 2.2 or later, you can remove the outermost $TMUX check and use tmux's 24-bit color support
-"(see < http://sunaku.github.io/tmux-24bit-color.html#usage > for more information.)
-" if (empty($TMUX) && getenv('TERM_PROGRAM') != 'Apple_Terminal')
-"   if (has("nvim"))
-"     "For Neovim 0.1.3 and 0.1.4 < https://github.com/neovim/neovim/pull/2198 >
-"     let $NVIM_TUI_ENABLE_TRUE_COLOR=1
-"   endif
-"   "For Neovim > 0.1.5 and Vim > patch 7.4.1799 < https://github.com/vim/vim/commit/61be73bb0f965a895bfb064ea3e55476ac175162 >
-"   "Based on Vim patch 7.4.1770 (`guicolors` option) < https://github.com/vim/vim/commit/8a633e3427b47286869aa4b96f2bfc1fe65b25cd >
-"   " < https://github.com/neovim/neovim/wiki/Following-HEAD#20160511 >
-"   if (has("termguicolors"))
-"     set termguicolors
-"   endif
-" endif
-
 " No need to set explicitly under Neovim: always uses UTF-8 as the default encoding.
 " Set utf8 as standard encoding and en_US as the standard language
 " set encoding=utf8
@@ -431,43 +415,74 @@ set laststatus=2
 " let NERDSpaceDelims = 1
 lua require('Comment').setup()
 lua require('Trouble').setup()
-
-""""""""""""""""""""""""""""""
-" => NERDTree
-""""""""""""""""""""""""""""""
-nnoremap <leader>t :NERDTreeToggle<CR>
-nnoremap <leader>f :NERDTreeFind<CR>
-let NERDTreeShowHidden=1
-" How can I open a NERDTree automatically when vim starts up?
-" autocmd vimenter * NERDTree
-
-" How can I open a NERDTree automatically when vim starts up if no files were specified?
-" autocmd StdinReadPre * let s:std_in=1
-" autocmd VimEnter * if argc() == 0 && !exists("s:std_in") | NERDTree | endif
-
-" How can I open NERDTree automatically when vim starts up on opening a directory?
-" autocmd StdinReadPre * let s:std_in=1
-" autocmd VimEnter * if argc() == 1 && isdirectory(argv()[0]) && !exists("s:std_in") | exe 'NERDTree' argv()[0
-
-" How can I close vim if the only window left open is a NERDTree?
-" autocmd bufenter * if (winnr("$") == 1 && exists("b:NERDTree") && b:NERDTree.isTabTree()) | q | endif
-
-" Close the tab if NERDTree is the only window remaining in it.
-autocmd BufEnter * if winnr('$') == 1 && exists('b:NERDTree') && b:NERDTree.isTabTree() | quit | endif
-let g:NERDTreeWinSize = 55
-
-let g:NERDTreeIndicatorMapCustom = {
-    \ "Modified"  : "✹",
-    \ "Staged"    : "✚",
-    \ "Untracked" : "✭",
-    \ "Renamed"   : "➜",
-    \ "Unmerged"  : "═",
-    \ "Deleted"   : "✖",
-    \ "Dirty"     : "✗",
-    \ "Clean"     : "✔︎",
-    \ 'Ignored'   : '☒',
-    \ "Unknown"   : "?"
-    \ }
+lua <<EOF 
+require('todo-comments').setup({
+{
+  signs = true, -- show icons in the signs column
+  sign_priority = 8, -- sign priority
+  -- keywords recognized as todo comments
+  keywords = {
+    FIX = {
+      icon = " ", -- icon used for the sign, and in search results
+      color = "error", -- can be a hex color, or a named color (see below)
+      alt = { "FIXME", "BUG", "FIXIT", "ISSUE" }, -- a set of other keywords that all map to this FIX keywords
+      -- signs = false, -- configure signs for some keywords individually
+    },
+    TODO = { icon = " ", color = "info", alt = { "@TODO" } },
+    HACK = { icon = " ", color = "warning" },
+    WARN = { icon = " ", color = "warning", alt = { "WARNING", "XXX" } },
+    PERF = { icon = " ", alt = { "OPTIM", "PERFORMANCE", "OPTIMIZE" } },
+    NOTE = { icon = " ", color = "hint", alt = { "INFO" } },
+    TEST = { icon = "⏲ ", color = "test", alt = { "TESTING", "PASSED", "FAILED" } },
+  },
+  gui_style = {
+    fg = "NONE", -- The gui style to use for the fg highlight group.
+    bg = "BOLD", -- The gui style to use for the bg highlight group.
+  },
+  merge_keywords = true, -- when true, custom keywords will be merged with the defaults
+  -- highlighting of the line containing the todo comment
+  -- * before: highlights before the keyword (typically comment characters)
+  -- * keyword: highlights of the keyword
+  -- * after: highlights after the keyword (todo text)
+  highlight = {
+    multiline = true, -- enable multine todo comments
+    multiline_pattern = "^.", -- lua pattern to match the next multiline from the start of the matched keyword
+    multiline_context = 10, -- extra lines that will be re-evaluated when changing a line
+    before = "", -- "fg" or "bg" or empty
+    keyword = "wide", -- "fg", "bg", "wide", "wide_bg", "wide_fg" or empty. (wide and wide_bg is the same as bg, but will also highlight surrounding characters, wide_fg acts accordingly but with fg)
+    after = "fg", -- "fg" or "bg" or empty
+    pattern = [[.*<(KEYWORDS)\s*:]], -- pattern or table of patterns, used for highlighting (vim regex)
+    comments_only = true, -- uses treesitter to match keywords in comments only
+    max_line_len = 400, -- ignore lines longer than this
+    exclude = {}, -- list of file types to exclude highlighting
+  },
+  -- list of named colors where we try to extract the guifg from the
+  -- list of highlight groups or use the hex color if hl not found as a fallback
+  colors = {
+    error = { "DiagnosticError", "ErrorMsg", "#DC2626" },
+    warning = { "DiagnosticWarn", "WarningMsg", "#FBBF24" },
+    info = { "DiagnosticInfo", "#2563EB" },
+    hint = { "DiagnosticHint", "#10B981" },
+    default = { "Identifier", "#7C3AED" },
+    test = { "Identifier", "#FF00FF" }
+  },
+  search = {
+    command = "rg",
+    args = {
+      "--color=never",
+      "--no-heading",
+      "--with-filename",
+      "--line-number",
+      "--column",
+    },
+    -- regex that will be used to match keywords.
+    -- don't replace the (KEYWORDS) placeholder
+    pattern = [[\b(KEYWORDS):]], -- ripgrep regex
+    -- pattern = [[\b(KEYWORDS)\b]], -- match without the extra colon. You'll likely get false positives
+  },
+}
+})
+EOF
 
 " """""""""""
 " " Lightline
@@ -709,3 +724,12 @@ nmap cp :let @" = expand("%:p")<cr>"
 
 :let g:python3_host_prog='/opt/homebrew/bin/python3.11'
 :let g:python_host_prog='/opt/homebrew/bin/python3.11'
+
+
+" Avante config
+
+autocmd! User avante.nvim
+lua <<EOF
+require('avante_lib').load()
+require('avante').setup()
+EOF
