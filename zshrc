@@ -119,7 +119,7 @@ zplug "wfxr/forgit"
 zplug load
 
 SNAP_PATH="/snap/bin"
-if [ -d "$SNAP_PATH" ]; then
+if [ -n "$SNAP_PATH" ]; then
   export PATH=$PATH:/snap/bin
 fi
 eval "$(starship init zsh)"
@@ -129,7 +129,7 @@ if command -v rbenv > /dev/null 2>&1; then eval "$(rbenv init - zsh)"; fi
 fpath+=${ZDOTDIR:-~}/.zsh_functions
 if command -v pyenv 1>/dev/null 2>&1; then
   export PYENV_ROOT="$HOME/.pyenv"
-  [[ -d $PYENV_ROOT/bin ]] && export PATH="$PYENV_ROOT/bin:$PATH"
+  [[ -n $PYENV_ROOT/bin ]] && export PATH="$PYENV_ROOT/bin:$PATH"
   eval "$(pyenv init -)"
 fi
 
@@ -145,9 +145,10 @@ fi
 
 # # fnm macOs
 export FNM_PATH=$(which fnm)
-if [ -d "$FNM_PATH" ]; then
+if [ -n "$FNM_PATH" ]; then
   export PATH=$FNM_PATH:$PATH
   eval "`fnm env`"
   eval "$(fnm env --use-on-cd --shell zsh)"
 fi
 source /opt/homebrew/share/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh
+export PATH="/opt/homebrew/sbin:$PATH"

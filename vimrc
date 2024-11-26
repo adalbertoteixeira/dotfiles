@@ -54,7 +54,7 @@ Plug 'editorconfig/editorconfig-vim'
 " Plug 'rcarriga/nvim-notify'
 Plug 'lukas-reineke/indent-blankline.nvim'
 " Plug 'preservim/vim-indent-guides'
-
+Plug 'hashivim/vim-terraform'
 " Plug 'folke/noice.nvim'
 Plug 'folke/trouble.nvim'
 
