@@ -72,7 +72,7 @@ git:
 
 .PHONY: dotfiles
 dotfiles:
-	ln -sf $(PWD)/vimrc $(HOME)/.vimrc
+	# ln -sf $(PWD)/vimrc $(HOME)/.vimrc
 	ln -sf $(PWD)/path $(HOME)/.path
 	ln -sf $(PWD)/tmux.conf $(HOME)/.tmux.conf
 	ln -sf $(PWD)/zprofile $(HOME)/.zprofile
@@ -88,17 +88,20 @@ dotfiles:
 	mkdir -p $(HOME)/.vim/
 	mkdir -p $(HOME)/.vim/plugins
 	mkdir -p $(HOME)/.nvim/plugins
-	# for i in  $(PWD)/ftplugin/*; do ln -sf $i $(HOME)/.vim/ftplugin/; done;
-
-
-	# for i in  $(PWD)/ftplugin/*; do ln -sf $i $(HOME)/.vim/ftplugin/; done;
-	# mkdir -p $(HOME)/.vim/lua
-	#for i in  $(PWD)/lua/*; do ln -sf $i $(HOME)/.vim/lua/; done;
+	ln -sf $(PWD)/nvim/init.lua $(HOME)/.config/nvim/
+	ln -sf $(PWD)/nvim/coc-settings.json $(HOME)/.config/nvim/
+	ln -sf $(PWD)/nvim/init.lua $(HOME)/.config/nvim/
+	mkdir -p $(HOME)/.config/lua/config/plugins/
+	ln -sf $(PWD)/nvim/lua/config/lazy.lua $(HOME)/.config/nvim/lua/config
+	mkdir -p $(HOME)/.config/nvim/ftplugin/
+	for i in  $(PWD)/ftplugin/*; do ln -sf $i $(HOME)/.config/nvim/ftplugin/; done;
+	mkdir -p $(HOME)/.config/nvim/after/
+	for i in  $(PWD)/ftplugin/*; do ln -sf $i $(HOME)/.config/nvim/after/; done;
 
 
 .PHONY: dotfiles-ubuntu
 dotfiles-ubuntu:
-	ln -sf $(PWD)/vimrc $(HOME)/.vimrc
+	# ln -sf $(PWD)/vimrc $(HOME)/.vimrc
 	ln -sf $(PWD)/path $(HOME)/.path
 	ln -sf $(PWD)/tmux.conf $(HOME)/.tmux.conf
 	ln -sf $(PWD)/zprofile $(HOME)/.zprofile
@@ -118,6 +121,15 @@ dotfiles-ubuntu:
 	for i in  $(PWD)/ftplugin/*; do ln -sf $i $(HOME)/.config/nvim/ftplugin/; done;
 	mkdir -p $(HOME)/.nvim/lua
 	for i in  $(PWD)/lua/*; do ln -sf $i $(HOME)/.config/nvim/lua/; done;
+	ln -sf $(PWD)/nvim/init.lua $(HOME)/.config/nvim/
+	ln -sf $(PWD)/nvim/coc-settings.json $(HOME)/.config/nvim/
+	ln -sf $(PWD)/nvim/init.lua $(HOME)/.config/nvim/
+	mkdir -p $(HOME)/.config/lua/config/plugins/
+	ln -sf $(PWD)/nvim/lua/config/lazy.lua $(HOME)/.config/nvim/lua/config
+	mkdir -p $(HOME)/.config/nvim/ftplugin/
+	for i in  $(PWD)/ftplugin/*; do ln -sf $i $(HOME)/.config/nvim/ftplugin/; done;
+	mkdir -p $(HOME)/.config/nvim/after/
+	for i in  $(PWD)/ftplugin/*; do ln -sf $i $(HOME)/.config/nvim/after/; done;
 
 .PHONY: ohmyzsh
 ohmyzsh:

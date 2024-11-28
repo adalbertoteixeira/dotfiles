@@ -208,10 +208,12 @@ nnoremap / /\v
 "set clipboard="
 set clipboard=unnamed
 
+" NOTE: not migrated
 set foldcolumn=1
 " Keys
 nnoremap <leader>a :ALELint<CR>
 
+" NOTE: not migrated
 " fzfz-preview
 nmap <Leader>z [fzf-p]
 xmap <Leader>z [fzf-p]
@@ -282,7 +284,7 @@ set formatoptions=qrn1
 
 let g:gruvbox_italic=1
 set background=dark 
-silent! colorscheme  gruvbox
+silent! colorscheme onedark 
 " No need to set explicitly under Neovim: always uses UTF-8 as the default encoding.
 " Set utf8 as standard encoding and en_US as the standard language
 " set encoding=utf8
