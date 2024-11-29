@@ -95,8 +95,9 @@ dotfiles:
 	ln -sf $(PWD)/nvim/init.lua $(HOME)/.config/nvim/
 	ln -sf $(PWD)/nvim/coc-settings.json $(HOME)/.config/nvim/
 	ln -sf $(PWD)/nvim/init.lua $(HOME)/.config/nvim/
+	mkdir ~/.config/nvim/lua/config
 	mkdir -p $(HOME)/.config/lua/config/plugins/
-	ln -sf $(PWD)/nvim/lua/config/lazy.lua $(HOME)/.config/nvim/lua/config
+	ln -sf $(PWD)/nvim/lua/config/lazy.lua $HOME/.config/nvim/lua/config/lazy.lua
 	mkdir -p $(HOME)/.config/nvim/ftplugin/
 	for i in  $(PWD)/ftplugin/*; do ln -sf $i $(HOME)/.config/nvim/ftplugin/; done;
 	mkdir -p $(HOME)/.config/nvim/after/
@@ -128,8 +129,9 @@ dotfiles-ubuntu:
 	ln -sf $(PWD)/nvim/init.lua $(HOME)/.config/nvim/
 	ln -sf $(PWD)/nvim/coc-settings.json $(HOME)/.config/nvim/
 	ln -sf $(PWD)/nvim/init.lua $(HOME)/.config/nvim/
+	mkdir ~/.config/nvim/lua/config
 	mkdir -p $(HOME)/.config/lua/config/plugins/
-	ln -sf $(PWD)/nvim/lua/config/lazy.lua $(HOME)/.config/nvim/lua/config
+	ln -sf $(PWD)/nvim/lua/config/lazy.lua $HOME/.config/nvim/lua/config/lazy.lua
 	mkdir -p $(HOME)/.config/nvim/ftplugin/
 	for i in  $(PWD)/ftplugin/*; do ln -sf $i $(HOME)/.config/nvim/ftplugin/; done;
 	mkdir -p $(HOME)/.config/nvim/after/
