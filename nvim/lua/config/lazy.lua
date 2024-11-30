@@ -37,7 +37,6 @@ require("lazy").setup({
                 },
 { 'vim-airline/vim-airline-themes' },
 { 'junegunn/gv.vim' },
-{ 'junegunn/fzf.vim' },
 { 'dense-analysis/ale',
  config = function()
         -- Configuration goes here.
@@ -135,16 +134,17 @@ require("lazy").setup({
     },
   },
 },
-{
-  "ibhagwan/fzf-lua",
-  -- optional for icon support
-  dependencies = { "nvim-tree/nvim-web-devicons" },
-  config = function()
-    -- calling `setup` is optional for customization
-    require("fzf-lua").setup({})
-  end
-},
-{ "junegunn/fzf", build = "./install --bin" },
+-- {
+--   "ibhagwan/fzf-lua",
+--   -- optional for icon support
+--   dependencies = { "nvim-tree/nvim-web-devicons" },
+--   config = function()
+--     -- calling `setup` is optional for customization
+--     require("fzf-lua").setup({})
+--   end
+-- },
+-- { "junegunn/fzf", build = "./install --bin" },
+-- { 'junegunn/fzf.vim' },
 {'neoclide/coc.nvim', branch = 'release'},
 {"nvim-treesitter/nvim-treesitter", build = ":TSUpdate",
 config = function () 
@@ -178,7 +178,12 @@ config = function ()
     -- or leave it empty to use the default settings
     -- refer to the configuration section below
   }
-}
+},
+        {
+    'nvim-telescope/telescope.nvim', tag = '0.1.8',
+-- or                              , branch = '0.1.x',
+      dependencies = { 'nvim-lua/plenary.nvim' }
+    }
  
   },
   -- Configure any other settings here. See the documentation for more details.

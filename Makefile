@@ -4,7 +4,7 @@ all: yarn go dotfiles vimubuntu zshubuntu ohmyzshubuntu
 .PHONY: ubuntu
 ubuntu:
 	mkdir -p $(HOME)/.config/
-	sudo apt-get install -y bat make zsh git unzip autoconf patch build-essential libssl-dev libyaml-dev libreadline6-dev zlib1g-dev libgmp-dev libncurses5-dev libffi-dev libgdbm6 libgdbm-dev libdb-dev uuid-dev ripgrep fzf bat make zsh git patch ripgrep snapd install 
+	sudo apt-get install -y bat make zsh git unzip autoconf patch build-essential libssl-dev libyaml-dev libreadline6-dev zlib1g-dev libgmp-dev libncurses5-dev libffi-dev libgdbm6 libgdbm-dev libdb-dev uuid-dev ripgrep fzf bat make zsh git patch ripgrep snapdapt fd-find
 	sudo locale-gen pt_PT.UTF-8 && sudo locale-gen en_GB.UTF-8
 	sudo apt install zsh
 	zsh --version
@@ -39,7 +39,7 @@ rust:
 
 .PHONY: macOS
 macOS:
-	brew install diff-so-fancy bat fzf
+	brew install diff-so-fancy bat fzf fd
 	make git
 	cd ~
 	/bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/HEAD/install.sh)"
