@@ -6,5 +6,6 @@
       "filetypes": ["terraform", "tf"],
       "initializationOptions": {}
     }
-  }
+  },
+  "svelte.enable-ts-plugin": false
 }

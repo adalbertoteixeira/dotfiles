@@ -43,7 +43,7 @@ threshold = 4
 [memory_usage]
 # disabled = false
 
-# [package]
+[package]
 format = "via [🎁 $version](208 bold) "
 
 

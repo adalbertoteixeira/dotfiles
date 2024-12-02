@@ -4,7 +4,7 @@ all: yarn go dotfiles vimubuntu zshubuntu ohmyzshubuntu
 .PHONY: ubuntu
 ubuntu:
 	mkdir -p $(HOME)/.config/
-	sudo apt install -y bat make zsh git patch ripgrep snapd install python3-neovim
+	sudo apt-get install -y bat make zsh git unzip autoconf patch build-essential libssl-dev libyaml-dev libreadline6-dev zlib1g-dev libgmp-dev libncurses5-dev libffi-dev libgdbm6 libgdbm-dev libdb-dev uuid-dev ripgrep fzf bat make zsh git patch ripgrep snapdapt fd-find
 	sudo locale-gen pt_PT.UTF-8 && sudo locale-gen en_GB.UTF-8
 	sudo apt install zsh
 	zsh --version
@@ -18,7 +18,6 @@ ubuntu:
 	make dotfiles
 	rm -rf $(HOME)/.zplug
 	curl -sL --proto-redir -all,https https://raw.githubusercontent.com/zplug/installer/master/installer.zsh | zsh
-	zplug 'wfxr/forgit'
 	mkdir -p $(HOME)/.ssh
 	source $(HOME)/.zshrc
 	curl -fsSL https://fnm.vercel.app/install | bash
@@ -26,6 +25,10 @@ ubuntu:
 	# echo 'export PATH="/root/.local/share/fnm:$PATH"' >> $(HOME)/dotfiles/extra
 	# git clone https://github.com/rbenv/ruby-build.git "$(rbenv root)"/plugins/ruby-build
 	sudo snap install zellij --classic
+	zplug 'wfxr/forgit'
+	# fix bat alias
+	mkdir -p ~/.local/bin
+	ln -s /usr/bin/batcat ~/.local/bin/bat
 	sudo snap install --beta nvim --classic 
 	echo "Configure neovim to use vim's config: https://neovim.io/doc/user/nvim.html#nvim-from-vim"
 
@@ -36,6 +39,7 @@ rust:
 
 .PHONY: macOS
 macOS:
+	brew install diff-so-fancy bat fzf fd
 	make git
 	cd ~
 	/bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/HEAD/install.sh)"
@@ -91,8 +95,9 @@ dotfiles:
 	ln -sf $(PWD)/nvim/init.lua $(HOME)/.config/nvim/
 	ln -sf $(PWD)/nvim/coc-settings.json $(HOME)/.config/nvim/
 	ln -sf $(PWD)/nvim/init.lua $(HOME)/.config/nvim/
+	mkdir ~/.config/nvim/lua/config
 	mkdir -p $(HOME)/.config/lua/config/plugins/
-	ln -sf $(PWD)/nvim/lua/config/lazy.lua $(HOME)/.config/nvim/lua/config
+	ln -sf $(PWD)/nvim/lua/config/lazy.lua $HOME/.config/nvim/lua/config/lazy.lua
 	mkdir -p $(HOME)/.config/nvim/ftplugin/
 	for i in  $(PWD)/ftplugin/*; do ln -sf $i $(HOME)/.config/nvim/ftplugin/; done;
 	mkdir -p $(HOME)/.config/nvim/after/
@@ -124,8 +129,9 @@ dotfiles-ubuntu:
 	ln -sf $(PWD)/nvim/init.lua $(HOME)/.config/nvim/
 	ln -sf $(PWD)/nvim/coc-settings.json $(HOME)/.config/nvim/
 	ln -sf $(PWD)/nvim/init.lua $(HOME)/.config/nvim/
+	mkdir ~/.config/nvim/lua/config
 	mkdir -p $(HOME)/.config/lua/config/plugins/
-	ln -sf $(PWD)/nvim/lua/config/lazy.lua $(HOME)/.config/nvim/lua/config
+	ln -sf $(PWD)/nvim/lua/config/lazy.lua $HOME/.config/nvim/lua/config/lazy.lua
 	mkdir -p $(HOME)/.config/nvim/ftplugin/
 	for i in  $(PWD)/ftplugin/*; do ln -sf $i $(HOME)/.config/nvim/ftplugin/; done;
 	mkdir -p $(HOME)/.config/nvim/after/

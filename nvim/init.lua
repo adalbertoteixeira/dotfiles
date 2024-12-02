@@ -65,26 +65,10 @@ vim.api.nvim_set_keymap('n', '<leader>aj', ':ALENext<CR>', {noremap = true, sile
 -- let g:ale_sign_error = '>>'
 -- let g:ale_sign_warning = '--'
 
-vim.api.nvim_set_keymap('n', '<leader>zz', ':<C-u>CocCommand fzf-preview.ProjectFiles<CR>', {noremap
-        = true, silent = true})
-
-vim.api.nvim_set_keymap('n', '<leader>zb', ':<C-u>CocCommand fzf-preview.Buffers<CR>', {noremap =
-        true, silent = true})
-vim.api.nvim_set_keymap('n', '<leader>zB', ':<C-u>CocCommand fzf-preview.AllBuffers<CR>', {noremap = true, silent = true})
-vim.api.nvim_set_keymap('n', '<leader>zp', ':<C-u>CocCommand fzf-preview.FromResources project_mru git<CR>', {noremap = true, silent = true})
-vim.api.nvim_set_keymap('n', '<leader>zg', 's    :<C-u>CocCommand fzf-preview.GitStatus<CR>', {noremap = true, silent = true})
-vim.api.nvim_set_keymap('n', '<leader>zg', 'a    :<C-u>CocCommand fzf-preview.GitActions<CR>', {noremap = true, silent = true})
-vim.api.nvim_set_keymap('n', '<leader>zo', ':<C-u>CocCommand fzf-preview.FromResources buffer project_mru<CR>', {noremap = true, silent = true})
-vim.api.nvim_set_keymap('n', '<leader>z', '<C-o> :<C-u>CocCommand fzf-preview.Jumps<CR>', {noremap = true, silent = true})
-vim.api.nvim_set_keymap('n', '<leader>zg', ';    :<C-u>CocCommand fzf-preview.Changes<CR>', {noremap = true, silent = true})
-vim.api.nvim_set_keymap('n', '<leader>z/', ':<C-u>CocCommand fzf-preview.Lines --add-fzf-arg=--no-sort --add-fzf-arg=--query="\'"<CR>', {noremap = true, silent = true})
-vim.api.nvim_set_keymap('n', '<leader>z*', ':<C-u>CocCommand fzf-preview.Lines --add-fzf-arg=--no-sort --add-fzf-arg=--query="\'<C-r>=expand(\'<cword>\')<CR>"<CR>', {noremap = true, silent = true})
-vim.api.nvim_set_keymap('n', '<leader>zgr', ':<C-u>CocCommand fzf-preview.ProjectGrep<Space>', {noremap = true})
--- vim.api.nvim_set_keymap('n', '<leader>zgr', '"sy:CocCommand fzf-preview.ProjectGrep<Space>-F<Space>"<C-r>=substitute(substitute(@s, \'\n\', \'\', \'g\'), \'/\', \'\\/\', \'g\')<CR>"', {noremap = true})
-vim.api.nvim_set_keymap('n', '<leader>zt', ':<C-u>CocCommand fzf-preview.BufferTags<CR>', {noremap = true, silent = true})
-vim.api.nvim_set_keymap('n', '<leader>zq', ':<C-u>CocCommand fzf-preview.QuickFix<CR>', {noremap = true, silent = true})
-vim.api.nvim_set_keymap('n', '<leader>zl', ':<C-u>CocCommand fzf-preview.LocationList<CR>', {noremap = true, silent = true})
-
+vim.api.nvim_set_keymap('n', '<leader>ff', ':Telescope find_files<CR>', {noremap = true})
+vim.api.nvim_set_keymap('n', '<leader>fg', ':Telescope live_grep<CR>', {noremap = true})
+vim.api.nvim_set_keymap('n', '<leader>fb', ':Telescope buffers<CR>', {noremap = true})
+vim.api.nvim_set_keymap('n', '<leader>fh', ':Telescope help_tags<CR>', {noremap = true})
 -- " This is the default extra key bindings
 -- " let g:fzf_action = {
 -- "   \ 'ctrl-t': 'tab split',

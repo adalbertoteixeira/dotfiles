@@ -150,5 +150,6 @@ if [ -n "$FNM_PATH" ]; then
   eval "`fnm env`"
   eval "$(fnm env --use-on-cd --shell zsh)"
 fi
-source /opt/homebrew/share/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh
-export PATH="/opt/homebrew/sbin:$PATH"
+# source /opt/homebrew/share/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh
+source /usr/share/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh
+# export PATH="/opt/homebrew/sbin:$PATH"
