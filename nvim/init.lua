@@ -7,13 +7,13 @@ vim.g.maplocalleader = ","
 require("config.lazy")
 
 -- Toggle Neotree
-vim.api.nvim_set_keymap('n', '<leader>nt', ':Neotree toggle<cr>', {noremap = true})
+vim.api.nvim_set_keymap('n', '<leader>tt', ':Neotree toggle<cr>', {noremap = true})
 -- Open Neotree at current file
-vim.api.nvim_set_keymap('n', '<leader>nf', ':Neotree %<cr>', {noremap = true})
+vim.api.nvim_set_keymap('n', '<leader>tf', ':Neotree %<cr>', {noremap = true})
 -- Open Neotree git status
-vim.api.nvim_set_keymap('n', '<leader>ng', ':Neotree git_status<cr>', {noremap = true})
+vim.api.nvim_set_keymap('n', '<leader>tg', ':Neotree git_status<cr>', {noremap = true})
 -- Open Neotree at current file
-vim.api.nvim_set_keymap('n', '<leader>nb', ':Neotree buffers<cr>', {noremap = true})
+vim.api.nvim_set_keymap('n', '<leader>tb', ':Neotree buffers<cr>', {noremap = true})
 
 vim.cmd('filetype plugin indent on')
 vim.cmd('colorscheme onedark')
@@ -238,6 +238,8 @@ vim.o.spell=true
 -- autocmd BufNewFile,BufRead *.mts :set filetype=typescript
 --
 --
+vim.api.nvim_set_keymap("n", '<leader>hk', ':GitGutterPrevHunk<CR>', {noremap=true})
+vim.api.nvim_set_keymap("n", '<leader>hj', ':GitGutterNextHunk<CR>', {noremap=true})
 -- nmap <Leader>hp <Plug>(GitGutterPrevHunk)
 -- nmap <Leader>hn <Plug>(GitGutterNextHunk)
 -- inoremap <c-x><c-k> <c-x><c-k>
