@@ -128,7 +128,7 @@ require("lazy").setup({
       -- Make sure to set this up properly if you have lazy=true
       'MeanderingProgrammer/render-markdown.nvim',
       opts = {
-        file_types = { "markdown", "Avante" },
+        file_types = { "markdown", "Avante" }
       },
       ft = { "markdown", "Avante" },
     },
@@ -322,4 +322,9 @@ telescope.setup({
 			find_command = { "rg", "--files", "--hidden", "--glob", "!**/.git/*" },
 		},
 	},
+})
+require('render-markdown').setup({
+    latex = {
+        enabled = false,
+    },
 })

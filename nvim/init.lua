@@ -1,3 +1,6 @@
+vim.g.loaded_perl_provider = 0
+-- vim.o.rocks.enabled = false
+
 -- Make sure to setup `mapleader` and `maplocalleader` BEFORE
 -- loading lazy.nvim so that mappings are correct.
 -- This is also a good place to setup other settings (vim.opt)
@@ -57,9 +60,11 @@ vim.o.clipboard = 'unnamed'
 vim.api.nvim_set_keymap('n', '/', '/\\v', {noremap = true})
 
 -- ALE
+vim.g.ale_use_neovim_diagnostics_api = 1
+vim.g.ale_disable_lsp = 1
 vim.api.nvim_set_keymap('n', '<leader>ai', ':ALEInfo<CR>', {noremap = true})
-vim.api.nvim_set_keymap('n', '<leader>ak', ':ALEPrevious<CR>', {noremap = true, silent = true})
-vim.api.nvim_set_keymap('n', '<leader>aj', ':ALENext<CR>', {noremap = true, silent = true})
+vim.api.nvim_set_keymap('n', '<leader>ak', ':ALEPrevious<CR>', {noremap = true})
+vim.api.nvim_set_keymap('n', '<leader>aj', ':ALENext<CR>', {noremap = true})
 -- nmap <silent> <C-k> <Plug>(ale_previous)
 -- nmap <silent> <C-j> <Plug>(ale_next)
 -- let g:ale_sign_error = '>>'
