@@ -74,13 +74,12 @@ vim.api.nvim_set_keymap('n', '<leader>ff', ':Telescope find_files<CR>', {noremap
 vim.api.nvim_set_keymap('n', '<leader>fl', ':Telescope live_grep<CR>', {noremap = true})
 vim.api.nvim_set_keymap('n', '<leader>fg', ':Telescope git_files<CR>', {noremap = true})
 vim.api.nvim_set_keymap('n', '<leader>fs', ':Telescope grep_string<CR>', {noremap = true})
-vim.api.nvim_set_keymap('v', '<leader>fs', ':Telescope grep_string<CR>', {noremap = true})
 vim.api.nvim_set_keymap('n', '<leader>fb', ':Telescope buffers<CR>', {noremap = true})
 vim.api.nvim_set_keymap('n', '<leader>fh', ':Telescope help_tags<CR>', {noremap = true})
 
--- vim.keymap.set("n", "<space>fb", ":Telescope file_browser<CR>")
+vim.keymap.set("n", "<leader>fr", ":Telescope file_browser<CR>")
 -- open file_browser with the path of the current buffer
-vim.keymap.set("n", "<space>fb", ":Telescope file_browser path=%:p:h select_buffer=true<CR>")
+vim.api.nvim_set_keymap("n", "<leader>frb", ":Telescope file_browser path=%:p:h select_buffer=true<CR>", {noremap = true})
 
 -- " This is the default extra key bindings
 -- " let g:fzf_action = {
