@@ -78,9 +78,11 @@ export ZSH="$HOME/.oh-my-zsh"
 # plugins=(git git-extras npm yarn zsh-syntax-highlighting ssh-agent rust)
 # brew zsh-autosuggestions rails jira vagrant ruby rake osx zsh-nvm 
 # zstyle :omz:plugins:ssh-agent identities bitbucket_ben
-
+plugins=(zsh-autosuggestions)
+ 
 source $ZSH/oh-my-zsh.sh
-
+# source $ZSH/oh-my-zsh.sh
+# source $ZSH
 # User configuration
 
 # You may need to manually set your language environment
