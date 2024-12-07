@@ -1,3 +1,6 @@
+vim.g.loaded_perl_provider = 0
+-- vim.o.rocks.enabled = false
+
 -- Make sure to setup `mapleader` and `maplocalleader` BEFORE
 -- loading lazy.nvim so that mappings are correct.
 -- This is also a good place to setup other settings (vim.opt)
@@ -7,13 +10,13 @@ vim.g.maplocalleader = ","
 require("config.lazy")
 
 -- Toggle Neotree
-vim.api.nvim_set_keymap('n', '<leader>nt', ':Neotree toggle<cr>', {noremap = true})
+vim.api.nvim_set_keymap('n', '<leader>tt', ':Neotree toggle<cr>', {noremap = true})
 -- Open Neotree at current file
-vim.api.nvim_set_keymap('n', '<leader>nf', ':Neotree %<cr>', {noremap = true})
+vim.api.nvim_set_keymap('n', '<leader>tf', ':Neotree %<cr>', {noremap = true})
 -- Open Neotree git status
-vim.api.nvim_set_keymap('n', '<leader>ng', ':Neotree git_status<cr>', {noremap = true})
+vim.api.nvim_set_keymap('n', '<leader>tg', ':Neotree git_status<cr>', {noremap = true})
 -- Open Neotree at current file
-vim.api.nvim_set_keymap('n', '<leader>nb', ':Neotree buffers<cr>', {noremap = true})
+vim.api.nvim_set_keymap('n', '<leader>tb', ':Neotree buffers<cr>', {noremap = true})
 
 vim.cmd('filetype plugin indent on')
 vim.cmd('colorscheme onedark')
@@ -57,18 +60,27 @@ vim.o.clipboard = 'unnamed'
 vim.api.nvim_set_keymap('n', '/', '/\\v', {noremap = true})
 
 -- ALE
+vim.g.ale_use_neovim_diagnostics_api = 1
+vim.g.ale_disable_lsp = 1
 vim.api.nvim_set_keymap('n', '<leader>ai', ':ALEInfo<CR>', {noremap = true})
-vim.api.nvim_set_keymap('n', '<leader>ak', ':ALEPrevious<CR>', {noremap = true, silent = true})
-vim.api.nvim_set_keymap('n', '<leader>aj', ':ALENext<CR>', {noremap = true, silent = true})
+vim.api.nvim_set_keymap('n', '<leader>ak', ':ALEPrevious<CR>', {noremap = true})
+vim.api.nvim_set_keymap('n', '<leader>aj', ':ALENext<CR>', {noremap = true})
 -- nmap <silent> <C-k> <Plug>(ale_previous)
 -- nmap <silent> <C-j> <Plug>(ale_next)
 -- let g:ale_sign_error = '>>'
 -- let g:ale_sign_warning = '--'
 
 vim.api.nvim_set_keymap('n', '<leader>ff', ':Telescope find_files<CR>', {noremap = true})
-vim.api.nvim_set_keymap('n', '<leader>fg', ':Telescope live_grep<CR>', {noremap = true})
+vim.api.nvim_set_keymap('n', '<leader>fl', ':Telescope live_grep<CR>', {noremap = true})
+vim.api.nvim_set_keymap('n', '<leader>fg', ':Telescope git_files<CR>', {noremap = true})
+vim.api.nvim_set_keymap('n', '<leader>fs', ':Telescope grep_string<CR>', {noremap = true})
 vim.api.nvim_set_keymap('n', '<leader>fb', ':Telescope buffers<CR>', {noremap = true})
 vim.api.nvim_set_keymap('n', '<leader>fh', ':Telescope help_tags<CR>', {noremap = true})
+
+vim.keymap.set("n", "<leader>fr", ":Telescope file_browser<CR>")
+-- open file_browser with the path of the current buffer
+vim.api.nvim_set_keymap("n", "<leader>frb", ":Telescope file_browser path=%:p:h select_buffer=true<CR>", {noremap = true})
+
 -- " This is the default extra key bindings
 -- " let g:fzf_action = {
 -- "   \ 'ctrl-t': 'tab split',
@@ -238,6 +250,8 @@ vim.o.spell=true
 -- autocmd BufNewFile,BufRead *.mts :set filetype=typescript
 --
 --
+vim.api.nvim_set_keymap("n", '<leader>hk', ':GitGutterPrevHunk<CR>', {noremap=true})
+vim.api.nvim_set_keymap("n", '<leader>hj', ':GitGutterNextHunk<CR>', {noremap=true})
 -- nmap <Leader>hp <Plug>(GitGutterPrevHunk)
 -- nmap <Leader>hn <Plug>(GitGutterNextHunk)
 -- inoremap <c-x><c-k> <c-x><c-k>

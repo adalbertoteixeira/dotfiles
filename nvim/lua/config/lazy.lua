@@ -128,7 +128,7 @@ require("lazy").setup({
       -- Make sure to set this up properly if you have lazy=true
       'MeanderingProgrammer/render-markdown.nvim',
       opts = {
-        file_types = { "markdown", "Avante" },
+        file_types = { "markdown", "Avante" }
       },
       ft = { "markdown", "Avante" },
     },
@@ -183,7 +183,11 @@ config = function ()
     'nvim-telescope/telescope.nvim', tag = '0.1.8',
 -- or                              , branch = '0.1.x',
       dependencies = { 'nvim-lua/plenary.nvim' }
-    }
+    },
+    {
+    "nvim-telescope/telescope-file-browser.nvim",
+    dependencies = { "nvim-telescope/telescope.nvim", "nvim-lua/plenary.nvim" }
+}
  
   },
   -- Configure any other settings here. See the documentation for more details.
@@ -288,4 +292,52 @@ require('todo-comments').setup({
     -- pattern = [[\b(KEYWORDS)\b]], -- match without the extra colon. You'll likely get false positives
   },
 }
+})
+
+require("neo-tree").setup({
+  filesystem = {
+    filtered_items = {
+      hide_dotfiles = false
+    }
+  }
+})
+
+
+local telescope = require("telescope")
+local telescopeConfig = require("telescope.config")
+
+-- Clone the default Telescope configuration
+local vimgrep_arguments = { unpack(telescopeConfig.values.vimgrep_arguments) }
+
+-- I want to search in hidden/dot files.
+table.insert(vimgrep_arguments, "--hidden")
+-- I don't want to search in the `.git` directory.
+table.insert(vimgrep_arguments, "--glob")
+table.insert(vimgrep_arguments, "!**/.git/*")
+
+telescope.setup({
+	defaults = {
+		-- `hidden = true` is not supported in text grep commands.
+		vimgrep_arguments = vimgrep_arguments,
+	},
+	pickers = {
+		find_files = {
+			-- `hidden = true` will still show the inside of `.git/` as it's not `.gitignore`d.
+			find_command = { "rg", "--files", "--hidden", "--glob", "!**/.git/*" },
+		},
+	},
+  extensions = {
+    file_browser = {
+      mappings = {
+
+      }
+    }
+  }
+})
+require("telescope").load_extension "file_browser"
+
+require('render-markdown').setup({
+    latex = {
+        enabled = false,
+    },
 })
