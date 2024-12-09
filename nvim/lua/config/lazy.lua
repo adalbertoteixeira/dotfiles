@@ -161,6 +161,9 @@ config = function ()
         })
     end
 },
+    {
+      'leafOfTree/vim-svelte-plugin'
+    },
 {
     "nvim-neo-tree/neo-tree.nvim",
     branch = "v3.x",

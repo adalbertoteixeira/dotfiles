@@ -145,14 +145,24 @@ fi
 #   eval "$(fnm env --use-on-cd)"
 # fi
 
-# # fnm macOs
+
+
+if [ "$OSTYPE" = "linux-gnu" ]; then
+# fnm linux
+FNM_PATH="/home/dev/.local/share/fnm"
+if [ -d "$FNM_PATH" ]; then
+  export PATH="/home/dev/.local/share/fnm:$PATH"
+  eval "`fnm env`"
+fi
+else 
+# fnm macOs
 export FNM_PATH=$(which fnm)
 if [ -n "$FNM_PATH" ]; then
   export PATH=$FNM_PATH:$PATH
   eval "`fnm env`"
   eval "$(fnm env --use-on-cd --shell zsh)"
 fi
-
+fi
 
 if [ -f "/opt/homebrew/share/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh" ]; then
   source /opt/homebrew/share/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh
@@ -163,3 +173,4 @@ if [ -f "/usr/share/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh" ]; then
 fi
 
 # export PATH="/opt/homebrew/sbin:$PATH"
+
