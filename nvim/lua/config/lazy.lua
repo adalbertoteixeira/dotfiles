@@ -146,6 +146,7 @@ require("lazy").setup({
 -- { "junegunn/fzf", build = "./install --bin" },
 -- { 'junegunn/fzf.vim' },
 {'neoclide/coc.nvim', branch = 'release'},
+    {'leafOfTree/vim-svelte-plugin'},
 {"nvim-treesitter/nvim-treesitter", build = ":TSUpdate",
 config = function () 
       local configs = require("nvim-treesitter.configs")

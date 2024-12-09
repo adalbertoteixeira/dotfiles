@@ -265,6 +265,9 @@ vim.api.nvim_set_keymap("n", '<leader>hj', ':GitGutterNextHunk<CR>', {noremap=tr
 -- """""""""
 -- " coc
 -- """""""""
+-- vim.cmd([[
+-- paste code from https://github.com/neoclide/coc.nvim#example-vim-configuration
+-- ]])
 -- " See: https://github.com/neoclide/coc.nvim/wiki/F.A.Q
 -- "  <tab> not working well with copilot.vim
 -- " copilot.vim remaps your <tab>, it checks pumvisible but not coc#pum#visible, so it not work well with the custom popup menu. You can disable the overwrite and define the <tab> to meet your need, like:
