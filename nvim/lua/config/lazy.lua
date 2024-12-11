@@ -188,7 +188,7 @@ config = function ()
     {
     "nvim-telescope/telescope-file-browser.nvim",
     dependencies = { "nvim-telescope/telescope.nvim", "nvim-lua/plenary.nvim" }
-}
+}, {'mustache/vim-mustache-handlebars'}
  
   },
   -- Configure any other settings here. See the documentation for more details.
