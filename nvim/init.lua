@@ -290,7 +290,7 @@ vim.api.nvim_set_keymap("n", '<leader>hj', ':GitGutterNextHunk<CR>', {noremap=tr
 --
 -- " Always show the signcolumn, otherwise it would shift the text each time
 -- " diagnostics appear/become resolved
--- set signcolumn=yes
+vim.o.signcolumn = yes
 --
 -- " " Use tab for trigger completion with characters ahead and navigate
 -- " " NOTE: There's always complete item selected by default, you may want to enable
@@ -468,4 +468,11 @@ keyset("n", "K", '<CMD>lua _G.show_docs()<CR>', {silent = true})
 --
 -- :let g:python3_host_prog='/opt/homebrew/bin/python3.11'
 -- :let g:python_host_prog='/opt/homebrew/bin/python3.11'
---
+
+
+
+
+-- Svelte
+vim.g.vim_svelte_plugin_load_full_syntax = 0
+vim.g.vim_svelte_plugin_use_typescript = 1
+vim.g.vim_svelte_plugin_use_sass = 1
