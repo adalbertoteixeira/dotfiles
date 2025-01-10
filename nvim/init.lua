@@ -62,6 +62,18 @@ vim.api.nvim_set_keymap('n', '/', '/\\v', {noremap = true})
 -- ALE
 vim.g.ale_use_neovim_diagnostics_api = 1
 vim.g.ale_disable_lsp = 1
+
+
+vim.api.nvim_create_autocmd('FileType', {
+  pattern = 'sh',
+  callback = function()
+    vim.lsp.start({
+      name = 'bash-language-server',
+      cmd = { 'bash-language-server', 'start' },
+    })
+  end,
+})
+
 vim.api.nvim_set_keymap('n', '<leader>ai', ':ALEInfo<CR>', {noremap = true})
 vim.api.nvim_set_keymap('n', '<leader>ak', ':ALEPrevious<CR>', {noremap = true})
 vim.api.nvim_set_keymap('n', '<leader>aj', ':ALENext<CR>', {noremap = true})
@@ -188,14 +200,14 @@ vim.o.swapfile=false
 --
 vim.g.indent_guides_enable_on_vim_startup = 1
 -- " Use spaces instead of tabs
-vim.o.expandtab=true
+-- vim.o.expandtab=true
 --
 -- " Be smart when using tabs ;)
-vim.o.smarttab=true
+-- vim.o.smarttab=true
 --
 -- " 1 tab == 2 spaces
 vim.o.shiftwidth=2
-vim.o.tabstop=2
+-- vim.o.tabstop=2
 --
 -- " Linebreak on 500 characters
 -- " set lbr
