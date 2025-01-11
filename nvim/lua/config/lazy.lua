@@ -68,12 +68,16 @@ require("lazy").setup({
 { 'kristijanhusak/vim-dadbod-ui' },
 
 { 'navarasu/onedark.nvim' },
-{ 'morhetz/gruvbox' },
 
 { 'https://github.com/adelarsq/vim-devicons-emoji' },
 { 'jxnblk/vim-mdx-js' },
 { 'maxmellon/vim-jsx-pretty' },
-{ 'jiangmiao/auto-pairs' },
+{ 'windwp/nvim-autopairs',
+      -- event = "InsertEnter",
+    config = true
+    -- use opts = {} for passing setup options
+    -- this is equivalent to setup({}) function
+},
 { 'cakebaker/scss-syntax.vim' },
 { 'chr4/nginx.vim' },
 { 'mechatroner/rainbow_csv' },
