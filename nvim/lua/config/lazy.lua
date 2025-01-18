@@ -26,11 +26,13 @@ require("lazy").setup({
     },
 { 'vim-airline/vim-airline',
 
-                config = function() 
+                config = function()
 
         local g = vim.g
 
         g.airline_theme='simple'
+	-- g.airline.extensions.hunks.enabled=0
+       -- g:airline#extensions#hunks#enabled = 0
         -- g.airline#extensions#obsession#enabled = 1
         -- g.airline#extensions#obsession#indicator_text = '$Obsession$'
                         end
@@ -152,17 +154,17 @@ require("lazy").setup({
 {'neoclide/coc.nvim', branch = 'release'},
     {'leafOfTree/vim-svelte-plugin'},
 {"nvim-treesitter/nvim-treesitter", build = ":TSUpdate",
-config = function () 
+config = function ()
       local configs = require("nvim-treesitter.configs")
 
       configs.setup({
-          ensure_installed = { 
+          ensure_installed = {
 		  "json", "rust", "typescript", "javascript", "python",
 						"c", "lua", "vim", "vimdoc", "query", "markdown", "markdown_inline"
 	  },
           sync_install = false,
           highlight = { enable = true },
-          indent = { enable = true },  
+          indent = { enable = true },
         })
     end
 },
@@ -196,7 +198,7 @@ config = function ()
     "nvim-telescope/telescope-file-browser.nvim",
     dependencies = { "nvim-telescope/telescope.nvim", "nvim-lua/plenary.nvim" }
 }, {'mustache/vim-mustache-handlebars'}
- 
+
   },
   -- Configure any other settings here. See the documentation for more details.
   -- colorscheme that will be used when installing plugins.
