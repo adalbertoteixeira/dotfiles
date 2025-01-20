@@ -176,10 +176,10 @@ vim.o.colorcolumn='80,100,120'
 --
 -- " Make Vim to handle long lines nicely.
 vim.o.wrap=true
-vim.o.textwidth=100 
+vim.o.textwidth=100
 vim.o.formatoptions=qrn1
 --
-vim.o.background=dark 
+vim.o.background=dark
 -- " No need to set explicitly under Neovim: always uses UTF-8 as the default encoding.
 -- " Set utf8 as standard encoding and en_US as the standard language
 vim.o.encoding=utf8
@@ -293,7 +293,7 @@ vim.api.nvim_set_keymap("n", '<leader>hj', ':GitGutterNextHunk<CR>', {noremap=tr
 -- "       \ coc#refresh()
 -- " let g:copilot_filetypes = { '*': v:false }
 --
--- "'python': v:true 
+-- "'python': v:true
 --
 -- " Having longer updatetime (default is 4000 ms = 4s) leads to noticeable
 -- " delays and poor user experience
@@ -301,7 +301,7 @@ vim.api.nvim_set_keymap("n", '<leader>hj', ':GitGutterNextHunk<CR>', {noremap=tr
 --
 -- " Always show the signcolumn, otherwise it would shift the text each time
 -- " diagnostics appear/become resolved
-vim.o.signcolumn = yes
+vim.opt.signcolumn = 'yes'
 --
 -- " " Use tab for trigger completion with characters ahead and navigate
 -- " " NOTE: There's always complete item selected by default, you may want to enable
@@ -487,3 +487,7 @@ keyset("n", "K", '<CMD>lua _G.show_docs()<CR>', {silent = true})
 vim.g.vim_svelte_plugin_load_full_syntax = 0
 vim.g.vim_svelte_plugin_use_typescript = 1
 vim.g.vim_svelte_plugin_use_sass = 1
+
+
+-- codeium
+vim.g.codeium_enabled = false
