@@ -16,6 +16,7 @@ style = "Italic"
 
 [font.normal]
 family = "VictorMono Nerd Font"
+# family = "FiraCode Nerd Font"
 
 [font.offset]
 y = -2
