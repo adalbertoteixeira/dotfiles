@@ -1,4 +1,7 @@
 export ZSH="$HOME/.oh-my-zsh"
+
+bindkey "^[[1;3C" forward-word
+bindkey "^[[1;3D" backward-word
 # AUTOCOMPLETION
 
 # # initialize autocompletion
@@ -10,7 +13,6 @@ export ZSH="$HOME/.oh-my-zsh"
 # SAVEHIST=1000
 # HISTSIZE=999
 # setopt HIST_EXPIRE_DUPS_FIRST
-
 # autocompletion using arrow keys (based on history)
 # bindkey '\e[A' history-search-backward
 # bindkey '\e[B' history-search-forward
@@ -124,6 +126,13 @@ if [ -d "$SNAP_PATH" ]; then
 fi
 eval "$(starship init zsh)"
 
+
+  eval "$(frum init)";
+if [ ! -z $(which frum) ]; then 
+  eval "$(frum init)";
+else echo "No frum installed";
+fi
+
 if command -v rbenv > /dev/null 2>&1; then eval "$(rbenv init - zsh)"; fi
 # eval "$(~/.rbenv/bin/rbenv init - zsh)"
 fpath+=${ZDOTDIR:-~}/.zsh_functions
@@ -145,7 +154,7 @@ fi
 
 # # fnm macOs
 export FNM_PATH=$(which fnm)
-if [ -d "$FNM_PATH" ]; then
+if [ ! -z "$FNM_PATH" ]; then
   export PATH=$FNM_PATH:$PATH
   eval "`fnm env`"
   eval "$(fnm env --use-on-cd --shell zsh)"

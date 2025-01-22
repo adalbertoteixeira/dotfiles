@@ -1,10 +1,9 @@
-live_config_reload = true
 
 [bell]
 animation = "EaseOutExpo"
 
 [font]
-size = 14
+size = 12
 
 [font.bold]
 style = "Bold"
@@ -16,7 +15,7 @@ style = "Bold Italic"
 style = "Italic"
 
 [font.normal]
-family = "Victor Mono"
+family = "VictorMono Nerd Font"
 
 [font.offset]
 y = -2
@@ -130,3 +129,6 @@ decorations = "full"
 dynamic_title = true
 startup_mode = "Windowed"
 option_as_alt = "OnlyRight"
+
+[general]
+live_config_reload = true
