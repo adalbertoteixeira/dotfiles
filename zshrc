@@ -1,4 +1,7 @@
 export ZSH="$HOME/.oh-my-zsh"
+
+bindkey "^[[1;3C" forward-word
+bindkey "^[[1;3D" backward-word
 # AUTOCOMPLETION
 
 # # initialize autocompletion
@@ -10,7 +13,6 @@ export ZSH="$HOME/.oh-my-zsh"
 # SAVEHIST=1000
 # HISTSIZE=999
 # setopt HIST_EXPIRE_DUPS_FIRST
-
 # autocompletion using arrow keys (based on history)
 # bindkey '\e[A' history-search-backward
 # bindkey '\e[B' history-search-forward
@@ -76,6 +78,9 @@ export ZSH="$HOME/.oh-my-zsh"
 # Example format: plugins=(rails git textmate ruby lighthouse)
 # Add wisely, as too many plugins slow down shell startup.
 # plugins=(git git-extras npm yarn zsh-syntax-highlighting ssh-agent rust)
+pluginsa=(
+  poetry
+)
 # brew zsh-autosuggestions rails jira vagrant ruby rake osx zsh-nvm 
 # zstyle :omz:plugins:ssh-agent identities bitbucket_ben
 plugins=(zsh-autosuggestions)
@@ -126,6 +131,13 @@ if [ -n "$SNAP_PATH" ]; then
 fi
 eval "$(starship init zsh)"
 
+
+if [  "$(which frum)" = "frum not found" ]; then 
+  echo "No frum installed";
+else
+  eval "$(frum init)";
+fi
+
 if command -v rbenv > /dev/null 2>&1; then eval "$(rbenv init - zsh)"; fi
 # eval "$(~/.rbenv/bin/rbenv init - zsh)"
 fpath+=${ZDOTDIR:-~}/.zsh_functions
@@ -157,6 +169,7 @@ fi
 else 
 # fnm macOs
 export FNM_PATH=$(which fnm)
+# if [ ! -z "$FNM_PATH" ]; then
 if [ -n "$FNM_PATH" ]; then
   export PATH=$FNM_PATH:$PATH
   eval "`fnm env`"
@@ -174,3 +187,9 @@ fi
 
 # export PATH="/opt/homebrew/sbin:$PATH"
 
+# # Added by Windsurf
+# export PATH="/Users/adalbertoteixeira/.codeium/windsurf/bin:$PATH"
+
+# Added by LM Studio CLI (lms)
+# export PATH="$PATH:/Users/adalbertoteixeira/.lmstudio/bin"
+# >>>>>>> Stashed changes

@@ -39,29 +39,30 @@ require("lazy").setup({
                 },
 { 'vim-airline/vim-airline-themes' },
 { 'junegunn/gv.vim' },
-{ 'dense-analysis/ale',
- config = function()
-        -- Configuration goes here.
-        local g = vim.g
+{
+  'dense-analysis/ale',
+    config = function()
+       -- Configuration goes here.
+	local g = vim.g
 
- g.ale_disable_lsp = 1
- g.ale_completion_enabled = 0
- g.ale_set_balloons = 1
- g.ale_fix_on_save = 1
- g.ale_lint_on_text_changed = 1
- g.ale_lint_on_insert_leave = 1
- g.ale_set_loclist = 0
- g.ale_set_quickfix = 0
- g.ale_set_highlights = 1
- g.ale_set_signs = 1
- g.ale_open_list = 1
- g.ale_keep_list_window_open = 0
- g.ale_sign_column_always = 1
- g.ale_linters_explicit = 1
- g.ale_lint_delay = 500
+	g.ale_disable_lsp = 1
+	g.ale_completion_enabled = 0
+	g.ale_set_balloons = 1
+	g.ale_fix_on_save = 1
+	g.ale_lint_on_text_changed = 1
+	g.ale_lint_on_insert_leave = 1
+	g.ale_set_loclist = 0
+	g.ale_set_quickfix = 0
+	g.ale_set_highlights = 1
+	g.ale_set_signs = 1
+	g.ale_open_list = 1
+	g.ale_keep_list_window_open = 0
+	g.ale_sign_column_always = 1
+	g.ale_linters_explicit = 1
+	g.ale_lint_delay = 500
 
     end
-                },
+},
 { 'tpope/vim-surround' },
 { 'airblade/vim-gitgutter' },
 { 'burntsushi/ripgrep', },
@@ -89,57 +90,66 @@ require("lazy").setup({
 { 'lukas-reineke/indent-blankline.nvim' },
 { 'hashivim/vim-terraform' },
 { 'folke/trouble.nvim' },
-{ 'folke/todo-comments.nvim' },
+-- { 'folke/todo-comments.nvim' },
 { 'nvim-tree/nvim-web-devicons' },
 { 'stevearc/dressing.nvim' },
 { 'nvim-lua/plenary.nvim' },
 { 'MunifTanjim/nui.nvim' },
+
+-- tabnine
 {
-  "yetone/avante.nvim",
-  event = "VeryLazy",
-  lazy = false,
-  version = false, -- set this if you want to always pull the latest change
-  opts = {
-    -- add any opts here
-  },
-  -- if you want to build from source then do `make BUILD_FROM_SOURCE=true`
-  build = "make",
-  -- build = "powershell -ExecutionPolicy Bypass -File Build.ps1 -BuildFromSource false" -- for windows
-  dependencies = {
-    "nvim-treesitter/nvim-treesitter",
-    "stevearc/dressing.nvim",
-    "nvim-lua/plenary.nvim",
-    "MunifTanjim/nui.nvim",
-    --- The below dependencies are optional,
-    "nvim-tree/nvim-web-devicons", -- or echasnovski/mini.icons
-    "zbirenbaum/copilot.lua", -- for providers='copilot'
-    {
-      -- support for image pasting
-      "HakonHarnes/img-clip.nvim",
-      event = "VeryLazy",
-      opts = {
-        -- recommended settings
-        default = {
-          embed_image_as_base64 = false,
-          prompt_for_file_name = false,
-          drag_and_drop = {
-            insert_mode = true,
-          },
-          -- required for Windows users
-          use_absolute_path = true,
-        },
-      },
-    },
-    {
-      -- Make sure to set this up properly if you have lazy=true
-      'MeanderingProgrammer/render-markdown.nvim',
-      opts = {
-        file_types = { "markdown", "Avante" }
-      },
-      ft = { "markdown", "Avante" },
-    },
-  },
+  { 'codota/tabnine-nvim', build = "./dl_binaries.sh" },
 },
+-- {
+--   'Exafunction/codeium.vim',
+-- dependencies = {
+--         "nvim-lua/plenary.nvim",
+--         "hrsh7th/nvim-cmp",
+--     },
+--     -- config = function()
+--     --     require("codeium").setup({
+--     --     })
+--     -- end
+-- },
+-- {
+--   "yetone/avante.nvim",
+--   event = "VeryLazy",
+--   lazy = false,
+--   version = false, -- set this if you want to always pull the latest change
+--   opts = {
+--     -- add any opts here
+--   },
+--   -- if you want to build from source then do `make BUILD_FROM_SOURCE=true`
+--   build = "make",
+--   -- build = "powershell -ExecutionPolicy Bypass -File Build.ps1 -BuildFromSource false" -- for windows
+--   dependencies = {
+--     "nvim-treesitter/nvim-treesitter",
+--     "stevearc/dressing.nvim",
+--     "nvim-lua/plenary.nvim",
+--     "MunifTanjim/nui.nvim",
+--     --- The below dependencies are optional,
+--     "nvim-tree/nvim-web-devicons", -- or echasnovski/mini.icons
+--     "zbirenbaum/copilot.lua", -- for providers='copilot'
+--     {
+--       -- support for image pasting
+--       "HakonHarnes/img-clip.nvim",
+--       event = "VeryLazy",
+--       opts = {
+--         -- recommended settings
+--         default = {
+--           embed_image_as_base64 = false,
+--           prompt_for_file_name = false,
+--           drag_and_drop = {
+--             insert_mode = true,
+--           },
+--           -- required for Windows users
+--           use_absolute_path = true,
+--         },
+--       },
+--     },
+--
+--   },
+-- },
 -- {
 --   "ibhagwan/fzf-lua",
 --   -- optional for icon support
@@ -151,6 +161,14 @@ require("lazy").setup({
 -- },
 -- { "junegunn/fzf", build = "./install --bin" },
 -- { 'junegunn/fzf.vim' },
+{
+      -- Make sure to set this up properly if you have lazy=true
+      'MeanderingProgrammer/render-markdown.nvim',
+      opts = {
+        file_types = { "markdown", "Avante" }
+      },
+      ft = { "markdown", "Avante" },
+    },
 {'neoclide/coc.nvim', branch = 'release'},
     {'leafOfTree/vim-svelte-plugin'},
 {"nvim-treesitter/nvim-treesitter", build = ":TSUpdate",
@@ -189,7 +207,7 @@ config = function ()
     -- refer to the configuration section below
   }
 },
-        {
+{
     'nvim-telescope/telescope.nvim', tag = '0.1.8',
 -- or                              , branch = '0.1.x',
       dependencies = { 'nvim-lua/plenary.nvim' }
@@ -350,4 +368,15 @@ require('render-markdown').setup({
     latex = {
         enabled = false,
     },
+})
+
+require('tabnine').setup({
+  disable_auto_comment=true,
+  accept_keymap="<Tab>",
+  dismiss_keymap = "<C-]>",
+  debounce_ms = 800,
+  suggestion_color = {gui = "#808080", cterm = 244},
+  exclude_filetypes = {"TelescopePrompt", "NvimTree"},
+  log_file_path = nil, -- absolute path to Tabnine log file
+  ignore_certificate_errors = false,
 })

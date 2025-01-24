@@ -45,7 +45,7 @@ macOS:
 	cd ~
 	/bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/HEAD/install.sh)"
 	brew install --cask alacritty
-	brew install diff-so-fancy bat kalker sk zellij neovim zsh fnm starship zsh-syntax-highlighting
+	brew install diff-so-fancy bat kalker sk zellij neovim zsh fnm starship zsh-syntax-highlighting mosh
 	source ~/.zshrc
 	sh -c "$(curl -fsSL https://raw.githubusercontent.com/ohmyzsh/ohmyzsh/master/tools/install.sh)"
 	curl -sL --proto-redir -all,https https://raw.githubusercontent.com/zplug/installer/master/installer.zsh | zsh
@@ -54,7 +54,9 @@ macOS:
 	curl --proto '=https' --tlsv1.2 -sSf https://sh.rustup.rs | sh
 	rustup component add rust-analyzer
 	sh -c "$(curl -fsSL https://raw.githubusercontent.com/ohmyzsh/ohmyzsh/master/tools/install.sh)"
+	brew install --cask font-victor-mono-nerd-font
 	make dotfiles
+
 	
 
 .PHONY: git
@@ -93,12 +95,22 @@ dotfiles:
 	mkdir -p $(HOME)/.vim/
 	mkdir -p $(HOME)/.vim/plugins
 	mkdir -p $(HOME)/.nvim/plugins
+	mkdir -p $(HOME)/.config/alacritty
+	touch $(HOME)/.config/alacritty/alacritty.toml
+	echo "import = [\"$HOME/dev/dotfiles/alacritty.toml\"]" >> $(HOME)/.config/alacritty/alacritty.toml
+	ln -sf $(PWD)/zshrc $(HOME)/.zshrc
+	# for i in  $(PWD)/ftplugin/*; do ln -sf $i $(HOME)/.vim/ftplugin/; done;
+
+
+	# for i in  $(PWD)/ftplugin/*; do ln -sf $i $(HOME)/.vim/ftplugin/; done;
+	# mkdir -p $(HOME)/.vim/lua
+	#for i in  $(PWD)/lua/*; do ln -sf $i $(HOME)/.vim/lua/; done;
 	ln -sf $(PWD)/nvim/init.lua $(HOME)/.config/nvim/
 	ln -sf $(PWD)/nvim/coc-settings.json $(HOME)/.config/nvim/
 	ln -sf $(PWD)/nvim/init.lua $(HOME)/.config/nvim/
-	mkdir ~/.config/nvim/lua/config
+	mkdir -p ~/.config/nvim/lua/config
 	mkdir -p $(HOME)/.config/lua/config/plugins/
-	ln -sf $(PWD)/nvim/lua/config/lazy.lua $HOME/.config/nvim/lua/config/lazy.lua
+	ln -sf $(PWD)/nvim/lua/config/lazy.lua $(HOME)/.config/nvim/lua/config/lazy.lua
 	mkdir -p $(HOME)/.config/nvim/ftplugin/
 	for i in  $(PWD)/ftplugin/*; do ln -sf $i $(HOME)/.config/nvim/ftplugin/; done;
 	mkdir -p $(HOME)/.config/nvim/after/
