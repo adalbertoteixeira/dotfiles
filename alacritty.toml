@@ -3,7 +3,7 @@
 animation = "EaseOutExpo"
 
 [font]
-size = 14
+size = 12
 
 [font.bold]
 style = "Bold"
@@ -15,7 +15,8 @@ style = "Bold Italic"
 style = "Italic"
 
 [font.normal]
-family = "FiraCode Nerd Font"
+family = "VictorMono Nerd Font"
+# family = "FiraCode Nerd Font"
 
 [font.offset]
 y = -2
