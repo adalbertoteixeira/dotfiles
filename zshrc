@@ -175,10 +175,9 @@ fi
 
 # export PATH="/opt/homebrew/sbin:$PATH"
 
-<<<<<<< Updated upstream
 # # Added by Windsurf
 # export PATH="/Users/adalbertoteixeira/.codeium/windsurf/bin:$PATH"
-=======
+
 # Added by LM Studio CLI (lms)
-export PATH="$PATH:/Users/adalbertoteixeira/.lmstudio/bin"
->>>>>>> Stashed changes
+# export PATH="$PATH:/Users/adalbertoteixeira/.lmstudio/bin"
+# >>>>>>> Stashed changes
