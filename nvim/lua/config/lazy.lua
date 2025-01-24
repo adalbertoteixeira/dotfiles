@@ -95,10 +95,22 @@ require("lazy").setup({
 { 'stevearc/dressing.nvim' },
 { 'nvim-lua/plenary.nvim' },
 { 'MunifTanjim/nui.nvim' },
-    {
-  'Exafunction/codeium.vim',
-  event = 'BufEnter'
+
+-- tabnine
+{
+  { 'codota/tabnine-nvim', build = "./dl_binaries.sh" },
 },
+-- {
+--   'Exafunction/codeium.vim',
+-- dependencies = {
+--         "nvim-lua/plenary.nvim",
+--         "hrsh7th/nvim-cmp",
+--     },
+--     -- config = function()
+--     --     require("codeium").setup({
+--     --     })
+--     -- end
+-- },
 -- {
 --   "yetone/avante.nvim",
 --   event = "VeryLazy",
@@ -192,7 +204,7 @@ config = function ()
     -- refer to the configuration section below
   }
 },
-        {
+{
     'nvim-telescope/telescope.nvim', tag = '0.1.8',
 -- or                              , branch = '0.1.x',
       dependencies = { 'nvim-lua/plenary.nvim' }
@@ -353,4 +365,15 @@ require('render-markdown').setup({
     latex = {
         enabled = false,
     },
+})
+
+require('tabnine').setup({
+  disable_auto_comment=true,
+  accept_keymap="<Tab>",
+  dismiss_keymap = "<C-]>",
+  debounce_ms = 800,
+  suggestion_color = {gui = "#808080", cterm = 244},
+  exclude_filetypes = {"TelescopePrompt", "NvimTree"},
+  log_file_path = nil, -- absolute path to Tabnine log file
+  ignore_certificate_errors = false,
 })

@@ -161,3 +161,6 @@ if [ -f "/usr/share/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh" ]; then
 fi
 
 # export PATH="/opt/homebrew/sbin:$PATH"
+
+# # Added by Windsurf
+# export PATH="/Users/adalbertoteixeira/.codeium/windsurf/bin:$PATH"
