@@ -78,6 +78,9 @@ bindkey "^[[1;3D" backward-word
 # Example format: plugins=(rails git textmate ruby lighthouse)
 # Add wisely, as too many plugins slow down shell startup.
 # plugins=(git git-extras npm yarn zsh-syntax-highlighting ssh-agent rust)
+pluginsa=(
+  poetry
+)
 # brew zsh-autosuggestions rails jira vagrant ruby rake osx zsh-nvm 
 # zstyle :omz:plugins:ssh-agent identities bitbucket_ben
 
@@ -172,5 +175,10 @@ fi
 
 # export PATH="/opt/homebrew/sbin:$PATH"
 
+<<<<<<< Updated upstream
 # # Added by Windsurf
 # export PATH="/Users/adalbertoteixeira/.codeium/windsurf/bin:$PATH"
+=======
+# Added by LM Studio CLI (lms)
+export PATH="$PATH:/Users/adalbertoteixeira/.lmstudio/bin"
+>>>>>>> Stashed changes
