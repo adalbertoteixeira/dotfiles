@@ -127,10 +127,10 @@ fi
 eval "$(starship init zsh)"
 
 
+if [  "$(which frum)" = "frum not found" ]; then 
+  echo "No frum installed";
+else
   eval "$(frum init)";
-if [ ! -z $(which frum) ]; then 
-  eval "$(frum init)";
-else echo "No frum installed";
 fi
 
 if command -v rbenv > /dev/null 2>&1; then eval "$(rbenv init - zsh)"; fi
@@ -154,11 +154,8 @@ fi
 
 # # fnm macOs
 export FNM_PATH=$(which fnm)
-<<<<<<< HEAD
-if [ ! -z "$FNM_PATH" ]; then
-=======
+# if [ ! -z "$FNM_PATH" ]; then
 if [ -n "$FNM_PATH" ]; then
->>>>>>> 388aa33f37416c7b4c3c2ca9a21422a3804c87de
   export PATH=$FNM_PATH:$PATH
   eval "`fnm env`"
   eval "$(fnm env --use-on-cd --shell zsh)"
