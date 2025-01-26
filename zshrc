@@ -180,4 +180,3 @@ fi
 
 # Added by LM Studio CLI (lms)
 # export PATH="$PATH:/Users/adalbertoteixeira/.lmstudio/bin"
-# >>>>>>> Stashed changes
