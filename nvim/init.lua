@@ -86,6 +86,7 @@ vim.api.nvim_set_keymap('n', '<leader>ff', ':Telescope find_files<CR>', {noremap
 vim.api.nvim_set_keymap('n', '<leader>fl', ':Telescope live_grep<CR>', {noremap = true})
 vim.api.nvim_set_keymap('n', '<leader>fg', ':Telescope git_files<CR>', {noremap = true})
 vim.api.nvim_set_keymap('n', '<leader>fs', ':Telescope grep_string<CR>', {noremap = true})
+vim.api.nvim_set_keymap('v', '<leader>fs', ':Telescope grep_string<CR>', {noremap = true})
 vim.api.nvim_set_keymap('n', '<leader>fb', ':Telescope buffers<CR>', {noremap = true})
 vim.api.nvim_set_keymap('n', '<leader>fh', ':Telescope help_tags<CR>', {noremap = true})
 

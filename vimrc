@@ -133,7 +133,6 @@ EOF
 
 let g:coc_global_extensions = [
   \ 'coc-json',
-  \ 'coc-svelte',
   \ 'coc-tsserver',
   \ 'coc-rust-analyzer',
   \ 'coc-css', 

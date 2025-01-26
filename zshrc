@@ -83,9 +83,11 @@ pluginsa=(
 )
 # brew zsh-autosuggestions rails jira vagrant ruby rake osx zsh-nvm 
 # zstyle :omz:plugins:ssh-agent identities bitbucket_ben
-
+plugins=(zsh-autosuggestions)
+ 
 source $ZSH/oh-my-zsh.sh
-
+# source $ZSH/oh-my-zsh.sh
+# source $ZSH
 # User configuration
 
 # You may need to manually set your language environment
@@ -155,7 +157,17 @@ fi
 #   eval "$(fnm env --use-on-cd)"
 # fi
 
-# # fnm macOs
+
+
+if [ "$OSTYPE" = "linux-gnu" ]; then
+# fnm linux
+FNM_PATH="/home/dev/.local/share/fnm"
+if [ -d "$FNM_PATH" ]; then
+  export PATH="/home/dev/.local/share/fnm:$PATH"
+  eval "`fnm env`"
+fi
+else 
+# fnm macOs
 export FNM_PATH=$(which fnm)
 # if [ ! -z "$FNM_PATH" ]; then
 if [ -n "$FNM_PATH" ]; then
@@ -163,7 +175,7 @@ if [ -n "$FNM_PATH" ]; then
   eval "`fnm env`"
   eval "$(fnm env --use-on-cd --shell zsh)"
 fi
-
+fi
 
 if [ -f "/opt/homebrew/share/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh" ]; then
   source /opt/homebrew/share/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh
