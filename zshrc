@@ -78,12 +78,12 @@ bindkey "^[[1;3D" backward-word
 # Example format: plugins=(rails git textmate ruby lighthouse)
 # Add wisely, as too many plugins slow down shell startup.
 # plugins=(git git-extras npm yarn zsh-syntax-highlighting ssh-agent rust)
-pluginsa=(
+plugins=(
   poetry
 )
 # brew zsh-autosuggestions rails jira vagrant ruby rake osx zsh-nvm 
 # zstyle :omz:plugins:ssh-agent identities bitbucket_ben
-plugins=(zsh-autosuggestions)
+# plugins=(zsh-autosuggestions)
  
 source $ZSH/oh-my-zsh.sh
 # source $ZSH/oh-my-zsh.sh
@@ -144,7 +144,7 @@ fpath+=${ZDOTDIR:-~}/.zsh_functions
 if command -v pyenv 1>/dev/null 2>&1; then
   export PYENV_ROOT="$HOME/.pyenv"
   [[ -n $PYENV_ROOT/bin ]] && export PATH="$PYENV_ROOT/bin:$PATH"
-  eval "$(pyenv init -)"
+  eval "$(pyenv init - zsh)"
 fi
 
 
@@ -177,8 +177,8 @@ if [ -n "$FNM_PATH" ]; then
 fi
 fi
 
-if [ -f "/opt/homebrew/share/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh" ]; then
-  source /opt/homebrew/share/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh
+if [ -f "$(brew --prefix)/share/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh" ]; then
+  source $(brew --prefix)/share/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh
 fi
 
 if [ -f "/usr/share/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh" ]; then
@@ -192,3 +192,19 @@ fi
 
 # Added by LM Studio CLI (lms)
 # export PATH="$PATH:/Users/adalbertoteixeira/.lmstudio/bin"
+
+# >>> conda initialize >>>
+# !! Contents within this block are managed by 'conda init' !!
+__conda_setup="$('/opt/anaconda3/bin/conda' 'shell.zsh' 'hook' 2> /dev/null)"
+if [ $? -eq 0 ]; then
+    eval "$__conda_setup"
+else
+    if [ -f "/opt/anaconda3/etc/profile.d/conda.sh" ]; then
+        . "/opt/anaconda3/etc/profile.d/conda.sh"
+    else
+        export PATH="/opt/anaconda3/bin:$PATH"
+    fi
+fi
+unset __conda_setup
+# <<< conda initialize <<<
+
