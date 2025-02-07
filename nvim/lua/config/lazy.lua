@@ -90,7 +90,6 @@ require("lazy").setup({
 { 'lukas-reineke/indent-blankline.nvim' },
 { 'hashivim/vim-terraform' },
 { 'folke/trouble.nvim' },
--- { 'folke/todo-comments.nvim' },
 { 'nvim-tree/nvim-web-devicons' },
 { 'stevearc/dressing.nvim' },
 { 'nvim-lua/plenary.nvim' },
@@ -198,7 +197,8 @@ config = function ()
       "MunifTanjim/nui.nvim",
       -- "3rd/image.nvim", -- Optional image support in preview window: See `# Preview Mode` for more information
     },
-}, {
+},
+{
   "folke/todo-comments.nvim",
   dependencies = { "nvim-lua/plenary.nvim" },
   opts = {

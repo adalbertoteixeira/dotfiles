@@ -78,12 +78,12 @@ bindkey "^[[1;3D" backward-word
 # Example format: plugins=(rails git textmate ruby lighthouse)
 # Add wisely, as too many plugins slow down shell startup.
 # plugins=(git git-extras npm yarn zsh-syntax-highlighting ssh-agent rust)
-pluginsa=(
+plugins=(
   poetry
 )
 # brew zsh-autosuggestions rails jira vagrant ruby rake osx zsh-nvm 
 # zstyle :omz:plugins:ssh-agent identities bitbucket_ben
-plugins=(zsh-autosuggestions)
+# plugins=(zsh-autosuggestions)
  
 source $ZSH/oh-my-zsh.sh
 # source $ZSH/oh-my-zsh.sh
@@ -177,6 +177,7 @@ if [ -n "$FNM_PATH" ]; then
 fi
 fi
 
+source $(brew --prefix)/share/zsh-autosuggestions/zsh-autosuggestions.zsh
 if [ -f "/opt/homebrew/share/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh" ]; then
   source /opt/homebrew/share/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh
 fi
