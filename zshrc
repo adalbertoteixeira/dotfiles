@@ -144,7 +144,7 @@ fpath+=${ZDOTDIR:-~}/.zsh_functions
 if command -v pyenv 1>/dev/null 2>&1; then
   export PYENV_ROOT="$HOME/.pyenv"
   [[ -n $PYENV_ROOT/bin ]] && export PATH="$PYENV_ROOT/bin:$PATH"
-  eval "$(pyenv init - zsh)"
+  eval "$(pyenv init -)"
 fi
 
 
@@ -177,8 +177,9 @@ if [ -n "$FNM_PATH" ]; then
 fi
 fi
 
-if [ -f "$(brew --prefix)/share/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh" ]; then
-  source $(brew --prefix)/share/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh
+source $(brew --prefix)/share/zsh-autosuggestions/zsh-autosuggestions.zsh
+if [ -f "/opt/homebrew/share/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh" ]; then
+  source /opt/homebrew/share/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh
 fi
 
 if [ -f "/usr/share/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh" ]; then
@@ -192,7 +193,6 @@ fi
 
 # Added by LM Studio CLI (lms)
 # export PATH="$PATH:/Users/adalbertoteixeira/.lmstudio/bin"
-
 function conda_activate {
 # >>> conda initialize >>>
 # !! Contents within this block are managed by 'conda init' !!
@@ -209,5 +209,3 @@ fi
 unset __conda_setup
 # <<< conda initialize <<<
 }
-
-

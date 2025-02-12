@@ -3,7 +3,7 @@
 animation = "EaseOutExpo"
 
 [font]
-size = 12
+size = 14
 
 [font.bold]
 style = "Bold"
