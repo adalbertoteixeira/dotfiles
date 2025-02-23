@@ -327,6 +327,20 @@ require("neo-tree").setup({
     filtered_items = {
       hide_dotfiles = false
     }
+  },
+  window = {
+    mappings = {
+      ["o"] = "system_open",
+    },
+  },
+  commands = {
+    system_open = function(state)
+      local node = state.tree:get_node()
+      local path = node:get_id()
+      vim.fn.jobstart({ "open", path}, {detach = true})
+      -- @TODO: validate next line:
+      vim.cmd("silent !start explorer " .. p)
+    end
   }
 })
 
