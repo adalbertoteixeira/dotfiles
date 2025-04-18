@@ -4,7 +4,7 @@ all: yarn go dotfiles vimubuntu zshubuntu ohmyzshubuntu
 .PHONY: ubuntu
 ubuntu:
 	mkdir -p $(HOME)/.config/
-	sudo apt-get install -y bat make zsh git unzip autoconf patch build-essential libssl-dev libyaml-dev libreadline6-dev zlib1g-dev libgmp-dev libncurses5-dev libffi-dev libgdbm6 libgdbm-dev libdb-dev uuid-dev ripgrep fzf bat make zsh git patch ripgrep snap fd-find
+	sudo apt-get install -y bat make zsh git unzip autoconf patch build-essential libssl-dev libyaml-dev libreadline6-dev zlib1g-dev libgmp-dev libncurses5-dev libffi-dev libgdbm6 libgdbm-dev libdb-dev uuid-dev ripgrep fzf bat make zsh git patch ripgrep snap fd-find zsh-syntax-highlighting 
 	sudo locale-gen pt_PT.UTF-8 && sudo locale-gen en_GB.UTF-8
 	sudo apt install zsh
 	zsh --version
@@ -13,7 +13,7 @@ ubuntu:
 	echo $SHELL
 	rm -rf $(HOME)/.oh-my-zsh
 	sh -c "$(curl -fsSL https://raw.githubusercontent.com/ohmyzsh/ohmyzsh/master/tools/install.sh)"
-	git clone https://github.com/zsh-users/zsh-syntax-highlighting.git $(HOME)/.oh-my-zsh/custom/plugins/zsh-syntax-highlighting
+	# git clone https://github.com/zsh-users/zsh-syntax-highlighting.git $(HOME)/.oh-my-zsh/custom/plugins/zsh-syntax-highlighting
 	cd ~
 	sh -c "$(curl -fsSL https://starship.rs/install.sh)" -- -b ~/
 	rm -rf $(HOME)/.zplug
@@ -21,9 +21,6 @@ ubuntu:
 	mkdir -p $(HOME)/.ssh
 	source $(HOME)/.zshrc
 	curl -fsSL https://fnm.vercel.app/install | bash
-	git clone https://github.com/rbenv/rbenv.git ~/.rbenv
-	# echo 'export PATH="/root/.local/share/fnm:$PATH"' >> $(HOME)/dotfiles/extra
-	git clone https://github.com/rbenv/ruby-build.git "$(rbenv root)"/plugins/ruby-build
 	sudo snap install zellij --classic
 	zplug 'wfxr/forgit'
 	# fix bat alias
@@ -37,6 +34,7 @@ ubuntu:
 rust:
 	curl --proto '=https' --tlsv1.2 -sSf https://sh.rustup.rs | sh
 	rustup component add rust-analyzer
+	cargo install frum
 
 .PHONY: macOS
 macOS:
@@ -156,4 +154,4 @@ ohmyzsh:
 	rm -rf $(HOME)/.oh-my-zsh
 	mkdir -p $(HOME)/.oh-my-zsh/themes/
 	sh -c "$(curl -fsSL https://raw.githubusercontent.com/robbyrussell/oh-my-zsh/master/tools/install.sh)"
-	git clone https://github.com/zsh-users/zsh-syntax-highlighting.git $(HOME)/.oh-my-zsh/custom/plugins/zsh-syntax-highlighting
+	# git clone https://github.com/zsh-users/zsh-syntax-highlighting.git $(HOME)/.oh-my-zsh/custom/plugins/zsh-syntax-highlighting
