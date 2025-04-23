@@ -60,8 +60,8 @@ vim.o.clipboard = 'unnamed'
 vim.api.nvim_set_keymap('n', '/', '/\\v', {noremap = true})
 
 -- ALE
-vim.g.ale_use_neovim_diagnostics_api = 1
-vim.g.ale_disable_lsp = 1
+-- vim.g.ale_use_neovim_diagnostics_api = 1
+-- vim.g.ale_disable_lsp = 1
 
 
 vim.api.nvim_create_autocmd('FileType', {
@@ -369,15 +369,7 @@ function _G.show_docs()
     end
 end
 keyset("n", "K", '<CMD>lua _G.show_docs()<CR>', {silent = true})
---
--- function! ShowDocumentation()
---   if CocAction('hasProvider', 'hover')
---     call CocActionAsync('doHover')
---   else
---     call feedkeys('K', 'in')
---   endif
--- endfunction
---
+
 -- " " Highlight the symbol and its references when holding the cursor
 -- " autocmd CursorHold * silent call CocActionAsync('highlight')
 --
@@ -494,5 +486,11 @@ vim.g.vim_svelte_plugin_use_typescript = 1
 vim.g.vim_svelte_plugin_use_sass = 1
 
 
--- codeium
-vim.g.codeium_enabled = false
+-- todo-comments
+vim.keymap.set("n", "]t", function()
+  require("todo-comments").jump_next()
+end, { desc = "Next todo comment" })
+
+vim.keymap.set("n", "[t", function()
+  require("todo-comments").jump_prev()
+end, { desc = "Previous todo comment" })
