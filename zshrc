@@ -77,10 +77,7 @@ bindkey "^[[1;3D" backward-word
 # Custom plugins may be added to ~/.oh-my-zsh/custom/plugins/
 # Example format: plugins=(rails git textmate ruby lighthouse)
 # Add wisely, as too many plugins slow down shell startup.
-# plugins=(git git-extras npm yarn zsh-syntax-highlighting ssh-agent rust)
-plugins=(
-  poetry
-)
+# plugins=(git git-extras npm yarn zsh-syntax-highlighting ssh-agent rust poetry)
 # brew zsh-autosuggestions rails jira vagrant ruby rake osx zsh-nvm 
 # zstyle :omz:plugins:ssh-agent identities bitbucket_ben
 # plugins=(zsh-autosuggestions)
@@ -100,36 +97,11 @@ else
   export EDITOR=$(which nvim)
 fi
 
-# Compilation flags
-# export ARCHFLAGS="-arch x86_64"
-
-# ssh
-#if [ -z "$SSH_AUTH_SOCK"  ] ; then
-#  eval `ssh-agent`
-#  ssh-add ~/.ssh/bitbucket
-#fi
-# eval `ssh-agent -s`
-# ssh-add -A
-# export SSH_KEY_PATH="~/.ssh/rsa_id"
-
-# Set personal aliases, overriding those provided by oh-my-zsh libs,
-# plugins, and themes. Aliases can be placed here, though oh-my-zsh
-# users are encouraged to define aliases within the ZSH_CUSTOM folder.
-# For a full list of active aliases, run `alias`.
-#
-
-
-
 export ZPLUG_HOME=~/.zplug
 source $ZPLUG_HOME/init.zsh
 zplug "wfxr/forgit"
 zplug load
 
-SNAP_PATH="/snap/bin"
-if [ -n "$SNAP_PATH" ]; then
-  export PATH=$PATH:/snap/bin
-fi
-eval "$(starship init zsh)"
 
 
 if [  "$(which frum)" = "frum not found" ]; then 
@@ -138,7 +110,7 @@ else
   eval "$(frum init)";
 fi
 
-if command -v rbenv > /dev/null 2>&1; then eval "$(rbenv init - zsh)"; fi
+# if command -v rbenv > /dev/null 2>&1; then eval "$(rbenv init - zsh)"; fi
 # eval "$(~/.rbenv/bin/rbenv init - zsh)"
 fpath+=${ZDOTDIR:-~}/.zsh_functions
 if command -v pyenv 1>/dev/null 2>&1; then
@@ -148,63 +120,51 @@ if command -v pyenv 1>/dev/null 2>&1; then
 fi
 
 
-
-# fnm linux
-# FNM_PATH="/home/adalbertoteixeira/.local/share/fnm"
-# if [ -d "$FNM_PATH" ]; then
-#   export PATH="/home/adalbertoteixeira/.local/share/fnm:$PATH"
-#   eval "`fnm env`"
-#   eval "$(fnm env --use-on-cd)"
-# fi
-
-
-
-if [ "$OSTYPE" = "linux-gnu" ]; then
-# fnm linux
-FNM_PATH="/home/dev/.local/share/fnm"
-if [ -d "$FNM_PATH" ]; then
-  export PATH="/home/dev/.local/share/fnm:$PATH"
-  eval "`fnm env`"
-fi
-else 
-# fnm macOs
-export FNM_PATH=$(which fnm)
-# if [ ! -z "$FNM_PATH" ]; then
-if [ -n "$FNM_PATH" ]; then
-  export PATH=$FNM_PATH:$PATH
-  eval "`fnm env`"
-  eval "$(fnm env --use-on-cd --shell zsh)"
-fi
-fi
-
-if [ -f "$(brew --prefix)/share/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh" ]; then
-  source $(brew --prefix)/share/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh
-fi
-
-if [ -f "/usr/share/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh" ]; then
-  source /usr/share/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh
-fi
-
 # export PATH="/opt/homebrew/sbin:$PATH"
 
-# # Added by Windsurf
-# export PATH="/Users/adalbertoteixeira/.codeium/windsurf/bin:$PATH"
+if [[ "$OSTYPE" == "linux-gnu"* ]]; then
+  # fnm
+  FNM_PATH="/root/.local/share/fnm"
+  if [ -d "$FNM_PATH" ]; then
+    export PATH="/root/.local/share/fnm:$PATH"
+    eval "`fnm env`"
+  fi
+  SNAP_PATH="/snap/bin"
+  if [ -n "$SNAP_PATH" ]; then
+    export PATH=$PATH:/snap/bin
+  fi
+  if [ -f "/usr/share/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh" ]; then
+    source /usr/share/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh
+  fi
 
-# Added by LM Studio CLI (lms)
-# export PATH="$PATH:/Users/adalbertoteixeira/.lmstudio/bin"
-function conda_activate {
-# >>> conda initialize >>>
-# !! Contents within this block are managed by 'conda init' !!
-__conda_setup="$('/opt/anaconda3/bin/conda' 'shell.zsh' 'hook' 2> /dev/null)"
-if [ $? -eq 0 ]; then
-    eval "$__conda_setup"
+  eval "$(starship init zsh)"
+elif [[ "$OSTYPE" == "darwin"* ]]; then
+        # Mac OSX
+  if [ -f "$(brew --prefix)/share/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh" ]; then
+    source $(brew --prefix)/share/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh
+  fi
+
+  # if [ -f "$(brew --prefix)/share/zsh-autosuggestions/zsh-autosuggestions.zsh" ]; then
+  #   source $(brew --prefix)/share/zsh-autosuggestions/zsh-autosuggestions.zsh
+  # fi
+  # fnm macOs
+  export FNM_PATH=$(which fnm)
+  if [ -n "$FNM_PATH" ]; then
+    export PATH=$FNM_PATH:$PATH
+    eval "`fnm env`"
+    eval "$(fnm env --use-on-cd --shell zsh)"
+  fi
+  eval "$(starship init zsh)"
+elif [[ "$OSTYPE" == "cygwin" ]]; then
+        # POSIX compatibility layer and Linux environment emulation for Windows
+elif [[ "$OSTYPE" == "msys" ]]; then
+        # Lightweight shell and GNU utilities compiled for Windows (part of MinGW)
+elif [[ "$OSTYPE" == "win32" ]]; then
+        # I'm not sure this can happen.
+elif [[ "$OSTYPE" == "freebsd"* ]]; then
+        # ...
 else
-    if [ -f "/opt/anaconda3/etc/profile.d/conda.sh" ]; then
-        . "/opt/anaconda3/etc/profile.d/conda.sh"
-    else
-        export PATH="/opt/anaconda3/bin:$PATH"
-    fi
+        # Unknown.
 fi
-unset __conda_setup
-# <<< conda initialize <<<
-}
+
+# source /usr/share/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh

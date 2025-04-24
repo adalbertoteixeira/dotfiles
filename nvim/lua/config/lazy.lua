@@ -45,6 +45,7 @@ require("lazy").setup({
        -- Configuration goes here.
 	local g = vim.g
 
+	g.ale_use_neovim_diagnostics_api = 1
 	g.ale_disable_lsp = 1
 	g.ale_completion_enabled = 0
 	g.ale_set_balloons = 1
@@ -84,7 +85,8 @@ require("lazy").setup({
 { 'cakebaker/scss-syntax.vim' },
 { 'chr4/nginx.vim' },
 { 'mechatroner/rainbow_csv' },
-{ 'numToStr/Comment.nvim' },
+{ 'tpope/vim-commentary' },
+-- { 'numToStr/Comment.nvim' },
 { 'jparise/vim-graphql' },
 { 'editorconfig/editorconfig-vim' },
 { 'lukas-reineke/indent-blankline.nvim' },
@@ -96,98 +98,98 @@ require("lazy").setup({
 { 'MunifTanjim/nui.nvim' },
 
 -- tabnine
-{
-  { 'codota/tabnine-nvim', build = "./dl_binaries.sh" },
-},
--- {
---   'Exafunction/codeium.vim',
--- dependencies = {
---         "nvim-lua/plenary.nvim",
---         "hrsh7th/nvim-cmp",
---     },
---     -- config = function()
---     --     require("codeium").setup({
---     --     })
---     -- end
--- },
--- {
---   "yetone/avante.nvim",
---   event = "VeryLazy",
---   lazy = false,
---   version = false, -- set this if you want to always pull the latest change
---   opts = {
---     -- add any opts here
---   },
---   -- if you want to build from source then do `make BUILD_FROM_SOURCE=true`
---   build = "make",
---   -- build = "powershell -ExecutionPolicy Bypass -File Build.ps1 -BuildFromSource false" -- for windows
---   dependencies = {
---     "nvim-treesitter/nvim-treesitter",
---     "stevearc/dressing.nvim",
---     "nvim-lua/plenary.nvim",
---     "MunifTanjim/nui.nvim",
---     --- The below dependencies are optional,
---     "nvim-tree/nvim-web-devicons", -- or echasnovski/mini.icons
---     "zbirenbaum/copilot.lua", -- for providers='copilot'
---     {
---       -- support for image pasting
---       "HakonHarnes/img-clip.nvim",
---       event = "VeryLazy",
---       opts = {
---         -- recommended settings
---         default = {
---           embed_image_as_base64 = false,
---           prompt_for_file_name = false,
---           drag_and_drop = {
---             insert_mode = true,
---           },
---           -- required for Windows users
---           use_absolute_path = true,
---         },
---       },
---     },
---
---   },
--- },
--- {
---   "ibhagwan/fzf-lua",
---   -- optional for icon support
---   dependencies = { "nvim-tree/nvim-web-devicons" },
---   config = function()
---     -- calling `setup` is optional for customization
---     require("fzf-lua").setup({})
---   end
--- },
--- { "junegunn/fzf", build = "./install --bin" },
--- { 'junegunn/fzf.vim' },
-{
+-- { 'codota/tabnine-nvim', build = "./dl_binaries.sh" },
+    -- Build in ~/.local/share/nvim/lazy/tabnine-nvim/chat: cargo build --release
+ {
+  "yetone/avante.nvim",
+  event = "VeryLazy",
+  version = false, -- Never set this value to "*"! Never!
+  opts = {
+    -- add any opts here
+    -- for example
+    provider = "gemini",
+    openai = {
+      endpoint = "https://api.openai.com/v1",
+      model = "gpt-4o", -- your desired model (or use gpt-4o, etc.)
+      timeout = 30000, -- Timeout in milliseconds, increase this for reasoning models
+      temperature = 0,
+      max_completion_tokens = 8192, -- Increase this to include reasoning tokens (for reasoning models)
+      --reasoning_effort = "medium", -- low|medium|high, only used for reasoning models
+    },
+  claude = {
+    endpoint = "https://api.anthropic.com",
+    model = "claude-3-7-sonnet-20250219",
+    temperature = 0,
+    max_tokens = 4096,
+  },
+  vendors = {
+  mistral= {
+    __inherited_from = "openai",
+    api_key_name = "MISTRAL_API_KEY",
+    endpoint = "https://api.mistral.ai/v1/",
+    model = "mistral-large-latest",
+    max_tokens = 4096, -- to avoid using max_completion_tokens
+  },
+},},
+  -- if you want to build from source then do `make BUILD_FROM_SOURCE=true`
+  build = "make",
+  -- build = "powershell -ExecutionPolicy Bypass -File Build.ps1 -BuildFromSource false" -- for windows
+  dependencies = {
+    "nvim-treesitter/nvim-treesitter",
+    "stevearc/dressing.nvim",
+    "nvim-lua/plenary.nvim",
+    "MunifTanjim/nui.nvim",
+    --- The below dependencies are optional,
+    "echasnovski/mini.pick", -- for file_selector provider mini.pick
+    "nvim-telescope/telescope.nvim", -- for file_selector provider telescope
+    "hrsh7th/nvim-cmp", -- autocompletion for avante commands and mentions
+    "ibhagwan/fzf-lua", -- for file_selector provider fzf
+    "nvim-tree/nvim-web-devicons", -- or echasnovski/mini.icons
+    "zbirenbaum/copilot.lua", -- for providers='copilot'
+    {
+      -- support for image pasting
+      "HakonHarnes/img-clip.nvim",
+      event = "VeryLazy",
+      opts = {
+        -- recommended settings
+        default = {
+          embed_image_as_base64 = false,
+          prompt_for_file_name = false,
+          drag_and_drop = {
+            insert_mode = true,
+          },
+          -- required for Windows users
+          use_absolute_path = true,
+        },
+      },
+    },
+    {
       -- Make sure to set this up properly if you have lazy=true
       'MeanderingProgrammer/render-markdown.nvim',
       opts = {
-        file_types = { "markdown", "Avante" }
+        file_types = { "markdown", "Avante" },
       },
       ft = { "markdown", "Avante" },
     },
-{'neoclide/coc.nvim', branch = 'release'},
-    {'leafOfTree/vim-svelte-plugin'},
-{"nvim-treesitter/nvim-treesitter", build = ":TSUpdate",
-config = function ()
-      local configs = require("nvim-treesitter.configs")
-
-      configs.setup({
-          ensure_installed = {
-		  "json", "rust", "typescript", "javascript", "python",
-						"c", "lua", "vim", "vimdoc", "query", "markdown", "markdown_inline"
-	  },
-          sync_install = false,
-          highlight = { enable = true },
-          indent = { enable = true },
-        })
-    end
+  },
 },
-    {
-      'leafOfTree/vim-svelte-plugin'
-    },
+{'neoclide/coc.nvim', branch = 'release'},
+{"nvim-treesitter/nvim-treesitter", build = ":TSUpdate",
+  config = function ()
+    local configs = require("nvim-treesitter.configs")
+
+    configs.setup({
+      ensure_installed = {
+	"json", "rust", "typescript", "javascript", "python",
+	"c", "lua", "vim", "vimdoc", "query", "markdown", "markdown_inline"
+      },
+	sync_install = false,
+	highlight = { enable = true },
+	indent = { enable = true },
+    })
+  end
+},
+{ 'leafOfTree/vim-svelte-plugin' },
 {
     "nvim-neo-tree/neo-tree.nvim",
     branch = "v3.x",
@@ -251,12 +253,8 @@ end)
 
 require("ibl").setup { indent = { highlight = highlight } }
 
+require('todo-comments').setup({ {
 
-require('Comment').setup()
--- require('Trouble').setup()
-
-require('todo-comments').setup({
-{
   signs = true, -- show icons in the signs column
   sign_priority = 8, -- sign priority
   -- keywords recognized as todo comments
@@ -319,8 +317,8 @@ require('todo-comments').setup({
     pattern = [[\b(KEYWORDS):]], -- ripgrep regex
     -- pattern = [[\b(KEYWORDS)\b]], -- match without the extra colon. You'll likely get false positives
   },
-}
-})
+
+} })
 
 require("neo-tree").setup({
   filesystem = {
@@ -379,18 +377,25 @@ telescope.setup({
 require("telescope").load_extension "file_browser"
 
 require('render-markdown').setup({
-    latex = {
-        enabled = false,
-    },
+  latex = {
+      enabled = false,
+  },
+  completions = { lsp = { enabled = true} }
 })
 
-require('tabnine').setup({
-  disable_auto_comment=true,
-  accept_keymap="<C-A>",
-  dismiss_keymap = "<C-S>",
-  debounce_ms = 800,
-  suggestion_color = {gui = "#808080", cterm = 244},
-  exclude_filetypes = {"TelescopePrompt", "NvimTree"},
-  log_file_path = nil, -- absolute path to Tabnine log file
-  ignore_certificate_errors = false,
-})
+-- require('tabnine').setup({
+--   disable_auto_comment=true,
+--   accept_keymap="<C-A>",
+--   dismiss_keymap = "<C-S>",
+--   debounce_ms = 800,
+--   suggestion_color = {gui = "#808080", cterm = 244},
+--   exclude_filetypes = {"TelescopePrompt", "NvimTree"},
+--   log_file_path = nil, -- absolute path to Tabnine log file
+--   ignore_certificate_errors = false,
+--   workspace_folders = {
+--     paths = { "/Volumes/T5/ben/team" },
+--     get_paths = function()
+--       return { "/Volumes/T5/ben/team" }
+--     end,
+--   },
+-- })

@@ -98,11 +98,11 @@ action = "CreateNewWindow"
 key = "N"
 mods = "Command"
 
-[[keyboard.bindings]]
-action = "ToggleFullscreen"
-key = "F"
-mods = "Command|Control"
-
+# [[keyboard.bindings]]
+# action = "ToggleFullscreen"
+# key = "F"
+# mods = "Command|Control"
+#
 [[keyboard.bindings]]
 action = "SearchForward"
 key = "F"

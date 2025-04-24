@@ -19,5 +19,3 @@ export PATH="$HOME/.cargo/bin:$PATH"
 export REACT_EDITOR=vim
 
 export BYOBU_PREFIX=/usr/local
-
-

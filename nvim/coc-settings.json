@@ -1,4 +1,5 @@
 {
+  "tsserver.enable": true,
   "diagnostic.displayByVimDiagnostic": true,
   "diagnostic.displayByAle": true,
   "languageserver": {
