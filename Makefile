@@ -97,12 +97,6 @@ dotfiles:
 	touch $(HOME)/.config/alacritty/alacritty.toml
 	echo "import = [\"$HOME/dev/dotfiles/alacritty.toml\"]" >> $(HOME)/.config/alacritty/alacritty.toml
 	ln -sf $(PWD)/zshrc $(HOME)/.zshrc
-	# for i in  $(PWD)/ftplugin/*; do ln -sf $i $(HOME)/.vim/ftplugin/; done;
-
-
-	# for i in  $(PWD)/ftplugin/*; do ln -sf $i $(HOME)/.vim/ftplugin/; done;
-	# mkdir -p $(HOME)/.vim/lua
-	#for i in  $(PWD)/lua/*; do ln -sf $i $(HOME)/.vim/lua/; done;
 	ln -sf $(PWD)/nvim/init.lua $(HOME)/.config/nvim/
 	ln -sf $(PWD)/nvim/coc-settings.json $(HOME)/.config/nvim/
 	ln -sf $(PWD)/nvim/init.lua $(HOME)/.config/nvim/

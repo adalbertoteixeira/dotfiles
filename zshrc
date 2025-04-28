@@ -166,4 +166,3 @@ elif [[ "$OSTYPE" == "freebsd"* ]]; then
 else
         # Unknown.
 fi
-

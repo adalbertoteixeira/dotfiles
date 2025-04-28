@@ -174,22 +174,22 @@ require("lazy").setup({
   },
 },
 {'neoclide/coc.nvim', branch = 'release'},
+{'leafOfTree/vim-svelte-plugin'},
 {"nvim-treesitter/nvim-treesitter", build = ":TSUpdate",
-  config = function ()
-    local configs = require("nvim-treesitter.configs")
+config = function ()
+      local configs = require("nvim-treesitter.configs")
 
-    configs.setup({
-      ensure_installed = {
-	"json", "rust", "typescript", "javascript", "python",
-	"c", "lua", "vim", "vimdoc", "query", "markdown", "markdown_inline"
-      },
-	sync_install = false,
-	highlight = { enable = true },
-	indent = { enable = true },
-    })
-  end
+      configs.setup({
+          ensure_installed = {
+		  "json", "rust", "typescript", "javascript", "python",
+						"c", "lua", "vim", "vimdoc", "query", "markdown", "markdown_inline"
+	  },
+          sync_install = false,
+          highlight = { enable = true },
+          indent = { enable = true },
+        })
+    end
 },
-{ 'leafOfTree/vim-svelte-plugin' },
 {
     "nvim-neo-tree/neo-tree.nvim",
     branch = "v3.x",
@@ -253,8 +253,11 @@ end)
 
 require("ibl").setup { indent = { highlight = highlight } }
 
-require('todo-comments').setup({ {
+-- require('Comment').setup()
+-- require('Trouble').setup()
 
+require('todo-comments').setup({
+{
   signs = true, -- show icons in the signs column
   sign_priority = 8, -- sign priority
   -- keywords recognized as todo comments
