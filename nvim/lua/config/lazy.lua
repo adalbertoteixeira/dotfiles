@@ -141,7 +141,6 @@ require("lazy").setup({
     "MunifTanjim/nui.nvim",
     --- The below dependencies are optional,
     "echasnovski/mini.pick", -- for file_selector provider mini.pick
-    "nvim-telescope/telescope.nvim", -- for file_selector provider telescope
     "hrsh7th/nvim-cmp", -- autocompletion for avante commands and mentions
     "ibhagwan/fzf-lua", -- for file_selector provider fzf
     "nvim-tree/nvim-web-devicons", -- or echasnovski/mini.icons
@@ -360,14 +359,14 @@ table.insert(vimgrep_arguments, "!**/.git/*")
 
 telescope.setup({
 	defaults = {
-		-- `hidden = true` is not supported in text grep commands.
-		vimgrep_arguments = vimgrep_arguments,
+	    -- `hidden = true` is not supported in text grep commands.
+	    vimgrep_arguments = vimgrep_arguments,
 	},
 	pickers = {
-		find_files = {
-			-- `hidden = true` will still show the inside of `.git/` as it's not `.gitignore`d.
-			find_command = { "rg", "--files", "--hidden", "--glob", "!**/.git/*" },
-		},
+	  find_files = {
+	    -- `hidden = true` will still show the inside of `.git/` as it's not `.gitignore`d.
+	      find_command = { "rg", "--files", "--hidden", "--glob", "!**/.git/*" },
+	  },
 	},
   extensions = {
     file_browser = {

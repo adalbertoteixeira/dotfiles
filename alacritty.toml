@@ -115,15 +115,15 @@ key = "B"
 mode = "~Search"
 mods = "Command"
 
-[[keyboard.bindings]]
-chars = "\u001Bb"
-key = "Left"
-mods = "Alt"
-
-[[keyboard.bindings]]
-chars = "\u001Bf"
-key = "Right"
-mods = "Alt"
+# [[keyboard.bindings]]
+# chars = "\u001Bb"
+# key = "Left"
+# mods = "Alt"
+#
+# [[keyboard.bindings]]
+# chars = "\u001Bf"
+# key = "Right"
+# mods = "Alt"
 
 [window]
 decorations = "full"

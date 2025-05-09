@@ -1,5 +1,5 @@
-let b:ale_linters = ['ruff']
-let b:ale_fixers = ['ruff', 'ruff_format']
+let b:ale_linters = ['ruff', 'black']
+let b:ale_fixers = ['ruff_format', 'black']
 
 set foldmethod=syntax  
 set foldlevel=99
