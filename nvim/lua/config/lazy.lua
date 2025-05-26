@@ -116,9 +116,13 @@ require("lazy").setup({
       max_completion_tokens = 8192, -- Increase this to include reasoning tokens (for reasoning models)
       --reasoning_effort = "medium", -- low|medium|high, only used for reasoning models
     },
+	gemini = {
+	       __inherited_from = "gemini",
+	  model = "gemini-2.5-pro-preview-03-25"
+	},
   claude = {
     endpoint = "https://api.anthropic.com",
-    model = "claude-3-7-sonnet-20250219",
+    model = "claude-sonnet-4-20250514",
     temperature = 0,
     max_tokens = 4096,
   },
