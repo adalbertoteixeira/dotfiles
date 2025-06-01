@@ -124,10 +124,11 @@ fi
 
 if [[ "$OSTYPE" == "linux-gnu"* ]]; then
   # fnm
-  FNM_PATH="/root/.local/share/fnm"
-  if [ -d "$FNM_PATH" ]; then
-    export PATH="/root/.local/share/fnm:$PATH"
+  export FNM_PATH=$(which fnm)
+  if [ -n "$FNM_PATH" ]; then
+    export PATH=$FNM_PATH:$PATH
     eval "`fnm env`"
+    eval "$(fnm env --use-on-cd --shell zsh)"
   fi
   SNAP_PATH="/snap/bin"
   if [ -n "$SNAP_PATH" ]; then
