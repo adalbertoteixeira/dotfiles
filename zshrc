@@ -138,6 +138,7 @@ if [[ "$OSTYPE" == "linux-gnu"* ]]; then
   fi
 
   eval "$(starship init zsh)"
+  eval "$(/home/linuxbrew/.linuxbrew/bin/brew shellenv)"
 elif [[ "$OSTYPE" == "darwin"* ]]; then
         # Mac OSX
   if [ -f "$(brew --prefix)/share/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh" ]; then

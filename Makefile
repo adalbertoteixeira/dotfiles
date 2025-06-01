@@ -26,24 +26,26 @@ ubuntu:
 	# fix bat alias
 	mkdir -p ~/.local/bin
 	ln -s /usr/bin/batcat ~/.local/bin/bat
-	sudo snap install --beta nvim --classic 
+	brew install diff-so-fancy fzf fd bat kalker sk zellij neovim zsh fnm starship zsh-syntax-highlighting mosh
+	brew install --cask font-victor-mono-nerd-font
 	echo "Configure neovim to use vim's config: https://neovim.io/doc/user/nvim.html#nvim-from-vim"
 	make dotfiles-ubuntu
+	/bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/HEAD/install.sh)"
+	brew install frum
 
 .PHONY: rust
 rust:
 	curl --proto '=https' --tlsv1.2 -sSf https://sh.rustup.rs | sh
 	rustup component add rust-analyzer
-	cargo install frum
 
 .PHONY: macOS
 macOS:
-	brew install diff-so-fancy bat fzf fd
+	brew install --cask font-victor-mono-nerd-font
 	make git
 	cd ~
 	/bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/HEAD/install.sh)"
 	brew install --cask alacritty
-	brew install diff-so-fancy bat kalker sk zellij neovim zsh fnm starship zsh-syntax-highlighting mosh
+	brew install diff-so-fancy fzf fd bat kalker sk zellij neovim zsh fnm starship zsh-syntax-highlighting mosh frum
 	source ~/.zshrc
 	sh -c "$(curl -fsSL https://raw.githubusercontent.com/ohmyzsh/ohmyzsh/master/tools/install.sh)"
 	curl -sL --proto-redir -all,https https://raw.githubusercontent.com/zplug/installer/master/installer.zsh | zsh
