@@ -105,10 +105,8 @@ dotfiles:
 	mkdir -p ~/.config/nvim/lua/config
 	mkdir -p $(HOME)/.config/lua/config/plugins/
 	ln -sf $(PWD)/nvim/lua/config/lazy.lua $(HOME)/.config/nvim/lua/config/lazy.lua
-	mkdir -p $(HOME)/.config/nvim/ftplugin/
-	for i in  $(PWD)/ftplugin/*; do ln -sf $i $(HOME)/.config/nvim/ftplugin/; done;
-	mkdir -p $(HOME)/.config/nvim/after/
-	for i in  $(PWD)/ftplugin/*; do ln -sf $i $(HOME)/.config/nvim/after/; done;
+	ln -sf $(PWD)/ftplugin $(HOME)/.config/nvim/
+	ln -sf $(PWD)/after/ $(HOME)/.config/nvim/
 
 
 .PHONY: dotfiles-ubuntu
@@ -140,10 +138,8 @@ dotfiles-ubuntu:
 	 mkdir  -p ~/.config/nvim/lua/config
 	 mkdir -p $(HOME)/.config/lua/config/plugins/
 	 ln -sf $(PWD)/nvim/lua/config/lazy.lua $(HOME)/.config/nvim/lua/config/lazy.lua
-	 mkdir -p $(HOME)/.config/nvim/ftplugin/
-	# for i in  $(PWD)/ftplugin/*; do ln -sf $i $(HOME)/.config/nvim/ftplugin/; done;
-	 mkdir -p $(HOME)/.config/nvim/after/
-	 for i in  $(PWD)/ftplugin/*; do ln -sf $i $(HOME)/.config/nvim/after/; done;
+	ln -sf $(PWD)/ftplugin $(HOME)/.config/nvim/
+	ln -sf $(PWD)/after/ $(HOME)/.config/nvim/
 
 .PHONY: ohmyzsh
 ohmyzsh:
