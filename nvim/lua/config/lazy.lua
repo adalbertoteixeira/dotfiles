@@ -85,8 +85,11 @@ require("lazy").setup({
 { 'cakebaker/scss-syntax.vim' },
 { 'chr4/nginx.vim' },
 { 'mechatroner/rainbow_csv' },
-{ 'tpope/vim-commentary' },
--- { 'numToStr/Comment.nvim' },
+-- Comments
+-- { 'tpope/vim-commentary' },
+{ 'numToStr/Comment.nvim' },
+{ 'JoosepAlviste/nvim-ts-context-commentstring' },
+
 { 'jparise/vim-graphql' },
 { 'editorconfig/editorconfig-vim' },
 { 'lukas-reineke/indent-blankline.nvim' },
@@ -260,7 +263,6 @@ end)
 
 require("ibl").setup { indent = { highlight = highlight } }
 
--- require('Comment').setup()
 -- require('Trouble').setup()
 
 require('todo-comments').setup({
@@ -396,3 +398,10 @@ require('render-markdown').setup({
   completions = { lsp = { enabled = true} }
 
 })
+
+-- require('Comment').setup(
+--
+-- {
+--     pre_hook = require('ts_context_commentstring.integrations.comment_nvim').create_pre_hook(),
+-- }
+-- )
