@@ -105,35 +105,38 @@ require("lazy").setup({
   event = "VeryLazy",
   version = false, -- Never set this value to "*"! Never!
   opts = {
-    -- add any opts here
-    -- for example
-    provider = "gemini",
-    openai = {
-      endpoint = "https://api.openai.com/v1",
-      model = "gpt-4o", -- your desired model (or use gpt-4o, etc.)
-      timeout = 30000, -- Timeout in milliseconds, increase this for reasoning models
-      temperature = 0,
-      max_completion_tokens = 8192, -- Increase this to include reasoning tokens (for reasoning models)
-      --reasoning_effort = "medium", -- low|medium|high, only used for reasoning models
-    },
-	gemini = {
-	       __inherited_from = "gemini",
-	  model = "gemini-2.5-pro-preview-03-25"
-	},
-  claude = {
-    endpoint = "https://api.anthropic.com",
-    model = "claude-sonnet-4-20250514",
-    temperature = 0,
-    max_tokens = 4096,
-  },
-  vendors = {
-  mistral= {
-    __inherited_from = "openai",
-    api_key_name = "MISTRAL_API_KEY",
-    endpoint = "https://api.mistral.ai/v1/",
-    model = "mistral-large-latest",
-    max_tokens = 4096, -- to avoid using max_completion_tokens
-  },
+    providers = {
+      openai = {
+	endpoint = "https://api.openai.com/v1",
+	model = "gpt-4o", -- your desired model (or use gpt-4o, etc.)
+	timeout = 30000, -- Timeout in milliseconds, increase this for reasoning models
+	extra_request_body = {
+	  temperature = 0,
+	  max_completion_tokens = 8192, -- Increase this to include reasoning tokens (for reasoning models)
+	  --reasoning_effort = "medium", -- low|medium|high, only used for reasoning models
+	}
+      },
+      gemini = {
+	__inherited_from = "gemini",
+	model = "gemini-2.5-pro-preview-03-25"
+      },
+      claude = {
+	endpoint = "https://api.anthropic.com",
+	model = "claude-sonnet-4-20250514",
+	extra_request_body = {
+	  temperature = 0,
+	  max_tokens = 4096,
+	}
+      },
+      mistral= {
+	__inherited_from = "openai",
+	api_key_name = "MISTRAL_API_KEY",
+	endpoint = "https://api.mistral.ai/v1/",
+	model = "mistral-large-latest",
+	extra_request_body = {
+	  max_tokens = 4096, -- to avoid using max_completion_tokens
+	}
+	      },
 },},
   -- if you want to build from source then do `make BUILD_FROM_SOURCE=true`
   build = "make",
@@ -176,6 +179,7 @@ require("lazy").setup({
     },
   },
 },
+    -- { "lua-language-server" },
 {'neoclide/coc.nvim', branch = 'release'},
 {'leafOfTree/vim-svelte-plugin'},
 {"nvim-treesitter/nvim-treesitter", build = ":TSUpdate",
@@ -383,25 +387,12 @@ telescope.setup({
 require("telescope").load_extension "file_browser"
 
 require('render-markdown').setup({
+     -- render_modes = true,
+    code = { border = 'thin' },
+    -- pipe_table = { style = 'normal' },
   latex = {
       enabled = false,
   },
   completions = { lsp = { enabled = true} }
-})
 
--- require('tabnine').setup({
---   disable_auto_comment=true,
---   accept_keymap="<C-A>",
---   dismiss_keymap = "<C-S>",
---   debounce_ms = 800,
---   suggestion_color = {gui = "#808080", cterm = 244},
---   exclude_filetypes = {"TelescopePrompt", "NvimTree"},
---   log_file_path = nil, -- absolute path to Tabnine log file
---   ignore_certificate_errors = false,
---   workspace_folders = {
---     paths = { "/Volumes/T5/ben/team" },
---     get_paths = function()
---       return { "/Volumes/T5/ben/team" }
---     end,
---   },
--- })
+})
