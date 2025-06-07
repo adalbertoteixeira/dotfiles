@@ -125,6 +125,16 @@ mods = "Command"
 # key = "Right"
 # mods = "Alt"
 
+[[keyboard.bindings]]
+action  = "SelectNextTab"
+key = "Tab"
+mods = "Control"
+
+[[keyboard.bindings]]
+action  = "SelectPreviousTab"
+key = "Tab"
+mods = "Control|Shift"
+
 [window]
 decorations = "full"
 dynamic_title = true
