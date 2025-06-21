@@ -26,12 +26,11 @@ ubuntu:
 	# fix bat alias
 	mkdir -p ~/.local/bin
 	ln -s /usr/bin/batcat ~/.local/bin/bat
-	brew install diff-so-fancy fzf fd bat kalker sk zellij neovim zsh fnm starship zsh-syntax-highlighting mosh
+	brew install diff-so-fancy fzf fd bat kalker sk zellij neovim zsh fnm starship zsh-syntax-highlighting mosh broot frum
 	brew install --cask font-victor-mono-nerd-font
 	echo "Configure neovim to use vim's config: https://neovim.io/doc/user/nvim.html#nvim-from-vim"
 	make dotfiles-ubuntu
 	/bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/HEAD/install.sh)"
-	brew install frum
 
 .PHONY: rust
 rust:
@@ -45,7 +44,7 @@ macOS:
 	cd ~
 	/bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/HEAD/install.sh)"
 	brew install --cask alacritty
-	brew install diff-so-fancy fzf fd bat kalker sk zellij neovim zsh fnm starship zsh-syntax-highlighting mosh frum lua-language-server
+	brew install diff-so-fancy fzf fd bat kalker sk zellij neovim zsh fnm starship zsh-syntax-highlighting mosh frum lua-language-server broot
 	source ~/.zshrc
 	sh -c "$(curl -fsSL https://raw.githubusercontent.com/ohmyzsh/ohmyzsh/master/tools/install.sh)"
 	curl -sL --proto-redir -all,https https://raw.githubusercontent.com/zplug/installer/master/installer.zsh | zsh
@@ -54,7 +53,6 @@ macOS:
 	curl --proto '=https' --tlsv1.2 -sSf https://sh.rustup.rs | sh
 	rustup component add rust-analyzer
 	sh -c "$(curl -fsSL https://raw.githubusercontent.com/ohmyzsh/ohmyzsh/master/tools/install.sh)"
-	brew install --cask font-victor-mono-nerd-font
 	make dotfiles
 
 	
