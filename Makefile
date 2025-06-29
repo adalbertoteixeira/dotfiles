@@ -4,7 +4,7 @@ all: yarn go dotfiles vimubuntu zshubuntu ohmyzshubuntu
 .PHONY: ubuntu
 ubuntu:
 	mkdir -p $(HOME)/.config/
-	sudo apt-get install -y bat make zsh git unzip autoconf patch build-essential libssl-dev libyaml-dev libreadline6-dev zlib1g-dev libgmp-dev libncurses5-dev libffi-dev libgdbm6 libgdbm-dev libdb-dev uuid-dev ripgrep fzf bat make zsh git patch ripgrep snap fd-find zsh-syntax-highlighting lua-language-server
+	sudo apt-get install -y make zsh git unzip autoconf patch build-essential libssl-dev libyaml-dev libreadline6-dev zlib1g-dev libgmp-dev libncurses5-dev libffi-dev libgdbm6 libgdbm-dev libdb-dev uuid-dev ripgrep fzf make zsh git patch ripgrep snap fd-find zsh-syntax-highlighting lua-language-server
 	sudo locale-gen pt_PT.UTF-8 && sudo locale-gen en_GB.UTF-8
 	sudo apt install zsh
 	zsh --version
@@ -26,11 +26,16 @@ ubuntu:
 	# fix bat alias
 	mkdir -p ~/.local/bin
 	ln -s /usr/bin/batcat ~/.local/bin/bat
-	brew install diff-so-fancy fzf fd bat kalker sk zellij neovim zsh fnm starship zsh-syntax-highlighting mosh broot frum
-	brew install --cask font-victor-mono-nerd-font
 	echo "Configure neovim to use vim's config: https://neovim.io/doc/user/nvim.html#nvim-from-vim"
 	make dotfiles-ubuntu
+	make brew
+
+.PHONY: brew
+brew: 
 	/bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/HEAD/install.sh)"
+	brew install diff-so-fancy fzf fd bat kalker sk zellij neovim zsh fnm starship zsh-syntax-highlighting mosh frum lua-language-server dust broot
+	brew install --cask font-victor-mono-nerd-font
+	brew install --cask alacritty
 
 .PHONY: rust
 rust:
@@ -39,12 +44,8 @@ rust:
 
 .PHONY: macOS
 macOS:
-	brew install --cask font-victor-mono-nerd-font
 	make git
 	cd ~
-	/bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/HEAD/install.sh)"
-	brew install --cask alacritty
-	brew install diff-so-fancy fzf fd bat kalker sk zellij neovim zsh fnm starship zsh-syntax-highlighting mosh frum lua-language-server broot
 	source ~/.zshrc
 	sh -c "$(curl -fsSL https://raw.githubusercontent.com/ohmyzsh/ohmyzsh/master/tools/install.sh)"
 	curl -sL --proto-redir -all,https https://raw.githubusercontent.com/zplug/installer/master/installer.zsh | zsh
@@ -54,6 +55,7 @@ macOS:
 	rustup component add rust-analyzer
 	sh -c "$(curl -fsSL https://raw.githubusercontent.com/ohmyzsh/ohmyzsh/master/tools/install.sh)"
 	make dotfiles
+	make brew
 
 	
 
