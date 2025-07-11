@@ -1,14 +1,15 @@
 {
-  "tsserver.enable": true,
-  "diagnostic.displayByVimDiagnostic": true,
-  "diagnostic.displayByAle": true,
-  "languageserver": {
-    "terraform": {
-      "command": "terraform-ls",
-      "args": ["serve"],
-      "filetypes": ["terraform", "tf"],
-      "initializationOptions": {}
-    }
-  },
-  "svelte.enable-ts-plugin": true
+	"tsserver.enable": true,
+	"diagnostic.displayByVimDiagnostic": true,
+	"diagnostic.displayByAle": true,
+	"languageserver": {
+		"terraform": {
+			"command": "terraform-ls",
+			"args": ["serve"],
+			"filetypes": ["terraform", "tf"],
+			"initializationOptions": {}
+		}
+	},
+	"svelte.enable-ts-plugin": true,
+	"biome.enable": true
 }

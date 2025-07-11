@@ -10,32 +10,32 @@ vim.g.maplocalleader = ","
 require("config.lazy")
 
 -- Toggle Neotree
-vim.api.nvim_set_keymap('n', '<leader>tt', ':Neotree toggle<cr>', {noremap = true})
+vim.api.nvim_set_keymap("n", "<leader>tt", ":Neotree toggle<cr>", { noremap = true })
 -- Open Neotree at current file
-vim.api.nvim_set_keymap('n', '<leader>tf', ':Neotree %<cr>', {noremap = true})
+vim.api.nvim_set_keymap("n", "<leader>tf", ":Neotree %<cr>", { noremap = true })
 -- Open Neotree git status
-vim.api.nvim_set_keymap('n', '<leader>tg', ':Neotree git_status<cr>', {noremap = true})
+vim.api.nvim_set_keymap("n", "<leader>tg", ":Neotree git_status<cr>", { noremap = true })
 -- Open Neotree at current file
-vim.api.nvim_set_keymap('n', '<leader>tb', ':Neotree buffers<cr>', {noremap = true})
+vim.api.nvim_set_keymap("n", "<leader>tb", ":Neotree buffers<cr>", { noremap = true })
 
-vim.cmd('filetype plugin indent on')
-vim.cmd('colorscheme onedark')
+vim.cmd("filetype plugin indent on")
+vim.cmd("colorscheme onedark")
 
-vim.o.history=500
+vim.o.history = 500
 
-vim.o.autoread=true
+vim.o.autoread = true
 -- vim.o.noshowcmd=true
-vim.o.regexpengine=0
+vim.o.regexpengine = 0
 
-vim.o.so=5
+vim.o.so = 5
 
 --  Avoid garbled characters in Chinese language windows OS
 -- vim.cmd("language english")
-vim.o.langmenu=en
-vim.o.wildignore='*/.git/*,*/.hg/*,*/.svn/*,*/.DS_Store'
+vim.o.langmenu = en
+vim.o.wildignore = "*/.git/*,*/.hg/*,*/.svn/*,*/.DS_Store"
 
 --  Height of the command bar
-vim.o.cmdheight=2
+vim.o.cmdheight = 2
 
 -- A buffer becomes hidden when it is abandoned
 vim.o.hid = true
@@ -56,42 +56,46 @@ vim.o.lazyredraw = true
 
 -- For regular expressions turn magic on
 vim.o.magic = true
-vim.o.clipboard = 'unnamed'
-vim.api.nvim_set_keymap('n', '/', '/\\v', {noremap = true})
+vim.o.clipboard = "unnamed"
+vim.api.nvim_set_keymap("n", "/", "/\\v", { noremap = true })
 
 -- ALE
 -- vim.g.ale_use_neovim_diagnostics_api = 1
 -- vim.g.ale_disable_lsp = 1
 
-
-vim.api.nvim_create_autocmd('FileType', {
-  pattern = 'sh',
-  callback = function()
-    vim.lsp.start({
-      name = 'bash-language-server',
-      cmd = { 'bash-language-server', 'start' },
-    })
-  end,
+vim.api.nvim_create_autocmd("FileType", {
+	pattern = "sh",
+	callback = function()
+		vim.lsp.start({
+			name = "bash-language-server",
+			cmd = { "bash-language-server", "start" },
+		})
+	end,
 })
 
-vim.api.nvim_set_keymap('n', '<leader>ai', ':ALEInfo<CR>', {noremap = true})
-vim.api.nvim_set_keymap('n', '<leader>ak', ':ALEPrevious<CR>', {noremap = true})
-vim.api.nvim_set_keymap('n', '<leader>aj', ':ALENext<CR>', {noremap = true})
+vim.api.nvim_set_keymap("n", "<leader>ai", ":ALEInfo<CR>", { noremap = true })
+vim.api.nvim_set_keymap("n", "<leader>ak", ":ALEPrevious<CR>", { noremap = true })
+vim.api.nvim_set_keymap("n", "<leader>aj", ":ALENext<CR>", { noremap = true })
 -- nmap <silent> <C-k> <Plug>(ale_previous)
 -- nmap <silent> <C-j> <Plug>(ale_next)
 -- let g:ale_sign_error = '>>'
 -- let g:ale_sign_warning = '--'
 
-vim.api.nvim_set_keymap('n', '<leader>ff', ':Telescope find_files<CR>', {noremap = true})
-vim.api.nvim_set_keymap('n', '<leader>fl', ':Telescope live_grep<CR>', {noremap = true})
-vim.api.nvim_set_keymap('n', '<leader>fg', ':Telescope git_files<CR>', {noremap = true})
-vim.api.nvim_set_keymap('v', '<leader>fs', ':Telescope grep_string<CR>', {noremap = true})
-vim.api.nvim_set_keymap('n', '<leader>fb', ':Telescope buffers<CR>', {noremap = true})
-vim.api.nvim_set_keymap('n', '<leader>fh', ':Telescope help_tags<CR>', {noremap = true})
+vim.api.nvim_set_keymap("n", "<leader>ff", ":Telescope find_files<CR>", { noremap = true })
+vim.api.nvim_set_keymap("n", "<leader>fl", ":Telescope live_grep<CR>", { noremap = true })
+vim.api.nvim_set_keymap("n", "<leader>fg", ":Telescope git_files<CR>", { noremap = true })
+vim.api.nvim_set_keymap("v", "<leader>fs", ":Telescope grep_string<CR>", { noremap = true })
+vim.api.nvim_set_keymap("n", "<leader>fb", ":Telescope buffers<CR>", { noremap = true })
+vim.api.nvim_set_keymap("n", "<leader>fh", ":Telescope help_tags<CR>", { noremap = true })
 
 vim.keymap.set("n", "<leader>fr", ":Telescope file_browser<CR>")
 -- open file_browser with the path of the current buffer
-vim.api.nvim_set_keymap("n", "<leader>frb", ":Telescope file_browser path=%:p:h select_buffer=true<CR>", {noremap = true})
+vim.api.nvim_set_keymap(
+	"n",
+	"<leader>frb",
+	":Telescope file_browser path=%:p:h select_buffer=true<CR>",
+	{ noremap = true }
+)
 
 -- " This is the default extra key bindings
 -- " let g:fzf_action = {
@@ -131,41 +135,41 @@ vim.api.nvim_set_keymap("n", "<leader>frb", ":Telescope file_browser path=%:p:h 
 -- " previous-history instead of down and up. If you don't like the change,
 -- " explicitly bind the keys to down and up in your $FZF_DEFAULT_OPTS.
 -- " let g:fzf_history_dir = '~/.local/share/fzf-history'
-vim.o.showmatch=true
+vim.o.showmatch = true
 -- " How many tenths of a second to blink when matching brackets
-vim.o.mat=2
+vim.o.mat = 2
 --
-vim.o.showmatch=true
+vim.o.showmatch = true
 -- " How many tenths of a second to blink when matching brackets
-vim.o.mat=2
+vim.o.mat = 2
 --
 -- " No annoying sound on errors
-vim.o.errorbells=false
-vim.o.visualbell=false
+vim.o.errorbells = false
+vim.o.visualbell = false
 -- vim.o.t_vb=true
-vim.o.tm=500
+vim.o.tm = 500
 -- " Time out on key codes but not mappings.
 -- " Basically this makes terminal Vim work sanely.
-vim.o.timeout=false
-vim.o.ttimeout=true
-vim.o.ttimeoutlen=10
+vim.o.timeout = false
+vim.o.ttimeout = true
+vim.o.ttimeoutlen = 10
 --
-vim.o.hlsearch=false
-vim.o.splitright=true
-vim.o.splitbelow=true
+vim.o.hlsearch = false
+vim.o.splitright = true
+vim.o.splitbelow = true
 
 --
 -- """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 -- " Syntax
 -- """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 -- " speed up syntax highlighting
-vim.o.cursorcolumn= false
+vim.o.cursorcolumn = false
 vim.o.cursorline = true
 --
 -- " Enable syntax highlighting
-vim.cmd('syntax enable')
-vim.o.synmaxcol=250
-vim.o.colorcolumn='80,100,120'
+vim.cmd("syntax enable")
+vim.o.synmaxcol = 250
+vim.o.colorcolumn = "80,100,120"
 --
 --
 --
@@ -175,18 +179,18 @@ vim.o.colorcolumn='80,100,120'
 --
 --
 -- " Make Vim to handle long lines nicely.
-vim.o.wrap=true
-vim.o.textwidth=100
-vim.o.formatoptions=qrn1
+vim.o.wrap = true
+vim.o.textwidth = 100
+vim.o.formatoptions = qrn1
 --
-vim.o.background=dark
+vim.o.background = dark
 -- " No need to set explicitly under Neovim: always uses UTF-8 as the default encoding.
 -- " Set utf8 as standard encoding and en_US as the standard language
-vim.o.encoding=utf8
+vim.o.encoding = utf8
 -- vim.o.guifont=VictorMono_Nerd_Font
 --
 -- " Use Unix as the standard file type
-vim.o.ffs=unix,dos,mac
+vim.o.ffs = unix, dos, mac
 --
 --
 -- """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
@@ -194,9 +198,9 @@ vim.o.ffs=unix,dos,mac
 -- """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 -- " Turn backup off, since most stuff is in SVN, git et.c anyway...
 -- vim.o.backupcopy=yes
-vim.o.backup=false
-vim.o.wb=false
-vim.o.swapfile=false
+vim.o.backup = false
+vim.o.wb = false
+vim.o.swapfile = false
 --
 vim.g.indent_guides_enable_on_vim_startup = 1
 -- " Use spaces instead of tabs
@@ -206,27 +210,27 @@ vim.g.indent_guides_enable_on_vim_startup = 1
 -- vim.o.smarttab=true
 --
 -- " 1 tab == 2 spaces
-vim.o.shiftwidth=2
+vim.o.shiftwidth = 2
 -- vim.o.tabstop=2
 --
 -- " Linebreak on 500 characters
 -- " set lbr
 -- " set tw=100
 --Auto indent
-vim.o.ai =true
+vim.o.ai = true
 -- ="Smart indent
-vim.o.si =true
+vim.o.si = true
 -- "Wrap lines
-vim.o.wrap =true
+vim.o.wrap = true
 --
 --
 vim.o.number = true
 -- " set numberwidth=8
-vim.o.mouse=a
-vim.o.showmode=false
+vim.o.mouse = a
+vim.o.showmode = false
 --
 -- " Set spelling
-vim.o.spell=true
+vim.o.spell = true
 -- " :setlocal spell spelllang=pt_pt
 -- hi SpellBad cterm=underline ctermfg=red
 --
@@ -262,8 +266,8 @@ vim.o.spell=true
 -- autocmd BufNewFile,BufRead *.mts :set filetype=typescript
 --
 --
-vim.api.nvim_set_keymap("n", '<leader>hk', ':GitGutterPrevHunk<CR>', {noremap=true})
-vim.api.nvim_set_keymap("n", '<leader>hj', ':GitGutterNextHunk<CR>', {noremap=true})
+vim.api.nvim_set_keymap("n", "<leader>hk", ":GitGutterPrevHunk<CR>", { noremap = true })
+vim.api.nvim_set_keymap("n", "<leader>hj", ":GitGutterNextHunk<CR>", { noremap = true })
 -- nmap <Leader>hp <Plug>(GitGutterPrevHunk)
 -- nmap <Leader>hn <Plug>(GitGutterNextHunk)
 -- inoremap <c-x><c-k> <c-x><c-k>
@@ -301,7 +305,7 @@ vim.api.nvim_set_keymap("n", '<leader>hj', ':GitGutterNextHunk<CR>', {noremap=tr
 --
 -- " Always show the signcolumn, otherwise it would shift the text each time
 -- " diagnostics appear/become resolved
-vim.opt.signcolumn = 'yes'
+vim.opt.signcolumn = "yes"
 --
 -- " " Use tab for trigger completion with characters ahead and navigate
 -- " " NOTE: There's always complete item selected by default, you may want to enable
@@ -320,32 +324,33 @@ vim.opt.signcolumn = 'yes'
 -- other plugins before putting this into your config
 local keyset = vim.keymap.set
 -- https://gist.github.com/dinhmai74/4fc774dfd69750ce9ed706620a5082a9
-local opts = {silent = true, noremap = true, expr = true, replace_keycodes = false}
+local opts = { silent = true, noremap = true, expr = true, replace_keycodes = false }
 function _G.check_back_space()
-    local col = vim.fn.col('.') - 1
-    return col == 0 or vim.fn.getline('.'):sub(col, col):match('%s') ~= nil
+	local col = vim.fn.col(".") - 1
+	return col == 0 or vim.fn.getline("."):sub(col, col):match("%s") ~= nil
 end
-keyset("i", "<TAB>", 'coc#pum#visible() ? coc#pum#next(1) : v:lua.check_back_space() ? "<TAB>" : coc#refresh()', opts)
-keyset("i", "<S-TAB>", [[coc#pum#visible() ? coc#pum#prev(1) : "\<C-h>"]], opts)
+
+-- keyset("i", "<TAB>", 'coc#pum#visible() ? coc#pum#next(1) : v:lua.check_back_space() ? "<TAB>" : coc#refresh()', opts)
+-- keyset("i", "<S-TAB>", [[coc#pum#visible() ? coc#pum#prev(1) : "\<C-h>"]], opts)
 -- Make <CR> to accept selected completion item or notify coc.nvim to format
 -- <C-g>u breaks current undo, please make your own choice
-keyset("i", "<cr>", [[coc#pum#visible() ? coc#pum#confirm() : "\<C-g>u\<CR>\<c-r>=coc#on_enter()\<CR>"]], opts)
+-- keyset("i", "<cr>", [[coc#pum#visible() ? coc#pum#confirm() : "\<C-g>u\<CR>\<c-r>=coc#on_enter()\<CR>"]], opts)
 
 -- Use <c-j> to trigger snippets
-keyset("i", "<c-j>", "<Plug>(coc-snippets-expand-jump)")
+-- keyset("i", "<c-j>", "<Plug>(coc-snippets-expand-jump)")
 -- Use <c-space> to trigger completion
-keyset("i", "<c-space>", "coc#refresh()", {silent = true, expr = true})
+-- keyset("i", "<c-space>", "coc#refresh()", { silent = true, expr = true })
 
 -- Use `[g` and `]g` to navigate diagnostics
 -- Use `:CocDiagnostics` to get all diagnostics of current buffer in location list
-keyset("n", "[g", "<Plug>(coc-diagnostic-prev)", {silent = true})
-keyset("n", "]g", "<Plug>(coc-diagnostic-next)", {silent = true})
+-- keyset("n", "[g", "<Plug>(coc-diagnostic-prev)", { silent = true })
+-- keyset("n", "]g", "<Plug>(coc-diagnostic-next)", { silent = true })
 
 -- GoTo code navigation
-keyset("n", "gd", "<Plug>(coc-definition)", {silent = true})
-keyset("n", "gy", "<Plug>(coc-type-definition)", {silent = true})
-keyset("n", "gi", "<Plug>(coc-implementation)", {silent = true})
-keyset("n", "gr", "<Plug>(coc-references)", {silent = true})
+-- keyset("n", "gd", "<Plug>(coc-definition)", { silent = true })
+-- keyset("n", "gy", "<Plug>(coc-type-definition)", { silent = true })
+-- keyset("n", "gi", "<Plug>(coc-implementation)", { silent = true })
+-- keyset("n", "gr", "<Plug>(coc-references)", { silent = true })
 --
 -- " Make <CR> to accept selected completion item or notify coc.nvim to format
 -- " <C-g>u breaks current undo, please make your own choice
@@ -357,17 +362,18 @@ keyset("n", "gr", "<Plug>(coc-references)", {silent = true})
 -- " " Use K to show documentation in preview window
 -- " nnoremap <silent> K :call ShowDocumentation()<CR>
 -- Use K to show documentation in preview window
-function _G.show_docs()
-    local cw = vim.fn.expand('<cword>')
-    if vim.fn.index({'vim', 'help'}, vim.bo.filetype) >= 0 then
-        vim.api.nvim_command('h ' .. cw)
-    elseif vim.api.nvim_eval('coc#rpc#ready()') then
-        vim.fn.CocActionAsync('doHover')
-    else
-        vim.api.nvim_command('!' .. vim.o.keywordprg .. ' ' .. cw)
-    end
-end
-keyset("n", "K", '<CMD>lua _G.show_docs()<CR>', {silent = true})
+-- function _G.show_docs()
+-- 	local cw = vim.fn.expand('<cword>')
+-- 	if vim.fn.index({ 'vim', 'help' }, vim.bo.filetype) >= 0 then
+-- 		vim.api.nvim_command('h ' .. cw)
+-- 	elseif vim.api.nvim_eval('coc#rpc#ready()') then
+-- 		vim.fn.CocActionAsync('doHover')
+-- 	else
+-- 		vim.api.nvim_command('!' .. vim.o.keywordprg .. ' ' .. cw)
+-- 	end
+-- end
+--
+-- keyset("n", "K", '<CMD>lua _G.show_docs()<CR>', { silent = true })
 
 -- " " Highlight the symbol and its references when holding the cursor
 -- " autocmd CursorHold * silent call CocActionAsync('highlight')
@@ -476,20 +482,66 @@ keyset("n", "K", '<CMD>lua _G.show_docs()<CR>', {silent = true})
 -- :let g:python3_host_prog='/opt/homebrew/bin/python3.11'
 -- :let g:python_host_prog='/opt/homebrew/bin/python3.11'
 
-
-
-
 -- Svelte
 vim.g.vim_svelte_plugin_load_full_syntax = 0
 vim.g.vim_svelte_plugin_use_typescript = 1
 vim.g.vim_svelte_plugin_use_sass = 1
 
-
 -- todo-comments
 vim.keymap.set("n", "]t", function()
-  require("todo-comments").jump_next()
+	require("todo-comments").jump_next()
 end, { desc = "Next todo comment" })
 
 vim.keymap.set("n", "[t", function()
-  require("todo-comments").jump_prev()
+	require("todo-comments").jump_prev()
 end, { desc = "Previous todo comment" })
+
+-- vim.lsp.enable('biome')
+-- vim.lsp.config("lua_ls", {
+-- 	on_init = function(client)
+-- 		if client.workspace_folders then
+-- 			local path = client.workspace_folders[1].name
+-- 			if
+-- 				path ~= vim.fn.stdpath("config")
+-- 				and (vim.uv.fs_stat(path .. "/.luarc.json") or vim.uv.fs_stat(path .. "/.luarc.jsonc"))
+-- 			then
+-- 				return
+-- 			end
+-- 		end
+--
+-- 		client.config.settings.Lua = vim.tbl_deep_extend("force", client.config.settings.Lua, {
+-- 			runtime = {
+-- 				-- Tell the language server which version of Lua you're using (most
+-- 				-- likely LuaJIT in the case of Neovim)
+-- 				version = "LuaJIT",
+-- 				-- Tell the language server how to find Lua modules same way as Neovim
+-- 				-- (see `:h lua-module-load`)
+-- 				path = {
+-- 					"lua/?.lua",
+-- 					"lua/?/init.lua",
+-- 				},
+-- 			},
+-- 			-- Make the server aware of Neovim runtime files
+-- 			workspace = {
+-- 				checkThirdParty = false,
+-- 				library = {
+-- 					vim.env.VIMRUNTIME,
+-- 					-- Depending on the usage, you might want to add additional paths
+-- 					-- here.
+-- 					-- '${3rd}/luv/library'
+-- 					-- '${3rd}/busted/library'
+-- 				},
+-- 				-- Or pull in all of 'runtimepath'.
+-- 				-- NOTE: this is a lot slower and will cause issues when working on
+-- 				-- your own configuration.
+-- 				-- See https://github.com/neovim/nvim-lspconfig/issues/3189
+-- 				-- library = {
+-- 				--   vim.api.nvim_get_runtime_file('', true),
+-- 				-- }
+-- 			},
+-- 		})
+-- 	end,
+-- 	settings = {
+-- 		Lua = {},
+-- 	},
+-- })
