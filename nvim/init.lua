@@ -545,3 +545,4 @@ end, { desc = "Previous todo comment" })
 -- 		Lua = {},
 -- 	},
 -- })
+vim.api.nvim_set_keymap("n", "<leader>nc", ":Neogen<CR>", { noremap = true, silent = true })

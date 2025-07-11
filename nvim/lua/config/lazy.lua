@@ -48,6 +48,13 @@ require("lazy").setup({
 		},
 
 		-- { "junegunn/gv.vim" },
+		{
+			"danymat/neogen",
+			config = true,
+			-- Uncomment next line if you want to follow only stable versions
+			-- version = "*"
+		},
+
 		-- Linting / formatting
 		{
 			"stevearc/conform.nvim",
@@ -99,7 +106,7 @@ require("lazy").setup({
 			-- 		vim.o.formatexpr = "v:lua.require'conform'.formatexpr()"
 			-- 	end,
 		},
-		{ "akinsho/bufferline.nvim", version = "*", dependencies = "nvim-tree/nvim-web-devicons" },
+		-- { "akinsho/bufferline.nvim", version = "*", dependencies = "nvim-tree/nvim-web-devicons" },
 		-- {
 		-- 	"mfussenegger/nvim-lint",
 		-- 	opts = {
@@ -726,4 +733,5 @@ vim.lsp.enable("ts_ls")
 vim.lsp.enable("tsserver")
 require("lualine").setup()
 vim.opt.termguicolors = true
-require("bufferline").setup({})
+-- require("bufferline").setup({})
+require("neogen").setup()
