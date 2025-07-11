@@ -18,26 +18,36 @@ vim.opt.rtp:prepend(lazypath)
 -- Setup lazy.nvim
 require("lazy").setup({
 	spec = {
-		-- import your plugins
-		--{ import = "plugins" },
+		{ "tpope/vim-fugitive" },
+		-- {
+		-- 	"vim-airline/vim-airline",
+		-- 	config = function()
+		-- 		local g = vim.g
+		--
+		-- 		g.airline_theme = "simple"
+		-- 		-- g.airline.extensions.hunks.enabled=0
+		-- 		-- g:airline#extensions#hunks#enabled = 0
+		-- 		-- g.airline#extensions#obsession#enabled = 1
+		-- 		-- g.airline#extensions#obsession#indicator_text = '$Obsession$'
+		-- 	end,
+		-- },
+		-- { "vim-airline/vim-airline-themes" },
 		{
-			"tpope/vim-fugitive",
-		},
-		{
-			"vim-airline/vim-airline",
-
-			config = function()
-				local g = vim.g
-
-				g.airline_theme = "simple"
-				-- g.airline.extensions.hunks.enabled=0
-				-- g:airline#extensions#hunks#enabled = 0
-				-- g.airline#extensions#obsession#enabled = 1
-				-- g.airline#extensions#obsession#indicator_text = '$Obsession$'
+			"nvim-lualine/lualine.nvim",
+			event = "VeryLazy",
+			init = function()
+				vim.g.lualine_laststatus = vim.o.laststatus
+				if vim.fn.argc(-1) > 0 then
+					-- set an empty statusline till lualine loads
+					vim.o.statusline = " "
+				else
+					-- hide the statusline on the starter page
+					vim.o.laststatus = 0
+				end
 			end,
 		},
-		{ "vim-airline/vim-airline-themes" },
-		{ "junegunn/gv.vim" },
+
+		-- { "junegunn/gv.vim" },
 		-- Linting / formatting
 		{
 			"stevearc/conform.nvim",
@@ -68,6 +78,7 @@ require("lazy").setup({
 					hcl = { "packer_fmt" },
 					terraform = { "terraform_fmt" },
 					tf = { "terraform_fmt" },
+					rust = { "rust-analyser", lsp_format = "fallback" },
 					["terraform-vars"] = { "terraform_fmt" },
 				},
 				-- Set default options
@@ -88,13 +99,13 @@ require("lazy").setup({
 			-- 		vim.o.formatexpr = "v:lua.require'conform'.formatexpr()"
 			-- 	end,
 		},
+		{ "akinsho/bufferline.nvim", version = "*", dependencies = "nvim-tree/nvim-web-devicons" },
 		-- {
 		-- 	"mfussenegger/nvim-lint",
 		-- 	opts = {
 		-- 		-- Event to trigger linters
 		-- 		events = { "BufWritePost", "BufReadPost", "InsertLeave" },
 		-- 		linters_by_ft = {
-		-- 			fish = { "fish" },
 		-- 			typescript = { "biome" },
 		-- 			-- Use the "*" filetype to run linters on all filetypes.
 		-- 			-- ['*'] = { 'global linter' },
@@ -242,7 +253,7 @@ require("lazy").setup({
 		{ "JoosepAlviste/nvim-ts-context-commentstring" },
 
 		-- { "jparise/vim-graphql" },
-		{ "editorconfig/editorconfig-vim" },
+		-- { "editorconfig/editorconfig-vim" },
 		{ "lukas-reineke/indent-blankline.nvim" },
 		-- { "hashivim/vim-terraform" },
 		{
@@ -425,6 +436,30 @@ require("lazy").setup({
 						"json5",
 						"terraform",
 						"hcl",
+						"bash",
+						"c",
+						"diff",
+						"html",
+						"javascript",
+						"jsdoc",
+						"json",
+						"jsonc",
+						"lua",
+						"luadoc",
+						"luap",
+						"markdown",
+						"markdown_inline",
+						"printf",
+						"python",
+						"query",
+						"regex",
+						"toml",
+						"tsx",
+						"typescript",
+						"vim",
+						"vimdoc",
+						"xml",
+						"yaml",
 					},
 					sync_install = false,
 					highlight = { enable = true },
@@ -689,3 +724,6 @@ vim.lsp.enable("terraformls")
 -- vim.lsp.enable("tsserver")
 vim.lsp.enable("ts_ls")
 vim.lsp.enable("tsserver")
+require("lualine").setup()
+vim.opt.termguicolors = true
+require("bufferline").setup({})
