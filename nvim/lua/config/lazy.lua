@@ -19,19 +19,6 @@ vim.opt.rtp:prepend(lazypath)
 require("lazy").setup({
 	spec = {
 		{ "tpope/vim-fugitive" },
-		-- {
-		-- 	"vim-airline/vim-airline",
-		-- 	config = function()
-		-- 		local g = vim.g
-		--
-		-- 		g.airline_theme = "simple"
-		-- 		-- g.airline.extensions.hunks.enabled=0
-		-- 		-- g:airline#extensions#hunks#enabled = 0
-		-- 		-- g.airline#extensions#obsession#enabled = 1
-		-- 		-- g.airline#extensions#obsession#indicator_text = '$Obsession$'
-		-- 	end,
-		-- },
-		-- { "vim-airline/vim-airline-themes" },
 		{
 			"nvim-lualine/lualine.nvim",
 			event = "VeryLazy",
@@ -159,143 +146,159 @@ require("lazy").setup({
 			-- 	end,
 		},
 		-- { "akinsho/bufferline.nvim", version = "*", dependencies = "nvim-tree/nvim-web-devicons" },
-		-- {
-		-- 	"mfussenegger/nvim-lint",
-		-- 	opts = {
-		-- 		-- Event to trigger linters
-		-- 		events = { "BufWritePost", "BufReadPost", "InsertLeave" },
-		-- 		linters_by_ft = {
-		-- 			typescript = { "biome" },
-		-- 			-- Use the "*" filetype to run linters on all filetypes.
-		-- 			-- ['*'] = { 'global linter' },
-		-- 			-- Use the "_" filetype to run linters on filetypes that don't have other linters configured.
-		-- 			-- ['_'] = { 'fallback linter' },
-		-- 			-- ["*"] = { "typos" },
-		-- 			terraform = { "terraform_validate" },
-		-- 			tf = { "terraform_validate" },
-		-- 		},
-		-- 		-- LazyVim extension to easily override linter options
-		-- 		-- or add custom linters.
-		-- 		---@type table<string,table>
-		-- 		linters = {
-		-- 			-- -- Example of using selene only when a selene.toml file is present
-		-- 			-- selene = {
-		-- 			--   -- `condition` is another LazyVim extension that allows you to
-		-- 			--   -- dynamically enable/disable linters based on the context.
-		-- 			--   condition = function(ctx)
-		-- 			--     return vim.fs.find({ "selene.toml" }, { path = ctx.filename, upward = true })[1]
-		-- 			--   end,
-		-- 			-- },
-		-- 		},
-		-- 	},
-		-- 	config = function(_, opts)
-		-- 		local M = {}
-		--
-		-- 		local lint = require("lint")
-		-- 		for name, linter in pairs(opts.linters) do
-		-- 			if type(linter) == "table" and type(lint.linters[name]) == "table" then
-		-- 				lint.linters[name] = vim.tbl_deep_extend("force", lint.linters[name], linter)
-		-- 				if type(linter.prepend_args) == "table" then
-		-- 					lint.linters[name].args = lint.linters[name].args or {}
-		-- 					vim.list_extend(lint.linters[name].args, linter.prepend_args)
-		-- 				end
-		-- 			else
-		-- 				lint.linters[name] = linter
-		-- 			end
-		-- 		end
-		-- 		lint.linters_by_ft = opts.linters_by_ft
-		--
-		-- 		function M.debounce(ms, fn)
-		-- 			local timer = vim.uv.new_timer()
-		-- 			return function(...)
-		-- 				local argv = { ... }
-		-- 				timer:start(ms, 0, function()
-		-- 					timer:stop()
-		-- 					vim.schedule_wrap(fn)(unpack(argv))
-		-- 				end)
-		-- 			end
-		-- 		end
-		--
-		-- 		function M.lint()
-		-- 			-- Use nvim-lint's logic first:
-		-- 			-- * checks if linters exist for the full filetype first
-		-- 			-- * otherwise will split filetype by "." and add all those linters
-		-- 			-- * this differs from conform.nvim which only uses the first filetype that has a formatter
-		-- 			local names = lint._resolve_linter_by_ft(vim.bo.filetype)
-		--
-		-- 			-- Create a copy of the names table to avoid modifying the original.
-		-- 			names = vim.list_extend({}, names)
-		--
-		-- 			-- Add fallback linters.
-		-- 			if #names == 0 then
-		-- 				vim.list_extend(names, lint.linters_by_ft["_"] or {})
-		-- 			end
-		--
-		-- 			-- Add global linters.
-		-- 			vim.list_extend(names, lint.linters_by_ft["*"] or {})
-		--
-		-- 			-- Filter out linters that don't exist or don't match the condition.
-		-- 			local ctx = { filename = vim.api.nvim_buf_get_name(0) }
-		-- 			ctx.dirname = vim.fn.fnamemodify(ctx.filename, ":h")
-		-- 			names = vim.tbl_filter(function(name)
-		-- 				local linter = lint.linters[name]
-		-- 				return linter
-		-- 					and not (type(linter) == "table" and linter.condition and not linter.condition(ctx))
-		-- 			end, names)
-		--
-		-- 			-- Run linters.
-		-- 			if #names > 0 then
-		-- 				lint.try_lint(names)
-		-- 			end
-		-- 		end
-		--
-		-- 		vim.api.nvim_create_autocmd(opts.events, {
-		-- 			group = vim.api.nvim_create_augroup("nvim-lint", { clear = true }),
-		-- 			callback = M.debounce(100, M.lint),
-		-- 		})
-		-- 	end,
-		-- },
+		{
+			"mfussenegger/nvim-lint",
+			opts = {
+				-- Event to trigger linters
+				events = { "BufWritePost", "BufReadPost", "InsertLeave" },
+				linters_by_ft = {
+					typescript = { "biome" },
+					svelte = { "svelte_language_server" },
+					-- Use the "*" filetype to run linters on all filetypes.
+					-- ['*'] = { 'global linter' },
+					-- Use the "_" filetype to run linters on filetypes that don't have other linters configured.
+					-- ['_'] = { 'fallback linter' },
+					-- ["*"] = { "typos" },
+					terraform = { "terraform_validate" },
+					tf = { "terraform_validate" },
+				},
+				-- LazyVim extension to easily override linter options
+				-- or add custom linters.
+				---@type table<string,table>
+				linters = {
+					-- -- Example of using selene only when a selene.toml file is present
+					-- selene = {
+					--   -- `condition` is another LazyVim extension that allows you to
+					--   -- dynamically enable/disable linters based on the context.
+					--   condition = function(ctx)
+					--     return vim.fs.find({ "selene.toml" }, { path = ctx.filename, upward = true })[1]
+					--   end,
+					-- },
+				},
+			},
+			config = function(_, opts)
+				local M = {}
+
+				local lint = require("lint")
+				for name, linter in pairs(opts.linters) do
+					if type(linter) == "table" and type(lint.linters[name]) == "table" then
+						lint.linters[name] = vim.tbl_deep_extend("force", lint.linters[name], linter)
+						if type(linter.prepend_args) == "table" then
+							lint.linters[name].args = lint.linters[name].args or {}
+							vim.list_extend(lint.linters[name].args, linter.prepend_args)
+						end
+					else
+						lint.linters[name] = linter
+					end
+				end
+				lint.linters_by_ft = opts.linters_by_ft
+
+				function M.debounce(ms, fn)
+					local timer = vim.uv.new_timer()
+					return function(...)
+						local argv = { ... }
+						timer:start(ms, 0, function()
+							timer:stop()
+							vim.schedule_wrap(fn)(unpack(argv))
+						end)
+					end
+				end
+
+				function M.lint()
+					-- Use nvim-lint's logic first:
+					-- * checks if linters exist for the full filetype first
+					-- * otherwise will split filetype by "." and add all those linters
+					-- * this differs from conform.nvim which only uses the first filetype that has a formatter
+					local names = lint._resolve_linter_by_ft(vim.bo.filetype)
+
+					-- Create a copy of the names table to avoid modifying the original.
+					names = vim.list_extend({}, names)
+
+					-- Add fallback linters.
+					if #names == 0 then
+						vim.list_extend(names, lint.linters_by_ft["_"] or {})
+					end
+
+					-- Add global linters.
+					vim.list_extend(names, lint.linters_by_ft["*"] or {})
+
+					-- Filter out linters that don't exist or don't match the condition.
+					local ctx = { filename = vim.api.nvim_buf_get_name(0) }
+					ctx.dirname = vim.fn.fnamemodify(ctx.filename, ":h")
+					names = vim.tbl_filter(function(name)
+						local linter = lint.linters[name]
+						return linter
+							and not (type(linter) == "table" and linter.condition and not linter.condition(ctx))
+					end, names)
+
+					-- Run linters.
+					if #names > 0 then
+						lint.try_lint(names)
+					end
+				end
+
+				vim.api.nvim_create_autocmd(opts.events, {
+					group = vim.api.nvim_create_augroup("nvim-lint", { clear = true }),
+					callback = M.debounce(100, M.lint),
+				})
+			end,
+		},
 		{
 			"neovim/nvim-lspconfig",
 		},
 
 		-- { 'neoclide/coc.nvim',           branch = 'release' },
-		{
-			"dense-analysis/ale",
-			config = function()
-				-- Configuration goes here.
-				local g = vim.g
-
-				g.ale_use_neovim_diagnostics_api = 1
-				-- g.ale_disable_lsp = 1
-				g.ale_completion_enabled = 0
-				g.ale_set_balloons = 1
-				g.ale_fix_on_save = 1
-				g.ale_lint_on_text_changed = 1
-				g.ale_lint_on_insert_leave = 1
-				g.ale_set_loclist = 0
-				g.ale_set_quickfix = 0
-				g.ale_set_highlights = 1
-				g.ale_set_signs = 1
-				g.ale_open_list = 1
-				g.ale_keep_list_window_open = 0
-				g.ale_sign_column_always = 1
-				g.ale_linters_explicit = 1
-				g.ale_lint_delay = 500
-			end,
-		},
+		-- {
+		-- 	"dense-analysis/ale",
+		-- 	config = function()
+		-- 		-- Configuration goes here.
+		-- 		local g = vim.g
+		--
+		-- 		g.ale_use_neovim_diagnostics_api = 1
+		-- 		-- g.ale_disable_lsp = 1
+		-- 		g.ale_completion_enabled = 0
+		-- 		g.ale_set_balloons = 1
+		-- 		g.ale_fix_on_save = 1
+		-- 		g.ale_lint_on_text_changed = 1
+		-- 		g.ale_lint_on_insert_leave = 1
+		-- 		g.ale_set_loclist = 0
+		-- 		g.ale_set_quickfix = 0
+		-- 		g.ale_set_highlights = 1
+		-- 		g.ale_set_signs = 1
+		-- 		g.ale_open_list = 1
+		-- 		g.ale_keep_list_window_open = 0
+		-- 		g.ale_sign_column_always = 1
+		-- 		g.ale_linters_explicit = 1
+		-- 		g.ale_lint_delay = 500
+		-- 	end,
+		-- },
 		{ "tpope/vim-surround" },
-		{ "airblade/vim-gitgutter" },
+		-- { "airblade/vim-gitgutter" },
 		{ "burntsushi/ripgrep" },
 		{ "tpope/vim-obsession" },
-		{ "tpope/vim-dadbod" },
+		-- { "tpope/vim-dadbod" },
 		-- { "kristijanhusak/vim-dadbod-ui" },
-
+		-- lazy.nvim
+		{
+			"folke/noice.nvim",
+			event = "VeryLazy",
+			opts = {
+				-- add any options here
+			},
+			dependencies = {
+				-- if you lazy-load any plugin below, make sure to add proper `module="..."` entries
+				"MunifTanjim/nui.nvim",
+				-- OPTIONAL:
+				--   `nvim-notify` is only needed, if you want to use the notification view.
+				--   If not available, we use `mini` as the fallback
+				"rcarriga/nvim-notify",
+			},
+		},
 		{ "navarasu/onedark.nvim" },
 
 		{ "https://github.com/adelarsq/vim-devicons-emoji" },
 		-- { "jxnblk/vim-mdx-js" },
-		{ "maxmellon/vim-jsx-pretty" },
+		-- { "maxmellon/vim-jsx-pretty" },
 		{
 			"windwp/nvim-autopairs",
 			-- event = "InsertEnter",
@@ -305,11 +308,19 @@ require("lazy").setup({
 		},
 		-- { "cakebaker/scss-syntax.vim" },
 		-- { "chr4/nginx.vim" },
-		{ "mechatroner/rainbow_csv" },
+		-- { "mechatroner/rainbow_csv" },
 		-- Comments
 		-- { 'tpope/vim-commentary' },
-		{ "numToStr/Comment.nvim" },
 		{ "JoosepAlviste/nvim-ts-context-commentstring" },
+		{
+			"numToStr/Comment.nvim",
+
+			dependencies = {
+				"nvim-treesitter/nvim-treesitter",
+				"JoosepAlviste/nvim-ts-context-commentstring",
+			},
+			-- pre_hook = require("ts_context_commentstring.integrations.comment_nvim").create_pre_hook(),
+		},
 
 		-- { "jparise/vim-graphql" },
 		-- { "editorconfig/editorconfig-vim" },
@@ -326,6 +337,7 @@ require("lazy").setup({
 				automatic_enable = false,
 			},
 		},
+		{ "lewis6991/gitsigns.nvim" },
 		{
 			"mason-org/mason.nvim",
 			opts = {
@@ -787,3 +799,70 @@ require("lualine").setup()
 vim.opt.termguicolors = true
 -- require("bufferline").setup({})
 require("neogen").setup()
+require("noice").setup({
+	lsp = {
+		-- override markdown rendering so that **cmp** and other plugins use **Treesitter**
+		override = {
+			["vim.lsp.util.convert_input_to_markdown_lines"] = true,
+			["vim.lsp.util.stylize_markdown"] = true,
+			["cmp.entry.get_documentation"] = true, -- requires hrsh7th/nvim-cmp
+		},
+	},
+	-- you can enable a preset for easier configuration
+	presets = {
+		bottom_search = true, -- use a classic bottom cmdline for search
+		command_palette = true, -- position the cmdline and popupmenu together
+		long_message_to_split = true, -- long messages will be sent to a split
+		inc_rename = false, -- enables an input dialog for inc-rename.nvim
+		lsp_doc_border = false, -- add a border to hover docs and signature help
+	},
+})
+require("gitsigns").setup({
+	signs = {
+		add = { text = "┃" },
+		change = { text = "┃" },
+		delete = { text = "_" },
+		topdelete = { text = "‾" },
+		changedelete = { text = "~" },
+		untracked = { text = "┆" },
+	},
+	signs_staged = {
+		add = { text = "┃" },
+		change = { text = "┃" },
+		delete = { text = "_" },
+		topdelete = { text = "‾" },
+		changedelete = { text = "~" },
+		untracked = { text = "┆" },
+	},
+	signs_staged_enable = true,
+	signcolumn = true, -- Toggle with `:Gitsigns toggle_signs`
+	numhl = false, -- Toggle with `:Gitsigns toggle_numhl`
+	linehl = false, -- Toggle with `:Gitsigns toggle_linehl`
+	word_diff = false, -- Toggle with `:Gitsigns toggle_word_diff`
+	watch_gitdir = {
+		follow_files = true,
+	},
+	auto_attach = true,
+	attach_to_untracked = false,
+	current_line_blame = false, -- Toggle with `:Gitsigns toggle_current_line_blame`
+	current_line_blame_opts = {
+		virt_text = true,
+		virt_text_pos = "eol", -- 'eol' | 'overlay' | 'right_align'
+		delay = 1000,
+		ignore_whitespace = false,
+		virt_text_priority = 100,
+		use_focus = true,
+	},
+	current_line_blame_formatter = "<author>, <author_time:%R> - <summary>",
+	sign_priority = 6,
+	update_debounce = 100,
+	status_formatter = nil, -- Use default
+	max_file_length = 40000, -- Disable if file is longer than this (in lines)
+	preview_config = {
+		-- Options passed to nvim_open_win
+		style = "minimal",
+		relative = "cursor",
+		row = 0,
+		col = 1,
+	},
+})
