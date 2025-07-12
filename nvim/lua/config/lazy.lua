@@ -44,7 +44,7 @@ require("lazy").setup({
 		{
 			"saghen/blink.cmp",
 			-- optional: provides snippets for the snippet source
-			dependencies = { "rafamadriz/friendly-snippets" },
+			-- dependencies = { "rafamadriz/friendly-snippets" },
 
 			-- use a release tag to download pre-built binaries
 			version = "1.*",
@@ -53,8 +53,6 @@ require("lazy").setup({
 			-- If you use nix, you can build from source using latest nightly rust with:
 			-- build = 'nix run .#build-plugin',
 
-			---@module 'blink.cmp'
-			---@type blink.cmp.Config
 			opts = {
 				-- 'default' (recommended) for mappings similar to built-in completions (C-y to accept)
 				-- 'super-tab' for mappings similar to vscode (tab to accept)
@@ -124,7 +122,7 @@ require("lazy").setup({
 					hcl = { "packer_fmt" },
 					terraform = { "terraform_fmt" },
 					tf = { "terraform_fmt" },
-					rust = { "rust-analyser", lsp_format = "fallback" },
+					rust = { "rust_analyser", lsp_format = "fallback" },
 					["terraform-vars"] = { "terraform_fmt" },
 				},
 				-- Set default options
@@ -245,6 +243,10 @@ require("lazy").setup({
 		},
 		{
 			"neovim/nvim-lspconfig",
+			dependencies = {
+				"mason.nvim",
+				{ "mason-org/mason-lspconfig.nvim", config = function() end },
+			},
 		},
 
 		-- { 'neoclide/coc.nvim',           branch = 'release' },
@@ -322,10 +324,7 @@ require("lazy").setup({
 			-- pre_hook = require("ts_context_commentstring.integrations.comment_nvim").create_pre_hook(),
 		},
 
-		-- { "jparise/vim-graphql" },
-		-- { "editorconfig/editorconfig-vim" },
 		{ "lukas-reineke/indent-blankline.nvim" },
-		-- { "hashivim/vim-terraform" },
 		{
 			"mason-org/mason-lspconfig.nvim",
 			opts = {},
@@ -333,15 +332,24 @@ require("lazy").setup({
 				{ "mason-org/mason.nvim", opts = {} },
 				"neovim/nvim-lspconfig",
 			},
-			setup = {
-				automatic_enable = false,
+			opts = {
+				ensure_installed = { "lua_ls", "rust_analyzer", "bacon_ls" },
 			},
 		},
 		{ "lewis6991/gitsigns.nvim" },
 		{
 			"mason-org/mason.nvim",
 			opts = {
-				ensure_installed = { "biome", "shellcheck", "gitui", "stylelus", "shfmt", "js-debug-adapter", "tflint" },
+				ensure_installed = {
+					"biome",
+					"shellcheck",
+					"gitui",
+					"stylelus",
+					"shfmt",
+					"js-debug-adapter",
+					"tflint",
+					"bacon",
+				},
 			},
 		},
 
@@ -531,6 +539,8 @@ require("lazy").setup({
 						"vimdoc",
 						"xml",
 						"yaml",
+						"rust",
+						"ron",
 					},
 					sync_install = false,
 					highlight = { enable = true },
@@ -607,6 +617,27 @@ require("lazy").setup({
 						require("which-key").show({ global = false })
 					end,
 					desc = "Buffer Local Keymaps (which-key)",
+				},
+			},
+		},
+		{
+			"saecki/crates.nvim",
+			event = { "BufRead Cargo.toml" },
+			tag = "stable",
+			config = function()
+				require("crates").setup()
+			end,
+			opts = {
+				completion = {
+					crates = {
+						enabled = true,
+					},
+				},
+				lsp = {
+					enabled = true,
+					actions = true,
+					completion = true,
+					hover = true,
 				},
 			},
 		},
@@ -866,3 +897,39 @@ require("gitsigns").setup({
 		col = 1,
 	},
 })
+-- vim.lsp.enable("rust_analyzer")
+-- vim.lsp.config("rust_analyzer", {
+-- 	-- Server-specific settings. See `:help lsp-quickstart`
+-- 	settings = {
+-- 		["rust-analyzer"] = {
+--
+-- 			diagnostics = { enable = false },
+-- 			checkOnSave = { enable = false },
+-- 		},
+-- 	},
+-- })
+vim.lsp.enable("bacon_ls")
+-- vim.lsp.config("bacon_ls", {
+-- 	settings = {
+-- 		init_options = {
+-- 			-- Bacon export filename (default: .bacon-locations).
+-- 			locationsFile = ".bacon-locations",
+-- 			-- Try to update diagnostics every time the file is saved (default: true).
+-- 			updateOnSave = true,
+-- 			--  How many milliseconds to wait before updating diagnostics after a save (default: 1000).
+-- 			updateOnSaveWaitMillis = 1000,
+-- 			-- Try to update diagnostics every time the file changes (default: true).
+-- 			updateOnChange = true,
+-- 			-- Try to validate that bacon preferences are setup correctly to work with bacon-ls (default: true).
+-- 			validateBaconPreferences = true,
+-- 			-- f no bacon preferences file is found, create a new preferences file with the bacon-ls job definition (default: true).
+-- 			createBaconPreferencesFile = true,
+-- 			-- Run bacon in background for the bacon-ls job (default: true)
+-- 			runBaconInBackground = true,
+-- 			-- Command line arguments to pass to bacon running in background (default "--headless -j bacon-ls")
+-- 			runBaconInBackgroundCommandArguments = "--headless -j bacon-ls",
+-- 			-- How many milliseconds to wait between background diagnostics check to synchronize all open files (default: 2000).
+-- 			synchronizeAllOpenFilesWaitMillis = 2000,
+-- 		},
+-- 	},
+-- })
