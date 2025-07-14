@@ -117,7 +117,7 @@ require("lazy").setup({
 					lua = { "stylua" },
 					python = { "isort", "black" },
 					javascript = { "biome", stop_after_first = true },
-					typescript = { "biome" },
+					typescript = { "biome", "lua-language-server" },
 					svelte = { "biome", "prettier", stop_after_first = true },
 					hcl = { "packer_fmt" },
 					terraform = { "terraform_fmt" },
@@ -135,6 +135,11 @@ require("lazy").setup({
 				formatters = {
 					shfmt = {
 						prepend_args = { "-i", "2" },
+					},
+					stylua = {
+						indent_type = "Spaces",
+						indent_style = "space",
+						indent_size = "2",
 					},
 				},
 			},
@@ -324,7 +329,30 @@ require("lazy").setup({
 			-- pre_hook = require("ts_context_commentstring.integrations.comment_nvim").create_pre_hook(),
 		},
 
-		{ "lukas-reineke/indent-blankline.nvim" },
+		-- { "lukas-reineke/indent-blankline.nvim" },
+		{
+			"folke/snacks.nvim",
+			priority = 1000,
+			lazy = false,
+			---@type snacks.Config
+			opts = {
+				-- your configuration comes here
+				-- or leave it empty to use the default settings
+				-- refer to the configuration section below
+				bigfile = { enabled = false },
+				dashboard = { enabled = false },
+				explorer = { enabled = false },
+				indent = { enabled = true },
+				input = { enabled = false },
+				picker = { enabled = false },
+				notifier = { enabled = false },
+				quickfile = { enabled = false },
+				scope = { enabled = false },
+				scroll = { enabled = false },
+				statuscolumn = { enabled = false },
+				words = { enabled = false },
+			},
+		},
 		{
 			"mason-org/mason-lspconfig.nvim",
 			opts = {},
@@ -679,30 +707,30 @@ require("lazy").setup({
 	checker = { enabled = true },
 })
 
-local highlight = {
-	"RainbowRed",
-	"RainbowYellow",
-	"RainbowBlue",
-	"RainbowOrange",
-	"RainbowGreen",
-	"RainbowViolet",
-	"RainbowCyan",
-}
+-- local highlight = {
+-- 	"RainbowRed",
+-- 	"RainbowYellow",
+-- 	"RainbowBlue",
+-- 	"RainbowOrange",
+-- 	"RainbowGreen",
+-- 	"RainbowViolet",
+-- 	"RainbowCyan",
+-- }
 
-local hooks = require("ibl.hooks")
--- create the highlight groups in the highlight setup hook, so they are reset
--- every time the colorscheme changes
-hooks.register(hooks.type.HIGHLIGHT_SETUP, function()
-	vim.api.nvim_set_hl(0, "RainbowRed", { fg = "#E06C75" })
-	vim.api.nvim_set_hl(0, "RainbowYellow", { fg = "#E5C07B" })
-	vim.api.nvim_set_hl(0, "RainbowBlue", { fg = "#61AFEF" })
-	vim.api.nvim_set_hl(0, "RainbowOrange", { fg = "#D19A66" })
-	vim.api.nvim_set_hl(0, "RainbowGreen", { fg = "#98C379" })
-	vim.api.nvim_set_hl(0, "RainbowViolet", { fg = "#C678DD" })
-	vim.api.nvim_set_hl(0, "RainbowCyan", { fg = "#56B6C2" })
-end)
-
-require("ibl").setup({ indent = { highlight = highlight } })
+-- local hooks = require("ibl.hooks")
+-- -- create the highlight groups in the highlight setup hook, so they are reset
+-- -- every time the colorscheme changes
+-- hooks.register(hooks.type.HIGHLIGHT_SETUP, function()
+-- 	vim.api.nvim_set_hl(0, "RainbowRed", { fg = "#E06C75" })
+-- 	vim.api.nvim_set_hl(0, "RainbowYellow", { fg = "#E5C07B" })
+-- 	vim.api.nvim_set_hl(0, "RainbowBlue", { fg = "#61AFEF" })
+-- 	vim.api.nvim_set_hl(0, "RainbowOrange", { fg = "#D19A66" })
+-- 	vim.api.nvim_set_hl(0, "RainbowGreen", { fg = "#98C379" })
+-- 	vim.api.nvim_set_hl(0, "RainbowViolet", { fg = "#C678DD" })
+-- 	vim.api.nvim_set_hl(0, "RainbowCyan", { fg = "#56B6C2" })
+-- end)
+--
+-- require("ibl").setup({ indent = { highlight = highlight } })
 
 require("todo-comments").setup({
 	{
