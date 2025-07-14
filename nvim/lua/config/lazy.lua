@@ -122,7 +122,7 @@ require("lazy").setup({
 					hcl = { "packer_fmt" },
 					terraform = { "terraform_fmt" },
 					tf = { "terraform_fmt" },
-					rust = { "rust_analyser", lsp_format = "fallback" },
+					-- rust = { "rust_analyser", lsp_format = "fallback" },
 					["terraform-vars"] = { "terraform_fmt" },
 				},
 				-- Set default options
@@ -333,7 +333,12 @@ require("lazy").setup({
 				"neovim/nvim-lspconfig",
 			},
 			opts = {
-				ensure_installed = { "lua_ls", "rust_analyzer", "bacon", "codelldb" },
+				ensure_installed = {
+					"lua_ls",
+					--"rust_analyzer",
+					-- "codelldb"
+					-- "bacon",
+				},
 			},
 		},
 		{ "lewis6991/gitsigns.nvim" },
@@ -348,7 +353,7 @@ require("lazy").setup({
 					"shfmt",
 					"js-debug-adapter",
 					"tflint",
-					"bacon",
+					-- "bacon",
 				},
 			},
 		},
@@ -908,72 +913,51 @@ require("gitsigns").setup({
 		col = 1,
 	},
 })
--- vim.lsp.enable("rust_analyzer")
+
 -- vim.lsp.config("rust_analyzer", {
--- 	-- Server-specific settings. See `:help lsp-quickstart`
--- 	settings = {
--- 		["rust-analyzer"] = {
---
--- 			diagnostics = { enable = false },
--- 			checkOnSave = { enable = false },
+-- 	-- settings = {
+-- 	["rust-analyzer"] = {
+-- 		-- enabled = false,
+-- 		diagnostics = {
+-- 			enable = false,
+-- 		},
+-- 		checkOnSave = {
+-- 			enable = false,
 -- 		},
 -- 	},
+-- 	-- },
 -- })
-
-vim.lsp.config("rust_analyzer", {
-	settings = {
-		["rust-analyzer"] = {
-			enabled = false,
-			diagnostics = {
-				enable = false,
-			},
-		},
-	},
-})
 vim.lsp.enable("rust_analyzer")
--- local nvim_lsp = require("lspconfig")
-
--- nvim_lsp.rust_analyzer.setup({
--- 	-- vim.lsp.config("rust_analyzer", {
+-- vim.lsp.config("bacon_ls", {
 -- 	settings = {
--- 		["rust-analyzer"] = {
--- 			diagnostics = {
--- 				enable = true,
--- 			},
+-- 		-- enabled = diagnostics == "bacon-ls",
+-- 		-- diagnostics = {
+-- 		-- 	enable = true,
+-- 		-- },
+-- 		-- enabled = true,
+-- 		init_options = {
+-- 			-- Bacon export filename (default: .bacon-locations).
+-- 			locationsFile = ".bacon-locations",
+-- 			-- Try to update diagnostics every time the file is saved (default: true).
+-- 			updateOnSave = true,
+-- 			--  How many milliseconds to wait before updating diagnostics after a save (default: 1000).
+-- 			updateOnSaveWaitMillis = 1000,
+-- 			-- Try to update diagnostics every time the file changes (default: true).
+-- 			updateOnChange = true,
+-- 			-- Try to validate that bacon preferences are setup correctly to work with bacon-ls (default: true).
+-- 			validateBaconPreferences = true,
+-- 			-- f no bacon preferences file is found, create a new preferences file with the bacon-ls job definition (default: true).
+-- 			createBaconPreferencesFile = true,
+-- 			-- Run bacon in background for the bacon-ls job (default: true)
+-- 			runBaconInBackground = true,
+-- 			-- Command line arguments to pass to bacon running in background (default "--headless -j bacon-ls")
+-- 			runBaconInBackgroundCommandArguments = "--headless -j bacon-ls",
+-- 			-- How many milliseconds to wait between background diagnostics check to synchronize all open files (default: 2000).
+-- 			synchronizeAllOpenFilesWaitMillis = 2000,
 -- 		},
 -- 	},
 -- })
--- nvim_lsp.bacon_ls.setup({
-vim.lsp.config("bacon_ls", {
-	settings = {
-		enabled = diagnostics == "bacon-ls",
-		-- diagnostics = {
-		-- 	enable = true,
-		-- },
-		-- enabled = true,
-		init_options = {
-			-- Bacon export filename (default: .bacon-locations).
-			locationsFile = ".bacon-locations",
-			-- Try to update diagnostics every time the file is saved (default: true).
-			updateOnSave = true,
-			--  How many milliseconds to wait before updating diagnostics after a save (default: 1000).
-			updateOnSaveWaitMillis = 1000,
-			-- Try to update diagnostics every time the file changes (default: true).
-			updateOnChange = true,
-			-- Try to validate that bacon preferences are setup correctly to work with bacon-ls (default: true).
-			validateBaconPreferences = true,
-			-- f no bacon preferences file is found, create a new preferences file with the bacon-ls job definition (default: true).
-			createBaconPreferencesFile = true,
-			-- Run bacon in background for the bacon-ls job (default: true)
-			runBaconInBackground = true,
-			-- Command line arguments to pass to bacon running in background (default "--headless -j bacon-ls")
-			runBaconInBackgroundCommandArguments = "--headless -j bacon-ls",
-			-- How many milliseconds to wait between background diagnostics check to synchronize all open files (default: 2000).
-			synchronizeAllOpenFilesWaitMillis = 2000,
-		},
-	},
-})
-vim.lsp.enable("bacon_ls")
+-- vim.lsp.enable("bacon_ls")
 local null_ls = require("null-ls")
 null_ls.setup({
 	sources = {
