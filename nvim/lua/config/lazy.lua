@@ -116,9 +116,11 @@ require("lazy").setup({
 				formatters_by_ft = {
 					lua = { "stylua" },
 					python = { "isort", "black" },
-					javascript = { "biome", stop_after_first = true },
-					typescript = { "biome" },
-					svelte = { "biome", "prettier", stop_after_first = true },
+					javascript = { "biome", "biome-organize-imports" },
+					typescript = { "biome", "biome-organize-imports" },
+					json = { "biome" },
+					typescriptreact = { "biome", "biome-organize-imports" },
+					svelte = { "biome", "prettier", "biome-organize-imports" },
 					hcl = { "packer_fmt" },
 					terraform = { "terraform_fmt" },
 					tf = { "terraform_fmt" },
@@ -136,6 +138,12 @@ require("lazy").setup({
 					shfmt = {
 						prepend_args = { "-i", "2" },
 					},
+					-- biome = {
+					-- 	require_cwd = true,
+					-- 	-- enabled = true,
+					-- 	-- indentStyle = "space",
+					-- 	-- indentWidth = 2,
+					-- },
 				},
 			},
 			-- 	init = function()
@@ -335,6 +343,7 @@ require("lazy").setup({
 			opts = {
 				ensure_installed = {
 					"lua_ls",
+					"biome",
 					--"rust_analyzer",
 					-- "codelldb"
 					-- "bacon",

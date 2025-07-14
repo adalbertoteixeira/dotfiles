@@ -63,19 +63,19 @@ vim.api.nvim_set_keymap("n", "/", "/\\v", { noremap = true })
 -- vim.g.ale_use_neovim_diagnostics_api = 1
 -- vim.g.ale_disable_lsp = 1
 
-vim.api.nvim_create_autocmd("FileType", {
-	pattern = "sh",
-	callback = function()
-		vim.lsp.start({
-			name = "bash-language-server",
-			cmd = { "bash-language-server", "start" },
-		})
-	end,
-})
+-- vim.api.nvim_create_autocmd("FileType", {
+-- 	pattern = "sh",
+-- 	callback = function()
+-- 		vim.lsp.start({
+-- 			name = "bash-language-server",
+-- 			cmd = { "bash-language-server", "start" },
+-- 		})
+-- 	end,
+-- })
 
-vim.api.nvim_set_keymap("n", "<leader>ai", ":ALEInfo<CR>", { noremap = true })
-vim.api.nvim_set_keymap("n", "<leader>ak", ":ALEPrevious<CR>", { noremap = true })
-vim.api.nvim_set_keymap("n", "<leader>aj", ":ALENext<CR>", { noremap = true })
+-- vim.api.nvim_set_keymap("n", "<leader>ai", ":ALEInfo<CR>", { noremap = true })
+-- vim.api.nvim_set_keymap("n", "<leader>ak", ":ALEPrevious<CR>", { noremap = true })
+-- vim.api.nvim_set_keymap("n", "<leader>aj", ":ALENext<CR>", { noremap = true })
 -- nmap <silent> <C-k> <Plug>(ale_previous)
 -- nmap <silent> <C-j> <Plug>(ale_next)
 -- let g:ale_sign_error = '>>'
@@ -266,8 +266,8 @@ vim.o.spell = true
 -- autocmd BufNewFile,BufRead *.mts :set filetype=typescript
 --
 --
-vim.api.nvim_set_keymap("n", "<leader>hk", ":GitGutterPrevHunk<CR>", { noremap = true })
-vim.api.nvim_set_keymap("n", "<leader>hj", ":GitGutterNextHunk<CR>", { noremap = true })
+vim.api.nvim_set_keymap("n", "<leader>hk", ":Gitsigns nav_hunk prev<CR>", { noremap = true })
+vim.api.nvim_set_keymap("n", "<leader>hj", ":Gitsigns nav_hunk next<CR>", { noremap = true })
 -- nmap <Leader>hp <Plug>(GitGutterPrevHunk)
 -- nmap <Leader>hn <Plug>(GitGutterNextHunk)
 -- inoremap <c-x><c-k> <c-x><c-k>
