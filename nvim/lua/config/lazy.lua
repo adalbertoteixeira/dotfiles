@@ -115,6 +115,7 @@ require("lazy").setup({
       opts = {
         -- Define your formatters
         formatters_by_ft = {
+          http = { "kulala" },
           lua = { "stylua" },
           python = { "isort", "black" },
           typescript = { "biome", "lua-language-server" },
@@ -137,6 +138,11 @@ require("lazy").setup({
         format_on_save = { timeout_ms = 500 },
         -- Customize formatters
         formatters = {
+          kulala = {
+            command = "kulala-fmt",
+            args = { "format", "$FILENAME" },
+            stdin = false,
+          },
           shfmt = {
             prepend_args = { "-i", "2" },
           },
@@ -370,6 +376,20 @@ require("lazy").setup({
       },
     },
     { "lewis6991/gitsigns.nvim" },
+    {
+      "mistweaverco/kulala.nvim",
+      keys = {
+        { "<leader>Rs", desc = "Send request" },
+        { "<leader>Ra", desc = "Send all requests" },
+        { "<leader>Rb", desc = "Open scratchpad" },
+      },
+      ft = { "http", "rest" },
+      opts = {
+        global_keymaps = true,
+        global_keymaps_prefix = "<leader>R",
+        kulala_keymaps_prefix = "",
+      },
+    },
     {
       "mason-org/mason.nvim",
       opts = {
@@ -956,6 +976,7 @@ require("gitsigns").setup({
 -- 	-- },
 -- })
 vim.lsp.enable("rust_analyzer")
+vim.lsp.enable("kulala_ls")
 -- vim.lsp.config("bacon_ls", {
 -- 	settings = {
 -- 		-- enabled = diagnostics == "bacon-ls",
