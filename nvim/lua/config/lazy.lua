@@ -16,7 +16,6 @@ if not (vim.uv or vim.loop).fs_stat(lazypath) then
 end
 vim.opt.rtp:prepend(lazypath)
 
--- Setup lazy.nvim
 require("lazy").setup({
   spec = {
     { "tpope/vim-fugitive" },
@@ -35,12 +34,9 @@ require("lazy").setup({
       end,
     },
 
-    -- { "junegunn/gv.vim" },
     {
       "danymat/neogen",
       config = true,
-      -- Uncomment next line if you want to follow only stable versions
-      -- version = "*"
     },
     {
       "saghen/blink.cmp",
@@ -49,10 +45,6 @@ require("lazy").setup({
 
       -- use a release tag to download pre-built binaries
       version = "1.*",
-      -- AND/OR build from source, requires nightly: https://rust-lang.github.io/rustup/concepts/channels.html#working-with-nightly-rust
-      -- build = 'cargo build --release',
-      -- If you use nix, you can build from source using latest nightly rust with:
-      -- build = 'nix run .#build-plugin',
 
       opts = {
         -- 'default' (recommended) for mappings similar to built-in completions (C-y to accept)
@@ -93,7 +85,6 @@ require("lazy").setup({
       },
       opts_extend = { "sources.default" },
     },
-    -- Linting / formatting
     {
       "stevearc/conform.nvim",
       -- 	event = { "BufWritePre" },
@@ -109,9 +100,9 @@ require("lazy").setup({
       -- 			desc = "Format buffer",
       -- 		},
       -- 	},
-      -- 	-- This will provide type hinting with LuaLS
-      -- 	---@module "conform"
-      -- 	---@type conform.setupOpts
+      -- This will provide type hinting with LuaLS
+      ---@module "conform"
+      ---@type conform.setupOpts
       opts = {
         -- Define your formatters
         formatters_by_ft = {
@@ -134,9 +125,7 @@ require("lazy").setup({
         default_format_opts = {
           lsp_format = "fallback",
         },
-        -- Set up format-on-save
         format_on_save = { timeout_ms = 500 },
-        -- Customize formatters
         formatters = {
           kulala = {
             command = "kulala-fmt",
@@ -153,11 +142,9 @@ require("lazy").setup({
       -- 		vim.o.formatexpr = "v:lua.require'conform'.formatexpr()"
       -- 	end,
     },
-    -- { "akinsho/bufferline.nvim", version = "*", dependencies = "nvim-tree/nvim-web-devicons" },
     {
       "mfussenegger/nvim-lint",
       opts = {
-        -- Event to trigger linters
         events = { "BufWritePost", "BufReadPost", "InsertLeave" },
         linters_by_ft = {
           typescript = { "biome" },
@@ -259,37 +246,9 @@ require("lazy").setup({
       },
     },
 
-    -- { 'neoclide/coc.nvim',           branch = 'release' },
-    -- {
-    -- 	"dense-analysis/ale",
-    -- 	config = function()
-    -- 		-- Configuration goes here.
-    -- 		local g = vim.g
-    --
-    -- 		g.ale_use_neovim_diagnostics_api = 1
-    -- 		-- g.ale_disable_lsp = 1
-    -- 		g.ale_completion_enabled = 0
-    -- 		g.ale_set_balloons = 1
-    -- 		g.ale_fix_on_save = 1
-    -- 		g.ale_lint_on_text_changed = 1
-    -- 		g.ale_lint_on_insert_leave = 1
-    -- 		g.ale_set_loclist = 0
-    -- 		g.ale_set_quickfix = 0
-    -- 		g.ale_set_highlights = 1
-    -- 		g.ale_set_signs = 1
-    -- 		g.ale_open_list = 1
-    -- 		g.ale_keep_list_window_open = 0
-    -- 		g.ale_sign_column_always = 1
-    -- 		g.ale_linters_explicit = 1
-    -- 		g.ale_lint_delay = 500
-    -- 	end,
-    -- },
     { "tpope/vim-surround" },
-    -- { "airblade/vim-gitgutter" },
     { "burntsushi/ripgrep" },
     { "tpope/vim-obsession" },
-    -- { "tpope/vim-dadbod" },
-    -- { "kristijanhusak/vim-dadbod-ui" },
     -- lazy.nvim
     {
       "folke/noice.nvim",
@@ -458,95 +417,8 @@ require("lazy").setup({
       },
     },
     { "nvim-tree/nvim-web-devicons" },
-    { "stevearc/dressing.nvim" },
-    { "nvim-lua/plenary.nvim" },
-    { "MunifTanjim/nui.nvim" },
     { "b0o/schemastore.nvim" },
 
-    -- tabnine
-    -- { 'codota/tabnine-nvim', build = "./dl_binaries.sh" },
-    -- Build in ~/.local/share/nvim/lazy/tabnine-nvim/chat: cargo build --release
-    -- {
-    -- 	"yetone/avante.nvim",
-    -- 	event = "VeryLazy",
-    -- 	version = false, -- Never set this value to "*"! Never!
-    -- 	opts = {
-    -- 		providers = {
-    -- 			openai = {
-    -- 				endpoint = "https://api.openai.com/v1",
-    -- 				model = "gpt-4o", -- your desired model (or use gpt-4o, etc.)
-    -- 				timeout = 30000, -- Timeout in milliseconds, increase this for reasoning models
-    -- 				extra_request_body = {
-    -- 					temperature = 0,
-    -- 					max_completion_tokens = 8192, -- Increase this to include reasoning tokens (for reasoning models)
-    -- 					--reasoning_effort = "medium", -- low|medium|high, only used for reasoning models
-    -- 				},
-    -- 			},
-    -- 			gemini = {
-    -- 				__inherited_from = "gemini",
-    -- 				model = "gemini-2.5-pro-preview-03-25",
-    -- 			},
-    -- 			claude = {
-    -- 				endpoint = "https://api.anthropic.com",
-    -- 				model = "claude-sonnet-4-20250514",
-    -- 				extra_request_body = {
-    -- 					temperature = 0,
-    -- 					max_tokens = 4096,
-    -- 				},
-    -- 			},
-    -- 			mistral = {
-    -- 				__inherited_from = "openai",
-    -- 				api_key_name = "MISTRAL_API_KEY",
-    -- 				endpoint = "https://api.mistral.ai/v1/",
-    -- 				model = "mistral-large-latest",
-    -- 				extra_request_body = {
-    -- 					max_tokens = 4096, -- to avoid using max_completion_tokens
-    -- 				},
-    -- 			},
-    -- 		},
-    -- 	},
-    -- 	-- if you want to build from source then do `make BUILD_FROM_SOURCE=true`
-    -- 	build = "make",
-    -- 	-- build = "powershell -ExecutionPolicy Bypass -File Build.ps1 -BuildFromSource false" -- for windows
-    -- 	dependencies = {
-    -- 		"nvim-treesitter/nvim-treesitter",
-    -- 		"stevearc/dressing.nvim",
-    -- 		"nvim-lua/plenary.nvim",
-    -- 		"MunifTanjim/nui.nvim",
-    -- 		--- The below dependencies are optional,
-    -- 		"echasnovski/mini.pick", -- for file_selector provider mini.pick
-    -- 		"hrsh7th/nvim-cmp", -- autocompletion for avante commands and mentions
-    -- 		"ibhagwan/fzf-lua", -- for file_selector provider fzf
-    -- 		"nvim-tree/nvim-web-devicons", -- or echasnovski/mini.icons
-    -- 		"zbirenbaum/copilot.lua", -- for providers='copilot'
-    -- 		{
-    -- 			-- support for image pasting
-    -- 			"HakonHarnes/img-clip.nvim",
-    -- 			event = "VeryLazy",
-    -- 			opts = {
-    -- 				-- recommended settings
-    -- 				default = {
-    -- 					embed_image_as_base64 = false,
-    -- 					prompt_for_file_name = false,
-    -- 					drag_and_drop = {
-    -- 						insert_mode = true,
-    -- 					},
-    -- 					-- required for Windows users
-    -- 					use_absolute_path = true,
-    -- 				},
-    -- 			},
-    -- 		},
-    -- 		{
-    -- 			-- Make sure to set this up properly if you have lazy=true
-    -- 			"MeanderingProgrammer/render-markdown.nvim",
-    -- 			opts = {
-    -- 				file_types = { "markdown", "Avante" },
-    -- 			},
-    -- 			ft = { "markdown", "Avante" },
-    -- 		},
-    -- 	},
-    -- },
-    -- { "lua-language-server" },
     { "leafOfTree/vim-svelte-plugin" },
     {
       "nvim-treesitter/nvim-treesitter",
@@ -650,14 +522,73 @@ require("lazy").setup({
       "folke/todo-comments.nvim",
       dependencies = { "nvim-lua/plenary.nvim" },
       opts = {
-        -- your configuration comes here
-        -- or leave it empty to use the default settings
-        -- refer to the configuration section below
+        signs = true, -- show icons in the signs column
+        sign_priority = 8, -- sign priority
+        -- keywords recognized as todo comments
+        keywords = {
+          FIX = {
+            icon = " ", -- icon used for the sign, and in search results
+            color = "error", -- can be a hex color, or a named color (see below)
+            alt = { "FIXME", "BUG", "FIXIT", "ISSUE" }, -- a set of other keywords that all map to this FIX keywords
+            -- signs = false, -- configure signs for some keywords individually
+          },
+          TODO = { icon = " ", color = "info", alt = { "@TODO" } },
+          HACK = { icon = " ", color = "warning" },
+          WARN = { icon = " ", color = "warning", alt = { "WARNING", "XXX" } },
+          PERF = { icon = " ", alt = { "OPTIM", "PERFORMANCE", "OPTIMIZE" } },
+          NOTE = { icon = " ", color = "hint", alt = { "INFO" } },
+          TEST = { icon = "⏲ ", color = "test", alt = { "TESTING", "PASSED", "FAILED" } },
+        },
+        gui_style = {
+          fg = "NONE", -- The gui style to use for the fg highlight group.
+          bg = "BOLD", -- The gui style to use for the bg highlight group.
+        },
+        merge_keywords = true, -- when true, custom keywords will be merged with the defaults
+        -- highlighting of the line containing the todo comment
+        -- * before: highlights before the keyword (typically comment characters)
+        -- * keyword: highlights of the keyword
+        -- * after: highlights after the keyword (todo text)
+        highlight = {
+          multiline = true, -- enable multine todo comments
+          multiline_pattern = "^.", -- lua pattern to match the next multiline from the start of the matched keyword
+          multiline_context = 10, -- extra lines that will be re-evaluated when changing a line
+          before = "", -- "fg" or "bg" or empty
+          keyword = "wide", -- "fg", "bg", "wide", "wide_bg", "wide_fg" or empty. (wide and wide_bg is the same as bg, but will also highlight surrounding characters, wide_fg acts accordingly but with fg)
+          after = "fg", -- "fg" or "bg" or empty
+          pattern = [[.*<(KEYWORDS)\s*:]], -- pattern or table of patterns, used for highlighting (vim regex)
+          comments_only = true, -- uses treesitter to match keywords in comments only
+          max_line_len = 400, -- ignore lines longer than this
+          exclude = {}, -- list of file types to exclude highlighting
+        },
+        -- list of named colors where we try to extract the guifg from the
+        -- list of highlight groups or use the hex color if hl not found as a fallback
+        colors = {
+          error = { "DiagnosticError", "ErrorMsg", "#DC2626" },
+          warning = { "DiagnosticWarn", "WarningMsg", "#FBBF24" },
+          info = { "DiagnosticInfo", "#2563EB" },
+          hint = { "DiagnosticHint", "#10B981" },
+          default = { "Identifier", "#7C3AED" },
+          test = { "Identifier", "#FF00FF" },
+        },
+        search = {
+          command = "rg",
+          args = {
+            "--color=never",
+            "--no-heading",
+            "--with-filename",
+            "--line-number",
+            "--column",
+          },
+          -- regex that will be used to match keywords.
+          -- don't replace the (KEYWORDS) placeholder
+          pattern = [[\b(KEYWORDS):]], -- ripgrep regex
+          -- pattern = [[\b(KEYWORDS)\b]], -- match without the extra colon. You'll likely get false positives
+        },
       },
     },
     {
       "nvim-telescope/telescope.nvim",
-      tag = "0.1.8",
+      tag = "0.1.x",
       -- or                              , branch = '0.1.x',
       dependencies = { "nvim-lua/plenary.nvim" },
     },
@@ -665,15 +596,10 @@ require("lazy").setup({
       "nvim-telescope/telescope-file-browser.nvim",
       dependencies = { "nvim-telescope/telescope.nvim", "nvim-lua/plenary.nvim" },
     },
-    -- { "mustache/vim-mustache-handlebars" },
     {
       "folke/which-key.nvim",
       event = "VeryLazy",
-      opts = {
-        -- your configuration comes here
-        -- or leave it empty to use the default settings
-        -- refer to the configuration section below
-      },
+      opts = {},
       keys = {
         {
           "<leader>?",
@@ -705,119 +631,21 @@ require("lazy").setup({
         },
       },
     },
-    -- 	    {
-    -- 		"folke/flash.nvim", event = "VeryLazy",
-    --   -- -@type Flash.Config
-    --   opts = {},
-    --   -- stylua: ignore
-    --   keys = {
-    --     { "s", mode = { "n", "x", "o" }, function() require("flash").jump() end, desc = "Flash" },
-    --     { "S", mode = { "n", "x", "o" }, function() require("flash").treesitter() end, desc = "Flash Treesitter" },
-    --     { "r", mode = "o", function() require("flash").remote() end, desc = "Remote Flash" },
-    --     { "R", mode = { "o", "x" }, function() require("flash").treesitter_search() end, desc = "Treesitter Search" },
-    --     { "<c-s>", mode = { "c" }, function() require("flash").toggle() end, desc = "Toggle Flash Search" },
-    --   },
-    -- }
-
-    -- Configure any other settings here. See the documentation for more details.
     -- colorscheme that will be used when installing plugins.
     --install = { colorscheme = { "habamax" } },
     -- automatically check for plugin updates
   },
   checker = { enabled = true },
+  -- { "junegunn/gv.vim" },
+  -- { "airblade/vim-gitgutter" },
+  -- { "tpope/vim-dadbod" },
+  -- { "kristijanhusak/vim-dadbod-ui" },
+  -- { "stevearc/dressing.nvim" },@NOTE: deprecated for snacks.vim
+  -- { "nvim-lua/plenary.nvim" }, @NOTE: imported as dependey elsewhere
+  -- { "MunifTanjim/nui.nvim" }, @NOTE: imported as dependey elsewhere
 })
 
--- local highlight = {
--- 	"RainbowRed",
--- 	"RainbowYellow",
--- 	"RainbowBlue",
--- 	"RainbowOrange",
--- 	"RainbowGreen",
--- 	"RainbowViolet",
--- 	"RainbowCyan",
--- }
-
--- local hooks = require("ibl.hooks")
--- -- create the highlight groups in the highlight setup hook, so they are reset
--- -- every time the colorscheme changes
--- hooks.register(hooks.type.HIGHLIGHT_SETUP, function()
--- 	vim.api.nvim_set_hl(0, "RainbowRed", { fg = "#E06C75" })
--- 	vim.api.nvim_set_hl(0, "RainbowYellow", { fg = "#E5C07B" })
--- 	vim.api.nvim_set_hl(0, "RainbowBlue", { fg = "#61AFEF" })
--- 	vim.api.nvim_set_hl(0, "RainbowOrange", { fg = "#D19A66" })
--- 	vim.api.nvim_set_hl(0, "RainbowGreen", { fg = "#98C379" })
--- 	vim.api.nvim_set_hl(0, "RainbowViolet", { fg = "#C678DD" })
--- 	vim.api.nvim_set_hl(0, "RainbowCyan", { fg = "#56B6C2" })
--- end)
---
--- require("ibl").setup({ indent = { highlight = highlight } })
-
-require("todo-comments").setup({
-  {
-    signs = true, -- show icons in the signs column
-    sign_priority = 8, -- sign priority
-    -- keywords recognized as todo comments
-    keywords = {
-      FIX = {
-        icon = " ", -- icon used for the sign, and in search results
-        color = "error", -- can be a hex color, or a named color (see below)
-        alt = { "FIXME", "BUG", "FIXIT", "ISSUE" }, -- a set of other keywords that all map to this FIX keywords
-        -- signs = false, -- configure signs for some keywords individually
-      },
-      TODO = { icon = " ", color = "info", alt = { "@TODO" } },
-      HACK = { icon = " ", color = "warning" },
-      WARN = { icon = " ", color = "warning", alt = { "WARNING", "XXX" } },
-      PERF = { icon = " ", alt = { "OPTIM", "PERFORMANCE", "OPTIMIZE" } },
-      NOTE = { icon = " ", color = "hint", alt = { "INFO" } },
-      TEST = { icon = "⏲ ", color = "test", alt = { "TESTING", "PASSED", "FAILED" } },
-    },
-    gui_style = {
-      fg = "NONE", -- The gui style to use for the fg highlight group.
-      bg = "BOLD", -- The gui style to use for the bg highlight group.
-    },
-    merge_keywords = true, -- when true, custom keywords will be merged with the defaults
-    -- highlighting of the line containing the todo comment
-    -- * before: highlights before the keyword (typically comment characters)
-    -- * keyword: highlights of the keyword
-    -- * after: highlights after the keyword (todo text)
-    highlight = {
-      multiline = true, -- enable multine todo comments
-      multiline_pattern = "^.", -- lua pattern to match the next multiline from the start of the matched keyword
-      multiline_context = 10, -- extra lines that will be re-evaluated when changing a line
-      before = "", -- "fg" or "bg" or empty
-      keyword = "wide", -- "fg", "bg", "wide", "wide_bg", "wide_fg" or empty. (wide and wide_bg is the same as bg, but will also highlight surrounding characters, wide_fg acts accordingly but with fg)
-      after = "fg", -- "fg" or "bg" or empty
-      pattern = [[.*<(KEYWORDS)\s*:]], -- pattern or table of patterns, used for highlighting (vim regex)
-      comments_only = true, -- uses treesitter to match keywords in comments only
-      max_line_len = 400, -- ignore lines longer than this
-      exclude = {}, -- list of file types to exclude highlighting
-    },
-    -- list of named colors where we try to extract the guifg from the
-    -- list of highlight groups or use the hex color if hl not found as a fallback
-    colors = {
-      error = { "DiagnosticError", "ErrorMsg", "#DC2626" },
-      warning = { "DiagnosticWarn", "WarningMsg", "#FBBF24" },
-      info = { "DiagnosticInfo", "#2563EB" },
-      hint = { "DiagnosticHint", "#10B981" },
-      default = { "Identifier", "#7C3AED" },
-      test = { "Identifier", "#FF00FF" },
-    },
-    search = {
-      command = "rg",
-      args = {
-        "--color=never",
-        "--no-heading",
-        "--with-filename",
-        "--line-number",
-        "--column",
-      },
-      -- regex that will be used to match keywords.
-      -- don't replace the (KEYWORDS) placeholder
-      pattern = [[\b(KEYWORDS):]], -- ripgrep regex
-      -- pattern = [[\b(KEYWORDS)\b]], -- match without the extra colon. You'll likely get false positives
-    },
-  },
-})
+require("todo-comments").setup({})
 
 require("neo-tree").setup({
   filesystem = {
@@ -872,27 +700,13 @@ telescope.setup({
 })
 require("telescope").load_extension("file_browser")
 
--- require("render-markdown").setup({
--- 	-- render_modes = true,
--- 	code = { border = "thin" },
--- 	-- pipe_table = { style = 'normal' },
--- 	latex = {
--- 		enabled = false,
--- 	},
--- 	completions = { lsp = { enabled = true } },
--- })
-
 require("Comment").setup({
   pre_hook = require("ts_context_commentstring.integrations.comment_nvim").create_pre_hook(),
 })
--- vim.lsp.enable("biome")
 vim.lsp.enable("terraformls")
--- vim.lsp.enable("tsserver")
 vim.lsp.enable("ts_ls")
--- vim.lsp.enable("tsserver")
 require("lualine").setup()
-vim.opt.termguicolors = true
--- require("bufferline").setup({})
+-- vim.opt.termguicolors = true
 require("neogen").setup()
 require("noice").setup({
   lsp = {
