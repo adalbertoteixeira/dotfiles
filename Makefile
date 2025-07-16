@@ -33,7 +33,7 @@ ubuntu:
 .PHONY: brew
 brew: 
 	/bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/HEAD/install.sh)"
-	brew install diff-so-fancy fzf fd bat kalker sk zellij neovim zsh fnm starship zsh-syntax-highlighting mosh frum lua-language-server dust broot
+	brew install diff-so-fancy fzf fd bat kalker sk zellij neovim zsh fnm starship zsh-syntax-highlighting mosh frum lua-language-server dust broot shellcheck sqruff typos-cli grpcurl websocat
 	brew install --cask font-victor-mono-nerd-font
 	brew install --cask alacritty
 
@@ -41,6 +41,7 @@ brew:
 rust:
 	curl --proto '=https' --tlsv1.2 -sSf https://sh.rustup.rs | sh
 	rustup component add rust-analyzer
+	rustup component add clippy
 
 .PHONY: macOS
 macOS:
