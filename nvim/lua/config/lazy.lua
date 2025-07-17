@@ -109,17 +109,16 @@ require("lazy").setup({
           http = { "kulala" },
           lua = { "stylua" },
           python = { "isort", "black" },
-          typescript = { "biome", "lua-language-server" },
-          javascript = { "biome", "biome-organize-imports" },
-          typescript = { "biome", "biome-organize-imports" },
-          typescriptreact = { "biome", "biome-organize-imports" },
+          typescript = { "biome", "lua-language-server", "eslint" },
+          javascript = { "biome", "biome-organize-imports", "eslint" },
+          typescriptreact = { "biome", "biome-organize-imports", "eslint" },
           json = { "biome" },
-          svelte = { "biome", "prettier", "biome-organize-imports" },
+          svelte = { "biome", "biome-organize-imports" },
           hcl = { "packer_fmt" },
-          terraform = { "terraform_fmt" },
-          tf = { "terraform_fmt" },
-          -- rust = { "rust_analyser", lsp_format = "fallback" },
-          ["terraform-vars"] = { "terraform_fmt" },
+          -- terraform = { "terraform_fmt" },
+          -- tf = { "terraform_fmt" },
+          -- -- rust = { "rust_analyser", lsp_format = "fallback" },
+          -- ["terraform-vars"] = { "terraform_fmt" },
         },
         -- Set default options
         default_format_opts = {
@@ -147,15 +146,23 @@ require("lazy").setup({
       opts = {
         events = { "BufWritePost", "BufReadPost", "InsertLeave" },
         linters_by_ft = {
-          typescript = { "biome" },
-          svelte = { "svelte_language_server" },
+          -- shellcheck
           -- Use the "*" filetype to run linters on all filetypes.
           -- ['*'] = { 'global linter' },
           -- Use the "_" filetype to run linters on filetypes that don't have other linters configured.
           -- ['_'] = { 'fallback linter' },
-          -- ["*"] = { "typos" },
-          terraform = { "terraform_validate" },
-          tf = { "terraform_validate" },
+          -- ["*"] = { "typos-cli" },
+          typescript = { "biome", "eslint" },
+          javascript = { "biome", "eslint" },
+          svelte = { "svelte_language_server" },
+          docker = { "hadolint" },
+          ruby = { "rubocop" },
+          python = { "ruff" },
+          -- terraform = { "terraform_validate", "tflint" },
+          -- tf = { "terraform_validate", "tflint" },
+          sql = { "sqruff" },
+          css = { "stylelint" },
+          yaml = { "yamllint" },
         },
         -- LazyVim extension to easily override linter options
         -- or add custom linters.
@@ -328,6 +335,7 @@ require("lazy").setup({
         ensure_installed = {
           "lua_ls",
           "biome",
+          "shellcheck",
           --"rust_analyzer",
           -- "codelldb"
           -- "bacon",
@@ -360,6 +368,12 @@ require("lazy").setup({
           "shfmt",
           "js-debug-adapter",
           "tflint",
+          "rubocop",
+          "ruff",
+          "sqruff",
+          "stylelint",
+          "tflint",
+          "typos-cli",
           -- "bacon",
         },
       },
@@ -707,6 +721,7 @@ vim.lsp.enable("terraformls")
 vim.lsp.enable("ts_ls")
 require("lualine").setup()
 -- vim.opt.termguicolors = true
+-- require("bufferline").setup({})
 require("neogen").setup()
 require("noice").setup({
   lsp = {
@@ -827,7 +842,6 @@ null_ls.setup({
     null_ls.builtins.formatting.stylua,
     null_ls.builtins.completion.spell,
     null_ls.builtins.formatting.biome,
-    null_ls.builtins.formatting.prettier,
     require("none-ls.diagnostics.eslint"),
   },
 })
