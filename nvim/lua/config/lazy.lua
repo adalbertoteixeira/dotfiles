@@ -123,14 +123,17 @@ require("lazy").setup({
           sql = { "sqruff" },
           -- terraform = { "terraform_fmt" },
           -- tf = { "terraform_fmt" },
-          -- -- rust = { "rust_analyser", lsp_format = "fallback" },
+          rust = { "rustfmt", lsp_format = "fallback" },
           -- ["terraform-vars"] = { "terraform_fmt" },
         },
         -- Set default options
         default_format_opts = {
           lsp_format = "fallback",
         },
-        format_on_save = { timeout_ms = 500 },
+        format_on_save = {
+          lsp_format = "fallback",
+          timeout_ms = 500,
+        },
         formatters = {
           kulala = {
             command = "kulala-fmt",
@@ -142,10 +145,10 @@ require("lazy").setup({
           },
         },
       },
-      -- 	init = function()
-      -- 		-- If you want the formatexpr, here is the place to set it
-      -- 		vim.o.formatexpr = "v:lua.require'conform'.formatexpr()"
-      -- 	end,
+      -- init = function()
+      --   -- If you want the formatexpr, here is the place to set it
+      --   vim.o.formatexpr = "v:lua.require'conform'.formatexpr()"
+      -- end,
     },
     {
       "mfussenegger/nvim-lint",
@@ -158,8 +161,10 @@ require("lazy").setup({
           -- Use the "_" filetype to run linters on filetypes that don't have other linters configured.
           -- ['_'] = { 'fallback linter' },
           -- ["*"] = { "typos-cli" },
-          typescript = { "biome", "eslint" },
-          javascript = { "biome", "eslint" },
+          typescript = { "biome", "eslint_d" },
+          typescriptreact = { "biome", "eslint_d" },
+          javascript = { "biome", "eslint_d" },
+          javascriptreact = { "biome", "eslint_d" },
           svelte = { "svelte_language_server" },
           docker = { "hadolint" },
           ruby = { "rubocop" },
@@ -992,8 +997,10 @@ require("dap").configurations.javascript = {
   },
 }
 
+vim.lsp.enable("lua-language-server")
 vim.lsp.enable("rust_analyzer")
 vim.lsp.enable("kulala_ls")
+vim.lsp.enable("biome")
 vim.lsp.enable("postgres_lsp")
 vim.lsp.config("lua_ls", {})
 -- vim.lsp.config("bacon_ls", {
@@ -1032,6 +1039,6 @@ null_ls.setup({
     null_ls.builtins.formatting.stylua,
     null_ls.builtins.completion.spell,
     null_ls.builtins.formatting.biome,
-    require("none-ls.diagnostics.eslint"),
+    require("none-ls.diagnostics.eslint_d"),
   },
 })
