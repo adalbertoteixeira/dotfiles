@@ -33,7 +33,7 @@ ubuntu:
 .PHONY: brew
 brew: 
 	/bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/HEAD/install.sh)"
-	brew install diff-so-fancy fzf fd bat kalker sk zellij neovim zsh fnm starship zsh-syntax-highlighting mosh frum lua-language-server dust broot shellcheck sqruff typos-cli grpcurl websocat
+	brew install diff-so-fancy fzf fd bat kalker sk zellij neovim zsh fnm starship zsh-syntax-highlighting mosh frum lua-language-server dust broot shellcheck sqruff typos-cli grpcurl websocat valkey
 	brew install --cask font-victor-mono-nerd-font
 	brew install --cask alacritty
 
