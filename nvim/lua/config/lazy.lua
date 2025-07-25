@@ -110,6 +110,7 @@ require("lazy").setup({
       opts = {
         -- Define your formatters
         formatters_by_ft = {
+          ruby = { "rubocop" },
           http = { "kulala" },
           lua = { "stylua" },
           python = { "ruff" },
@@ -1002,6 +1003,8 @@ require("dap").configurations.javascript = {
 
 vim.lsp.enable("lua-language-server")
 vim.lsp.enable("rust_analyzer")
+-- vim.lsp.enable("ruby-lsp")
+vim.lsp.enable("rubocop")
 vim.lsp.enable("kulala_ls")
 vim.lsp.enable("biome")
 vim.lsp.enable("postgres_lsp")
