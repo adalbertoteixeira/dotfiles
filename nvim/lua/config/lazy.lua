@@ -169,7 +169,7 @@ require("lazy").setup({
           typescriptreact = { "biome", "eslint_d" },
           javascript = { "biome", "eslint_d" },
           javascriptreact = { "biome", "eslint_d" },
-          svelte = { "svelte_language_server" },
+          svelte = { "biome" },
           docker = { "hadolint" },
           ruby = { "rubocop" },
           python = { "ruff" },
@@ -593,7 +593,7 @@ require("lazy").setup({
     { "nvim-tree/nvim-web-devicons" },
     { "b0o/schemastore.nvim" },
 
-    { "leafOfTree/vim-svelte-plugin" },
+    -- { "leafOfTree/vim-svelte-plugin" },
     {
       "nvim-treesitter/nvim-treesitter",
       build = ":TSUpdate",
@@ -1008,6 +1008,7 @@ vim.lsp.enable("rubocop")
 vim.lsp.enable("kulala_ls")
 vim.lsp.enable("biome")
 vim.lsp.enable("postgres_lsp")
+vim.lsp.enable("svelte")
 vim.lsp.config("lua_ls", {})
 -- vim.lsp.config("bacon_ls", {
 -- 	settings = {
